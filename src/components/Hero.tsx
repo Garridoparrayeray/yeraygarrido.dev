@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
@@ -10,62 +11,70 @@ export default function Hero() {
   const { language, t } = useLanguage();
 
   useEffect(() => {
-    // --- INTEGRACIÓN DE GSAP CONTEXT ---
-    // Esto agrupa todas tus animaciones para poder limpiarlas de golpe al salir de la página, mejor seo y optimizacion
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+    let ctx: gsap.Context;
 
-      // Animación de entrada de las letras
-      const letters = titleRef.current?.querySelectorAll(".char") || [];
-      tl.fromTo(
-        letters,
-        { y: "120%", rotate: 10, opacity: 0 },
-        {
-          y: "0%",
-          rotate: 0,
-          opacity: 1,
-          duration: 1.2,
-          stagger: 0.03,
-          ease: "power4.out",
-          delay: 0.2,
-        },
-      );
+    //cuando deja de poner las fuentes ejecutamos, con esto deberiamos reducir procesos en el seo
+    document.fonts.ready.then(() => {
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline();
 
-      // Animación del subtítulo
-      tl.fromTo(
-        textWrapperRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
-        "-=0.8",
-      );
+        // Animación de entrada de las letras
+        const letters = titleRef.current?.querySelectorAll(".char") || [];
+        tl.fromTo(
+          letters,
+          { y: "120%", rotate: 10, opacity: 0 },
+          {
+            y: "0%",
+            rotate: 0,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.03,
+            ease: "power4.out",
+            delay: 0.2,
+          },
+        );
 
-      // Revelado de botones
-      tl.fromTo(
-        buttonsRef.current?.children || [],
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
-        "-=0.6",
-      );
+        // Animación del subtítulo
+        tl.fromTo(
+          textWrapperRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
+          "-=0.8",
+        );
 
-      // EFECTO PARALLAX para que no de ticks la pagina incomodos
-      gsap.to(containerRef.current, {
-        yPercent: 20,
-        scale: 0.95,
-        opacity: 0.2,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    }, containerRef); 
+        // Revelado de botones
+        tl.fromTo(
+          buttonsRef.current?.children || [],
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
+          "-=0.6",
+        );
 
-    // LIMPIEZA OBLIGATORIA: Evita que las animaciones sigan vivas si cambias de página
-    return () => ctx.revert();
-    
+        // EFECTO PARALLAX para que no de ticks la pagina incomodos
+        gsap.to(containerRef.current, {
+          yPercent: 20,
+          scale: 0.95,
+          opacity: 0.2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Obligamos a ScrollTrigger a medir todo 
+        ScrollTrigger.refresh();
+
+      }, containerRef);
+    });
+
+    // Limpiamos el contexto si el componente se desmonta
+    return () => {
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
