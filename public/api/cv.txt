@@ -1,0 +1,37 @@
+================================================================================
+                               YERay GARRIDO
+                  Full Stack Developer & Backend Specialist
+================================================================================
+
+[ CONTACT ]
+Email: garridoparrayeraytx@gmail.com
+GitHub: https://github.com/Garridoparrayeray
+Location: Spain
+
+[ ABOUT ME ]
+Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL, 
+and custom WordPress (_s). I build scalable, optimized, and custom web solutions.
+
+[ TECH STACK ]
+- Backend: Java, PHP, MySQL
+- Frontend: JavaScript, HTML5, CSS3
+- Tools: Git, Figma
+- CMS: WordPress (Custom Themes & Plugins)
+
+[ EXPERIENCE ]
+> Freelance Full Stack Developer & DAW Student (2023 - Present)
+  Currently pursuing a Higher Degree in Web Application Development (DAW) 
+  while working as a freelance developer. Building custom web apps, robust 
+  backends in PHP/Java, and custom WordPress themes.
+
+> Level 3 Professional Certificate (Completed)
+  Official certification in frontend and backend development, database 
+  management, and web application deployment.
+
+> Software Engineering Student @ 42 Urduliz (1 Year Program)
+  Peer-to-peer methodology with no teachers. Focused on C programming, 
+  algorithms, memory management, and system architecture fundamentals.
+
+================================================================================
+"Code is like humor. When you have to explain it, it's bad." - Cory House
+================================================================================

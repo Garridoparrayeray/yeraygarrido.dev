@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resume>
+    <header>
+        <name>Yeray Garrido</name>
+        <title>Full Stack Developer &amp; Backend Specialist</title>
+    </header>
+    <contact>
+        <email>garridoparrayeraytx@gmail.com</email>
+        <github>https://github.com/Garridoparrayeray</github>
+        <location>Spain</location>
+    </contact>
+    <about>Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL, and custom WordPress (_s). I build scalable, optimized, and custom web solutions.</about>
+    <tech_stack>
+        <backend>Java, PHP, MySQL</backend>
+        <frontend>JavaScript, HTML5, CSS3</frontend>
+        <tools>Git, Figma</tools>
+        <cms>WordPress (Custom Themes &amp; Plugins)</cms>
+    </tech_stack>
+    <experience>
+        <job>
+            <role>Freelance Full Stack Developer &amp; DAW Student</role>
+            <company>Self-Employed / Vocational Training</company>
+            <date>2023 - Present</date>
+            <description>Currently pursuing a Higher Degree in Web Application Development (DAW) while working as a freelance developer. Building custom web apps, robust backends in PHP/Java, and custom WordPress themes.</description>
+        </job>
+        <job>
+            <role>Level 3 Professional Certificate</role>
+            <company>Web Application Development</company>
+            <date>Completed</date>
+            <description>Official certification in frontend and backend development, database management, and web application deployment.</description>
+        </job>
+        <job>
+            <role>Software Engineering Student</role>
+            <company>42 Urduliz (Fundación Telefónica)</company>
+            <date>1 Year Program</date>
+            <description>Peer-to-peer methodology with no teachers. Focused on C programming, algorithms, memory management, and system architecture fundamentals.</description>
+        </job>
+    </experience>
+    <quote>Code is like humor. When you have to explain it, it's bad.</quote>
+</resume>

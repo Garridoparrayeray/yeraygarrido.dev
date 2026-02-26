@@ -1,0 +1,37 @@
+{
+  "name": "Yeray Garrido",
+  "title": "Full Stack Developer & Backend Specialist",
+  "contact": {
+    "email": "garridoparrayeraytx@gmail.com",
+    "github": "https://github.com/Garridoparrayeray",
+    "location": "Spain"
+  },
+  "about": "Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL, and custom WordPress (_s). I build scalable, optimized, and custom web solutions.",
+  "tech_stack": {
+    "backend": ["Java", "PHP", "MySQL"],
+    "frontend": ["JavaScript", "HTML5", "CSS3"],
+    "tools": ["Git", "Figma"],
+    "cms": ["WordPress (Custom Themes & Plugins)"]
+  },
+  "experience": [
+    {
+      "role": "Freelance Full Stack Developer & DAW Student",
+      "company": "Self-Employed / Vocational Training",
+      "date": "2023 - Present",
+      "description": "Currently pursuing a Higher Degree in Web Application Development (DAW) while working as a freelance developer. Building custom web apps, robust backends in PHP/Java, and custom WordPress themes."
+    },
+    {
+      "role": "Level 3 Professional Certificate",
+      "company": "Web Application Development",
+      "date": "Completed",
+      "description": "Official certification in frontend and backend development, database management, and web application deployment."
+    },
+    {
+      "role": "Software Engineering Student",
+      "company": "42 Urduliz (Fundación Telefónica)",
+      "date": "1 Year Program",
+      "description": "Peer-to-peer methodology with no teachers. Focused on C programming, algorithms, memory management, and system architecture fundamentals."
+    }
+  ],
+  "quote": "Code is like humor. When you have to explain it, it's bad."
+}
