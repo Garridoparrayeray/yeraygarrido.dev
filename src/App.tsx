@@ -1,18 +1,21 @@
-import { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { LanguageProvider } from './context/LanguageContext';
+
 import InteractiveCanvas from './components/InteractiveCanvas';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Intro from './components/Intro';
-import Stack from './components/Stack';
-import Experience from './components/Experience';
-import Stats from './components/Stats';
-import ApiSection from './components/ApiSection';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import { LanguageProvider } from './context/LanguageContext';
+
+//CARGA DIFERIDA 
+const Intro = lazy(() => import('./components/Intro'));
+const Experience = lazy(() => import('./components/Experience'));
+const Stack = lazy(() => import('./components/Stack'));
+const Projects = lazy(() => import('./components/Projects'));
+const Stats = lazy(() => import('./components/Stats'));
+const ApiSection = lazy(() => import('./components/ApiSection'));
+const Contact = lazy(() => import('./components/Contact'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,18 +46,24 @@ export default function App() {
   return (
     <LanguageProvider>
       <main className="relative min-h-screen selection:bg-accent selection:text-black">
-        <div className="noise"></div>
+        {/* Fondo (sin el ruido que quitaste) */}
         <div className="glow-bg"></div>
+        
+        {/* Secciones críticas que el usuario ve en el segundo 1 */}
         <InteractiveCanvas />
         <Header />
         <Hero />
-        <Intro />
-        <Experience />
-        <Stack />
-        <Projects />
-        <Stats />
-        <ApiSection />
-        <Contact />
+        
+        {/* Secciones secundarias envueltas en Suspense */}
+        <Suspense fallback={<div className="min-h-screen"></div>}>
+          <Intro />
+          <Experience />
+          <Stack />
+          <Projects />
+          <Stats />
+          <ApiSection />
+          <Contact />
+        </Suspense>
       </main>
     </LanguageProvider>
   );
