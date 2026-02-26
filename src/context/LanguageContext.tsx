@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-// 1. Añadimos 'eu' al tipo de idioma
+// 3 IDIOMAS: english, castellano, euskara
 type Language = 'en' | 'es' | 'eu';
 
 interface LanguageContextType {

@@ -40,7 +40,7 @@ export default function Header() {
           aria-label={t("header.home")}
         >
           <img
-            src="/img/logo.png"
+            src="/img/logo.webp"
             alt="Logo Yeray Garrido"
             className="h-12 md:h-14 w-auto hover:scale-105 transition-transform object-contain"
           />

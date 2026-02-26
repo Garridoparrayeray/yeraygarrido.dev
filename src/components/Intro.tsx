@@ -30,7 +30,6 @@ export default function Intro() {
   ];
 
   useEffect(() => {
-    // Reveal text lines normally as they enter the viewport
     const lines = gsap.utils.toArray('.reveal-text');
     lines.forEach((line: any) => {
       gsap.fromTo(line, 

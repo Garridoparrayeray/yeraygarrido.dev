@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://yeraygarrido.com/sitemap.xml
+Sitemap: https://yeraygarrido.dev/sitemap.xml
