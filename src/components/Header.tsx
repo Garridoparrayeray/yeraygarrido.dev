@@ -25,7 +25,6 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 py-2 ${scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/10" : "bg-transparent"}`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        
         <a
           href="/"
           onClick={(e) => {
@@ -36,7 +35,9 @@ export default function Header() {
         >
           <img
             src="/img/logo.webp"
-            alt={t("header.logoAlt")} 
+            alt={t("header.logoAlt")}
+            width="72"
+            height="48"
             className="h-12 md:h-14 w-auto hover:scale-105 transition-transform object-contain"
           />
         </a>
@@ -48,7 +49,7 @@ export default function Header() {
               target="_blank"
               rel="noreferrer"
               className="header-item text-white/60 hover:text-white transition-colors"
-              aria-label={t("header.githubAria")} 
+              aria-label={t("header.githubAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +71,7 @@ export default function Header() {
               target="_blank"
               rel="noreferrer"
               className="header-item text-white/60 hover:text-white transition-colors"
-              aria-label={t("header.linkedinAria")} 
+              aria-label={t("header.linkedinAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +93,7 @@ export default function Header() {
             <a
               href="mailto:garridoparrayeraytx@gmail.com"
               className="header-item text-white/60 hover:text-white transition-colors"
-              aria-label={t("header.emailAria")} 
+              aria-label={t("header.emailAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
