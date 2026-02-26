@@ -12,6 +12,11 @@ interface LanguageContextType {
 const translations = {
   en: {
     'header.home': 'Back to home',
+    'header.logoAlt': 'Yeray Garrido Logo - Back to top',
+    'header.githubAria': "Go to Yeray's GitHub profile",
+    'header.linkedinAria': "Go to Yeray's LinkedIn profile",
+    'header.emailAria': 'Send an email to Yeray',
+    'header.switchLanguage': 'Switch language',
     'hero.role': 'Software Engineer & Full Stack Developer',
     'hero.portfolio': '© {year} PORTFOLIO',
     'hero.downloadCv': 'Download CV',
@@ -80,6 +85,11 @@ const translations = {
   },
   es: {
     'header.home': 'Volver al inicio',
+    'header.logoAlt': 'Logotipo de Yeray Garrido - Volver al inicio',
+    'header.githubAria': 'Ir al perfil de GitHub de Yeray',
+    'header.linkedinAria': 'Ir al perfil de LinkedIn de Yeray',
+    'header.emailAria': 'Enviar un correo electrónico a Yeray',
+    'header.switchLanguage': 'Cambiar idioma',
     'hero.role': 'Software Engineer & Full Stack Developer',
     'hero.portfolio': '© {year} PORTAFOLIO',
     'hero.downloadCv': 'Descargar CV',
@@ -149,6 +159,11 @@ const translations = {
   // 2. Bloque de traducciones en Euskera
   eu: {
     'header.home': 'Hasierara itzuli',
+    'header.logoAlt': 'Yeray Garridoren logotipoa - Itzuli hasierara',
+    'header.githubAria': 'Joan Yerayren GitHub profilera',
+    'header.linkedinAria': 'Joan Yerayren LinkedIn profilera',
+    'header.emailAria': 'Bidali mezu elektroniko bat Yeray-ri',
+    'header.switchLanguage': 'Aldatu hizkuntza',
     'hero.role': 'Software Engineer & Full Stack Developer', // Mantenemos el rol técnico en inglés
     'hero.portfolio': '© {year} PORTFOLIOA',
     'hero.downloadCv': 'CV-a Deskargatu',
