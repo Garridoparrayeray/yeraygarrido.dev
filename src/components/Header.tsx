@@ -66,7 +66,7 @@ export default function Header() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/yeray-garrido-parra-79321234a/"
+              href="https://linkedin.com/in/yeray-garrido/"
               target="_blank"
               rel="noreferrer"
               className="header-item text-white/60 hover:text-white transition-colors"
