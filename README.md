@@ -1,12 +1,18 @@
 # yeraygarrido.dev - Portafolio personal 
 
 Portafolio personal y arquitectura frontend. Construido con React, Tailwind CSS y animaciones GSAP. Esto no es una plantilla. Es una aplicación de página única (SPA) personalizada diseñada para mostrar las mejores prácticas de ingeniería frontend, SEO técnico y WPO (optimización del rendimiento web). 
+## RENDIMIENTO DE LA PAGINA
+<img width="1345" height="619" alt="image" src="https://github.com/user-attachments/assets/574a51c5-d84a-4a8b-a1b5-d7bc3fccdb18" />
+<img width="1366" height="621" alt="image" src="https://github.com/user-attachments/assets/0e241635-f1dd-4018-a3ae-336d77f4afad" />
+
 ## Pila de tecnología 
 - **Núcleo:** React 19 + Vite (no se requieren marcos de interfaz de usuario pesados como Next.js para esta fase). 
 - **Estilo:** Tailwind CSS v4 para un diseño que prioriza la utilidad, brutalista y responsivo.
 - **Animaciones:** GSAP (GreenSock) para animaciones de cronología de rendimiento.. 
-ç- **I18n:** Implementación personalizada de React Context para un cambio fluido de inglés/español/euskera sin parámetros de URL (euskera aún en proceso). 
-- **Datos y API:** Punto final público estático disponible en `/api/cv.xml` para consumo directo del terminal (`curl https://yeraygarrido.com/api/cv.xml`). 
+- **I18n:** Implementación personalizada de React Context para un cambio fluido de inglés/español/euskera sin parámetros de URL. 
+- **Datos y API:** Punto final público estático disponible en `/api/cv.xml` para consumo directo del terminal (`curl https://yeraygarrido.com/api/cv.xml`).
+- **Proximas implementaciones** Flujo correcto de proyectos. Crear y completar la seccion de proyectos. 
+
 ## Estructura del proyecto 
 ├── /public # Activos estáticos, mapa del sitio, robots.txt y la API XML pública 
 ├── /src 
