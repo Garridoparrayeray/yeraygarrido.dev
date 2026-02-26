@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       cssCodeSplit: true, 
-      // Limpieza de la consola en producción para ahorrar ejecución de JS
+      // Limpieza de la consola en producción para ahorrar ejecución de JS mediante terser
       minify: 'terser',
       terserOptions: {
         compress: {
