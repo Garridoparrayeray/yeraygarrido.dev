@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section ref={containerRef} className="min-h-[100svh] flex flex-col justify-between px-4 md:px-12 pt-24 pb-8 relative z-10 origin-top">
       <div className="flex-1 flex flex-col justify-center items-center text-center">
-      <h1 ref={titleRef} className="font-wide text-[16vw] md:text-[8vw] font-bold leading-[1] text-white tracking-tighter select-none flex flex-col md:flex-row justify-center items-center py-4 md:gap-[3vw]">
+      <h1 ref={titleRef} className="font-wide text-[12vw] md:text-[8vw] font-bold leading-[1] text-white tracking-tighter select-none flex flex-col md:flex-row justify-center items-center py-4 md:gap-[3vw]">
           
           {/* 1. TEXTO REAL PARA GOOGLE Y ACCESIBILIDAD */}
           <span className="sr-only">YERAY GARRIDO</span>

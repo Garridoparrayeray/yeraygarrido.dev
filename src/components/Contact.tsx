@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GitHubCalendar } from 'react-github-calendar';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -65,26 +64,29 @@ export default function Contact() {
   return (
     <section className="pt-24 md:pt-32 pb-8 md:pb-12 px-6 md:px-12 min-h-[100svh] flex flex-col justify-between relative z-10 bg-[#f2f2f2] text-black overflow-hidden">
       
-      <div className="max-w-5xl mx-auto w-full mb-24 md:mb-32 flex flex-col items-center">
+      <div className="max-w-5xl mx-auto w-full mb-24 md:mb-32 flex flex-col items-center overflow-hidden">
         <h3 className="font-wide text-xl md:text-3xl uppercase mb-8 md:mb-12 font-bold tracking-widest text-center">{t('contact.github')}</h3>
-        <div className="w-full overflow-x-auto pb-4 hide-scrollbar flex justify-start md:justify-center">
-          <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity min-w-[750px] md:min-w-0 px-4 md:px-0">
-            <GitHubCalendar 
-              username="Garridoparrayeray" 
-              colorScheme="light"
-              fontSize={12}
-              blockSize={12}
-              blockMargin={4}
-              transformData={(contributions) => {
-                // Filter contributions to start from October 1st, 2025
-                const startDate = new Date('2025-10-01').getTime();
-                return contributions.filter(day => new Date(day.date).getTime() >= startDate);
-              }}
-            />
-          </a>
+        
+        {/* CONTENEDOR GITHUB CALENDAR */}
+        <div className="w-full overflow-x-auto pb-4 hide-scrollbar flex justify-center">
+          <div className="w-max px-4"> {/* Mantiene el ancho intrínseco de la gráfica para el scroll móvil IMPORTANTE PORQUE SINO SE MUEVE A LA DERECHA */}
+            <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noreferrer" className="block hover:opacity-80 transition-opacity">
+              <GitHubCalendar 
+                username="Garridoparrayeray" 
+                colorScheme="light"
+                fontSize={12}
+                blockSize={12}
+                blockMargin={4}
+                transformData={(contributions) => {
+                  // Filter contributions to start from October 1st, 2025(donde empecé mejor y a mejorar)
+                  const startDate = new Date('2025-10-01').getTime();
+                  return contributions.filter(day => new Date(day.date).getTime() >= startDate);
+                }}
+              />
+            </a>
+          </div>
         </div>
       </div>
-
       <div className="max-w-5xl mx-auto w-full text-center flex-1 flex flex-col justify-center">
         <h2 ref={textRef} className="font-display text-[15vw] md:text-[10vw] leading-[0.85] uppercase mb-12 perspective-1000">
           <div className="overflow-hidden"><div className="reveal-line origin-bottom">{t('contact.title1')}</div></div>

@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../context/LanguageContext';
 
 interface GithubStats {

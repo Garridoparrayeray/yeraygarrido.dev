@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-type Language = 'en' | 'es';
+// 1. Añadimos 'eu' al tipo de idioma
+type Language = 'en' | 'es' | 'eu';
 
 interface LanguageContextType {
   language: Language;
@@ -144,24 +145,96 @@ const translations = {
     'github.viewRepo': 'Ver Repositorio',
     'github.allWorks': 'Todos los Trabajos (GitHub)',
     'github.noDesc': 'Sin descripción.',
+  },
+  // 2. Bloque de traducciones en Euskera
+  eu: {
+    'header.home': 'Hasierara itzuli',
+    'hero.role': 'Software Engineer & Full Stack Developer', // Mantenemos el rol técnico en inglés
+    'hero.portfolio': '© {year} PORTFOLIOA',
+    'hero.downloadCv': 'CV-a Deskargatu',
+    'hero.githubProfile': 'GitHub Profila',
+    'intro.title1': 'SOFTWARE',
+    'intro.title2': 'INGENIARITZA',
+    'intro.desc1': 'Full Stack Garatzaile gisa, software ingeniaritza zerbitzu integralak eskaintzen ditut: neurrirako web garapena, enpresen digitalizazioa, datu-baseen kudeaketa aurreratua eta prozesuen automatizazioa. Zure negozioari egokitutako irtenbide eskalagarriak eraikitzen ditut.',
+    'intro.subtitle1': 'NEURRIRAKO',
+    'intro.subtitle2': 'IRTENBIDEAK',
+    'intro.desc2': 'Backend sendoetatik (Java, PHP) eta SQL kontsulta konplexuetatik hasita, Figma erabiliz pixel-perfect diren frontendetaraino. WordPress gaiak hutsetik eraikitzen espezializatuta nago _s (Underscores) erabiliz, errendimendu altua (WPO) eta SEO teknikoa bermatuz eraikitzaile bisualen menpe egon gabe.',
+    'intro.expertise1': 'ESPERIENTZIA',
+    'intro.expertise2': 'TEKNIKOA',
+    'intro.feat1.title': 'JAVA BACKEND',
+    'intro.feat1.desc': 'Java garapen aurreratua (POO, Swing, MVC). Esperientzia ObjectDB-rekin, fitxategi-sistema konplexuekin eta datu-base konexio sendoa duten kudeaketa-software autonomoak sortzen.',
+    'intro.feat2.title': 'PHP PLUGINAK ETA WEBA',
+    'intro.feat2.desc': 'PHP 8 natiboan aditua. Plugin eta hedapenen garapena hutsetik. Abiadurarako eta SEO teknikorako optimizatutako errendimendu handiko web aplikazioak.',
+    'intro.feat3.title': 'DATU ARKITEKTURA',
+    'intro.feat3.desc': 'MySQL/MariaDB administrazioan aditua. Eredu erlazional konplexuen diseinua, kontsulten optimizazioa eta eskala handiko datuen iraunkortasunaren kudeaketa.',
+    'intro.feat4.title': 'NEURRIRAKO WORDPRESS',
+    'intro.feat4.desc': 'Gaiak hutsetik _s (Underscores), Customizer API eta ACF erabiliz. Eraikitzaile bisualik gabe Figmatik egindako ezarpen pixel-perfect.',
+    'stack.title': 'TEKNOLOGIAK',
+    'exp.title': 'ESPERIENTZIA ETA HEZKUNTZA',
+    'exp.job1.title': 'Full Stack Garatzaile Freelance eta DAW Ikaslea',
+    'exp.job1.company': 'Autonomoa / Lanbide Heziketa',
+    'exp.job1.date': '2023 - Gaur egun',
+    'exp.job1.desc': 'Gaur egun Web Aplikazioen Garapeneko (DAW) Goi Mailako Heziketa Zikloa ikasten, freelance garatzaile lanekin batera. Neurrirako web aplikazioak, PHP/Java backend sendoak eta hutsetik sortutako WordPress gaiak garatzen.',
+    'exp.job2.title': 'Profesionaltasun Ziurtagiria (3. Maila)',
+    'exp.job2.company': 'Web Teknologiekin Aplikazioen Garapena',
+    'exp.job2.date': 'Amaituta',
+    'exp.job2.desc': 'Frontend eta backend garapenean, datu-baseen kudeaketan eta web aplikazioen inplementazioan heziketa ofizial eta intentsiboa.',
+    'exp.edu1.title': 'Software Ingeniaritzako Ikaslea',
+    'exp.edu1.company': '42 Urduliz (Fundación Telefónica)',
+    'exp.edu1.date': 'Urte 1',
+    'exp.edu1.desc': 'Irakaslerik gabeko peer-to-peer metodologia. C programazioan, algoritmoetan, memoria kudeaketan eta sistema arkitekturaren oinarrietan zentratuta.',
+    'stats.repos': 'Biltegi Publikoak',
+    'stats.commits': 'Guztira Commits (Est.)',
+    'stats.followers': 'GitHub Jarraitzaileak',
+    'api.title': 'API Publikoa',
+    'api.desc': 'Garatzailea edo errekrutatzaile teknikoa zara? Ez duzu PDFrik deskargatu behar. Nire CV-a zuzenean terminaletik kontsumitu dezakezu nire endpoint publikoa erabiliz. Egitura ezin hobeko XML bertsio bat itzultzen du.',
+    'projects.title': 'Lan Nabarmenak',
+    'projects.viewAll': 'Guztiak Ikusi',
+    'projects.close': 'Itxi',
+    'projects.p1.title': 'Zalbi Aisia',
+    'projects.p1.tech': 'CMS Natiboa, PHP Backend, I18n',
+    'projects.p1.desc': 'Kudeaketa sistema intuitibo baten garapena Custom Post Types (CPTs) erabiliz. Iragazte taxonomikoaren logika eta konfigurazio globala WordPress Customizer API bidez inplementatuta.',
+    'projects.p2.title': 'Glocalium',
+    'projects.p2.tech': 'PHP, MySQL, Plugin Garapena',
+    'projects.p2.desc': 'Contact Form 7-rako bi hedapen programatu dira hutsetik: CSV Esportatzaile bat eta Datu Basean Iraunkortasun sistema bat MySQL biltegiratzearekin eta administrazio bisorearekin.',
+    'projects.p3.title': 'Reciclanet',
+    'projects.p3.tech': 'HTML, CSS, SEO',
+    'projects.p3.desc': 'Enpresako txantiloi pertsonalizatu baten garapena eta SEOrako metadatuen optimizazioa. Katalogo digitalaren jarraipen sistema baten inplementazioa.',
+    'contact.title1': 'KONEKTATU',
+    'contact.title2': 'DEZAGUN',
+    'contact.email': 'Mezua Bidali',
+    'contact.linkedin': 'LinkedIn',
+    'contact.github': 'Jarduera GitHub-en',
+    'contact.footer.madeWith': 'Maitasunez egina ❤️ -',
+    'contact.footer.copyright': '© {year} Eskubide guztiak erreserbatuta.',
+    'github.loading': 'Biltegiak kargatzen...',
+    'github.error': 'Errorea biltegiak kargatzean.',
+    'github.stars': 'Izarrak',
+    'github.forks': 'Forks',
+    'github.viewRepo': 'Biltegia Ikusi',
+    'github.allWorks': 'Lan Guztiak (GitHub)',
+    'github.noDesc': 'Deskribapenik gabe.',
   }
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('es'); // Default to Spanish as requested
+  const [language, setLanguage] = useState<Language>('es');
 
   useEffect(() => {
     document.documentElement.lang = language;
     
-    // Update meta tags dynamically for SEO
+    // 3. Actualizar metadatos y SEO para los tres idiomas
+    document.title = "Yeray Garrido | Software Engineer & Full Stack Developer";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    
     if (language === 'en') {
-      document.title = "Yeray Garrido | Software Engineer & Full Stack Developer";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "Software Engineer specializing in PHP, Java, and custom WordPress development.");
+      metaDesc?.setAttribute("content", "Software Engineer specializing in PHP, Java, and custom WordPress development.");
+    } else if (language === 'eu') {
+      metaDesc?.setAttribute("content", "Software Ingeniaria PHP, Java eta neurrirako WordPress garapenean espezializatua.");
     } else {
-      document.title = "Yeray Garrido | Software Engineer & Full Stack Developer";
-      document.querySelector('meta[name="description"]')?.setAttribute("content", "Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida.");
+      metaDesc?.setAttribute("content", "Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida.");
     }
   }, [language]);
 
