@@ -34,7 +34,8 @@ export default defineConfig(({ mode }) => {
               if (id.includes('gsap')) return 'vendor-gsap';
               if (id.includes('lenis')) return 'vendor-lenis';
               if (id.includes('react-github-calendar')) return 'vendor-github';
-              if (id.includes('react-dom') || id.includes('react/')) return 'vendor-react';
+              // React NO se separa: React.lazy() necesita React disponible antes
+              // de que se ejecute cualquier chunk que lo use
               return 'vendor';
             }
           },
