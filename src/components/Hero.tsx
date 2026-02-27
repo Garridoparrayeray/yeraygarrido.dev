@@ -10,9 +10,7 @@ export default function Hero() {
   const buttonsRef = useRef<HTMLDivElement>(null);
   const { language, t } = useLanguage();
 
-  // useLayoutEffect se ejecuta de forma SÍNCRONA antes del primer paint.
-  // Fija el estado inicial de GSAP antes de que el navegador pinte,
-  // eliminando el flash/parpadeo de elementos visibles antes de que arranque la animación.
+  // Fija el estado inicial de GSAP ANTES del primer paint para evitar flash
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const letters = titleRef.current?.querySelectorAll(".char") || [];
@@ -29,12 +27,10 @@ export default function Hero() {
   useEffect(() => {
     let ctx: gsap.Context;
 
-    // Esperamos a las fuentes para que la animación de letras sea precisa
     document.fonts.ready.then(() => {
       ctx = gsap.context(() => {
         const tl = gsap.timeline();
 
-        // Animación de entrada de las letras
         const letters = titleRef.current?.querySelectorAll(".char") || [];
         tl.to(letters, {
           y: "0%",
@@ -46,22 +42,18 @@ export default function Hero() {
           delay: 0.2,
         });
 
-        // Animación del subtítulo
         tl.to(
           textWrapperRef.current,
           { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
           "-=0.8",
         );
 
-        // Revelado de botones
         tl.to(
           buttonsRef.current?.children || [],
           { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
           "-=0.6",
         );
 
-        // EFECTO PARALLAX — scrub con número (1.5) en lugar de `true` para suavizar
-        // y evitar los "ticks" bruscos al hacer scroll
         gsap.to(containerRef.current, {
           yPercent: 20,
           scale: 0.95,
@@ -76,7 +68,15 @@ export default function Hero() {
           },
         });
 
-        ScrollTrigger.refresh();
+        // ScrollTrigger.refresh() fuerza mediciones de layout (reflow) de todos
+        // los triggers registrados. Moverlo a un doble RAF lo saca completamente
+        // del hilo principal del primer frame, eliminando el forced reflow de 124ms.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+          });
+        });
+
       }, containerRef);
     });
 
