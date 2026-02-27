@@ -4,6 +4,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LanguageProvider } from './context/LanguageContext';
 
+// 1. IMPORTAMOS VERCEL ANALYTICS AQUÍ
+import { Analytics } from '@vercel/analytics/react';
+
 import InteractiveCanvas from './components/InteractiveCanvas';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -64,6 +67,8 @@ export default function App() {
           <ApiSection />
           <Contact />
         </Suspense>
+
+        <Analytics />
       </main>
     </LanguageProvider>
   );
