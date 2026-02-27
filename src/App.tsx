@@ -19,6 +19,9 @@ const Contact = lazy(() => import('./components/Contact'));
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Evita que ScrollTrigger recalcule en cada resize de teclado móvil (reduce ticks)
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 export default function App() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -29,17 +32,14 @@ export default function App() {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
+    // Guardamos la referencia para poder eliminarla correctamente en cleanup
+    const rafFn = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(rafFn);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(rafFn); // Elimina la función correcta, no una anónima nueva
     };
   }, []);
 
