@@ -4,7 +4,7 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
   --font-wide: "Syncopate", ui-sans-serif, system-ui, sans-serif;
-  --color-bg-base: #000000;
+  --color-bg-base: #000;
   --color-text-main: #ffffff;
   --color-accent: #ffffff;
 }
@@ -75,4 +75,9 @@ html {
 .reveal-line.in-view {
   opacity: 1;
   transform: translateY(0) rotateX(0);
+}
+
+/* Detiene la animación que causa el aviso de "Non-composited animations" */
+.react-activity-calendar--loading-animation {
+  animation: none !important;
 }
