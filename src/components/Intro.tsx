@@ -16,22 +16,17 @@ export default function Intro() {
   ];
 
   useEffect(() => {
-    // gsap.context() agrupa todos los ScrollTriggers y tweens del componente,
-    // ctx.revert() los elimina todos limpiamente al desmontar
     const ctx = gsap.context(() => {
+
       const lines = gsap.utils.toArray<HTMLElement>('.reveal-text', sectionRef.current);
       lines.forEach((line) => {
-        gsap.from(line, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: line,
-            start: 'top 85%',
-            once: true,
-          },
-        });
+        gsap.fromTo(line,
+          { y: 50, opacity: 0 },
+          {
+            y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+            scrollTrigger: { trigger: line, start: 'top 85%', once: true },
+          }
+        );
       });
 
       itemsRef.current.forEach((item) => {
@@ -40,17 +35,21 @@ export default function Intro() {
         const content = item.querySelector('.feature-content');
 
         const featureTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 80%',
-            once: true,
-          },
+          scrollTrigger: { trigger: item, start: 'top 80%', once: true },
         });
 
         featureTl
-          .from(num, { x: -50, opacity: 0, duration: 0.8, ease: 'power3.out' })
-          .from(content, { x: 50, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+          .fromTo(num,
+            { x: -50, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+          )
+          .fromTo(content,
+            { x: 50, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+            '-=0.6'
+          );
       });
+
     }, sectionRef);
 
     return () => ctx.revert();
