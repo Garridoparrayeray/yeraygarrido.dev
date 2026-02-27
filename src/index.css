@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
@@ -77,7 +76,10 @@ html {
   transform: translateY(0) rotateX(0);
 }
 
-/* Detiene la animación que causa el aviso de "Non-composited animations" */
-.react-activity-calendar--loading-animation {
+/* Anular la animación de carga del calendario de GitHub por problemas de rendimiento en CPU */
+.react-activity-calendar rect,
+[class*="react-activity-calendar"] rect {
   animation: none !important;
-}
+    transition: none !important;
+    }
+    
