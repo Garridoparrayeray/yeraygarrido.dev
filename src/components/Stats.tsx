@@ -22,9 +22,6 @@ export default function Stats() {
         if (response.ok) {
           const data = await response.json();
           setStats(data);
-          
-          // Simulate a realistic number of commits based on account age and repos
-          // (Since getting exact total commits requires multiple API calls or GraphQL)
           const yearCreated = new Date(data.created_at).getFullYear();
           const currentYear = new Date().getFullYear();
           const yearsActive = Math.max(1, currentYear - yearCreated + 1);
@@ -41,21 +38,22 @@ export default function Stats() {
   useEffect(() => {
     if (!stats) return;
 
-    const items = gsap.utils.toArray('.stat-item');
-    gsap.fromTo(items,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
+    const ctx = gsap.context(() => {
+      const items = gsap.utils.toArray<HTMLElement>('.stat-item', sectionRef.current);
+      gsap.from(items, {
+        opacity: 0,
+        y: 30,
         duration: 0.8,
         stagger: 0.2,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-        }
-      }
-    );
+          start: 'top 80%',
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, [stats]);
 
   if (!stats) return null;
