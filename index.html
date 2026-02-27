@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- preconnect solo para recursos que se usan en el primer paint -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://api.github.com" crossorigin />
-    <link
-      rel="preconnect"
-      href="https://github-contributions-api.jogruber.de"
-      crossorigin
-    />
+
+    <!-- dns-prefetch para recursos de componentes lazy (GitHub API, JSDelivr).
+         preconnect en recursos que tardan en cargarse (lazy) expira antes de usarse
+         y Lighthouse lo penaliza. dns-prefetch es más ligero y suficiente aquí. -->
+    <link rel="dns-prefetch" href="https://api.github.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://github-contributions-api.jogruber.de" />
 
     <title>Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack</title>
     <meta name="title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
