@@ -59,6 +59,10 @@ export default function Stack() {
               <img 
                 src={tech.icon} 
                 alt={`Logotipo de ${tech.name} - Stack Tecnológico de Yeray Garrido`}
+                loading="lazy"
+                decoding="async"
+                width="56"
+                height="56"
                 className={`w-10 h-10 md:w-14 md:h-14 object-contain transition-all duration-500 transform md:opacity-50 md:grayscale md:group-hover:opacity-100 md:group-hover:grayscale-0 md:group-hover:scale-110 ${tech.invert ? 'invert' : ''}`} 
               />
               <span className="font-sans text-xs tracking-widest uppercase font-bold transition-colors duration-500 text-white md:text-white/50 md:group-hover:text-white">
