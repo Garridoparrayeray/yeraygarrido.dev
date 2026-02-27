@@ -55,7 +55,8 @@ export default function Stats() {
             { label: t('stats.followers'), value: stats.followers, suffix: '' },
           ].map((stat, i) => (
             <div key={i} data-reveal="up" className="flex flex-col items-center text-center group">
-              <span className="font-wide text-4xl md:text-6xl font-bold text-white mb-2 transition-transform duration-500 group-hover:scale-110 inline-block">
+              {/* Hemos eliminado transition-transform, duration-500 y group-hover:scale-110 */}
+              <span className="font-wide text-4xl md:text-6xl font-bold text-white mb-2 inline-block">
                 {stat.value}{stat.suffix}
               </span>
               <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/50 font-bold group-hover:text-white/80 transition-colors">
