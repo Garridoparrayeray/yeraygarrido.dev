@@ -238,19 +238,47 @@ export const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ childr
   const [language, setLanguage] = useState<Language>('es');
 
   useEffect(() => {
+    // Actualiza el atributo lang del HTML — importante para lectores de pantalla y Google
     document.documentElement.lang = language;
-    
-    // 3. Actualizar metadatos y SEO para los tres idiomas
-    document.title = "Yeray Garrido | Software Engineer & Full Stack Developer";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    
-    if (language === 'en') {
-      metaDesc?.setAttribute("content", "Software Engineer specializing in PHP, Java, and custom WordPress development.");
-    } else if (language === 'eu') {
-      metaDesc?.setAttribute("content", "Software Ingeniaria PHP, Java eta neurrirako WordPress garapenean espezializatua.");
-    } else {
-      metaDesc?.setAttribute("content", "Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida.");
-    }
+
+    // Textos SEO por idioma
+    const seoData = {
+      es: {
+        title: 'Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack',
+        description: 'Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Creación de sistemas backend, plugins personalizados y aplicaciones web de alto rendimiento.',
+      },
+      en: {
+        title: 'Yeray Garrido | Software Engineer & Full Stack Developer',
+        description: 'Software Engineer specializing in PHP, Java, and custom WordPress development. Building robust backends, custom plugins, and high-performance web applications.',
+      },
+      eu: {
+        title: 'Yeray Garrido | Software Ingeniaria & Full Stack Garatzailea',
+        description: 'PHP, Java eta neurrirako WordPress garapenean espezializatutako Software Ingeniaria. Backend sendoak, plugin pertsonalizatuak eta errendimendu altuko web aplikazioak.',
+      },
+    };
+
+    const { title, description } = seoData[language];
+
+    // <title>
+    document.title = title;
+
+    // Función auxiliar para actualizar meta tags
+    const setMeta = (selector: string, content: string) => {
+      document.querySelector(selector)?.setAttribute('content', content);
+    };
+
+    // Meta estándar
+    setMeta('meta[name="title"]', title);
+    setMeta('meta[name="description"]', description);
+
+    // Open Graph
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[property="og:locale"]', language === 'es' ? 'es_ES' : language === 'en' ? 'en_US' : 'eu_EU');
+
+    // Twitter Card
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[name="twitter:description"]', description);
   }, [language]);
 
   const t = (key: string, params?: Record<string, string | number>) => {

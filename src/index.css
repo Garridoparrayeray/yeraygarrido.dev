@@ -1,10 +1,9 @@
 @import "tailwindcss";
-
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Anton", ui-sans-serif, system-ui, sans-serif;
   --font-wide: "Syncopate", ui-sans-serif, system-ui, sans-serif;
-  --color-bg-base: #000000;
+  --color-bg-base: #000;
   --color-text-main: #ffffff;
   --color-accent: #ffffff;
 }
@@ -53,3 +52,34 @@ html {
 .perspective-1000 {
   perspective: 1000px;
 }
+
+/* ── Reveal animations via IntersectionObserver ── */
+[data-reveal] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 0.7s;
+}
+[data-reveal="up"]    { transform: translateY(40px); }
+[data-reveal="left"]  { transform: translateX(-40px); }
+[data-reveal="right"] { transform: translateX(40px); }
+[data-reveal].in-view { opacity: 1; transform: translate(0, 0); }
+
+/* Contact title reveal */
+.reveal-line {
+  opacity: 0;
+  transform: translateY(60px) rotateX(-20deg);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-line.in-view {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+/* Anular la animación de carga del calendario de GitHub por problemas de rendimiento en CPU */
+.react-activity-calendar rect,
+[class*="react-activity-calendar"] rect {
+  animation: none !important;
+    transition: none !important;
+    }
+    

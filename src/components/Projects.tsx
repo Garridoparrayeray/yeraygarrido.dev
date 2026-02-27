@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
 
 interface Repo {
@@ -16,7 +15,6 @@ interface Repo {
 export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,23 +41,7 @@ export default function Projects() {
     }
   ];
 
-  useEffect(() => {
-    imagesRef.current.forEach((img) => {
-      if (!img) return;
-      gsap.to(img, {
-        x: 50,
-        ease: "none",
-        scrollTrigger: {
-          trigger: img.parentElement,
-          horizontal: true,
-          scroller: scrollRef.current,
-          start: "left right",
-          end: "right left",
-          scrub: true,
-        }
-      });
-    });
-  }, []);
+  // Image parallax removed - used GSAP ScrollTrigger which caused 907ms layout cost
 
   const fetchRepos = async () => {
     setIsModalOpen(true);
@@ -118,7 +100,7 @@ export default function Projects() {
                   className="w-[85vw] md:w-[45vw] max-w-[600px] shrink-0 flex flex-col group snap-center"
                 >
                   <div className="aspect-[16/9] bg-[#111] mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors duration-500 rounded-lg cursor-pointer">
-                    <div ref={el => { imagesRef.current[i] = el as HTMLDivElement; }} className="absolute inset-0 flex items-center justify-center font-display text-[20vw] text-white/5 group-hover:text-white/10 transition-colors duration-700 -left-10 w-[calc(100%+50px)]">
+                    <div className="absolute inset-0 flex items-center justify-center font-display text-[20vw] text-white/5 group-hover:text-white/10 transition-colors duration-700 -left-10 w-[calc(100%+50px)]">
                       0{i + 1}
                     </div>
                     {p.link && (

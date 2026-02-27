@@ -6,12 +6,12 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
-  
+
   return {
     plugins: [
-      react(), 
+      react(),
       tailwindcss(),
-      cssInjectedByJsPlugin() // se supone que me va a ayudar para el seo
+      cssInjectedByJsPlugin(), // necesario para que Tailwind v4 + Vite funcione en producción
     ],
     resolve: {
       alias: {
@@ -19,8 +19,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      cssCodeSplit: true, 
-      // Limpieza de la consola en producción para ahorrar ejecución de JS mediante terser
+      cssCodeSplit: true,
       minify: 'terser',
       terserOptions: {
         compress: {
@@ -30,14 +29,13 @@ export default defineConfig(({ mode }) => {
       },
       rollupOptions: {
         output: {
-          // SEPARACIÓN DE LIBRERÍAS PESADAS 
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              // Separamos GSAP pesado y se usa poco
               if (id.includes('gsap')) return 'vendor-gsap';
-              // el calendario de GitHub que tarda mas en procesarse se separa de los demas componentes
+              if (id.includes('lenis')) return 'vendor-lenis';
               if (id.includes('react-github-calendar')) return 'vendor-github';
-              // El resto de librerías base (React, etc)
+              // React NO se separa: React.lazy() necesita React disponible antes
+              // de que se ejecute cualquier chunk que lo use
               return 'vendor';
             }
           },
