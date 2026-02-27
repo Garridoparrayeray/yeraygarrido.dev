@@ -6,7 +6,7 @@ import { LanguageProvider } from './context/LanguageContext';
 
 // 1. IMPORTAMOS VERCEL ANALYTICS AQUÍ
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import InteractiveCanvas from './components/InteractiveCanvas';
 import Header from './components/Header';
 import Hero from './components/Hero';
