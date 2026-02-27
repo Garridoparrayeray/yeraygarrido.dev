@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { useEffect, useRef } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -8,18 +7,19 @@ export default function Contact() {
   const { t } = useLanguage();
 
   useEffect(() => {
-    const lines = textRef.current?.querySelectorAll('.reveal-line') || [];
-    gsap.fromTo(lines,
-      { opacity: 0, y: 100, rotateX: -45 },
-      {
-        opacity: 1, y: 0, rotateX: 0, duration: 1.5, stagger: 0.2, ease: "power4.out",
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top 80%",
-          once: true,
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.reveal-line').forEach((el, i) => {
+            (el as HTMLElement).style.transitionDelay = \`\${i * 0.2}s\`;
+            el.classList.add('in-view');
+          });
+          io.unobserve(e.target);
         }
-      }
-    );
+      });
+    }, { threshold: 0.2 });
+    if (textRef.current) io.observe(textRef.current);
+    return () => io.disconnect();
   }, []);
 
   return (

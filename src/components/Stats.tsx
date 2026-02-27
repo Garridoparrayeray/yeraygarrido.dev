@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react';
-import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
 
 interface GithubStats {
@@ -16,61 +15,46 @@ export default function Stats() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const response = await fetch('https://api.github.com/users/Garridoparrayeray');
-        if (response.ok) {
-          const data = await response.json();
-          setStats(data);
-          const yearCreated = new Date(data.created_at).getFullYear();
-          const currentYear = new Date().getFullYear();
-          const yearsActive = Math.max(1, currentYear - yearCreated + 1);
-          setCommits(data.public_repos * 42 + (yearsActive * 120));
-        }
-      } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
-      }
-    };
-
-    fetchStats();
+    fetch('https://api.github.com/users/Garridoparrayeray')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data) return;
+        setStats(data);
+        const years = Math.max(1, new Date().getFullYear() - new Date(data.created_at).getFullYear() + 1);
+        setCommits(data.public_repos * 42 + years * 120);
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
     if (!stats) return;
-
-    const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray<HTMLElement>('.stat-item', sectionRef.current);
-      gsap.from(items, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          once: true,
-        },
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('[data-reveal]').forEach((el, i) => {
+            (el as HTMLElement).style.transitionDelay = `${i * 0.15}s`;
+            el.classList.add('in-view');
+          });
+          io.unobserve(e.target);
+        }
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    }, { threshold: 0.2 });
+    if (sectionRef.current) io.observe(sectionRef.current);
+    return () => io.disconnect();
   }, [stats]);
 
   if (!stats) return null;
-
-  const statBoxes = [
-    { label: t('stats.repos'), value: stats.public_repos, suffix: '+' },
-    { label: t('stats.commits'), value: commits, suffix: '+' },
-    { label: t('stats.followers'), value: stats.followers, suffix: '' },
-  ];
 
   return (
     <section ref={sectionRef} className="py-16 md:py-24 px-6 md:px-12 bg-black border-t border-white/10 relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {statBoxes.map((stat, i) => (
-            <div key={i} className="stat-item flex flex-col items-center text-center group">
+          {[
+            { label: t('stats.repos'), value: stats.public_repos, suffix: '+' },
+            { label: t('stats.commits'), value: commits, suffix: '+' },
+            { label: t('stats.followers'), value: stats.followers, suffix: '' },
+          ].map((stat, i) => (
+            <div key={i} data-reveal="up" className="flex flex-col items-center text-center group">
               <span className="font-wide text-4xl md:text-6xl font-bold text-white mb-2 transition-transform duration-500 group-hover:scale-110 inline-block">
                 {stat.value}{stat.suffix}
               </span>
