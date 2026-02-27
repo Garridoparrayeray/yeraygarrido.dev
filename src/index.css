@@ -59,12 +59,14 @@ html {
   transition-property: opacity, transform;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-duration: 0.7s;
+  will-change: opacity, transform; 
+  /* Evita que la fuente tiemble o cambie de grosor/tamaño */
+  backface-visibility: hidden; 
 }
-[data-reveal="up"]    { transform: translateY(40px); }
-[data-reveal="left"]  { transform: translateX(-40px); }
-[data-reveal="right"] { transform: translateX(40px); }
-[data-reveal].in-view { opacity: 1; transform: translate(0, 0); }
-
+[data-reveal="up"]    { transform: translate3d(0, 40px, 0); }
+[data-reveal="left"]  { transform: translate3d(-40px, 0, 0); }
+[data-reveal="right"] { transform: translate3d(40px, 0, 0); }
+[data-reveal].in-view { opacity: 1; transform: translate3d(0, 0, 0); }
 /* Contact title reveal */
 .reveal-line {
   opacity: 0;
