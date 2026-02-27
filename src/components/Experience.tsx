@@ -28,22 +28,25 @@ export default function Experience() {
   ];
 
   useEffect(() => {
-    const items = gsap.utils.toArray('.timeline-item');
-    items.forEach((item: any, i) => {
-      gsap.fromTo(item,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
+    // gsap.context con sectionRef como scope: solo selecciona elementos dentro de la sección,
+    // evitando conflictos con otras secciones que también usan '.timeline-item'
+    const ctx = gsap.context(() => {
+      const items = gsap.utils.toArray<HTMLElement>('.timeline-item', sectionRef.current);
+      items.forEach((item) => {
+        gsap.from(item, {
+          opacity: 0,
+          y: 50,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: item,
-            start: "top 85%",
-          }
-        }
-      );
-    });
+            start: 'top 85%',
+          },
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
