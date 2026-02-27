@@ -2,16 +2,14 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-
+// aumenta el tamaño del chunk principal y genera ~42 KiB de CSS "unused"
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
-  
+
   return {
     plugins: [
-      react(), 
+      react(),
       tailwindcss(),
-      cssInjectedByJsPlugin() // se supone que me va a ayudar para el seo
     ],
     resolve: {
       alias: {
@@ -19,8 +17,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      cssCodeSplit: true, 
-      // Limpieza de la consola en producción para ahorrar ejecución de JS mediante terser
+      cssCodeSplit: false, // Un solo CSS cacheado independiente del JS
       minify: 'terser',
       terserOptions: {
         compress: {
@@ -30,14 +27,17 @@ export default defineConfig(({ mode }) => {
       },
       rollupOptions: {
         output: {
-          // SEPARACIÓN DE LIBRERÍAS PESADAS 
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              // Separamos GSAP pesado y se usa poco
+              // GSAP + ScrollTrigger: pesado, solo necesario tras el primer scroll
               if (id.includes('gsap')) return 'vendor-gsap';
-              // el calendario de GitHub que tarda mas en procesarse se separa de los demas componentes
+              // Lenis: smooth scroll, no bloquea el primer paint
+              if (id.includes('lenis')) return 'vendor-lenis';
+              // GitHub Calendar: componente lazy cargado muy tarde en la página
               if (id.includes('react-github-calendar')) return 'vendor-github';
-              // El resto de librerías base (React, etc)
+              // React core: necesario siempre, chunk pequeño y muy cacheado
+              if (id.includes('react-dom') || id.includes('react/')) return 'vendor-react';
+              // Resto de dependencias
               return 'vendor';
             }
           },
