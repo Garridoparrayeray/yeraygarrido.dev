@@ -11,8 +11,7 @@ export default function Contact() {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           e.target.querySelectorAll('.reveal-line').forEach((el, i) => {
-            (el as HTMLElement).style.transitionDelay = \`\${i * 0.2}s\`;
-            el.classList.add('in-view');
+            (el as HTMLElement).style.transitionDelay = `${i * 0.2}s`; el.classList.add('in-view');
           });
           io.unobserve(e.target);
         }
@@ -25,15 +24,15 @@ export default function Contact() {
   return (
     // CAMBIO: Fondo a blanco puro (#FFFFFF) para un look brutalista más limpio
     <section className="pt-24 md:pt-32 pb-8 md:pb-12 px-6 md:px-12 min-h-[100svh] flex flex-col justify-between relative z-10 bg-white text-black overflow-hidden">
-      
+
       <div className="max-w-5xl mx-auto w-full mb-24 md:mb-32 flex flex-col items-center overflow-hidden">
         <h3 className="font-wide text-xl md:text-3xl uppercase mb-8 md:mb-12 font-bold tracking-widest text-center">{t('contact.github')}</h3>
-        
+
         <div className="w-full overflow-x-auto pb-4 hide-scrollbar flex justify-center">
           <div className="w-max px-4">
             <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noreferrer" className="block hover:opacity-80 transition-opacity" aria-label={t('header.githubAria')}>
-              <GitHubCalendar 
-                username="Garridoparrayeray" 
+              <GitHubCalendar
+                username="Garridoparrayeray"
                 colorScheme="light"
                 fontSize={12}
                 blockSize={12}
@@ -53,11 +52,11 @@ export default function Contact() {
           <div className="overflow-hidden"><div className="reveal-line origin-bottom">{t('contact.title1')}</div></div>
           <div className="overflow-hidden"><div className="reveal-line origin-bottom text-black">{t('contact.title2')}</div></div>
         </h2>
-        
+
         {/* Enlaces de contacto sin efecto magnético, solo cambio de color */}
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-8 md:mt-12 max-w-2xl mx-auto w-full">
-          <a 
-            href="mailto:garridoparrayeraytx@gmail.com" 
+          <a
+            href="mailto:garridoparrayeraytx@gmail.com"
             className="flex-1 flex group w-full"
             aria-label={t('header.emailAria')} // SOLUCIÓN AL ERROR DE ACCESIBILIDAD
           >
@@ -69,10 +68,10 @@ export default function Contact() {
             </div>
           </a>
 
-          <a 
-            href="https://www.linkedin.com/in/yeray-garrido-parra" 
-            target="_blank" 
-            rel="noreferrer" 
+          <a
+            href="https://www.linkedin.com/in/yeray-garrido-parra"
+            target="_blank"
+            rel="noreferrer"
             className="flex-1 flex group w-full"
             aria-label={t('header.linkedinAria')} // SOLUCIÓN AL ERROR DE ACCESIBILIDAD
           >
