@@ -54,9 +54,12 @@ export default function Hero() {
           "-=0.6",
         );
 
+        // scale: 0.95 eliminado — al revertir el scrub hacia arriba, el scale
+        // cambia el bounding box del contenedor y fuerza a recalcular el clip
+        // de cada overflow-hidden por letra, causando los ticks visibles.
+        // yPercent y opacity compositan en GPU sin afectar el layout.
         gsap.to(containerRef.current, {
           yPercent: 20,
-          scale: 0.95,
           opacity: 0.2,
           ease: "none",
           scrollTrigger: {
