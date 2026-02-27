@@ -51,53 +51,9 @@ export default function Intro() {
       });
     }, sectionRef);
 
-    return () => ctx.revert(); // Limpia todos los ScrollTriggers y tweens
+    return () => ctx.revert();
   }, []);
 
-            {t('intro.title1')} <br/> {t('intro.title2')}
-          </h2>
-          <p className="font-sans text-base md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed md:leading-loose reveal-text">
-            {t('intro.desc1')}
-          </p>
-          <h3 className="font-wide text-white text-xl md:text-4xl uppercase mt-20 md:mt-32 tracking-widest leading-tight reveal-text">
-            {t('intro.subtitle1')} <br/> {t('intro.subtitle2')}
-          </h3>
-          <p className="font-sans text-base md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed md:leading-loose mt-8 md:mt-12 reveal-text">
-            {t('intro.desc2')}
-          </p>
-        </div>
-      </div>
-
-      <div className="bg-[#f2f2f2] text-black pt-24 pb-24 md:pt-32 md:pb-32 relative z-20">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <div className="flex justify-start md:justify-end mb-12 md:mb-16 reveal-text">
-            <h2 className="font-wide text-3xl md:text-5xl uppercase text-left md:text-right leading-none">
-              {t('intro.expertise1')} <br/> <span className="text-black/30">{t('intro.expertise2')}</span>
-            </h2>
-          </div>
-
-          <div className="border-t-2 border-black">
-            {features.map((feature, i) => (
-              <div key={i} ref={el => { itemsRef.current[i] = el; }} className="border-b-2 border-black py-12 md:py-24 flex flex-col md:flex-row gap-6 md:gap-24 relative overflow-hidden group">
-                <div className="feature-num font-display text-[20vw] md:text-[12vw] leading-none text-black/10 md:text-black/20 select-none transition-transform duration-500 group-hover:scale-110 origin-left">
-                  {feature.num}
-                </div>
-                <div className="feature-content flex-1 flex flex-col justify-end">
-                  <h3 className="font-wide text-xl md:text-4xl font-bold uppercase mb-4 tracking-wider">
-                    {feature.title}
-                  </h3>
-                  <p className="font-sans text-base md:text-xl text-black/70 max-w-xl leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
   return (
     <section ref={sectionRef} className="relative z-10">
       <div className="bg-black text-white py-24 md:py-32 min-h-[100svh] flex flex-col justify-center perspective-1000">
@@ -127,7 +83,11 @@ export default function Intro() {
 
           <div className="border-t-2 border-black">
             {features.map((feature, i) => (
-              <div key={i} ref={el => { itemsRef.current[i] = el; }} className="border-b-2 border-black py-12 md:py-24 flex flex-col md:flex-row gap-6 md:gap-24 relative overflow-hidden group">
+              <div
+                key={i}
+                ref={el => { itemsRef.current[i] = el; }}
+                className="border-b-2 border-black py-12 md:py-24 flex flex-col md:flex-row gap-6 md:gap-24 relative overflow-hidden group"
+              >
                 <div className="feature-num font-display text-[20vw] md:text-[12vw] leading-none text-black/10 md:text-black/20 select-none transition-transform duration-500 group-hover:scale-110 origin-left">
                   {feature.num}
                 </div>
