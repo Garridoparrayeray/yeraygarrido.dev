@@ -6,21 +6,17 @@ const techStack = [
   // Core & Back-end
   { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
   { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
-  
   // Base de Datos & CMS
   { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
   { name: 'WordPress', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg' },
-  
   // Front-end
   { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
   { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
   { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  
   // Infraestructura & OS
   { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
   { name: 'Bash', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-plain.svg' },
   { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-  
   // Herramientas & Frameworks
   { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
   { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
@@ -32,21 +28,22 @@ export default function Stack() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const items = gsap.utils.toArray('.stack-item');
-    gsap.fromTo(items,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
+    const ctx = gsap.context(() => {
+      const items = gsap.utils.toArray<HTMLElement>('.stack-item', gridRef.current);
+      gsap.from(items, {
+        opacity: 0,
+        y: 20,
         duration: 0.8,
         stagger: 0.05,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: gridRef.current,
-          start: "top 80%",
-        }
-      }
-    );
+          start: 'top 80%',
+        },
+      });
+    }, gridRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -55,7 +52,6 @@ export default function Stack() {
         <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase mb-16 md:mb-24 text-center md:text-left">
           {t('stack.title')}
         </h2>
-        
         
         <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10 border border-white/10">
           {techStack.map((tech, i) => (
