@@ -97,12 +97,12 @@ export default function Hero() {
         >
           <span className="sr-only">YERAY GARRIDO</span>
           <div aria-hidden="true" className="flex flex-col md:flex-row justify-center items-center md:gap-[3vw]">
-            <div className="flex overflow-hidden pb-2 md:pb-4">
+            <div className="flex overflow-hidden pb-2 md:pb-4" style={{transform: "translateZ(0)", willChange: "transform"}}>
               {"YERAY".split("").map((char, i) => (
                 <span key={`first-${i}`} className="char inline-block">{char}</span>
               ))}
             </div>
-            <div className="flex overflow-hidden pb-2 md:pb-4">
+            <div className="flex overflow-hidden pb-2 md:pb-4" style={{transform: "translateZ(0)", willChange: "transform"}}>
               {"GARRIDO".split("").map((char, i) => (
                 <span key={`last-${i}`} className="char inline-block">{char}</span>
               ))}
