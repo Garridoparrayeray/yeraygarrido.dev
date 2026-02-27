@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/LanguageContext";
@@ -10,47 +10,58 @@ export default function Hero() {
   const buttonsRef = useRef<HTMLDivElement>(null);
   const { language, t } = useLanguage();
 
+  // useLayoutEffect se ejecuta de forma SÍNCRONA antes del primer paint.
+  // Fija el estado inicial de GSAP antes de que el navegador pinte,
+  // eliminando el flash/parpadeo de elementos visibles antes de que arranque la animación.
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const letters = titleRef.current?.querySelectorAll(".char") || [];
+      gsap.set(letters, { y: "120%", rotate: 10, opacity: 0 });
+      gsap.set(textWrapperRef.current, { opacity: 0, y: 30 });
+      if (buttonsRef.current?.children) {
+        gsap.set(Array.from(buttonsRef.current.children), { y: 30, opacity: 0 });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   useEffect(() => {
     let ctx: gsap.Context;
 
-    //cuando deja de poner las fuentes ejecutamos, con esto deberiamos reducir procesos en el seo
+    // Esperamos a las fuentes para que la animación de letras sea precisa
     document.fonts.ready.then(() => {
       ctx = gsap.context(() => {
         const tl = gsap.timeline();
 
         // Animación de entrada de las letras
         const letters = titleRef.current?.querySelectorAll(".char") || [];
-        tl.fromTo(
-          letters,
-          { y: "120%", rotate: 10, opacity: 0 },
-          {
-            y: "0%",
-            rotate: 0,
-            opacity: 1,
-            duration: 1.2,
-            stagger: 0.03,
-            ease: "power4.out",
-            delay: 0.2,
-          },
-        );
+        tl.to(letters, {
+          y: "0%",
+          rotate: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.03,
+          ease: "power4.out",
+          delay: 0.2,
+        });
 
         // Animación del subtítulo
-        tl.fromTo(
+        tl.to(
           textWrapperRef.current,
-          { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
           "-=0.8",
         );
 
         // Revelado de botones
-        tl.fromTo(
+        tl.to(
           buttonsRef.current?.children || [],
-          { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" },
           "-=0.6",
         );
 
-        // EFECTO PARALLAX para que no de ticks la pagina incomodos
+        // EFECTO PARALLAX — scrub con número (1.5) en lugar de `true` para suavizar
+        // y evitar los "ticks" bruscos al hacer scroll
         gsap.to(containerRef.current, {
           yPercent: 20,
           scale: 0.95,
@@ -60,18 +71,15 @@ export default function Hero() {
             trigger: containerRef.current,
             start: "top top",
             end: "bottom top",
-            scrub: true,
+            scrub: 1.5,
             invalidateOnRefresh: true,
           },
         });
 
-        // Obligamos a ScrollTrigger a medir todo 
         ScrollTrigger.refresh();
-
       }, containerRef);
     });
 
-    // Limpiamos el contexto si el componente se desmonta
     return () => {
       if (ctx) ctx.revert();
     };
@@ -91,12 +99,12 @@ export default function Hero() {
           <div aria-hidden="true" className="flex flex-col md:flex-row justify-center items-center md:gap-[3vw]">
             <div className="flex overflow-hidden pb-2 md:pb-4">
               {"YERAY".split("").map((char, i) => (
-                <span key={`first-${i}`} className="char inline-block transform translate-y-full">{char}</span>
+                <span key={`first-${i}`} className="char inline-block">{char}</span>
               ))}
             </div>
             <div className="flex overflow-hidden pb-2 md:pb-4">
               {"GARRIDO".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char inline-block transform translate-y-full">{char}</span>
+                <span key={`last-${i}`} className="char inline-block">{char}</span>
               ))}
             </div>
           </div>
