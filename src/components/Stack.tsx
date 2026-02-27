@@ -39,6 +39,7 @@ export default function Stack() {
         scrollTrigger: {
           trigger: gridRef.current,
           start: 'top 80%',
+          once: true,
         },
       });
     }, gridRef);
