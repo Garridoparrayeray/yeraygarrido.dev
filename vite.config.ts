@@ -31,11 +31,8 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('gsap')) return 'vendor-gsap';
-              if (id.includes('lenis')) return 'vendor-lenis';
+              // SOLO separamos el calendario porque se carga con el Suspense diferido sino rompe la pagina, los demas modulos vite los introduce solos
               if (id.includes('react-github-calendar')) return 'vendor-github';
-              // React NO se separa: React.lazy() necesita React disponible antes
-              // de que se ejecute cualquier chunk que lo use
               return 'vendor';
             }
           },

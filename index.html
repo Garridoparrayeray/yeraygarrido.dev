@@ -12,10 +12,10 @@
   <!-- dns-prefetch para recursos de componentes lazy (GitHub API, JSDelivr).
          preconnect en recursos que tardan en cargarse (lazy) expira antes de usarse
          y Lighthouse lo penaliza. dns-prefetch es más ligero y suficiente aquí. -->
-  <!-- Cambia dns-prefetch por preconnect para los candidatos de LCP -->
-  <link rel="preconnect" href="https://api.github.com" />
-  <link rel="preconnect" href="https://github-contributions-api.jogruber.de" />
+  <link rel="dns-prefetch" href="https://api.github.com" />
+  <link rel="dns-prefetch" href="https://github-contributions-api.jogruber.de" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
 
   <title>Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack</title>
   <meta name="title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
@@ -43,7 +43,7 @@
   <meta property="og:site_name" content="Yeray Garrido Portfolio" />
   <meta property="og:locale" content="es_ES" />
 
-  <!-- Twitter Card (completo) -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://yeraygarrido.dev/" />
   <meta name="twitter:title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
