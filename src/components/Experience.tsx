@@ -41,6 +41,7 @@ export default function Experience() {
           scrollTrigger: {
             trigger: item,
             start: 'top 85%',
+            once: true,
           },
         });
       });
