@@ -27,6 +27,9 @@ export default function InteractiveCanvas() {
       });
     }
 
+    // Guardamos el ID del RAF para cancelarlo en el cleanup y evitar memory leaks
+    let rafId: number;
+
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
@@ -44,9 +47,9 @@ export default function InteractiveCanvas() {
         }
       });
 
-      requestAnimationFrame(render);
+      rafId = requestAnimationFrame(render);
     };
-    render();
+    rafId = requestAnimationFrame(render);
 
     const onResize = () => {
       width = window.innerWidth;
@@ -57,6 +60,7 @@ export default function InteractiveCanvas() {
     window.addEventListener('resize', onResize);
 
     return () => {
+      cancelAnimationFrame(rafId); // Cancela el loop al desmontar el componente
       window.removeEventListener('resize', onResize);
     };
   }, []);
