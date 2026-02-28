@@ -5,7 +5,8 @@ export default function ApiSection() {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
-  const command = "curl https://yeraygarrido.dev/api/cv.xml";
+  
+  const command = "curl https://yeraygarrido.dev/cv.xml";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(command);
