@@ -75,7 +75,7 @@ export default function Projects() {
       title: { es: "Zalbi Aisia", en: "Zalbi Aisia", eu: "Zalbi Aisia" },
       tech: "PHP 8, WordPress (_s), CPTs, ACF, Vanilla JS, CSS Grid",
       desc: {
-        es: "Plataforma korporatiboa eta katalogo interaktiboa, eraikitzaile bisualik edo txantiloirik gabe.",
+        es: "Plataforma corporativa y catálogo interactivo sin constructores visuales ni plantillas.",
         en: "Corporate platform and interactive catalog without visual builders or templates.",
         eu: "Plataforma korporatiboa eta katalogo interaktiboa, eraikitzaile bisualik edo txantiloirik gabe.",
       },
@@ -88,13 +88,13 @@ export default function Projects() {
       },
       year: "2026",
       longDescChallenge: {
-        es: "Bezeroak kudeaketa autonomoa behar zuen, eraikitzaile bisualik gabe. 1.5s-tik beherako karga denbora lortzea zen erronka nagusia.",
-        en: "The client needed autonomous management without visual builders. Sub-1.5s load time was the main challenge.",
+        es: "El requisito principal era desarrollar una plataforma corporativa que el cliente pudiera gestionar de forma autónoma, sin constructores visuales ni plantillas comerciales. Se exigía una optimización extrema de Core Web Vitals con tiempos de carga inferiores a 1.5s.",
+        en: "The main requirement was to develop a corporate platform manageable autonomously by the client, strictly avoiding visual builders. Extreme Core Web Vitals optimization was required with sub-1.5s load times.",
         eu: "Bezeroak kudeaketa autonomoa behar zuen, eraikitzaile bisualik gabe. 1.5s-tik beherako karga denbora lortzea zen erronka nagusia.",
       },
       longDescSolution: {
-        es: "Hutsetik eraikitako gaia Underscores (_s) erabiliz. Iragazki sistema Vanilla JS-rekin egin nuen 'layout thrashing'-a saihesteko.",
-        en: "Built from scratch using Underscores (_s). Filtering system developed with Vanilla JS to avoid layout thrashing.",
+        es: "Construí el tema desde cero sobre Underscores (_s). El catálogo incorpora un filtro en Vanilla JS para evitar el 'layout thrashing'. Implementé CSS Grid para uniformidad de tarjetas y paletas de colores dinámicas en PHP.",
+        en: "I built the theme from scratch using Underscores (_s). The catalog features a Vanilla JS filter to avoid layout thrashing. I implemented CSS Grid for card uniformity and dynamic PHP color palettes.",
         eu: "Hutsetik eraikitako gaia Underscores (_s) erabiliz. Iragazki sistema Vanilla JS-rekin egin nuen 'layout thrashing'-a saihesteko.",
       },
       imageUrl: "/img/projects/zalbi_captura.webp",
@@ -108,7 +108,7 @@ export default function Projects() {
       },
       tech: "React 19, Vite, Tailwind CSS v4, GSAP, Lenis",
       desc: {
-        es: "Errendimendu handiko frontend arkitektura (SPA), animazio konplexuekin eta 90+ Lighthouse-rekin.",
+        es:  "Arquitectura frontend (SPA) de alto rendimiento con animaciones complejas y 90+ Lighthouse",
         en: "High-performance frontend architecture (SPA) featuring complex animations and 90+ Lighthouse score.",
         eu: "Errendimendu handiko frontend arkitektura (SPA), animazio konplexuekin eta 90+ Lighthouse-rekin.",
       },
@@ -121,13 +121,13 @@ export default function Projects() {
       },
       year: "2026",
       longDescChallenge: {
-        es: "Animazio konplexuak eta abiadura uztartzea. Erronka Layout Thrashing-a ezabatzea eta hari nagusia (main thread) ez kargatzea izan da.",
-        en: "Combining complex animations with speed. The challenge was eliminating Layout Thrashing and not overloading the main thread.",
+        es: "El objetivo era crear un portfolio visualmente impactante sin sacrificar el rendimiento (WPO). Las librerías de animación tradicionales suelen arruinar los Core Web Vitals en móviles; el reto fue integrarlas de forma fluida sin causar Layout Thrashing ni penalizar el hilo principal.",
+        en: "The goal was to create a visually striking portfolio without sacrificing performance (WPO). Traditional animation libraries often ruin Core Web Vitals on mobile; the challenge was seamless integration without layout thrashing or penalizing the main thread.",
         eu: "Animazio konplexuak eta abiadura uztartzea. Erronka Layout Thrashing-a ezabatzea eta hari nagusia (main thread) ez kargatzea izan da.",
       },
       longDescSolution: {
-        es: "React 19 eta Vite. I18n sistema propioa Context bidez. Animazioak GSAP eta Lenis-ekin, IntersectionObserver erabiliz performancea hobetzeko.",
-        en: "React 19 and Vite. Custom i18n via Context. Animations with GSAP and Lenis, using IntersectionObserver to boost performance.",
+        es: "Diseñé una arquitectura SPA con React 19 y Vite, priorizando una ruta de renderizado crítico sin bloqueos. Implementé un sistema i18n propio mediante Context API (ES/EN/EU) y desarrollé las animaciones con GSAP y Lenis, sustituyendo ScrollTrigger por IntersectionObserver en los componentes lazy para eliminar los cuellos de botella de Style & Layout en el hilo principal.",
+        en: "I designed a SPA architecture with React 19 and Vite, prioritizing a zero-blocking critical rendering path. I implemented a custom i18n system via Context API (ES/EN/EU) and built animations using GSAP and Lenis, replacing ScrollTrigger with IntersectionObserver in lazy components to eliminate Style & Layout bottlenecks on the main thread.",
         eu: "React 19 eta Vite. I18n sistema propioa Context bidez. Animazioak GSAP eta Lenis-ekin, IntersectionObserver erabiliz performancea hobetzeko.",
       },
       imageUrl: "/img/projects/portfolio_captura.webp",
@@ -139,10 +139,10 @@ export default function Projects() {
         en: "Glocalium Services",
         eu: "Glocalium Services",
       },
-      tech: "WordPress, PHP 8, MySQL, Google Sheets API, SEO Técnico",
+      tech: "WordPress, PHP 8, MySQL, Contact Form 7, Plugins GPLv2, SEO Técnico, Hostalia",
       desc: {
-        es: "Web korporatiboa bi PHP plugin propiorekin: datu-basearen iraunkortasuna eta Google Sheets-era esportazio automatikoa.",
-        en: "Corporate website with two custom PHP plugins: database persistence and automatic export to Google Sheets.",
+        es: "Web corporativa completa con dos plugins PHP propios: persistencia en BD relacional con visor admin y exportación automática a Google Sheets vía CRON + webhook.",
+        en: "Full corporate website with two custom PHP plugins: relational DB persistence with admin viewer and automatic export to Google Sheets via CRON + webhook.",
         eu: "Web korporatiboa bi PHP plugin propiorekin: datu-basearen iraunkortasuna eta Google Sheets-era esportazio automatikoa.",
       },
       link: "https://github.com/Garridoparrayeray/wp_custom_scripts",
@@ -179,13 +179,14 @@ export default function Projects() {
     setLoading(true);
     setError("");
     try {
-      // Cargamos TODO: Incluyendo Forks y sin filtros restrictivos
+      // Usamos el endpoint correcto y limpiamos cualquier exclusión previa.
+      // Así traerá hasta 100 repositorios de la cuenta de Garridoparrayeray.
       const response = await fetch(
-        "https://api.github.com/users/Garridoparrayeray/repos?sort=updated&per_page=100&type=all",
+        "https://api.github.com/users/Garridoparrayeray/repos?sort=updated&per_page=100",
       );
       if (!response.ok) throw new Error("Failed to fetch");
       const data = await response.json();
-      setRepos(data); // Mostramos la lista completa tal cual viene de GitHub
+      setRepos(data);
     } catch {
       setError(t("github.error"));
     } finally {
@@ -228,9 +229,9 @@ export default function Projects() {
                     cardsRef.current[i] = el as HTMLDivElement;
                   }}
                   onClick={() => setActiveProject(p)}
-                  className="w-[82vw] md:w-[45vw] max-w-[600px] shrink-0 flex flex-col group snap-start cursor-pointer h-full"
+                  className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full"
                 >
-                  <div className="aspect-[16/9] bg-[#050505] mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors duration-500 rounded-lg">
+                  <div className="aspect-video bg-[#050505] mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors duration-500 rounded-lg">
                     {p.imageUrl ? (
                       <img
                         src={p.imageUrl}
@@ -282,12 +283,11 @@ export default function Projects() {
                 </div>
               ))}
 
-              {/* Tarjeta View All - Tamaño idéntico a las de proyecto */}
               <div
                 onClick={fetchRepos}
-                className="w-[82vw] md:w-[45vw] max-w-[600px] shrink-0 flex flex-col group snap-start cursor-pointer h-full"
+                className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full"
               >
-                <div className="aspect-[16/9] border border-white/10 rounded-lg mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all duration-500">
+                <div className="aspect-video border border-white/10 rounded-lg mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all duration-500">
                   <div className="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                     <svg
                       width="24"
@@ -331,7 +331,7 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* MODALES Y ESTILOS (Mantenidos igual que en tu versión funcional) */}
+      {/* MODALES Y ESTILOS */}
       <style>{`
         @keyframes modalEnter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-modal { animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -341,7 +341,7 @@ export default function Projects() {
 
       {/* DETALLE PROYECTO */}
       {activeProject && (
-        <div className="fixed inset-0 z-[200] bg-black animate-modal flex flex-col">
+        <div className="fixed inset-0 z-200 bg-black animate-modal flex flex-col">
           <div className="sticky top-0 w-full px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/80 backdrop-blur-xl z-20 border-b border-white/10 shrink-0">
             <button
               onClick={() => setActiveProject(null)}
@@ -376,7 +376,7 @@ export default function Projects() {
                     alt={l(activeProject.title)}
                     className="w-full h-full object-cover opacity-40"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent"></div>
                 </>
               ) : (
                 <div className="font-display text-4xl md:text-8xl uppercase text-white/5">
@@ -489,7 +489,7 @@ export default function Projects() {
         </div>
       )}
 
-      {/* MODAL GITHUB - Muestra TODO (Forks incluidos no me salen todos) */}
+      {/* MODAL GITHUB - Muestra TODO (Forks incluidos) */}
       {isModalOpen && (
         <div className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex flex-col animate-modal">
           <div className="flex justify-between items-center p-6 md:p-12 border-b border-white/10 shrink-0">
