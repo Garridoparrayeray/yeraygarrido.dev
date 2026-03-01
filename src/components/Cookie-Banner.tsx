@@ -124,7 +124,7 @@ export default function CookieBanner() {
               </h3>
             </div>
 
-            {/* Description */}
+            {/* Description and button*/}
             <p className="font-sans text-white/50 text-xs leading-relaxed">
               {t.desc}
               <button
