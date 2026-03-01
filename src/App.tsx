@@ -4,12 +4,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LanguageProvider } from "./context/LanguageContext";
 
-// 1. IMPORTAMOS VERCEL ANALYTICS Y SPEED INSIGHTS
+// 1. IMPORTAMOS ANALYTICS Y SPEED INSIGHTS
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import InteractiveCanvas from "./components/InteractiveCanvas";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Clarity from '@microsoft/clarity';
 
 // CARGA DIFERIDA
 const Intro = lazy(() => import("./components/Intro"));
@@ -29,6 +30,7 @@ export default function App() {
   const [loadRest, setLoadRest] = React.useState(false);
 
   useEffect(() => {
+    Clarity.init("voxu774h3f");
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
