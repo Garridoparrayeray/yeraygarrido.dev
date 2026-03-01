@@ -39,27 +39,27 @@ export default function Footer() {
   return (
     <>
       <footer className="w-full py-8 px-6 md:px-12 border-t border-black/10 bg-white text-black relative z-10">
-        <div className="w-full mx-auto flex flex-col md:flex-row justify-between items-center font-sans text-[10px] md:text-xs tracking-widest uppercase text-black/50 text-center gap-6 md:gap-0">
+        <div className="w-full mx-auto flex flex-col md:flex-row justify-between items-center font-sans text-[10px] md:text-xs tracking-widest uppercase text-black/80 text-center gap-6 md:gap-0">
           
           <div className="flex-1 flex items-center justify-center md:justify-start gap-1 w-full">
             <span>{t('contact.footer.madeWith')}</span>
-            <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noreferrer" className="text-black hover:text-black/70 transition-colors ml-1 font-bold cursor-pointer">
+            <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noreferrer" className="text-black hover:opacity-70 transition-opacity ml-1 font-bold cursor-pointer">
               Yeray Garrido
             </a>
           </div>
           
-          <div className="flex-1 w-full text-center">
+          <div className="flex-1 w-full text-center font-medium">
             {t('contact.footer.copyright', { year: new Date().getFullYear().toString() })}
           </div>
 
           <div className="flex-1 flex justify-center md:justify-end gap-4 md:gap-6 w-full">
-            <button onClick={() => setActiveModal("legal")} className="cursor-pointer hover:text-black font-bold transition-colors">
+            <button onClick={() => setActiveModal("legal")} className="cursor-pointer hover:opacity-60 font-bold transition-opacity">
               {currentContent.links.legal}
             </button>
-            <button onClick={() => setActiveModal("privacy")} className="cursor-pointer hover:text-black font-bold transition-colors">
+            <button onClick={() => setActiveModal("privacy")} className="cursor-pointer hover:opacity-60 font-bold transition-opacity">
               {currentContent.links.privacy}
             </button>
-            <button onClick={() => setActiveModal("cookies")} className="cursor-pointer hover:text-black font-bold transition-colors">
+            <button onClick={() => setActiveModal("cookies")} className="cursor-pointer hover:opacity-60 font-bold transition-opacity">
               {currentContent.links.cookies}
             </button>
           </div>
