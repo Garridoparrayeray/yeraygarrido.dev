@@ -11,7 +11,7 @@
 
   <!-- dns-prefetch para recursos lazy (GitHub API, JSDelivr).
        No se usa preconnect porque los componentes son lazy y la conexión
-       expiraría antes de necesitarse, penalizando en Lighthouse. -->
+       expiraría antes de necesitarse esto mal mal -->
   <link rel="dns-prefetch" href="https://api.github.com" />
   <link rel="dns-prefetch" href="https://github-contributions-api.jogruber.de" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -63,50 +63,19 @@
   <!--
     ESTRATEGIA DE FUENTES
     ─────────────────────
-    Anton (display hero) y Syncopate (subtítulo hero) son el LCP:
-    se cargan de forma BLOQUEANTE para que el texto no aparezca en blanco.
-    El preload del woff2 elimina el "element render delay" de 1,160ms
-    que Lighthouse detectó: el navegador descarga la fuente en paralelo
-    con el CSS, sin esperar a que el CSS la descubra primero.
+    Anton y Syncopate (texto hero = LCP): CSS bloqueante.
+    El navegador las descarga antes de pintar → no hay FOUT en el hero.
 
-    Inter (body, below fold) se carga de forma NO BLOQUEANTE
-    con media="print" + onload para no retrasar el FCP.
+    Inter (body, below fold): no bloqueante con media="print"+onload.
+    No penaliza FCP porque no aparece en el primer viewport.
   -->
 
-  <!-- PASO 1: preload directo del woff2 de Anton (47 KiB, el más pesado del LCP) -->
-  <!-- URL exacta tal como aparece en el informe de Lighthouse -->
-  <link
-    rel="preload"
-    as="font"
-    type="font/woff2"
-    href="https://fonts.gstatic.com/s/anton/v20/1Ptgg87LROyAm0K08i4gS7lu.woff2"
-    crossorigin
-  />
-  <!-- Syncopate 700 (subtítulo hero) -->
-  <link
-    rel="preload"
-    as="font"
-    type="font/woff2"
-    href="https://fonts.gstatic.com/s/syncopate/v24/pe0pMIuPI4PCo7W3xZBb44hJmyKwWQ.woff2"
-    crossorigin
-  />
-  <!-- Syncopate 400 -->
-  <link
-    rel="preload"
-    as="font"
-    type="font/woff2"
-    href="https://fonts.gstatic.com/s/syncopate/v24/pe0sMIuPI4PCo7W3xZBbWUo.woff2"
-    crossorigin
-  />
-
-  <!-- PASO 2: CSS de fuentes críticas — BLOQUEANTE (sin media="print") -->
-  <!-- Esto garantiza que el browser conoce el font-face antes de pintar -->
+  <!-- Fuentes críticas (LCP): bloqueante, sin media="print" -->
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Anton&family=Syncopate:wght@400;700&display=swap"
   />
 
-  <!-- PASO 3: Inter — NO BLOQUEANTE (body font, no en el LCP) -->
   <link
     rel="preload"
     as="style"
