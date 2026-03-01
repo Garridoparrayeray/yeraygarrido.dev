@@ -19,7 +19,7 @@ Optimized to achieve maximum scores in Lighthouse for both mobile and desktop, p
 
 <img width="100%" alt="PageSpeed Performance Mobile" src="https://github.com/user-attachments/assets/574a51c5-d84a-4a8b-a1b5-d7bc3fccdb18" />
 
-<img width="100%" alt="PageSpeed Performance Desktop" src="https://github.com/user-attachments/assets/0e241635-f1dd-4018-a3ae-336d77f4afad" />
+<img width="1344" height="625" alt="image" src="https://github.com/user-attachments/assets/903bd129-e798-4f7e-9a0c-ab011e3f9693" />
 
 ## Tech Stack
 
