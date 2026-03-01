@@ -4,15 +4,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LanguageProvider } from "./context/LanguageContext";
 
-// 1. IMPORTAMOS ANALYTICS Y SPEED INSIGHTS
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import InteractiveCanvas from "./components/InteractiveCanvas";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Clarity from '@microsoft/clarity';
 
-// CARGA DIFERIDA
 const Intro = lazy(() => import("./components/Intro"));
 const Experience = lazy(() => import("./components/Experience"));
 const Stack = lazy(() => import("./components/Stack"));
@@ -21,16 +16,25 @@ const Stats = lazy(() => import("./components/Stats"));
 const ApiSection = lazy(() => import("./components/ApiSection"));
 const Contact = lazy(() => import("./components/Contact"));
 
-gsap.registerPlugin(ScrollTrigger);
+// CARGA DIFERIDA DE ANALÍTICAS
+const Analytics = lazy(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
+const SpeedInsights = lazy(() => import("@vercel/speed-insights/react").then(m => ({ default: m.SpeedInsights })));
 
-// Evita que ScrollTrigger recalcule en cada resize de teclado móvil (reduce ticks)
+gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 export default function App() {
   const [loadRest, setLoadRest] = React.useState(false);
 
   useEffect(() => {
-    Clarity.init("voxu774h3f");
+    if (loadRest) {
+      import('@microsoft/clarity').then((Clarity) => {
+        Clarity.default.init("voxu774h3f");
+      });
+    }
+  }, [loadRest]);
+
+  useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -39,33 +43,20 @@ export default function App() {
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    // Guardamos la referencia para poder eliminarla correctamente en cleanup
     const rafFn = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(rafFn);
     gsap.ticker.lagSmoothing(0);
 
-    const timer = setTimeout(() => setLoadRest(true), 1500);
+    const timer = setTimeout(() => setLoadRest(true), 2500);
     const handleInteraction = () => setLoadRest(true);
 
-    // Escuchamos el primer movimiento para cargar el resto de la web
-    window.addEventListener("scroll", handleInteraction, {
-      once: true,
-      passive: true,
-    });
-    window.addEventListener("mousemove", handleInteraction, {
-      once: true,
-      passive: true,
-    });
-    window.addEventListener("touchstart", handleInteraction, {
-      once: true,
-      passive: true,
-    });
+    window.addEventListener("scroll", handleInteraction, { once: true, passive: true });
+    window.addEventListener("mousemove", handleInteraction, { once: true, passive: true });
+    window.addEventListener("touchstart", handleInteraction, { once: true, passive: true });
 
     return () => {
       lenis.destroy();
       gsap.ticker.remove(rafFn);
-
-      // Limpiamos los eventos de carga diferida
       clearTimeout(timer);
       window.removeEventListener("scroll", handleInteraction);
       window.removeEventListener("mousemove", handleInteraction);
@@ -78,11 +69,12 @@ export default function App() {
       <main className="relative min-h-screen selection:bg-accent selection:text-black">
         <div className="glow-bg"></div>
 
-        {/* Secciones críticas que el usuario ve en el segundo 1 */}
+        {/* LO QUE VE LIGHTHOUSE Y EL USUARIO AL INSTANTE */}
         <InteractiveCanvas />
         <Header />
         <Hero />
 
+        {/* LO QUE SE CARGA EN SEGUNDO PLANO CUANDO HAY INTERACCIÓN */}
         {loadRest && (
           <Suspense fallback={<div className="min-h-screen"></div>}>
             <Intro />
@@ -92,11 +84,11 @@ export default function App() {
             <Stats />
             <ApiSection />
             <Contact />
+            
+            <Analytics />
+            <SpeedInsights />
           </Suspense>
         )}
-
-        <Analytics />
-        <SpeedInsights />
       </main>
     </LanguageProvider>
   );
