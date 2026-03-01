@@ -17,10 +17,10 @@ Personal portfolio and custom frontend architecture. Built with React, Tailwind 
 
 Optimized to achieve maximum scores in Lighthouse for both mobile and desktop, prioritizing a zero-blocking critical rendering path.
 
-<img width="100%" alt="PageSpeed Performance Mobile" src="https://github.com/user-attachments/assets/574a51c5-d84a-4a8b-a1b5-d7bc3fccdb18" />
+<img width="1345" height="615" alt="image" src="https://github.com/user-attachments/assets/acd28b80-9bf9-4d02-a312-cbc7423a5396" />
 
-<img width="100%" alt="PageSpeed Performance Desktop" src="https://github.com/user-attachments/assets/0e241635-f1dd-4018-a3ae-336d77f4afad" />
-
+<img width="1344" height="625" alt="image" src="https://github.com/user-attachments/assets/903bd129-e798-4f7e-9a0c-ab011e3f9693" />
+## LINK: https://pagespeed.web.dev/analysis/https-www-yeraygarrido-dev/y5u26q9two?hl=es-ES&form_factor=mobile
 ## Tech Stack
 
 - **Core:** React 19 + Vite (No heavy frameworks like Next.js required for this phase to maximize speed).
@@ -84,10 +84,10 @@ Portafolio personal y arquitectura frontend. Construido con React, Tailwind CSS 
 
 Arquitectura optimizada al extremo para lograr puntuaciones perfectas en Lighthouse (Móvil y Escritorio), priorizando la eliminación del bloqueo de renderizado y la carga diferida.
 
-<img width="100%" alt="Rendimiento PageSpeed Móvil" src="https://github.com/user-attachments/assets/574a51c5-d84a-4a8b-a1b5-d7bc3fccdb18" />
+<img width="1345" height="615" alt="image" src="https://github.com/user-attachments/assets/acd28b80-9bf9-4d02-a312-cbc7423a5396" />
 
-<img width="100%" alt="Rendimiento PageSpeed Escritorio" src="https://github.com/user-attachments/assets/0e241635-f1dd-4018-a3ae-336d77f4afad" />
-
+<img width="1344" height="625" alt="image" src="https://github.com/user-attachments/assets/903bd129-e798-4f7e-9a0c-ab011e3f9693" />
+## LINK: https://pagespeed.web.dev/analysis/https-www-yeraygarrido-dev/y5u26q9two?hl=es-ES&form_factor=mobile
 ## Stack Tecnológico
 
 - **Núcleo:** React 19 + Vite (sin necesidad de frameworks pesados como Next.js para esta fase).
