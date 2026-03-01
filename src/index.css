@@ -8,6 +8,49 @@
   --color-accent: #ffffff;
 }
 
+@font-face {
+  font-family: "Anton";
+  src: url("/fonts/anton.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Syncopate";
+  src: url("/fonts/syncopate-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Syncopate";
+  src: url("/fonts/syncopate-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
   background-color: var(--color-bg-base);
@@ -32,7 +75,11 @@ html {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -46,7 +93,7 @@ html {
   z-index: 9999;
   pointer-events: none;
   opacity: 0.05; /* Intensidad de grano menor para mejor rendimiento de cpu y gpu */
-  /*background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+/*background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   will-change: transform;} /* Optimización para la GPU */
 
 .perspective-1000 {
@@ -59,19 +106,30 @@ html {
   transition-property: opacity, transform;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-duration: 0.7s;
-  will-change: opacity, transform; 
+  will-change: opacity, transform;
   /* Evita que la fuente tiemble o cambie de grosor/tamaño */
-  backface-visibility: hidden; 
+  backface-visibility: hidden;
 }
-[data-reveal="up"]    { transform: translate3d(0, 40px, 0); }
-[data-reveal="left"]  { transform: translate3d(-40px, 0, 0); }
-[data-reveal="right"] { transform: translate3d(40px, 0, 0); }
-[data-reveal].in-view { opacity: 1; transform: translate3d(0, 0, 0); }
+[data-reveal="up"] {
+  transform: translate3d(0, 40px, 0);
+}
+[data-reveal="left"] {
+  transform: translate3d(-40px, 0, 0);
+}
+[data-reveal="right"] {
+  transform: translate3d(40px, 0, 0);
+}
+[data-reveal].in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
 /* Contact title reveal */
 .reveal-line {
   opacity: 0;
   transform: translateY(60px) rotateX(-20deg);
-  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-line.in-view {
   opacity: 1;
@@ -82,6 +140,5 @@ html {
 .react-activity-calendar rect,
 [class*="react-activity-calendar"] rect {
   animation: none !important;
-    transition: none !important;
-    }
-    
+  transition: none !important;
+}
