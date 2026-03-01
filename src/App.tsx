@@ -8,6 +8,7 @@ import InteractiveCanvas from "./components/InteractiveCanvas";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 
+// CARGA DIFERIDA
 const Intro = lazy(() => import("./components/Intro"));
 const Experience = lazy(() => import("./components/Experience"));
 const Stack = lazy(() => import("./components/Stack"));
@@ -15,24 +16,18 @@ const Projects = lazy(() => import("./components/Projects"));
 const Stats = lazy(() => import("./components/Stats"));
 const ApiSection = lazy(() => import("./components/ApiSection"));
 const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
-// CARGA DIFERIDA DE ANALÍTICAS
+// ANALÍTICAS Y BANNER DIFERIDOS (No bloquean el inicio)
 const Analytics = lazy(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
 const SpeedInsights = lazy(() => import("@vercel/speed-insights/react").then(m => ({ default: m.SpeedInsights })));
+const CookieBanner = lazy(() => import("./components/Cookie-Banner"));
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 export default function App() {
   const [loadRest, setLoadRest] = React.useState(false);
-
-  useEffect(() => {
-    if (loadRest) {
-      import('@microsoft/clarity').then((Clarity) => {
-        Clarity.default.init("voxu774h3f");
-      });
-    }
-  }, [loadRest]);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -69,12 +64,10 @@ export default function App() {
       <main className="relative min-h-screen selection:bg-accent selection:text-black">
         <div className="glow-bg"></div>
 
-        {/* LO QUE VE LIGHTHOUSE Y EL USUARIO AL INSTANTE */}
         <InteractiveCanvas />
         <Header />
         <Hero />
 
-        {/* LO QUE SE CARGA EN SEGUNDO PLANO CUANDO HAY INTERACCIÓN */}
         {loadRest && (
           <Suspense fallback={<div className="min-h-screen"></div>}>
             <Intro />
@@ -84,9 +77,11 @@ export default function App() {
             <Stats />
             <ApiSection />
             <Contact />
-            
+            <Footer />
+
             <Analytics />
             <SpeedInsights />
+            <CookieBanner />
           </Suspense>
         )}
       </main>

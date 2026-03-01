@@ -345,7 +345,7 @@ export default function Projects() {
           <div className="sticky top-0 w-full px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/80 backdrop-blur-xl z-20 border-b border-white/10 shrink-0">
             <button
               onClick={() => setActiveProject(null)}
-              className="flex items-center gap-2 font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors"
+              className="cursor-pointer flex items-center gap-2 font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors"
             >
               <svg
                 width="14"
@@ -404,7 +404,7 @@ export default function Projects() {
                   <h3 className="font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/40 font-bold">
                     {l(uiTexts.challenge)}
                   </h3>
-                  <p className="font-sans text-white/80 leading-relaxed text-sm md:text-lg font-light whitespace-pre-line">
+                  <p className="font-sans text-white/80 leading-relaxed text-sm md:text-lg font-light whitespace-pre-line text-justify">
                     {l(activeProject.longDescChallenge)}
                   </p>
                 </div>
@@ -412,7 +412,7 @@ export default function Projects() {
                   <h3 className="font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/40 font-bold">
                     {l(uiTexts.solution)}
                   </h3>
-                  <p className="font-sans text-white/80 leading-relaxed text-sm md:text-lg font-light whitespace-pre-line">
+                  <p className="font-sans text-white/80 leading-relaxed text-sm md:text-lg font-light whitespace-pre-line text-justify">
                     {l(activeProject.longDescSolution)}
                   </p>
                 </div>
@@ -498,7 +498,7 @@ export default function Projects() {
             </h2>
             <button
               onClick={() => setIsModalOpen(false)}
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+              className="cursor-pointer w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
             >
               <svg
                 width="20"
