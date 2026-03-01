@@ -9,21 +9,21 @@ export default function CookieBanner() {
   const texts = {
     es: {
       title: "Uso de Cookies ",
-      desc: "Utilizo Microsoft Clarity de forma anónima para entender cómo navegas por mi portfolio y mejorar la experiencia. Puedes leer más en mi ",
+      desc: "Utilizo Cookies de forma anónima para entender cómo navegas por mi portfolio y mejorar la experiencia. Puedes leer más en mi ",
       link: "Política de Cookies.",
       accept: "Aceptar",
       reject: "Rechazar"
     },
     en: {
       title: "Cookie Policy",
-      desc: "I use Microsoft Clarity anonymously to understand how you navigate my portfolio and improve the experience. Read more in my ",
+      desc: "I use Cookies anonymously to understand how you navigate my portfolio and improve the experience. Read more in my ",
       link: "Cookie Policy.",
       accept: "Accept",
       reject: "Reject"
     },
     eu: {
       title: "Cookieen Erabilera",
-      desc: "Microsoft Clarity modu anonimoan erabiltzen dut nire portfolioan nola nabigatzen duzun ulertzeko. Irakurri gehiago nire ",
+      desc: "Erabiltzen dut Cookiak modu anonimoan erabiltzen dut nire portfolioan nola nabigatzen duzun ulertzeko. Irakurri gehiago nire ",
       link: "Cookie Politikan.",
       accept: "Onartu",
       reject: "Ezetsi"
@@ -86,12 +86,7 @@ export default function CookieBanner() {
         }
       `}</style>
 
-      {/*
-        El wrapper ocupa toda la pantalla pero con pointer-events-none,
-        así el scroll y los clicks traspasan al contenido de debajo.
-        Solo la tarjeta interior reactiva los eventos con pointer-events-auto.
-      */}
-      <div className="fixed inset-0 z-[999] pointer-events-none flex items-end justify-end">
+      <div className="fixed inset-0 z-999 pointer-events-none flex items-end justify-end">
         <div
           className={`cookie-banner pointer-events-auto w-full md:w-auto md:max-w-sm md:m-6 md:rounded-2xl ${isExiting ? "exiting" : ""}
             bg-[#0a0a0a] border-t border-white/10
@@ -100,7 +95,7 @@ export default function CookieBanner() {
           `}
         >
           {/* Línea de acento superior — solo desktop */}
-          <div className="hidden md:block h-px bg-gradient-to-r from-white/0 via-white/30 to-white/0 rounded-t-2xl" />
+          <div className="hidden md:block h-px bg-linear-to-r from-white/0 via-white/30 to-white/0 rounded-t-2xl" />
 
           <div className="px-5 py-5 md:px-6 md:py-6 flex flex-col gap-4">
             {/* Header */}
