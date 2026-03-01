@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 type ModalType = "legal" | "privacy" | "cookies" | null;
@@ -6,6 +6,17 @@ type ModalType = "legal" | "privacy" | "cookies" | null;
 export default function Footer() {
   const { language, t } = useLanguage();
   const [activeModal, setActiveModal] = useState<ModalType>(null);
+
+  // ESCUCHADOR PARA EL BANNER DE COOKIES
+  useEffect(() => {
+    const handleOpenCookies = () => setActiveModal("cookies");
+    
+    window.addEventListener("open-cookies-modal", handleOpenCookies);
+    
+    return () => {
+      window.removeEventListener("open-cookies-modal", handleOpenCookies);
+    };
+  }, []);
 
   const legalContent = {
     es: {
@@ -28,7 +39,7 @@ export default function Footer() {
       links: { legal: "Legezko Oharra", privacy: "Pribatutasuna", cookies: "Cookieak" },
       modalContent: {
         legal: { title: "Legezko Oharra", body: "Webgune hau Yeray Garridoren portfolio profesionala da. Helburua informazioa ematea eta software garapeneko proiektuak erakustea da.\n\nMerkataritza elektroniko zuzenik egiten ez duen webgune pertsonala denez, sarbidea publikoa eta doakoa da. Lotutako iturburu-kodeak GitHub-eko biltegienak dira, beren lizentziekin." },
-        privacy: { title: "Pribatutasun Politika", body: "Zure pribatutasuna serio hartzen dut. Webgune honek ez du erregistro formulariorik edo erabiltzaileen datu-baserik.\n\nNirekin posta elektronikoz edo sare sozialen bidez harremanetan jartzea erabakitzen baduzu, zure datuak zure kontsultari erantzuteko soilik erabiliko dira, eta ez dira hirugarrenekin partekatuko.\n\nErrendimendu teknikoaren analisirako, webgune honen ostalariak (Vercel) karga-abiaduraren oinarrizko metrika anonimoak biltzen ditu." },
+        privacy: { title: "Pribatutasun Politika", body: "Zure pribatutasuna serio hartzen dut. Webgune honek ez du erregistro formulariorik edo erabiltzaileen datu-baserik.\n\nNirekin posta elektronikoz edo sare sozialen bidez harremanetan jartzea erabakitzen baduzu, tus data zure kontsultari erantzuteko soilik erabiliko dira, eta ez dira hirugarrenekin partekatuko.\n\nErrendimendu teknikoaren analisirako, webgune honen ostalariak (Vercel) karga-abiaduraren oinarrizko metrika anonimoak biltzen ditu." },
         cookies: { title: "Cookie Politika", body: "Webgune honek cookie hauek erabiltzen ditu:\n\n1. Cookie Teknikoak (Beharrezkoak): Zure hizkuntza hobespena eta cookie-en abisu honi buruzko erabakia gordetzeko. Ez dute baimenik behar.\n\n2. Cookie Analitikoak (Microsoft Clarity): Hasierako banner-ean baimen esplizitua ematen baduzu soilik aktibatuko dira. Tresna honek modu anonimoan aztertzen du portfolioarekin nola interakzionatzen duzun interfazea hobetzen laguntzeko.\n\nZure baimena edozein unetan ezezta dezakezu nabigatzaileko cookie-ak ezabatuz." }
       }
     }
@@ -67,7 +78,7 @@ export default function Footer() {
       </footer>
 
       {activeModal && (
-        <div className="fixed inset-0 z-1000 flex items-center justify-center p-4 md:p-12 animate-fade-in">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-12 animate-fade-in">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer" onClick={() => setActiveModal(null)}></div>
           <div className="relative w-full max-w-2xl max-h-[80vh] bg-white border border-black/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-scale-up">
             <div className="flex justify-between items-center p-6 border-b border-black/10">
