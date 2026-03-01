@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isExiting, setIsExiting] = useState(false); // Para la animación de salida
+  const [isExiting, setIsExiting] = useState(false);
   const { language } = useLanguage();
 
   const texts = {
@@ -35,36 +35,26 @@ export default function CookieBanner() {
   useEffect(() => {
     const consentData = localStorage.getItem("clarity_consent_data");
     const now = new Date().getTime();
-    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000; // 30 días en milisegundos
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 
     if (consentData) {
       const { status, timestamp } = JSON.parse(consentData);
-
-      // Comprobamos si ha caducado (más de 30 días)
       if (now - timestamp > THIRTY_DAYS) {
         localStorage.removeItem("clarity_consent_data");
         setIsVisible(true);
       } else if (status === "accepted") {
-        // Aún es válido y aceptó
         import("@microsoft/clarity").then((Clarity) => {
           Clarity.default.init("voxu774h3f");
         });
       }
     } else {
-      // No hay datos, lo mostramos
       setIsVisible(true);
     }
   }, []);
 
   const handleDecision = (decision: "accepted" | "rejected") => {
-    // Iniciamos la animación de salida
     setIsExiting(true);
-
-    // Guardamos la decisión y la fecha exacta
-    const data = {
-      status: decision,
-      timestamp: new Date().getTime(),
-    };
+    const data = { status: decision, timestamp: new Date().getTime() };
     localStorage.setItem("clarity_consent_data", JSON.stringify(data));
 
     if (decision === "accepted") {
@@ -72,55 +62,89 @@ export default function CookieBanner() {
         Clarity.default.init("voxu774h3f");
       });
     }
-
-    // Esperamos a que termine la animación de salida (300ms) para desmontar el componente
-    setTimeout(() => {
-      setIsVisible(false);
-    }, 300);
+    setTimeout(() => setIsVisible(false), 350);
   };
 
   if (!isVisible) return null;
 
   return (
-    <div 
-      className={`fixed bottom-6 right-6 z-999 max-w-sm p-6 bg-[#0a0a0a]/90 border border-white/10 rounded-2xl shadow-2xl flex flex-col gap-4 transition-all duration-300 ease-out transform ${
-        isExiting ? "opacity-0 translate-y-8 scale-95" : "opacity-100 translate-y-0 scale-100"
-      }`}
-      style={{
-        // Un pequeño hack inline para que la entrada sea animada desde que se monta en el DOM
-        animation: isExiting ? "none" : "slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards"
-      }}
-    >
-      <h3 className="font-wide text-white text-lg font-bold flex items-center gap-2">
-        {t.title}
-      </h3>
-      <p className="font-sans text-white/60 text-sm leading-relaxed">
-        {t.desc}
-        <a href="/legal" className="text-white/90 underline decoration-white/30 hover:decoration-white transition-colors">
-          {t.link}
-        </a>
-      </p>
-      <div className="flex gap-3 mt-2">
-        <button
-          onClick={() => handleDecision("rejected")}
-          className="flex-1 font-sans text-xs uppercase tracking-widest py-3 border border-white/20 text-white/70 hover:text-white hover:bg-white/10 transition-colors rounded-lg"
-        >
-          {t.reject}
-        </button>
-        <button
-          onClick={() => handleDecision("accepted")}
-          className="flex-1 font-sans text-xs uppercase tracking-widest py-3 bg-white text-black hover:bg-white/75 font-bold transition-all rounded-lg "
-        >
-          {t.accept}
-        </button>
-      </div>
-
+    <>
       <style>{`
-        @keyframes slideInUp {
-          0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-          100% { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes cookieSlideUp {
+          from { opacity: 0; transform: translateY(100%); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes cookieSlideDown {
+          from { opacity: 1; transform: translateY(0); }
+          to   { opacity: 0; transform: translateY(100%); }
+        }
+        .cookie-banner {
+          animation: cookieSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .cookie-banner.exiting {
+          animation: cookieSlideDown 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
         }
       `}</style>
-    </div>
+
+      {/*
+        El wrapper ocupa toda la pantalla pero con pointer-events-none,
+        así el scroll y los clicks traspasan al contenido de debajo.
+        Solo la tarjeta interior reactiva los eventos con pointer-events-auto.
+      */}
+      <div className="fixed inset-0 z-[999] pointer-events-none flex items-end justify-end">
+        <div
+          className={`cookie-banner pointer-events-auto w-full md:w-auto md:max-w-sm md:m-6 md:rounded-2xl ${isExiting ? "exiting" : ""}
+            bg-[#0a0a0a] border-t border-white/10
+            md:border md:border-white/10
+            shadow-[0_-4px_40px_rgba(0,0,0,0.6)] md:shadow-2xl
+          `}
+        >
+          {/* Línea de acento superior — solo desktop */}
+          <div className="hidden md:block h-px bg-gradient-to-r from-white/0 via-white/30 to-white/0 rounded-t-2xl" />
+
+          <div className="px-5 py-5 md:px-6 md:py-6 flex flex-col gap-4">
+            {/* Header */}
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center shrink-0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/60">
+                  <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+                  <path d="M8.5 8.5v.01M16 15.5v.01M12 12v.01"/>
+                </svg>
+              </div>
+              <h3 className="font-wide text-white text-sm font-bold uppercase tracking-widest leading-none">
+                {t.title}
+              </h3>
+            </div>
+
+            {/* Description */}
+            <p className="font-sans text-white/50 text-xs leading-relaxed">
+              {t.desc}
+              <a
+                href="/legal"
+                className="text-white/80 underline decoration-white/20 hover:text-white hover:decoration-white transition-colors"
+              >
+                {t.link}
+              </a>
+            </p>
+
+            {/* Botones */}
+            <div className="flex gap-2.5">
+              <button
+                onClick={() => handleDecision("rejected")}
+                className="flex-1 font-sans text-[10px] uppercase tracking-[0.15em] py-3 border border-white/15 text-white/50 hover:text-white hover:border-white/40 active:scale-95 transition-all duration-200 rounded-lg"
+              >
+                {t.reject}
+              </button>
+              <button
+                onClick={() => handleDecision("accepted")}
+                className="flex-1 font-sans text-[10px] uppercase tracking-[0.15em] py-3 bg-white text-black font-bold hover:bg-white/85 active:scale-95 transition-all duration-200 rounded-lg"
+              >
+                {t.accept}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
