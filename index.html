@@ -1,66 +1,127 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fuentes críticas: bloqueante -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Syncopate:wght@400;700&display=swap"
+    />
 
-  <!-- preconnect para fuentes críticas (primer paint) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter: no bloqueante -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
 
-  <!-- dns-prefetch para recursos lazy (GitHub API, JSDelivr).
+    <!-- dns-prefetch para recursos lazy (GitHub API, JSDelivr).
        No se usa preconnect porque los componentes son lazy y la conexión
        expiraría antes de necesitarse esto mal mal -->
-  <link rel="dns-prefetch" href="https://api.github.com" />
-  <link rel="dns-prefetch" href="https://github-contributions-api.jogruber.de" />
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://api.github.com" />
+    <link
+      rel="dns-prefetch"
+      href="https://github-contributions-api.jogruber.de"
+    />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
-  <title>Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack</title>
-  <meta name="title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
-  <meta name="description"
-    content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Creación de sistemas backend, plugins personalizados y aplicaciones web de alto rendimiento." />
-  <meta name="author" content="Yeray Garrido" />
+    <title>
+      Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack
+    </title>
+    <meta
+      name="title"
+      content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack"
+    />
+    <meta
+      name="description"
+      content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Creación de sistemas backend, plugins personalizados y aplicaciones web de alto rendimiento."
+    />
+    <meta name="author" content="Yeray Garrido" />
 
-  <link rel="canonical" href="https://yeraygarrido.dev/" />
+    <link rel="canonical" href="https://yeraygarrido.dev/" />
 
-  <link rel="alternate" hreflang="es" href="https://yeraygarrido.dev/" />
-  <link rel="alternate" hreflang="en" href="https://yeraygarrido.dev/" />
-  <link rel="alternate" hreflang="eu" href="https://yeraygarrido.dev/" />
-  <link rel="alternate" hreflang="x-default" href="https://yeraygarrido.dev/" />
+    <link rel="alternate" hreflang="es" href="https://yeraygarrido.dev/" />
+    <link rel="alternate" hreflang="en" href="https://yeraygarrido.dev/" />
+    <link rel="alternate" hreflang="eu" href="https://yeraygarrido.dev/" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://yeraygarrido.dev/"
+    />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:url" content="https://yeraygarrido.dev/" />
-  <meta property="og:title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
-  <meta property="og:description"
-    content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Soluciones backend robustas y aplicaciones de alto rendimiento." />
-  <meta property="og:image" content="https://yeraygarrido.dev/og-image.webp" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Yeray Garrido Portfolio" />
-  <meta property="og:locale" content="es_ES" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://yeraygarrido.dev/" />
+    <meta
+      property="og:title"
+      content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack"
+    />
+    <meta
+      property="og:description"
+      content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Soluciones backend robustas y aplicaciones de alto rendimiento."
+    />
+    <meta
+      property="og:image"
+      content="https://yeraygarrido.dev/og-image.webp"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Yeray Garrido Portfolio" />
+    <meta property="og:locale" content="es_ES" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://yeraygarrido.dev/" />
-  <meta name="twitter:title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
-  <meta name="twitter:description"
-    content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida." />
-  <meta name="twitter:image" content="https://yeraygarrido.dev/og-image.webp" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://yeraygarrido.dev/" />
+    <meta
+      name="twitter:title"
+      content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack"
+    />
+    <meta
+      name="twitter:description"
+      content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida."
+    />
+    <meta
+      name="twitter:image"
+      content="https://yeraygarrido.dev/og-image.webp"
+    />
 
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="theme-color" content="#000000" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#000000" />
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-  <link rel="manifest" href="/img/site.webmanifest" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/img/site.webmanifest" />
 
-  <!--
+    <!--
     ESTRATEGIA DE FUENTES
     ─────────────────────
     Anton y Syncopate (texto hero = LCP): CSS bloqueante.
@@ -70,94 +131,93 @@
     No penaliza FCP porque no aparece en el primer viewport.
   -->
 
-  <!-- Fuentes críticas (LCP): bloqueante, sin media="print" -->
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Syncopate:wght@400;700&display=swap"
-  />
+    <!-- Fuentes críticas (LCP): bloqueante, sin media="print" -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Syncopate:wght@400;700&display=swap"
+    />
 
-  <link
-    rel="preload"
-    as="style"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-    media="print"
-    onload="this.media='all'"
-  />
-  <noscript>
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      media="print"
+      onload="this.media = 'all'"
     />
-  </noscript>
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      />
+    </noscript>
 
-  <!-- JSON-LD Schema.org -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Person",
-      "name": "Yeray Garrido",
-      "url": "https://yeraygarrido.dev/",
-      "jobTitle": "Ingeniero de Software & Desarrollador Full Stack",
-      "description": "Software Engineer especializado en el desarrollo de plugins PHP a medida, temas WordPress desde cero (_s) y sistemas backend en Java.",
-      "sameAs": [
-        "https://www.linkedin.com/in/yeray-garrido",
-        "https://github.com/Garridoparrayeray"
-      ],
-      "knowsAbout": [
-        "Java (OOP)",
-        "PHP 8",
-        "MySQL/MariaDB",
-        "Docker",
-        "Linux & Bash",
-        "WordPress Engineering",
-        "LaTeX"
-      ],
-      "alumniOf": [
-        {
-          "@type": "EducationalOrganization",
-          "name": "CIFP Zornotza LHII",
-          "url": "https://fpzornotzalh.eus/"
-        },
-        {
-          "@type": "EducationalOrganization",
-          "name": "42 Urduliz (Fundación Telefónica)"
-        },
-        {
-          "@type": "EducationalOrganization",
-          "name": "Fundación EDE"
-        }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Software Development Services",
-        "itemListElement": [
+    <!-- JSON-LD Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Person",
+        "name": "Yeray Garrido",
+        "url": "https://yeraygarrido.dev/",
+        "jobTitle": "Ingeniero de Software & Desarrollador Full Stack",
+        "description": "Software Engineer especializado en el desarrollo de plugins PHP a medida, temas WordPress desde cero (_s) y sistemas backend en Java.",
+        "sameAs": [
+          "https://www.linkedin.com/in/yeray-garrido",
+          "https://github.com/Garridoparrayeray"
+        ],
+        "knowsAbout": [
+          "Java (OOP)",
+          "PHP 8",
+          "MySQL/MariaDB",
+          "Docker",
+          "Linux & Bash",
+          "WordPress Engineering",
+          "LaTeX"
+        ],
+        "alumniOf": [
           {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Custom Web Application Development"
-            }
+            "@type": "EducationalOrganization",
+            "name": "CIFP Zornotza LHII",
+            "url": "https://fpzornotzalh.eus/"
           },
           {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Backend API Design & Implementation"
-            }
+            "@type": "EducationalOrganization",
+            "name": "42 Urduliz (Fundación Telefónica)"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "Fundación EDE"
           }
-        ]
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Software Development Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Web Application Development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Backend API Design & Implementation"
+              }
+            }
+          ]
+        }
       }
-    }
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
