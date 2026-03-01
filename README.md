@@ -17,7 +17,7 @@ Personal portfolio and custom frontend architecture. Built with React, Tailwind 
 
 Optimized to achieve maximum scores in Lighthouse for both mobile and desktop, prioritizing a zero-blocking critical rendering path.
 
-<img width="100%" alt="PageSpeed Performance Mobile" src="https://github.com/user-attachments/assets/574a51c5-d84a-4a8b-a1b5-d7bc3fccdb18" />
+<img width="1345" height="615" alt="image" src="https://github.com/user-attachments/assets/acd28b80-9bf9-4d02-a312-cbc7423a5396" />
 
 <img width="1344" height="625" alt="image" src="https://github.com/user-attachments/assets/903bd129-e798-4f7e-9a0c-ab011e3f9693" />
 
