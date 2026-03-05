@@ -79,8 +79,8 @@ export default function Projects() {
         en: "Corporate platform and interactive catalog without visual builders or templates.",
         eu: "Plataforma korporatiboa eta katalogo interaktiboa, eraikitzaile bisualik edo txantiloirik gabe.",
       },
-      link: "https://github.com/Garridoparrayeray/zalbi-web-server",
-      demoUrl: "https://dev-zalbi-aisia-eta-abentura.pantheonsite.io/",
+      link: "https://github.com/Garridoparrayeray/zalbi-theme",
+      demoUrl: "https://zalbi.eu/",
       role: {
         es: "Full Stack (WP Custom Theme)",
         en: "Full Stack (WP Custom Theme)",
@@ -108,7 +108,7 @@ export default function Projects() {
       },
       tech: "React 19, Vite, Tailwind CSS v4, GSAP, Lenis",
       desc: {
-        es:  "Arquitectura frontend (SPA) de alto rendimiento con animaciones complejas y 90+ Lighthouse",
+        es: "Arquitectura frontend (SPA) de alto rendimiento con animaciones complejas y 90+ Lighthouse",
         en: "High-performance frontend architecture (SPA) featuring complex animations and 90+ Lighthouse score.",
         eu: "Errendimendu handiko frontend arkitektura (SPA), animazio konplexuekin eta 90+ Lighthouse-rekin.",
       },
