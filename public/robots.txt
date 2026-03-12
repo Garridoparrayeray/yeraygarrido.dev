@@ -1,5 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
 
-# Sitemap location
 Sitemap: https://yeraygarrido.dev/sitemap.xml
