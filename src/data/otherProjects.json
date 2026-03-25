@@ -1,0 +1,33 @@
+[
+  {
+    "id": "gastroaccess",
+    "title": {
+      "es": "GastroAccess Euskadi",
+      "en": "GastroAccess Euskadi",
+      "eu": "GastroAccess Euskadi"
+    },
+    "tech": "React 19, TypeScript, Vite, Tailwind CSS, Leaflet",
+    "desc": {
+      "es": "MVP para validar accesibilidad en restaurantes usando datos oficiales de Open Data Euskadi.",
+      "en": "MVP to validate restaurant accessibility using official data from Open Data Euskadi.",
+      "eu": "Jatetxeen irisgarritasuna balioztatzeko MVP-a, Open Data Euskadiko datu ofizialak erabiliz."
+    },
+    "link": "https://github.com/Garridoparrayeray/GastroAccess-Euskadi",
+    "role": {
+      "es": "Frontend & Data Integration",
+      "en": "Frontend & Data Integration",
+      "eu": "Frontend & Datuen Integrazioa"
+    },
+    "year": "2026",
+    "longDescChallenge": {
+      "es": "El reto de 'Euskadi Data Lab' consistía en asimilar datos públicos y transformarlos en una solución digital. Detectamos que las personas con diversidad funcional se enfrentan a falta de información al salir a comer, ya que las apps generales se basan en opiniones subjetivas.",
+      "en": "The 'Euskadi Data Lab' challenge was to assimilate public data and transform it into a digital solution. We noticed that people with functional diversity face a lack of info when dining out, as general apps rely on subjective opinions.",
+      "eu": "'Euskadi Data Lab' erronka datu publikoak irtenbide digital bihurtzea zen. Mugikortasun urriko pertsonek informazio falta dutela ikusi genuen, aplikazio orokorrak iritzi subjektiboetan oinarritzen direlako."
+    },
+    "longDescSolution": {
+      "es": "Diseñamos un MVP de validación de accesibilidad basado en auditorías oficiales del Gobierno Vasco. Desarrollamos un algoritmo (ETL) que evalúa variables físicas, visuales y auditivas para clasificar locales en Oro, Plata o Estándar.",
+      "en": "We designed an accessibility validation MVP based on official Basque Government audits. We developed an ETL algorithm that evaluates physical, visual, and auditory variables to classify venues as Gold, Silver, or Standard.",
+      "eu": "Eusko Jaurlaritzaren auditoria ofizialetan oinarritutako irisgarritasuna balioztatzeko MVP bat diseinatu genuen. Algoritmo bat (ETL) garatu genuen lokalak Urre, Zilar edo Estandar gisa sailkatzeko."
+    }
+  }
+]
