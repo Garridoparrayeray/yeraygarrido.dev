@@ -50,6 +50,7 @@ export default function Projects() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerWidthRef = useRef(0);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
@@ -173,10 +174,10 @@ export default function Projects() {
 
   const scrollToProject = (index: number) => {
     if (!scrollRef.current) return;
-    const containerWidth = scrollRef.current.clientWidth;
     const items = scrollRef.current.querySelectorAll('[data-project-card]');
     if (items[index]) {
       const item = items[index] as HTMLElement;
+      const containerWidth = containerWidthRef.current || scrollRef.current.clientWidth;
       const itemLeft = item.offsetLeft;
       const itemWidth = item.offsetWidth;
       const targetScroll = itemLeft - (containerWidth - itemWidth) / 2;
@@ -187,6 +188,7 @@ export default function Projects() {
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const { scrollLeft, clientWidth } = scrollRef.current;
+    containerWidthRef.current = clientWidth;
     setActiveIndex(Math.round(scrollLeft / clientWidth));
   };
 
@@ -282,7 +284,7 @@ export default function Projects() {
               <button
                 key={i}
                 onClick={() => scrollToProject(i)}
-                className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
+                className={`h-1 min-h-11 min-w-11 flex items-center justify-center rounded-full transition-all duration-300 cursor-pointer ${
                   activeIndex === i ? 'w-6 bg-white' : 'w-1 bg-white/30 hover:bg-white/60'
                 }`}
                 aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
