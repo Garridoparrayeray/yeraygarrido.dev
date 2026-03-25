@@ -13,21 +13,21 @@
   src: url("/fonts/anton.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: block;
+  font-display: optional;
 }
 @font-face {
   font-family: "Syncopate";
   src: url("/fonts/syncopate-700.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: block;
+  font-display: optional;
 }
 @font-face {
   font-family: "Syncopate";
   src: url("/fonts/syncopate-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: block;
+  font-display: optional;
 }
 @font-face {
   font-family: "Inter";
