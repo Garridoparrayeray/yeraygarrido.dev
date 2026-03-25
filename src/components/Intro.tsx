@@ -32,7 +32,7 @@ export default function Intro() {
           <p data-reveal="up" style={{transitionDelay:'0.1s'}} className="font-sans text-base md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed md:leading-loose">
             {t('intro.desc1')}
           </p>
-          <h3 data-reveal="up" style={{transitionDelay:'0.15s'}} className="font-wide text-white text-xl md:text-4xl uppercase mt-20 md:mt-32 tracking-widest leading-tight">
+          <h3 data-reveal="up" style={{transitionDelay:'0.15s'}} className="font-wide text-xl md:text-4xl uppercase mt-20 md:mt-32 tracking-widest leading-tight">
             {t('intro.subtitle1')} <br/> {t('intro.subtitle2')}
           </h3>
           <p data-reveal="up" style={{transitionDelay:'0.2s'}} className="font-sans text-base md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed md:leading-loose mt-8 md:mt-12">

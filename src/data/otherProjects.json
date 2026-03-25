@@ -19,6 +19,11 @@
       "eu": "Frontend & Datuen Integrazioa"
     },
     "year": "2026",
+    "images": [
+      "/img/projects/gastroAccess.webp",
+      "/img/projects/gastro_mapa.webp",
+      "/img/projects/gastro_scoring.webp"
+    ],
     "longDescChallenge": {
       "es": "El reto de 'Euskadi Data Lab' consistía en asimilar datos públicos y transformarlos en una solución digital. Detectamos que las personas con diversidad funcional se enfrentan a falta de información al salir a comer, ya que las apps generales se basan en opiniones subjetivas.",
       "en": "The 'Euskadi Data Lab' challenge was to assimilate public data and transform it into a digital solution. We noticed that people with functional diversity face a lack of info when dining out, as general apps rely on subjective opinions.",
