@@ -236,43 +236,43 @@ export default function Projects() {
   return (
     <>
       <style>{`
-        @keyframes modalEnter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-modal { animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes modalEnter { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-modal { animation: modalEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
       `}</style>
 
-      <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col relative z-10 border-t border-white/10 pb-12 md:pb-24 overflow-hidden">
-        <div className="pt-12 sm:pt-16 md:pt-24 px-6 sm:px-8 md:px-24 shrink-0 flex flex-col sm:flex-row justify-between items-center sm:items-end gap-4 sm:gap-6">
-          <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
+      <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col relative z-10 border-t border-white/10 pb-8 md:pb-24 overflow-hidden">
+        <div className="pt-8 md:pt-24 px-6 md:px-24 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-4 md:gap-6">
+          <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
           <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors rounded-full cursor-pointer">
             {t("projects.viewAll")}
           </button>
         </div>
 
-        <div className="relative flex-1 flex flex-col justify-center mt-4 md:mt-12 px-6 sm:px-8 md:px-24">
-          <div ref={scrollRef} onScroll={handleScroll} className="flex items-stretch overflow-x-auto snap-x snap-mandatory hide-scrollbar py-6 sm:py-8 scroll-smooth" style={{ scrollbarWidth: "none" }}>
-            <div className="flex gap-6 sm:gap-8 md:gap-16 w-max items-stretch">
+        <div className="relative flex-1 flex flex-col justify-center mt-2 md:mt-12 px-6 md:px-24">
+          <div ref={scrollRef} onScroll={handleScroll} className="flex items-stretch overflow-x-auto snap-x snap-mandatory hide-scrollbar py-6 md:py-8 scroll-smooth" style={{ scrollbarWidth: "none" }}>
+            <div className="flex gap-6 md:gap-16 w-max items-stretch">
               {projects.map((p, i) => (
                 <div key={p.id} data-project-card onClick={() => setActiveProject(p)} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
-                  <div className="aspect-video bg-[#050505] mb-4 sm:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors rounded-lg">
+                  <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors rounded-lg">
                     {p.imageUrl && <img src={p.imageUrl} alt={l(p.title)} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />}
-                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-9 sm:w-10 h-9 sm:h-10 border border-white/20 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
-                    <span className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 font-sans text-[9px] sm:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">{p.year}</span>
+                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full">{p.year}</span>
                   </div>
-                  <h3 className="font-wide text-lg sm:text-xl md:text-3xl mb-2 sm:mb-3 uppercase font-bold">{l(p.title)}</h3>
-                  <p className="font-sans text-white/50 text-xs sm:text-sm line-clamp-3 leading-relaxed">{l(p.desc)}</p>
+                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">{l(p.title)}</h3>
+                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed">{l(p.desc)}</p>
                 </div>
               ))}
               <div data-project-card onClick={openProjectsModal} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
-                <div className="aspect-video border border-white/10 rounded-lg mb-4 sm:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
-                  <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                <div className="aspect-video border border-white/10 rounded-lg mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
+                  <div className="w-14 md:w-16 h-14 md:h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                   </div>
                 </div>
-                <h3 className="font-wide text-lg sm:text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors">{t("projects.viewAll")}</h3>
+                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors">{t("projects.viewAll")}</h3>
               </div>
             </div>
           </div>

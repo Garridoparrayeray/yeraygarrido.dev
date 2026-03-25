@@ -105,7 +105,7 @@ html {
   opacity: 0;
   transition-property: opacity, transform;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  transition-duration: 0.7s;
+  transition-duration: 1s;
   will-change: opacity, transform;
   /* Evita que la fuente tiemble o cambie de grosor/tamaño */
   backface-visibility: hidden;
@@ -128,8 +128,8 @@ html {
   opacity: 0;
   transform: translateY(60px) rotateX(-20deg);
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-line.in-view {
   opacity: 1;
