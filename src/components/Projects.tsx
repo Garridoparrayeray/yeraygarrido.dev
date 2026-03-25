@@ -113,7 +113,7 @@ export default function Projects() {
         eu: "Hutsetik eraikitako gaia Underscores (_s) erabiliz, eraikitzaile bisualik saihestuz. Iragazki sistema Vanilla JS-rekin egin nuen 'layout thrashing'-a saihesteko. CSS Grid erabili nuen txartelen uniformetarako eta kolore-paleta dinamikoak PHP-n sortzeko produktu-kategoriaren arabera." 
       },
       imageUrl: "/img/projects/zalbi_captura.webp",
-      images: ["/img/projects/zalbi_captura.webp", "/img/projects/zalbi_captura.webp", "/img/projects/zalbi_captura.webp"],
+      images: ["/img/projects/zalbi_captura.webp", "/img/projects/zalbi_mobile_img.webp", "/img/projects/zalbi_footer_img.webp"],
     },
     {
       id: "portfolio-arquitectura",
@@ -139,7 +139,7 @@ export default function Projects() {
         eu: "React 19 eta Vite erabiliz SPA arkitektura diseinatu nuen, blokeorik gabeko renderizado-bide kritikoa lehenetsiz. I18n sistema pertsonalizatua egin nuen Context API bidez (ES/EN/EU) kanpo-menpekotasunik gabe. Animazioak GSAP eta Lenis erabiliz garatu nituen scroll leunetarako, ScrollTrigger IntersectionObserver-rekin ordezkatuz, Style & Layout bottleneck-ak elimiantuz." 
       },
       imageUrl: "/img/projects/portfolio_captura.webp",
-      images: ["/img/projects/portfolio_captura.webp", "/img/projects/portfolio_captura.webp", "/img/projects/portfolio_captura.webp"],
+      images: ["/img/projects/portfolio_captura.webp", "/img/projects/all_proyects_portfolio.webp", "/img/projects/mobile_stack_view_portfolio.webp"],
     },
     {
       id: "glocalium",
@@ -165,7 +165,7 @@ export default function Projects() {
         eu: "Bi plugin programatu nituen hutsetik: bata Contact Form 7-ren MySQL iraunkortasunerako eta lead-ak ikusteko administratzaile-panela, eta bestea CRON job bidezko Google Sheets-era esportaziorako AppScript (webhook) bidez. SEO teknikoa egin nuen schema markup eta irudi-optimizazioarekin." 
       },
       imageUrl: "/img/projects/glocalium_captura.webp",
-      images: ["/img/projects/glocalium_captura.webp", "/img/projects/glocalium_captura.webp", "/img/projects/glocalium_captura.webp"],
+      images: ["/img/projects/glocalium_captura.webp", "/img/projects/glocalium_mobile_services.webp", "/img/projects/glocalium_scroll_up_with_accesibility.webp"],
     }
   ];
 
@@ -243,14 +243,14 @@ export default function Projects() {
       `}</style>
 
       <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col relative z-10 border-t border-white/10 pb-8 md:pb-24 overflow-hidden">
-        <div className="pt-8 md:pt-24 px-6 md:px-24 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-4 md:gap-6">
+        <div className="pt-6 md:pt-24 px-6 md:px-24 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
           <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
           <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors rounded-full cursor-pointer">
             {t("projects.viewAll")}
           </button>
         </div>
 
-        <div className="relative flex-1 flex flex-col justify-center mt-2 md:mt-12 px-6 md:px-24">
+        <div className="relative flex-1 flex flex-col justify-center mt-1 md:mt-12 px-6 md:px-24">
           <div ref={scrollRef} onScroll={handleScroll} className="flex items-stretch overflow-x-auto snap-x snap-mandatory hide-scrollbar py-6 md:py-8 scroll-smooth" style={{ scrollbarWidth: "none" }}>
             <div className="flex gap-6 md:gap-16 w-max items-stretch">
               {projects.map((p, i) => (
@@ -410,32 +410,32 @@ export default function Projects() {
             </div>
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-6 sm:pt-10 md:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 md:gap-16 pb-16">
-              <div className="lg:col-span-8 flex flex-col gap-10 md:gap-16">
-                <div className="space-y-5">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h1 className="font-wide text-2xl md:text-5xl uppercase text-white leading-tight break-words">{l(activeProject.title)}</h1>
-                    <span className="font-sans text-[10px] tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 rounded-sm shrink-0">{activeProject.year}</span>
+              <div className="lg:col-span-8 flex flex-col gap-8 md:gap-16">
+                <div className="space-y-4 md:space-y-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 md:gap-3">
+                    <h1 className="font-wide text-4xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{l(activeProject.title)}</h1>
+                    <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 rounded-sm shrink-0">{activeProject.year}</span>
                   </div>
-                  <p className="font-sans text-base md:text-xl text-white/70 leading-relaxed font-light">{l(activeProject.desc)}</p>
+                  <p className="font-sans text-lg md:text-xl text-white/70 leading-relaxed">{l(activeProject.desc)}</p>
                 </div>
                 
                 <div className="h-px w-full bg-white/10"></div>
                 
-                <div className="space-y-5">
-                  <h3 className="font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/40 font-bold">{l(uiTexts.challenge)}</h3>
-                  <p className="font-sans text-white/80 leading-relaxed text-sm md:text-lg font-light whitespace-pre-line text-justify">{l(activeProject.longDescChallenge)}</p>
+                <div className="space-y-3 md:space-y-5">
+                  <h3 className="font-sans text-sm md:text-xs tracking-widest uppercase text-white/40 font-bold">{l(uiTexts.challenge)}</h3>
+                  <p className="font-sans text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line text-justify">{l(activeProject.longDescChallenge)}</p>
                 </div>
                 
-                <div className="space-y-5">
-                  <h3 className="font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/40 font-bold">{l(uiTexts.solution)}</h3>
-                  <p className="font-sans text-white/80 leading-relaxed text-sm md:text-lg font-light whitespace-pre-line text-justify">{l(activeProject.longDescSolution)}</p>
+                <div className="space-y-3 md:space-y-5">
+                  <h3 className="font-sans text-sm md:text-xs tracking-widest uppercase text-white/40 font-bold">{l(uiTexts.solution)}</h3>
+                  <p className="font-sans text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line text-justify">{l(activeProject.longDescSolution)}</p>
                 </div>
 
                 {activeProject.images && activeProject.images.length > 0 && (
-                  <div className="pt-8 border-t border-white/10">
-                    <h3 className="font-sans text-xs tracking-widest uppercase text-white/40 font-bold mb-6">{l(uiTexts.gallery)}</h3>
+                  <div className="pt-6 md:pt-8 border-t border-white/10">
+                    <h3 className="font-sans text-sm md:text-xs tracking-widest uppercase text-white/40 font-bold mb-4 md:mb-6">{l(uiTexts.gallery)}</h3>
                     <div 
-                      className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth"
+                      className="flex gap-3 md:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar scroll-smooth"
                       style={{ scrollbarWidth: "none" }}
                       ref={galleryScrollRef}
                     >
@@ -460,31 +460,31 @@ export default function Projects() {
                 )}
               </div>
 
-              <div className="lg:col-span-4 flex flex-col gap-6 sm:gap-8 lg:gap-10 lg:pl-8 xl:pl-12 border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0">
-                <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 sm:gap-6 lg:gap-8">
-                  <div className="space-y-1 sm:space-y-2">
-                    <h4 className="font-sans text-[8px] sm:text-[9px] tracking-widest uppercase text-white/30">{l(uiTexts.role)}</h4>
-                    <span className="font-sans text-[10px] sm:text-xs md:text-sm text-white font-medium block">{l(activeProject.role)}</span>
+              <div className="lg:col-span-4 flex flex-col gap-5 md:gap-8 lg:gap-10 lg:pl-8 xl:pl-12 border-t lg:border-t-0 lg:border-l border-white/10 pt-5 lg:pt-0">
+                <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 md:gap-6 lg:gap-8">
+                  <div className="space-y-1 md:space-y-2">
+                    <h4 className="font-sans text-xs md:text-xs tracking-widest uppercase text-white/30">{l(uiTexts.role)}</h4>
+                    <span className="font-sans text-sm md:text-sm text-white font-medium block">{l(activeProject.role)}</span>
                   </div>
-                  <div className="space-y-1 sm:space-y-2">
-                    <h4 className="font-sans text-[8px] sm:text-[9px] tracking-widest uppercase text-white/30">{l(uiTexts.year)}</h4>
-                    <span className="font-sans text-[10px] sm:text-xs md:text-sm text-white font-medium block">{activeProject.year}</span>
+                  <div className="space-y-1 md:space-y-2">
+                    <h4 className="font-sans text-xs md:text-xs tracking-widest uppercase text-white/30">{l(uiTexts.year)}</h4>
+                    <span className="font-sans text-sm md:text-sm text-white font-medium block">{activeProject.year}</span>
                   </div>
                 </div>
-                <div className="space-y-3 sm:space-y-4">
-                  <h4 className="font-sans text-[8px] sm:text-[9px] tracking-widest uppercase text-white/30">{l(uiTexts.stack)}</h4>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
+                <div className="space-y-2 md:space-y-4">
+                  <h4 className="font-sans text-xs md:text-xs tracking-widest uppercase text-white/30">{l(uiTexts.stack)}</h4>
+                  <div className="flex flex-wrap gap-1 md:gap-2">
                     {activeProject.tech.split(", ").map((tag, j) => (
-                      <span key={j} className="font-sans text-[8px] sm:text-[10px] tracking-widest text-white/80 bg-white/5 border border-white/10 px-1.5 sm:px-2 py-1 uppercase rounded-sm truncate max-w-full">{tag}</span>
+                      <span key={j} className="font-sans text-xs md:text-xs tracking-widest text-white/80 bg-white/5 border border-white/10 px-2 md:px-3 py-1 uppercase rounded-sm">{tag}</span>
                     ))}
                   </div>
                 </div>
-                <div className="flex flex-col gap-2 sm:gap-3 pt-4">
+                <div className="flex flex-col gap-2 md:gap-3 pt-4">
                   {activeProject.demoUrl && (
-                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-3 sm:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-[9px] sm:text-[10px] uppercase tracking-widest font-bold rounded-sm">{l(uiTexts.live)}</a>
+                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-3 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold rounded-sm">{l(uiTexts.live)}</a>
                   )}
                   {activeProject.link && (
-                    <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-white rounded-sm">
+                    <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold text-white rounded-sm">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                       {l(uiTexts.code)}
                     </a>

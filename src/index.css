@@ -105,10 +105,14 @@ html {
   opacity: 0;
   transition-property: opacity, transform;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  transition-duration: 1s;
+  transition-duration: 1.2s;
   will-change: opacity, transform;
-  /* Evita que la fuente tiemble o cambie de grosor/tamaño */
   backface-visibility: hidden;
+}
+@media (max-width: 768px) {
+  [data-reveal] {
+    transition-duration: 1.5s;
+  }
 }
 [data-reveal="up"] {
   transform: translate3d(0, 40px, 0);
@@ -128,8 +132,8 @@ html {
   opacity: 0;
   transform: translateY(60px) rotateX(-20deg);
   transition:
-    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-line.in-view {
   opacity: 1;
