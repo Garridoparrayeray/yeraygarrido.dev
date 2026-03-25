@@ -95,6 +95,10 @@ export default function Hero() {
     <section
       ref={containerRef}
       className="min-h-svh flex flex-col justify-between px-4 md:px-12 pt-24 pb-8 relative z-10 origin-top"
+      style={{
+        background: 'radial-gradient(circle at 50% 120%, rgba(255,255,255,0.06) 0%, transparent 60%), linear-gradient(to bottom, transparent 0%, #000 100%)',
+        backgroundAttachment: 'fixed',
+      }}
     >
       <div className="flex-1 flex flex-col justify-center items-center text-center">
         <h1

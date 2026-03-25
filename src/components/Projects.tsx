@@ -284,7 +284,7 @@ export default function Projects() {
               <button
                 key={i}
                 onClick={() => scrollToProject(i)}
-                className={`h-1 min-h-11 min-w-11 flex items-center justify-center rounded-full transition-all duration-300 cursor-pointer ${
+                className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
                   activeIndex === i ? 'w-6 bg-white' : 'w-1 bg-white/30 hover:bg-white/60'
                 }`}
                 aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
@@ -392,12 +392,12 @@ export default function Projects() {
       {/* DETALLE PROYECTO */}
       {activeProject && (
         <div className="fixed inset-0 z-200 bg-black animate-modal flex flex-col" onClick={() => setActiveProject(null)}>
-          <div className="sticky top-0 w-full px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/90 backdrop-blur-xl z-20 border-b border-white/10 shrink-0" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setActiveProject(null)} className="cursor-pointer flex items-center gap-2 font-sans text-[10px] md:text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <div className="sticky top-0 w-full px-6 py-5 md:px-12 md:py-6 flex justify-between items-center bg-black/90 backdrop-blur-xl z-20 border-b border-white/10 shrink-0" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setActiveProject(null)} className="cursor-pointer flex items-center gap-2 font-sans text-sm md:text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
               {l(uiTexts.back)}
             </button>
-            <span className="font-wide text-[9px] md:text-xs uppercase text-white/40 tracking-widest truncate max-w-[40vw] text-right">{l(activeProject.title)}</span>
+            <span className="font-wide text-xs md:text-xs uppercase text-white/40 tracking-widest truncate max-w-[40vw] text-right">{l(activeProject.title)}</span>
           </div>
           
           <div className="flex-1 overflow-y-auto modal-scroll" data-lenis-prevent="true" onClick={(e) => e.stopPropagation()}>
@@ -414,8 +414,8 @@ export default function Projects() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-6 sm:pt-10 md:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 md:gap-16 pb-16">
               <div className="lg:col-span-8 flex flex-col gap-8 md:gap-16">
                 <div className="space-y-4 md:space-y-5">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 md:gap-3">
-                    <h1 className="font-wide text-4xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{l(activeProject.title)}</h1>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-3">
+                    <h1 className="font-wide text-5xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{l(activeProject.title)}</h1>
                     <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 rounded-sm shrink-0">{activeProject.year}</span>
                   </div>
                   <p className="font-sans text-lg md:text-xl text-white/70 leading-relaxed">{l(activeProject.desc)}</p>
