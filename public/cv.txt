@@ -1,35 +1,66 @@
 ================================================================================
-                               YERay GARRIDO
-                  Full Stack Developer & Backend Specialist
+                              YERAY GARRIDO
+                  Software Engineer & Full Stack Developer
 ================================================================================
 
 [ CONTACT ]
 Email: garridoparrayeraytx@gmail.com
 GitHub: https://github.com/Garridoparrayeray
-Location: Spain
+Location: Bilbao, Spain
 
 [ ABOUT ME ]
-Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL, 
+Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL,
 and custom WordPress (_s). I build scalable, optimized, and custom web solutions.
 
 [ TECH STACK ]
-- Backend: Java, PHP, MySQL
-- Frontend: JavaScript, HTML5, CSS3
-- Tools: Git, Figma
-- CMS: WordPress (Custom Themes & Plugins)
+- Backend:   Java, PHP, MySQL
+- Frontend:  JavaScript, TypeScript, React, HTML5, CSS3
+- Tools:     Git, Figma, Vite
+- CMS:       WordPress (Custom Themes & Plugins)
 
 [ EXPERIENCE ]
-> Freelance Full Stack Developer & DAW Student (2023 - Present)
-  Currently pursuing a Higher Degree in Web Application Development (DAW) 
-  while working as a freelance developer. Building custom web apps, robust 
-  backends in PHP/Java, and custom WordPress themes.
 
-> Level 3 Professional Certificate (Completed)
-  Official certification in frontend and backend development, database 
+> Software Engineer @ Horión Castillo Ingeniería Informática SL (Jun 2026 - Present)
+  [Dual Vocational Training]
+  Development of modules for a proprietary enterprise ERP (Horión Enterprise).
+  Built a full email outbox module: sent email history with filters and
+  pagination, binary attachment download from database, and resend with new
+  file uploads. Multi-tenant PHP architecture, custom router pattern, binary
+  output buffering, and vanilla JS with MooTools.
+
+> Freelance Full Stack Developer (Jan 2025 - Jun 2026)
+  [Self-Employed]
+  Custom web architecture and Full Stack solutions prioritizing extreme
+  performance (WPO), scalability, and user experience.
+  - Zalbi Aisia: custom WordPress CMS with CPTs, taxonomic filtering,
+    Polylang i18n, CI/CD via Webhooks.
+  - yeraygarrido.dev: React 19 SPA, 100/100 Lighthouse, GSAP animations,
+    GDPR-compliant cookie system.
+
+> Web Administrator & Plugin Developer @ Glocalium Services SL (Apr 2025 - Jun 2025)
+  [Internship]
+  Developed two Contact Form 7 extensions from scratch: a CSV Exporter with
+  data sanitization and a DB Persistence system with MySQL storage and admin
+  viewer. Server migration management, automated backups, security auditing,
+  and UI/UX prototyping in Figma.
+
+> Web Developer @ Asociación Educativa Reciclanet (Mar 2022 - Apr 2022)
+  [Internship]
+  Maintenance and update of the organization website, ensuring correct
+  content display and structure.
+
+[ EDUCATION ]
+
+> DAW — Higher Degree in Web App Development @ CIFP Zornotza LHII (2024 - Present)
+  Higher Technician Degree in Web Application Development (Dual VET track).
+
+> Level 3 Professional Certificate (2021 - 2022)
+  Web Application Development — Fundación EDE. Score: 9/10.
+  Official certification in frontend and backend development, database
   management, and web application deployment.
 
-> Software Engineering Student @ 42 Urduliz (1 Year Program)
-  Peer-to-peer methodology with no teachers. Focused on C programming, 
+> Software Engineering Student @ 42 Urduliz (2022 - 2023)
+  Peer-to-peer methodology with no teachers. Focused on C programming,
   algorithms, memory management, and system architecture fundamentals.
 
 ================================================================================

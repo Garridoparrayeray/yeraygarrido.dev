@@ -2,37 +2,68 @@
 <resume>
     <header>
         <name>Yeray Garrido</name>
-        <title>Full Stack Developer &amp; Backend Specialist</title>
+        <title>Software Engineer &amp; Full Stack Developer</title>
     </header>
     <contact>
         <email>garridoparrayeraytx@gmail.com</email>
         <github>https://github.com/Garridoparrayeray</github>
-        <location>Spain</location>
+        <location>Bilbao, Spain</location>
     </contact>
     <about>Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL, and custom WordPress (_s). I build scalable, optimized, and custom web solutions.</about>
     <tech_stack>
         <backend>Java, PHP, MySQL</backend>
-        <frontend>JavaScript, HTML5, CSS3</frontend>
-        <tools>Git, Figma</tools>
+        <frontend>JavaScript, TypeScript, React, HTML5, CSS3</frontend>
+        <tools>Git, Figma, Vite</tools>
         <cms>WordPress (Custom Themes &amp; Plugins)</cms>
     </tech_stack>
     <experience>
         <job>
-            <role>Freelance Full Stack Developer &amp; DAW Student</role>
-            <company>Self-Employed / Vocational Training</company>
-            <date>2023 - Present</date>
-            <description>Currently pursuing a Higher Degree in Web Application Development (DAW) while working as a freelance developer. Building custom web apps, robust backends in PHP/Java, and custom WordPress themes.</description>
+            <role>Software Engineer</role>
+            <company>Horión Castillo Ingeniería Informática SL</company>
+            <date>Jun 2026 - Present</date>
+            <type>Dual Vocational Training</type>
+            <description>Development of modules for a proprietary enterprise ERP (Horión Enterprise). Built a full email outbox module: sent email history with filters and pagination, binary attachment download from database, and resend with new file uploads. Multi-tenant PHP architecture, custom router pattern, binary output buffering, and vanilla JS with MooTools.</description>
+        </job>
+        <job>
+            <role>Freelance Full Stack Developer</role>
+            <company>Self-Employed</company>
+            <date>Jan 2025 - Jun 2026</date>
+            <type>Freelance</type>
+            <description>Custom web architecture and Full Stack solutions prioritizing extreme performance (WPO), scalability, and user experience. Built Zalbi Aisia (custom WordPress CMS with CPTs, taxonomic filtering, Polylang i18n, CI/CD via Webhooks) and yeraygarrido.dev (React 19 SPA, 100/100 Lighthouse, GSAP animations, GDPR-compliant cookie system).</description>
+        </job>
+        <job>
+            <role>Web Administrator &amp; Plugin Developer</role>
+            <company>Glocalium Services SL</company>
+            <date>Apr 2025 - Jun 2025</date>
+            <type>Internship</type>
+            <description>Developed two Contact Form 7 extensions from scratch: a CSV Exporter with data sanitization and a DB Persistence system with MySQL storage and admin viewer. Server migration management, automated backups, security auditing, and UI/UX prototyping in Figma.</description>
+        </job>
+        <job>
+            <role>Web Developer</role>
+            <company>Asociación Educativa Reciclanet</company>
+            <date>Mar 2022 - Apr 2022</date>
+            <type>Internship</type>
+            <description>Maintenance and update of the organization website, ensuring correct content display and structure.</description>
+        </job>
+        <job>
+            <role>DAW — Higher Degree in Web Application Development</role>
+            <company>CIFP Zornotza LHII</company>
+            <date>2024 - Present</date>
+            <type>Education</type>
+            <description>Higher Technician Degree in Web Application Development (Dual Vocational Training track).</description>
         </job>
         <job>
             <role>Level 3 Professional Certificate</role>
-            <company>Web Application Development</company>
-            <date>Completed</date>
-            <description>Official certification in frontend and backend development, database management, and web application deployment.</description>
+            <company>Web Application Development — Fundación EDE</company>
+            <date>2021 - 2022</date>
+            <type>Education</type>
+            <description>Official certification in frontend and backend development, database management, and web application deployment. Score: 9/10.</description>
         </job>
         <job>
             <role>Software Engineering Student</role>
             <company>42 Urduliz (Fundación Telefónica)</company>
-            <date>1 Year Program</date>
+            <date>2022 - 2023</date>
+            <type>Education</type>
             <description>Peer-to-peer methodology with no teachers. Focused on C programming, algorithms, memory management, and system architecture fundamentals.</description>
         </job>
     </experience>

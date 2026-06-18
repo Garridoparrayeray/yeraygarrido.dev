@@ -1,35 +1,66 @@
 {
   "name": "Yeray Garrido",
-  "title": "Full Stack Developer & Backend Specialist",
+  "title": "Software Engineer & Full Stack Developer",
   "contact": {
     "email": "garridoparrayeraytx@gmail.com",
     "github": "https://github.com/Garridoparrayeray",
-    "location": "Spain"
+    "location": "Bilbao, Spain"
   },
   "about": "Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL, and custom WordPress (_s). I build scalable, optimized, and custom web solutions.",
   "tech_stack": {
     "backend": ["Java", "PHP", "MySQL"],
-    "frontend": ["JavaScript", "HTML5", "CSS3"],
-    "tools": ["Git", "Figma"],
+    "frontend": ["JavaScript", "TypeScript", "React", "HTML5", "CSS3"],
+    "tools": ["Git", "Figma", "Vite"],
     "cms": ["WordPress (Custom Themes & Plugins)"]
   },
   "experience": [
     {
-      "role": "Freelance Full Stack Developer & DAW Student",
-      "company": "Self-Employed / Vocational Training",
-      "date": "2023 - Present",
-      "description": "Currently pursuing a Higher Degree in Web Application Development (DAW) while working as a freelance developer. Building custom web apps, robust backends in PHP/Java, and custom WordPress themes."
+      "role": "Software Engineer",
+      "company": "Horión Castillo Ingeniería Informática SL",
+      "date": "Jun 2026 - Present",
+      "type": "Dual Vocational Training",
+      "description": "Development of modules for a proprietary enterprise ERP (Horión Enterprise). Built a full email outbox module: sent email history with filters and pagination, binary attachment download from database, and resend with new file uploads. Multi-tenant PHP architecture, custom router pattern, binary output buffering, and vanilla JS with MooTools."
+    },
+    {
+      "role": "Freelance Full Stack Developer",
+      "company": "Self-Employed",
+      "date": "Jan 2025 - Jun 2026",
+      "type": "Freelance",
+      "description": "Custom web architecture and Full Stack solutions prioritizing extreme performance (WPO), scalability, and user experience. Built Zalbi Aisia (custom WordPress CMS with CPTs, taxonomic filtering, Polylang i18n, CI/CD via Webhooks) and yeraygarrido.dev (React 19 SPA, 100/100 Lighthouse, GSAP animations, GDPR-compliant cookie system)."
+    },
+    {
+      "role": "Web Administrator & Plugin Developer",
+      "company": "Glocalium Services SL",
+      "date": "Apr 2025 - Jun 2025",
+      "type": "Internship",
+      "description": "Developed two Contact Form 7 extensions from scratch: a CSV Exporter with data sanitization and a DB Persistence system with MySQL storage and admin viewer. Server migration management, automated backups, security auditing, and UI/UX prototyping in Figma."
+    },
+    {
+      "role": "Web Developer",
+      "company": "Asociación Educativa Reciclanet",
+      "date": "Mar 2022 - Apr 2022",
+      "type": "Internship",
+      "description": "Maintenance and update of the organization's website, ensuring correct content display and structure."
+    },
+    {
+      "role": "DAW — Higher Degree in Web Application Development",
+      "company": "CIFP Zornotza LHII",
+      "date": "2024 - Present",
+      "type": "Education",
+      "description": "Higher Technician Degree in Web Application Development (Dual Vocational Training track)."
     },
     {
       "role": "Level 3 Professional Certificate",
-      "company": "Web Application Development",
-      "date": "Completed",
-      "description": "Official certification in frontend and backend development, database management, and web application deployment."
+      "company": "Web Application Development — Fundación EDE",
+      "date": "2021 - 2022",
+      "type": "Education",
+      "description": "Official certification in frontend and backend development, database management, and web application deployment. Score: 9/10."
     },
     {
       "role": "Software Engineering Student",
       "company": "42 Urduliz (Fundación Telefónica)",
-      "date": "1 Year Program",
+      "date": "2022 - 2023",
+      "type": "Education",
       "description": "Peer-to-peer methodology with no teachers. Focused on C programming, algorithms, memory management, and system architecture fundamentals."
     }
   ],
