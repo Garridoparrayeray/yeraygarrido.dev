@@ -56,9 +56,9 @@
     },
     "year": "2026",
     "images": [
-      "/img/projects/bizkaibus_captura.webp",
-      "/img/projects/bizkaibus_mobile_view.webp",
-      "/img/projects/bizkaibus_miamor_theme.webp"
+      "/img/projects/bizkaibus_captura.png",
+      "/img/projects/bizkaibus_mobile_view.png",
+      "/img/projects/bizkaibus_miamor_theme.png"
     ],
     "longDescChallenge": {
       "es": "Empezó como un favor: a mi mujer no le convencía la app oficial de Bizkaibus, poco intuitiva y lenta de usar. El reto real llegó al construir el seguimiento en vivo: el feed SIRI-VM del operador no da una cuenta atrás lista para usar, solo la posición confirmada del bus y un retraso genérico que no siempre coincide con la realidad. A mitad de proyecto descubrí además que la fuente de datos estática que usaba llevaba más de un año sin actualizarse, así que un desvío real de temporada de verano era invisible para la app.",
