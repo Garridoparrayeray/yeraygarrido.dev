@@ -19,7 +19,7 @@
       "company": "Horión Castillo Ingeniería Informática SL",
       "date": "Jun 2026 - Present",
       "type": "Dual Vocational Training",
-      "description": "Development of modules for a proprietary enterprise ERP (Horión Enterprise). Built a full email outbox module: sent email history with filters and pagination, binary attachment download from database, and resend with new file uploads. Multi-tenant PHP architecture, custom router pattern, binary output buffering, and vanilla JS with MooTools."
+      "description": "Software Engineer working primarily in PHP, building custom enterprise software solutions end-to-end. Developed modules for a proprietary ERP (Horión Enterprise) with a multi-tenant PHP architecture and custom router pattern, including a full email outbox module (sent email history with filters and pagination, binary attachment download from database, and resend with new file uploads) and binary output buffering — plus legacy frontend support in vanilla JS with MooTools."
     },
     {
       "role": "Freelance Full Stack Developer",
