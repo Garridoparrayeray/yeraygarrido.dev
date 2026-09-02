@@ -46,7 +46,12 @@ export default function Contact() {
       </div>
 
       <div className="max-w-5xl mx-auto w-full text-center flex-1 flex flex-col justify-center">
-        <h2 ref={textRef} className="font-display text-[15vw] md:text-[10vw] leading-[0.85] uppercase mb-12 perspective-1000">
+        {/* FIX "en mega pantallas se corta": el tamano era 10vw/15vw sin
+            tope -- en un monitor muy ancho eso crece sin limite mientras
+            el contenedor sigue capado en max-w-5xl, asi que el texto se
+            salia y quedaba recortado por el overflow-hidden de cada
+            linea (ver el div .reveal-line). clamp() fija un maximo. */}
+        <h2 ref={textRef} className="font-display text-[clamp(3rem,15vw,6rem)] md:text-[clamp(4rem,10vw,10rem)] leading-[0.85] uppercase mb-12 perspective-1000">
           <div className="overflow-hidden"><div className="reveal-line origin-bottom">{t('contact.title1')}</div></div>
           <div className="overflow-hidden"><div className="reveal-line origin-bottom text-black">{t('contact.title2')}</div></div>
         </h2>

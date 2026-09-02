@@ -1,39 +1,75 @@
-import { useRef, useState, type ReactNode, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type ReactNode, type MouseEvent } from "react";
 import gsap from "gsap";
 
 /**
- * TearLink — enlace que, al pulsarlo, "rasga" la pantalla en dos mitades
- * (arriba/abajo) que se separan revelando el beige del portfolio de
- * fotografia por debajo, y solo entonces navega de verdad al destino.
- * Pensado para el icono de fotografia del Header: la web actual es
- * fondo negro, la de destino es fondo beige -- el desgarro hace de
- * puente visual entre las dos en vez de un salto en seco.
+ * TearLink — enlace que, al pulsarlo, hace un "corte" al estilo anime:
+ * un tajo lateral cruza la pantalla, seguido de flash de impacto +
+ * rafaga de lineas de velocidad, y ENTONCES la pantalla negra se hace
+ * pedazos en una cuadricula de fragmentos que salen despedidos
+ * (arrancando por la fila de abajo, en cascada hacia arriba) -- como si
+ * el propio tajo fuera lo que la rompe. Revela el beige del portfolio
+ * de fotografia por debajo, y solo entonces navega de verdad al destino.
  *
- * La linea de rotura (TEAR_EDGE) es FIJA, no aleatoria en cada render:
- * las dos mitades (arriba/abajo) tienen que encajar exactamente en el
- * mismo trazado irregular, generarla de nuevo cada vez las desalinearia.
- * Solo se anima transform (translate + rotate) en cada mitad, nunca el
- * propio clip-path -- mucho mas barato para el compositor que animar la
- * forma en si, y no hace falta ninguna libreria de morphing para un
- * clip-path que en realidad nunca cambia de forma, solo de posicion.
+ * TODO en porcentajes (posicion/tamano de cada fragmento, translate,
+ * clip-path de las lineas de velocidad) a proposito -- responsive por
+ * construccion, sin media queries ni calculos de tamano de viewport: el
+ * mismo efecto funciona igual de movil a escritorio.
+ *
+ * Los fragmentos son rectangulos simples que EN REPOSO encajan sin
+ * huecos (una cuadricula normal, indistinguible de una pantalla negra
+ * solida) -- ninguna geometria irregular que tenga que casar borde con
+ * borde entre vecinos. El aspecto "roto"/anguloso lo da la propia
+ * animacion (rotacion + salida en direcciones distintas por fragmento),
+ * no la forma de cada pieza -- mismo principio que un efecto de cristal
+ * roto tipico: piezas rectangulares, la fisica de la rotura la hace el
+ * movimiento, no el recorte.
  */
 
-const TEAR_EDGE: { x: number; y: number }[] = [
-  { x: 0, y: 48 }, { x: 8, y: 53 }, { x: 16, y: 46 }, { x: 24, y: 55 },
-  { x: 32, y: 44 }, { x: 40, y: 52 }, { x: 50, y: 47 }, { x: 60, y: 54 },
-  { x: 68, y: 45 }, { x: 76, y: 53 }, { x: 84, y: 46 }, { x: 92, y: 51 },
-  { x: 100, y: 48 },
-];
+const COLS = 5;
+const ROWS = 4;
 
-function toPercentPoints(pts: { x: number; y: number }[]): string {
-  return pts.map((p) => `${p.x}% ${p.y}%`).join(", ");
+interface Shard {
+  col: number;
+  row: number;
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  flyXPercent: number;
+  flyYPercent: number;
+  rotate: number;
 }
 
-const TOP_CLIP = `polygon(0% 0%, 100% 0%, ${toPercentPoints([...TEAR_EDGE].reverse())}, 0% ${TEAR_EDGE[0].y}%)`;
-const BOTTOM_CLIP = `polygon(${toPercentPoints(TEAR_EDGE)}, 100% 100%, 0% 100%)`;
+// Calculados UNA vez (no en cada render): posicion/tamano de celda fijos
+// por construccion (cuadricula regular), y un vector de salida por
+// fragmento derivado de su posicion relativa al centro -- los de la
+// izquierda salen hacia la izquierda, los de arriba hacia arriba, etc,
+// con algo de variacion para que no se vea todo perfectamente simetrico.
+const SHARDS: Shard[] = Array.from({ length: COLS * ROWS }, (_, i) => {
+  const col = i % COLS;
+  const row = Math.floor(i / COLS);
+  const dx = ((col + 0.5) / COLS - 0.5) * 2; // -1..1, distancia al centro en X
+  const dy = ((row + 0.5) / ROWS - 0.5) * 2; // -1..1, distancia al centro en Y
+  const jitter = ((col * 7 + row * 13) % 10) / 10 - 0.5; // -0.5..0.5, determinista (no Math.random en cada carga)
+
+  return {
+    col,
+    row,
+    left: (col / COLS) * 100,
+    top: (row / ROWS) * 100,
+    width: 100 / COLS,
+    height: 100 / ROWS,
+    flyXPercent: dx * 220 + jitter * 60,
+    // Ademas de alejarse del centro en Y, TODOS suben en conjunto
+    // (-160 extra) -- el impulso general del corte es hacia arriba,
+    // coherente con que arranca en la fila de abajo.
+    flyYPercent: dy * 160 - 160,
+    rotate: dx * 35 + jitter * 40,
+  };
+});
 
 // Beige del portfolio de fotografia (--paper alli) -- lo que queda
-// "revelado" cuando las dos mitades negras se apartan.
+// revelado segun los fragmentos negros salen despedidos.
 const DEST_BG = "#e8dfd0";
 
 interface TearLinkProps {
@@ -45,35 +81,85 @@ interface TearLinkProps {
 
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
   const [isTearing, setIsTearing] = useState(false);
-  const topRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const shardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const flashRef = useRef<HTMLDivElement>(null);
+  const burstRef = useRef<HTMLDivElement>(null);
+  const slashRef = useRef<HTMLDivElement>(null);
 
   const handleClick = (e: MouseEvent) => {
     // Click con modificador (abrir en pestana nueva, etc.) o boton
     // distinto al principal: se deja el comportamiento nativo del
-    // navegador tal cual, sin desgarro -- el usuario pidio explicitamente
+    // navegador tal cual, sin el efecto -- el usuario pidio explicitamente
     // otra cosa (nueva pestana/ventana), no tiene sentido interceptarlo.
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (isTearing) return;
     setIsTearing(true);
+  };
+
+  // El overlay (fragmentos, flash, rafaga) se monta condicionalmente en
+  // el JSX de abajo -- justo tras setIsTearing(true), React todavia NO
+  // ha actualizado el DOM (los cambios de estado no se aplican de forma
+  // sincrona dentro del mismo handler), asi que las refs seguirian
+  // siendo null si la animacion se lanzara ahi mismo. Dispararla aqui,
+  // en un effect que depende de isTearing, garantiza que los elementos
+  // reales ya existen en el DOM.
+  useEffect(() => {
+    if (!isTearing) return;
 
     const tl = gsap.timeline({
       onComplete: () => { window.location.href = href; },
     });
-    tl.fromTo(
-      topRef.current,
-      { y: "0%", rotate: 0 },
-      { y: "-105%", rotate: -2, duration: 0.7, ease: "power3.in" },
-      0
+
+    // FASE 1 — El tajo: una banda diagonal brillante cruza la pantalla
+    // de lado a lado, rapido. La diagonal la da el angulo del propio
+    // gradiente (linear-gradient(105deg...)), NO un transform:rotate()
+    // -- asi el barrido es un simple translate lateral en left/xPercent,
+    // sin ambiguedad de en que eje se mueve un elemento ya rotado.
+    // Duraciones ~1.5x mas largas que el primer intento -- "me ha
+    // gustado, mucho" pero pedido explicitamente mas largo. Mismas
+    // proporciones relativas entre fases, solo estiradas.
+    tl.set(slashRef.current, { left: "-60%", opacity: 1 });
+    tl.to(slashRef.current, { left: "140%", duration: 0.36, ease: "power2.in" }, 0);
+    tl.to(slashRef.current, { opacity: 0, duration: 0.15, ease: "none" }, 0.33);
+
+    // FASE 2 — Impacto: justo cuando el tajo termina de cruzar, flash
+    // blanco + rafaga de lineas de velocidad (conic-gradient), un golpe
+    // muy corto -- el "frame de impacto" tipico de un corte de anime,
+    // como si el tajo fuera lo que dispara la rotura de la FASE 3.
+    tl.set([flashRef.current, burstRef.current], { opacity: 0 }, 0);
+    tl.set(burstRef.current, { scale: 0.3 }, 0);
+    tl.to(flashRef.current, { opacity: 1, duration: 0.09, ease: "none" }, 0.3);
+    tl.to(burstRef.current, { opacity: 0.9, scale: 1.6, duration: 0.27, ease: "power1.out" }, 0.3);
+    tl.to(flashRef.current, { opacity: 0, duration: 0.24, ease: "power1.in" }, 0.39);
+    tl.to(burstRef.current, { opacity: 0, duration: 0.52, ease: "power1.in" }, 0.52);
+
+    // FASE 3 — Estallido: cada fragmento sale despedido segun su propio
+    // vector (SHARDS), en cascada arrancando por la fila de abajo
+    // (grid + from:"end" con axis:"y" en un grid COLS x ROWS: la ultima
+    // fila -- la de abajo -- empieza primero) -- justo detras del tajo,
+    // como si lo que lo hubiera partido.
+    tl.to(
+      shardRefs.current,
+      {
+        xPercent: (i) => SHARDS[i].flyXPercent,
+        yPercent: (i) => SHARDS[i].flyYPercent,
+        rotate: (i) => SHARDS[i].rotate,
+        opacity: 0,
+        duration: 1.1,
+        ease: "power2.in",
+        stagger: {
+          each: 0.042,
+          grid: [ROWS, COLS],
+          from: "end",
+          axis: "y",
+        },
+      },
+      0.36
     );
-    tl.fromTo(
-      bottomRef.current,
-      { y: "0%", rotate: 0 },
-      { y: "105%", rotate: 2, duration: 0.7, ease: "power3.in" },
-      0
-    );
-  };
+
+    return () => { tl.kill(); };
+  }, [isTearing, href]);
 
   return (
     <>
@@ -82,10 +168,39 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       </a>
 
       {isTearing && (
-        <div className="fixed inset-0 z-999 pointer-events-none" aria-hidden="true">
+        <div className="fixed inset-0 z-999 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute inset-0" style={{ backgroundColor: DEST_BG }} />
-          <div ref={topRef} className="absolute inset-0 bg-black" style={{ clipPath: TOP_CLIP }} />
-          <div ref={bottomRef} className="absolute inset-0 bg-black" style={{ clipPath: BOTTOM_CLIP }} />
+
+          {SHARDS.map((s, i) => (
+            <div
+              key={i}
+              ref={(el) => { shardRefs.current[i] = el; }}
+              className="absolute bg-black"
+              style={{ left: `${s.left}%`, top: `${s.top}%`, width: `${s.width}%`, height: `${s.height}%` }}
+            />
+          ))}
+
+          <div
+            ref={slashRef}
+            className="absolute inset-y-[-20%] w-[45%]"
+            style={{
+              background:
+                "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.95) 48%, rgba(255,255,255,0.95) 52%, transparent 70%)",
+              filter: "drop-shadow(0 0 24px rgba(255,255,255,0.85))",
+            }}
+          />
+
+          <div
+            ref={burstRef}
+            className="absolute top-1/2 left-1/2 w-[140vmax] h-[140vmax] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{
+              background:
+                "repeating-conic-gradient(from 0deg, rgba(255,255,255,0.9) 0deg 1.5deg, transparent 1.5deg 9deg)",
+              mixBlendMode: "screen",
+            }}
+          />
+
+          <div ref={flashRef} className="absolute inset-0 bg-white" />
         </div>
       )}
     </>
