@@ -85,19 +85,22 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
   useEffect(() => {
     if (!isTearing) return;
 
-    gsap.set(pageRef.current, { transformOrigin: "0% 50%", scaleX: 1, skewY: 0 });
+    // Bisagra en el borde DERECHO (no izquierdo) -- "estas leyendo un
+    // libro, no un manga": la pagina se cierra hacia la derecha, no
+    // hacia la izquierda.
+    gsap.set(pageRef.current, { transformOrigin: "100% 50%", scaleX: 1, skewY: 0 });
     gsap.set(creaseRef.current, { opacity: 0 });
 
     const tl = gsap.timeline({
       onComplete: () => { window.location.href = href; },
     });
 
-    // La pagina se encoge horizontalmente desde su borde izquierdo
+    // La pagina se encoge horizontalmente desde su borde derecho
     // (scaleX 1 -> 0, transform-origin fijado ahi mismo) hasta
     // desaparecer del todo, revelando el beige de detras -- el skewY
     // acompañando rompe la sensacion de "achicamiento" puro y la
     // acerca mas a un cierre/pliegue real.
-    tl.to(pageRef.current, { scaleX: 0, skewY: -4, duration: 1.1, ease: "power2.inOut" }, 0);
+    tl.to(pageRef.current, { scaleX: 0, skewY: 4, duration: 1.1, ease: "power2.inOut" }, 0);
 
     // Sombra de pliegue: se intensifica mientras la "hoja" esta a medio
     // cerrar y se desvanece al llegar al final, como el pliegue real de
@@ -123,11 +126,11 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
             className="absolute inset-0 bg-black"
             style={{
               // Ligero degradado de base: mas claro cerca de la bisagra
-              // (izquierda) y mas oscuro hacia el borde libre (derecha)
+              // (derecha) y mas oscuro hacia el borde libre (izquierda)
               // -- insinua el volumen de una pagina real incluso antes
               // de que arranque el cierre.
               backgroundImage:
-                "linear-gradient(90deg, rgba(255,255,255,0.06) 0%, transparent 20%, transparent 75%, rgba(0,0,0,0.45) 100%)",
+                "linear-gradient(90deg, rgba(0,0,0,0.45) 0%, transparent 25%, transparent 80%, rgba(255,255,255,0.06) 100%)",
             }}
           >
             <div
