@@ -5,9 +5,19 @@ import gsap from "gsap";
 /**
  * TearLink — enlace que, al pulsarlo, cubre la pantalla con una cortina
  * liquida de dos capas (SVG, borde ondulado animado via GSAP) que sube
- * desde abajo, se queda un instante cubriendo del todo, y retrocede
- * (misma tecnica, en reversa) -- un gesto completo, no una subida
- * cortada de golpe -- antes de navegar de verdad al destino.
+ * desde abajo hasta cubrir del todo, y SOLO ENTONCES navega de verdad
+ * al destino.
+ *
+ * FIX "el out lo tiene que hacer nada mas cargar la pagina web, no
+ * antes": un intento anterior hacia el retroceso (el "descubrir") AQUI,
+ * en esta misma pagina, antes de navegar -- pero eso no sirve de nada:
+ * el usuario ya se ha ido, nadie ve ese retroceso. El descubrir tiene
+ * que pasar en la pagina de DESTINO, justo al cargar ahi. Por eso:
+ * 1) aqui SOLO se cubre, nunca se retrocede.
+ * 2) el destino recibe un marcador en la URL (?enter=wave) para saber
+ *    que tiene que arrancar ya cubierto y hacer el descubrir el solo
+ *    (ver entryTransition.js en el repo de la galeria, que replica esta
+ *    misma tecnica en JS puro, sin GSAP, porque ese proyecto no lo usa).
  *
  * Tecnica base: "Shape overlays" de Blake Bowen
  * (https://codepen.io/osublake/pen/BYwgBg) -- 2 <path> SVG cuyo borde se
@@ -16,9 +26,8 @@ import gsap from "gsap";
  * (delay aleatorio) para que el borde no suba en linea recta sino como
  * una ola irregular, y los dos paths llevan ademas un desfase entre si
  * (DELAY_PER_PATH) para el efecto de capas. Adaptado a un solo sentido
- * (cubrir-retroceder y navegar, no un toggle abrir/cerrar reutilizable
- * y accionado por su propio click) y con una FASE 2 anadida (el
- * retroceso) que el original no tenia -- ver el FIX mas abajo.
+ * (cubrir y navegar, no un toggle abrir/cerrar reutilizable y accionado
+ * por su propio click).
  *
  * FIX real (bug ya corregido en un intento anterior con otro efecto,
  * mismo problema de fondo aqui): portal a document.body -- cualquier
@@ -37,9 +46,7 @@ const NUM_POINTS = 10;
 const NUM_PATHS = 2;
 const DELAY_POINTS_MAX = 0.3;
 const DELAY_PER_PATH = 0.25;
-const DURATION = 0.9; // subida (cubrir)
-const HOLD_DURATION = 0.18; // pausa cubierto del todo, entre subida y bajada
-const FALL_DURATION = 0.7; // bajada (retroceder) -- un poco mas rapida que la subida
+const DURATION = 0.9;
 
 function freshPoints(): number[][] {
   return Array.from({ length: NUM_PATHS }, () => Array(NUM_POINTS).fill(0));
@@ -108,52 +115,28 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       }
     };
 
+    // El destino arranca ya "cubierto" y hace el descubrir el solo (ver
+    // entryTransition.js en la galeria) -- se le avisa por query param.
+    const url = new URL(href);
+    url.searchParams.set("enter", "wave");
+
     const tl = gsap.timeline({
       onUpdate: renderPaths,
-      onComplete: () => { window.location.href = href; },
-      defaults: { ease: "power2.inOut" },
+      onComplete: () => { window.location.href = url.toString(); },
+      defaults: { ease: "power2.inOut", duration: DURATION },
     });
 
-    // FIX "me lo cortas cuando pasa al segundo link, da un salto":
-    // antes se navegaba justo al terminar de cubrir (onComplete
-    // disparaba en el pico) -- la pagina se cortaba en seco a mitad de
-    // gesto, nunca se veia el gesto completo. Ahora la MISMA ola sube,
-    // se queda un instante cubriendo del todo, y retrocede (misma
-    // tecnica, en reversa) antes de navegar -- un gesto entero, no una
-    // subida cortada de golpe.
-
-    // FASE 1 -- sube y cubre. Un retraso aleatorio por punto (compartido
-    // entre los dos paths, para que la ola de ambos se corresponda) es
-    // lo que rompe la linea recta y la convierte en una ola irregular.
-    const riseDelay: number[] = [];
-    for (let j = 0; j < NUM_POINTS; j++) riseDelay[j] = Math.random() * DELAY_POINTS_MAX;
+    // Un retraso aleatorio por punto (compartido entre los dos paths,
+    // para que la ola de ambos se corresponda) es lo que rompe la linea
+    // recta y la convierte en una ola irregular.
+    const pointsDelay: number[] = [];
+    for (let j = 0; j < NUM_POINTS; j++) pointsDelay[j] = Math.random() * DELAY_POINTS_MAX;
 
     for (let i = 0; i < NUM_PATHS; i++) {
       const points = pointsRef.current[i];
       const pathDelay = DELAY_PER_PATH * i; // el segundo path va detras del primero, efecto de capas
       for (let j = 0; j < NUM_POINTS; j++) {
-        tl.to(points, { [j]: 100, duration: DURATION }, riseDelay[j] + pathDelay);
-      }
-    }
-
-    // Punto en el que el ultimo punto de control termina de subir --
-    // desde ahi se cuenta la pausa cubierto del todo y despues el
-    // retroceso.
-    const riseEnd = DELAY_POINTS_MAX + DELAY_PER_PATH * (NUM_PATHS - 1) + DURATION;
-    const fallStart = riseEnd + HOLD_DURATION;
-
-    // FASE 2 -- retrocede: misma tecnica que la subida (delay aleatorio
-    // por punto), pero con los paths en orden INVERSO (el que llego
-    // segundo se retira primero) para que se sienta como un
-    // "deshacer", no como la subida reproducida al reves sin mas.
-    const fallDelay: number[] = [];
-    for (let j = 0; j < NUM_POINTS; j++) fallDelay[j] = Math.random() * DELAY_POINTS_MAX;
-
-    for (let i = 0; i < NUM_PATHS; i++) {
-      const points = pointsRef.current[i];
-      const pathDelay = DELAY_PER_PATH * (NUM_PATHS - 1 - i);
-      for (let j = 0; j < NUM_POINTS; j++) {
-        tl.to(points, { [j]: 0, duration: FALL_DURATION }, fallStart + fallDelay[j] + pathDelay);
+        tl.to(points, { [j]: 100 }, pointsDelay[j] + pathDelay);
       }
     }
 
