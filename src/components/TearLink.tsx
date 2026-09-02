@@ -97,6 +97,23 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     setIsTearing(true);
   };
 
+  // FIX "si vas hacia atras se queda asi": tras el window.location.href
+  // de la FASE 3, el navegador puede restaurar esta pagina desde la
+  // bfcache (cache de "atras/adelante") al pulsar Atras -- literalmente
+  // congelada en el ULTIMO frame antes de navegar (todo lo negro ya
+  // volado, solo el beige de fondo cubriendo la pantalla), porque
+  // isTearing nunca se puso a false. 'pageshow' con persisted:true es
+  // el evento que dispara exactamente en ese caso (restauracion desde
+  // bfcache, a diferencia de una carga nueva normal) -- se resetea el
+  // estado para que la pagina vuelva a verse normal.
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) setIsTearing(false);
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, []);
+
   // El overlay (fragmentos, flash, rafaga) se monta condicionalmente en
   // el JSX de abajo -- justo tras setIsTearing(true), React todavia NO
   // ha actualizado el DOM (los cambios de estado no se aplican de forma
@@ -168,7 +185,11 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       </a>
 
       {isTearing && (
-        <div className="fixed inset-0 z-999 pointer-events-none overflow-hidden" aria-hidden="true">
+        // FIX: 'z-999' no es sintaxis valida de Tailwind (hace falta
+        // z-[999] para un valor arbitrario) -- sin corchetes no genera
+        // NINGUN CSS, asi que el overlay se quedaba con z-index:auto,
+        // por debajo del Header (z-50) en vez de tapar toda la pantalla.
+        <div className="fixed inset-0 z-[999] pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute inset-0" style={{ backgroundColor: DEST_BG }} />
 
           {SHARDS.map((s, i) => (
