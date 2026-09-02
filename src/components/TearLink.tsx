@@ -3,42 +3,44 @@ import { createPortal } from "react-dom";
 import gsap from "gsap";
 
 /**
- * TearLink — enlace que, al pulsarlo, "pasa la pagina" como un libro:
- * la pantalla negra se cierra desde su borde izquierdo (scaleX 1 -> 0,
- * transform-origin en el borde izquierdo, con un ligero skew para que
- * no se vea un simple achicamiento mecanico), con una sombra de pliegue
- * que se intensifica a mitad de camino, revelando el beige del
- * portfolio de fotografia por debajo -- y solo entonces navega de
- * verdad al destino.
+ * TearLink — enlace que, al pulsarlo, cubre la pantalla con una cortina
+ * liquida de dos capas (SVG, borde ondulado animado via GSAP) que sube
+ * desde abajo, en los colores de las dos paginas (tinta -> beige), y
+ * solo entonces navega de verdad al destino.
  *
- * FIX real 1 (bug reportado: "desde el icono del Header, la animacion
- * solo se ve dentro del Header, no en toda la pantalla"): el overlay es
- * position:fixed, pero CUALQUIER ANCESTRO con transform/filter/
- * backdrop-filter/will-change:transform crea su PROPIO containing block
- * para descendientes fixed -- el Header lo tiene (backdrop-blur-md
- * cuando esta scrolled), asi que el overlay quedaba encajonado dentro
- * del propio Header en vez de cubrir el viewport. Portal a
- * document.body: el overlay escapa de la jerarquia normal del DOM (y de
- * cualquier containing block de un ancestro), sea cual sea el
- * componente donde se use TearLink.
+ * Tecnica: "Shape overlays" de Blake Bowen
+ * (https://codepen.io/osublake/pen/BYwgBg) -- 2 <path> SVG cuyo borde se
+ * genera interpolando NUM_POINTS puntos de control con curvas bezier
+ * cubicas (ver renderPaths()); cada punto anima a su propio ritmo
+ * (delay aleatorio) para que el borde no suba en linea recta sino como
+ * una ola irregular, y los dos paths llevan ademas un desfase entre si
+ * (DELAY_PER_PATH) para el efecto de capas. Adaptado a un solo sentido
+ * (cubrir y navegar, no un toggle abrir/cerrar reutilizable) y
+ * disparado desde el click del link, no desde un listener propio del
+ * overlay.
  *
- * FIX real 2 (bug reportado: "hace un frame estatico y sigue para
- * adelante", ningun giro visible): un primer intento uso rotateY +
- * perspective (giro 3D real) -- tras corregir el nombre de propiedad de
- * GSAP (es rotationY, no rotateY) el problema seguia igual, asi que la
- * causa real no era solo el nombre. En vez de seguir depurando
- * transformaciones 3D (perspective/backface-visibility/rotationY son
- * bastante mas sensibles a como el motor de render/GPU del navegador
- * las compone, dificil de diagnosticar a ciegas sin ver el navegador en
- * vivo), se sustituyen por un efecto SOLO 2D con scaleX -- propiedad
- * basica de GSAP sin ninguna ambiguedad de nombre ni dependencia de
- * perspective/3D, mucho mas fiable.
+ * FIX real (bug ya corregido en un intento anterior con otro efecto,
+ * mismo problema de fondo aqui): portal a document.body -- cualquier
+ * ancestro con transform/filter/backdrop-filter/will-change:transform
+ * (el Header lo tiene via backdrop-blur-md cuando esta scrolled) crea
+ * su propio containing block para descendientes fixed, asi que sin
+ * portal el overlay podia quedar encajonado dentro de un ancestro en
+ * vez de cubrir el viewport entero.
  *
- * TODO en porcentajes/grados (nunca px fijos) -- responsive por
- * construccion, sin media queries.
+ * FIX "si vas hacia atras se queda asi": 'pageshow' con persisted:true
+ * resetea el overlay (y los puntos de control) si la pagina se
+ * restaura desde la bfcache tras pulsar Atras en el navegador.
  */
 
-const DEST_BG = "#e8dfd0";
+const NUM_POINTS = 10;
+const NUM_PATHS = 2;
+const DELAY_POINTS_MAX = 0.3;
+const DELAY_PER_PATH = 0.25;
+const DURATION = 0.9;
+
+function freshPoints(): number[][] {
+  return Array.from({ length: NUM_PATHS }, () => Array(NUM_POINTS).fill(0));
+}
 
 interface TearLinkProps {
   href: string;
@@ -49,8 +51,8 @@ interface TearLinkProps {
 
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
   const [isTearing, setIsTearing] = useState(false);
-  const pageRef = useRef<HTMLDivElement>(null);
-  const creaseRef = useRef<HTMLDivElement>(null);
+  const pathRefs = useRef<(SVGPathElement | null)[]>([]);
+  const pointsRef = useRef<number[][]>(freshPoints());
 
   const handleClick = (e: MouseEvent) => {
     // Click con modificador (abrir en pestana nueva, etc.) o boton
@@ -63,70 +65,65 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     setIsTearing(true);
   };
 
-  // FIX "si vas hacia atras se queda asi": tras el window.location.href
-  // de mas abajo, si el visitante vuelve con el boton Atras del
-  // navegador, la pagina puede restaurarse desde la bfcache congelada
-  // en el ultimo frame antes de navegar. 'pageshow' con persisted:true
-  // es el evento que distingue esa restauracion de una carga nueva.
   useEffect(() => {
     const handlePageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) setIsTearing(false);
+      if (e.persisted) {
+        pointsRef.current = freshPoints();
+        setIsTearing(false);
+      }
     };
     window.addEventListener("pageshow", handlePageShow);
     return () => window.removeEventListener("pageshow", handlePageShow);
   }, []);
 
   // El overlay se monta condicionalmente en el JSX de abajo -- justo
-  // tras setIsTearing(true), React todavia NO ha actualizado el DOM
-  // (los cambios de estado no se aplican de forma sincrona dentro del
-  // mismo handler), asi que las refs seguirian siendo null si la
+  // tras setIsTearing(true), React todavia NO ha actualizado el DOM,
+  // asi que las refs de los <path> seguirian siendo null si la
   // animacion se lanzara ahi mismo. Dispararla aqui, en un effect que
   // depende de isTearing, garantiza que los elementos reales ya existen.
   useEffect(() => {
     if (!isTearing) return;
 
-    // Bisagra en el borde DERECHO (no izquierdo) -- "estas leyendo un
-    // libro, no un manga": la pagina se cierra hacia la derecha, no
-    // hacia la izquierda.
-    gsap.set(pageRef.current, { transformOrigin: "100% 50%", scaleX: 1, scaleY: 1, skewY: 0, y: "0%" });
-    gsap.set(creaseRef.current, { opacity: 0 });
+    // Construye el atributo 'd' de cada path a partir de sus puntos de
+    // control actuales -- cada punto representa cuanto ha "crecido"
+    // hacia arriba desde el borde inferior (0 = nada, 100 = pantalla
+    // entera cubierta); la coordenada Y real de la ola es 100-punto.
+    const renderPaths = () => {
+      for (let i = 0; i < NUM_PATHS; i++) {
+        const path = pathRefs.current[i];
+        const points = pointsRef.current[i];
+        if (!path) continue;
+
+        let d = `M 0 100 V ${100 - points[0]} C`;
+        for (let j = 0; j < NUM_POINTS - 1; j++) {
+          const p = ((j + 1) / (NUM_POINTS - 1)) * 100;
+          const cp = p - (100 / (NUM_POINTS - 1)) / 2;
+          d += ` ${cp} ${100 - points[j]} ${cp} ${100 - points[j + 1]} ${p} ${100 - points[j + 1]}`;
+        }
+        d += ` V 100 H 0`;
+        path.setAttribute("d", d);
+      }
+    };
 
     const tl = gsap.timeline({
+      onUpdate: renderPaths,
       onComplete: () => { window.location.href = href; },
+      defaults: { ease: "power2.inOut", duration: DURATION },
     });
 
-    // "Mas alma" -- una mano de verdad no cierra un libro con un solo
-    // movimiento mecanico uniforme. Cuatro capas independientes,
-    // solapadas en el tiempo, cada una con su propio ritmo:
+    // Un retraso aleatorio por punto (compartido entre los dos paths,
+    // para que la ola de ambos se corresponda) es lo que rompe la linea
+    // recta y la convierte en una ola irregular.
+    const pointsDelay: number[] = [];
+    for (let j = 0; j < NUM_POINTS; j++) pointsDelay[j] = Math.random() * DELAY_POINTS_MAX;
 
-    // 1) Anticipacion: la pagina se "tensa" un instante antes de
-    //    soltarse -- como coger la esquina y tirar un poco antes del
-    //    golpe, principio clasico de animacion.
-    tl.to(pageRef.current, { scaleX: 1.035, skewY: -3, duration: 0.16, ease: "power1.out" }, 0);
-
-    // 2) Cierre principal: acelera hacia el cierre total (power2.in,
-    //    como si la gravedad/el impulso tirase de ella hacia el final).
-    tl.to(pageRef.current, { scaleX: 0, duration: 0.85, ease: "power2.in" }, 0.16);
-
-    // 3) El giro en si describe un ARCO, no un angulo fijo: sube mas
-    //    de lo necesario y se asienta un poco antes de que la pagina
-    //    termine de desaparecer -- el papel "se comba" al girar en vez
-    //    de inclinarse en linea recta.
-    tl.to(pageRef.current, { skewY: 8, duration: 0.42, ease: "sine.inOut" }, 0.16);
-    tl.to(pageRef.current, { skewY: 3, duration: 0.35, ease: "sine.inOut" }, 0.58);
-
-    // 4) Ligero vuelo/flexion del papel: se eleva y se comprime un
-    //    poco mientras gira, vuelve a su sitio al asentarse -- sin
-    //    esto, escalar solo en X se ve demasiado plano/mecanico.
-    tl.to(pageRef.current, { y: "-1.2%", scaleY: 0.985, duration: 0.5, ease: "sine.inOut" }, 0.16);
-    tl.to(pageRef.current, { y: "0%", scaleY: 1, duration: 0.35, ease: "sine.inOut" }, 0.66);
-
-    // Sombra de pliegue: se intensifica mientras la "hoja" esta a medio
-    // cerrar (sincronizada con el pico del arco de FASE 3) y se
-    // desvanece al llegar al final, como el pliegue real de una pagina
-    // al doblarse.
-    tl.to(creaseRef.current, { opacity: 0.6, duration: 0.38, ease: "power1.in" }, 0.16);
-    tl.to(creaseRef.current, { opacity: 0, duration: 0.5, ease: "power1.out" }, 0.56);
+    for (let i = 0; i < NUM_PATHS; i++) {
+      const points = pointsRef.current[i];
+      const pathDelay = DELAY_PER_PATH * i; // el segundo path va detras del primero, efecto de capas
+      for (let j = 0; j < NUM_POINTS; j++) {
+        tl.to(points, { [j]: 100 }, pointsDelay[j] + pathDelay);
+      }
+    }
 
     return () => { tl.kill(); };
   }, [isTearing, href]);
@@ -138,28 +135,28 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       </a>
 
       {isTearing && createPortal(
-        <div className="fixed inset-0 z-[999] pointer-events-none" aria-hidden="true">
-          <div className="absolute inset-0" style={{ backgroundColor: DEST_BG }} />
-
-          <div
-            ref={pageRef}
-            className="absolute inset-0 bg-black"
-            style={{
-              // Ligero degradado de base: mas claro cerca de la bisagra
-              // (derecha) y mas oscuro hacia el borde libre (izquierda)
-              // -- insinua el volumen de una pagina real incluso antes
-              // de que arranque el cierre.
-              backgroundImage:
-                "linear-gradient(90deg, rgba(0,0,0,0.45) 0%, transparent 25%, transparent 80%, rgba(255,255,255,0.06) 100%)",
-            }}
-          >
-            <div
-              ref={creaseRef}
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.7) 55%, transparent 100%)" }}
-            />
-          </div>
-        </div>,
+        <svg
+          className="fixed inset-0 z-[999] pointer-events-none"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            {/* Colores de las dos paginas: tinta casi negra (esta web)
+                hacia el beige del portfolio de fotografia (destino),
+                en dos capas ligeramente desfasadas entre si. */}
+            <linearGradient id="tearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#171614" />
+              <stop offset="100%" stopColor="#8c8378" />
+            </linearGradient>
+            <linearGradient id="tearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#8c8378" />
+              <stop offset="100%" stopColor="#e8dfd0" />
+            </linearGradient>
+          </defs>
+          <path ref={(el) => { pathRefs.current[0] = el; }} fill="url(#tearGradient2)" />
+          <path ref={(el) => { pathRefs.current[1] = el; }} fill="url(#tearGradient1)" />
+        </svg>,
         document.body
       )}
     </>
