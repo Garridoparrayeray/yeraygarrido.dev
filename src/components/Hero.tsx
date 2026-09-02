@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/LanguageContext";
+import TearLink from "./TearLink";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -166,6 +167,22 @@ export default function Hero() {
               {t("hero.githubProfile")}
             </div>
           </a>
+
+          <TearLink
+            href="https://archive.yeraygarrido.dev"
+            className="flex w-full group"
+            ariaLabel={t("hero.photographyProfile")}
+          >
+            <div className="bg-black border border-white w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-black transition-colors duration-300">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </div>
+            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300">
+              {t("hero.photographyProfile")}
+            </div>
+          </TearLink>
         </div>
 
         <div className="mt-12 animate-bounce opacity-50">

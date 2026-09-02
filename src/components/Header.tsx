@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import TearLink from "./TearLink";
 
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
@@ -111,6 +112,27 @@ export default function Header() {
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
               </svg>
             </a>
+            <TearLink
+              href="https://archive.yeraygarrido.dev"
+              className="header-item text-white/60 hover:text-white transition-colors"
+              ariaLabel={t("header.photographyAria")}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
+              >
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </TearLink>
           </div>
 
           <div className="hidden md:block header-item w-px h-6 bg-white/20"></div>
