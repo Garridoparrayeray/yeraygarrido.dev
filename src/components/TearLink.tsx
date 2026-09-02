@@ -4,23 +4,35 @@ import gsap from "gsap";
 
 /**
  * TearLink — enlace que, al pulsarlo, "pasa la pagina" como un libro:
- * la pantalla negra gira en 3D sobre una bisagra en el borde izquierdo
- * (perspective + rotateY), con una sombra de pliegue que se intensifica
- * a mitad de giro, revelando el beige del portfolio de fotografia por
- * debajo -- y solo entonces navega de verdad al destino.
+ * la pantalla negra se cierra desde su borde izquierdo (scaleX 1 -> 0,
+ * transform-origin en el borde izquierdo, con un ligero skew para que
+ * no se vea un simple achicamiento mecanico), con una sombra de pliegue
+ * que se intensifica a mitad de camino, revelando el beige del
+ * portfolio de fotografia por debajo -- y solo entonces navega de
+ * verdad al destino.
  *
- * FIX real (bug reportado: "desde el icono del Header, la animacion
+ * FIX real 1 (bug reportado: "desde el icono del Header, la animacion
  * solo se ve dentro del Header, no en toda la pantalla"): el overlay es
  * position:fixed, pero CUALQUIER ANCESTRO con transform/filter/
  * backdrop-filter/will-change:transform crea su PROPIO containing block
  * para descendientes fixed -- el Header lo tiene (backdrop-blur-md
  * cuando esta scrolled), asi que el overlay quedaba encajonado dentro
- * del propio Header en vez de cubrir el viewport. El Hero tenia el
- * mismo problema de fondo (containerRef recibe will-change:transform
- * para el parallax de scroll) pero no se notaba porque esa seccion ya
- * ocupa el viewport entero. Portal a document.body: el overlay escapa
- * de la jerarquia normal del DOM (y de cualquier containing block de un
- * ancestro), sea cual sea el componente donde se use TearLink.
+ * del propio Header en vez de cubrir el viewport. Portal a
+ * document.body: el overlay escapa de la jerarquia normal del DOM (y de
+ * cualquier containing block de un ancestro), sea cual sea el
+ * componente donde se use TearLink.
+ *
+ * FIX real 2 (bug reportado: "hace un frame estatico y sigue para
+ * adelante", ningun giro visible): un primer intento uso rotateY +
+ * perspective (giro 3D real) -- tras corregir el nombre de propiedad de
+ * GSAP (es rotationY, no rotateY) el problema seguia igual, asi que la
+ * causa real no era solo el nombre. En vez de seguir depurando
+ * transformaciones 3D (perspective/backface-visibility/rotationY son
+ * bastante mas sensibles a como el motor de render/GPU del navegador
+ * las compone, dificil de diagnosticar a ciegas sin ver el navegador en
+ * vivo), se sustituyen por un efecto SOLO 2D con scaleX -- propiedad
+ * basica de GSAP sin ninguna ambiguedad de nombre ni dependencia de
+ * perspective/3D, mucho mas fiable.
  *
  * TODO en porcentajes/grados (nunca px fijos) -- responsive por
  * construccion, sin media queries.
@@ -73,36 +85,24 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
   useEffect(() => {
     if (!isTearing) return;
 
-    // FIX "hace un frame estatico y sigue para adelante" (no se veia
-    // NINGUN giro): 'rotateY' no es el nombre real de la propiedad
-    // especial de GSAP para rotacion 3D -- es 'rotationY'. Con
-    // 'rotateY', GSAP no la reconoce como transformacion y no aplica
-    // nada (el navegador tampoco entiende 'rotateY' como propiedad CSS
-    // suelta), asi que el elemento se quedaba tal cual, quieto, hasta
-    // que el timeline terminaba igualmente y navegaba. transformOrigin
-    // tambien se fija AQUI via GSAP (no solo en el style inline del
-    // JSX) -- GSAP gestiona transform-origin internamente junto al
-    // transform, fijarlo solo por CSS corre el riesgo de que lo
-    // sobreescriba a su valor por defecto (centro) en el primer set().
-    gsap.set(pageRef.current, { transformOrigin: "0% 50%", rotationY: 0, force3D: true });
+    gsap.set(pageRef.current, { transformOrigin: "0% 50%", scaleX: 1, skewY: 0 });
     gsap.set(creaseRef.current, { opacity: 0 });
 
     const tl = gsap.timeline({
       onComplete: () => { window.location.href = href; },
     });
 
-    // La pagina gira sobre su borde izquierdo hasta quedar de canto
-    // (justo pasado 90deg, backface-visibility:hidden la hace
-    // desaparecer ahi, revelando el beige de detras) -- un unico
-    // movimiento continuo, mas pausado que un corte, como una mano
-    // pasando una hoja de verdad.
-    tl.to(pageRef.current, { rotationY: -100, duration: 1.1, ease: "power2.inOut" }, 0);
+    // La pagina se encoge horizontalmente desde su borde izquierdo
+    // (scaleX 1 -> 0, transform-origin fijado ahi mismo) hasta
+    // desaparecer del todo, revelando el beige de detras -- el skewY
+    // acompañando rompe la sensacion de "achicamiento" puro y la
+    // acerca mas a un cierre/pliegue real.
+    tl.to(pageRef.current, { scaleX: 0, skewY: -4, duration: 1.1, ease: "power2.inOut" }, 0);
 
     // Sombra de pliegue: se intensifica mientras la "hoja" esta a medio
-    // girar (maximo relieve/sombra cuando esta mas de canto) y se
-    // desvanece al acercarse al final, como el pliegue real de una
-    // pagina al doblarse.
-    tl.to(creaseRef.current, { opacity: 0.6, duration: 0.5, ease: "power1.in" }, 0.15);
+    // cerrar y se desvanece al llegar al final, como el pliegue real de
+    // una pagina al doblarse.
+    tl.to(creaseRef.current, { opacity: 0.55, duration: 0.5, ease: "power1.in" }, 0.15);
     tl.to(creaseRef.current, { opacity: 0, duration: 0.45, ease: "power1.out" }, 0.65);
 
     return () => { tl.kill(); };
@@ -115,25 +115,17 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       </a>
 
       {isTearing && createPortal(
-        <div
-          className="fixed inset-0 z-[999] pointer-events-none"
-          style={{ perspective: "1800px" }}
-          aria-hidden="true"
-        >
+        <div className="fixed inset-0 z-[999] pointer-events-none" aria-hidden="true">
           <div className="absolute inset-0" style={{ backgroundColor: DEST_BG }} />
 
           <div
             ref={pageRef}
             className="absolute inset-0 bg-black"
             style={{
-              // transformOrigin se fija por GSAP (ver el useEffect), no
-              // aqui -- evita que GSAP lo sobreescriba al primer set().
-              transformStyle: "preserve-3d",
-              backfaceVisibility: "hidden",
               // Ligero degradado de base: mas claro cerca de la bisagra
               // (izquierda) y mas oscuro hacia el borde libre (derecha)
               // -- insinua el volumen de una pagina real incluso antes
-              // de que arranque el giro.
+              // de que arranque el cierre.
               backgroundImage:
                 "linear-gradient(90deg, rgba(255,255,255,0.06) 0%, transparent 20%, transparent 75%, rgba(0,0,0,0.45) 100%)",
             }}
