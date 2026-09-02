@@ -73,18 +73,30 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
   useEffect(() => {
     if (!isTearing) return;
 
-    gsap.set(pageRef.current, { rotateY: 0 });
+    // FIX "hace un frame estatico y sigue para adelante" (no se veia
+    // NINGUN giro): 'rotateY' no es el nombre real de la propiedad
+    // especial de GSAP para rotacion 3D -- es 'rotationY'. Con
+    // 'rotateY', GSAP no la reconoce como transformacion y no aplica
+    // nada (el navegador tampoco entiende 'rotateY' como propiedad CSS
+    // suelta), asi que el elemento se quedaba tal cual, quieto, hasta
+    // que el timeline terminaba igualmente y navegaba. transformOrigin
+    // tambien se fija AQUI via GSAP (no solo en el style inline del
+    // JSX) -- GSAP gestiona transform-origin internamente junto al
+    // transform, fijarlo solo por CSS corre el riesgo de que lo
+    // sobreescriba a su valor por defecto (centro) en el primer set().
+    gsap.set(pageRef.current, { transformOrigin: "0% 50%", rotationY: 0, force3D: true });
     gsap.set(creaseRef.current, { opacity: 0 });
 
     const tl = gsap.timeline({
       onComplete: () => { window.location.href = href; },
     });
 
-    // La pagina gira sobre su borde izquierdo (transform-origin: 0% 50%,
-    // ver el JSX) hasta quedar casi de canto, revelando el beige de
-    // detras -- un unico movimiento continuo, mas pausado que un corte,
-    // como una mano pasando una hoja de verdad.
-    tl.to(pageRef.current, { rotateY: -128, duration: 1.1, ease: "power2.inOut" }, 0);
+    // La pagina gira sobre su borde izquierdo hasta quedar de canto
+    // (justo pasado 90deg, backface-visibility:hidden la hace
+    // desaparecer ahi, revelando el beige de detras) -- un unico
+    // movimiento continuo, mas pausado que un corte, como una mano
+    // pasando una hoja de verdad.
+    tl.to(pageRef.current, { rotationY: -100, duration: 1.1, ease: "power2.inOut" }, 0);
 
     // Sombra de pliegue: se intensifica mientras la "hoja" esta a medio
     // girar (maximo relieve/sombra cuando esta mas de canto) y se
@@ -114,7 +126,8 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
             ref={pageRef}
             className="absolute inset-0 bg-black"
             style={{
-              transformOrigin: "0% 50%",
+              // transformOrigin se fija por GSAP (ver el useEffect), no
+              // aqui -- evita que GSAP lo sobreescriba al primer set().
               transformStyle: "preserve-3d",
               backfaceVisibility: "hidden",
               // Ligero degradado de base: mas claro cerca de la bisagra
