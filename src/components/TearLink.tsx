@@ -88,25 +88,45 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     // Bisagra en el borde DERECHO (no izquierdo) -- "estas leyendo un
     // libro, no un manga": la pagina se cierra hacia la derecha, no
     // hacia la izquierda.
-    gsap.set(pageRef.current, { transformOrigin: "100% 50%", scaleX: 1, skewY: 0 });
+    gsap.set(pageRef.current, { transformOrigin: "100% 50%", scaleX: 1, scaleY: 1, skewY: 0, y: "0%" });
     gsap.set(creaseRef.current, { opacity: 0 });
 
     const tl = gsap.timeline({
       onComplete: () => { window.location.href = href; },
     });
 
-    // La pagina se encoge horizontalmente desde su borde derecho
-    // (scaleX 1 -> 0, transform-origin fijado ahi mismo) hasta
-    // desaparecer del todo, revelando el beige de detras -- el skewY
-    // acompañando rompe la sensacion de "achicamiento" puro y la
-    // acerca mas a un cierre/pliegue real.
-    tl.to(pageRef.current, { scaleX: 0, skewY: 4, duration: 1.1, ease: "power2.inOut" }, 0);
+    // "Mas alma" -- una mano de verdad no cierra un libro con un solo
+    // movimiento mecanico uniforme. Cuatro capas independientes,
+    // solapadas en el tiempo, cada una con su propio ritmo:
+
+    // 1) Anticipacion: la pagina se "tensa" un instante antes de
+    //    soltarse -- como coger la esquina y tirar un poco antes del
+    //    golpe, principio clasico de animacion.
+    tl.to(pageRef.current, { scaleX: 1.035, skewY: -3, duration: 0.16, ease: "power1.out" }, 0);
+
+    // 2) Cierre principal: acelera hacia el cierre total (power2.in,
+    //    como si la gravedad/el impulso tirase de ella hacia el final).
+    tl.to(pageRef.current, { scaleX: 0, duration: 0.85, ease: "power2.in" }, 0.16);
+
+    // 3) El giro en si describe un ARCO, no un angulo fijo: sube mas
+    //    de lo necesario y se asienta un poco antes de que la pagina
+    //    termine de desaparecer -- el papel "se comba" al girar en vez
+    //    de inclinarse en linea recta.
+    tl.to(pageRef.current, { skewY: 8, duration: 0.42, ease: "sine.inOut" }, 0.16);
+    tl.to(pageRef.current, { skewY: 3, duration: 0.35, ease: "sine.inOut" }, 0.58);
+
+    // 4) Ligero vuelo/flexion del papel: se eleva y se comprime un
+    //    poco mientras gira, vuelve a su sitio al asentarse -- sin
+    //    esto, escalar solo en X se ve demasiado plano/mecanico.
+    tl.to(pageRef.current, { y: "-1.2%", scaleY: 0.985, duration: 0.5, ease: "sine.inOut" }, 0.16);
+    tl.to(pageRef.current, { y: "0%", scaleY: 1, duration: 0.35, ease: "sine.inOut" }, 0.66);
 
     // Sombra de pliegue: se intensifica mientras la "hoja" esta a medio
-    // cerrar y se desvanece al llegar al final, como el pliegue real de
-    // una pagina al doblarse.
-    tl.to(creaseRef.current, { opacity: 0.55, duration: 0.5, ease: "power1.in" }, 0.15);
-    tl.to(creaseRef.current, { opacity: 0, duration: 0.45, ease: "power1.out" }, 0.65);
+    // cerrar (sincronizada con el pico del arco de FASE 3) y se
+    // desvanece al llegar al final, como el pliegue real de una pagina
+    // al doblarse.
+    tl.to(creaseRef.current, { opacity: 0.6, duration: 0.38, ease: "power1.in" }, 0.16);
+    tl.to(creaseRef.current, { opacity: 0, duration: 0.5, ease: "power1.out" }, 0.56);
 
     return () => { tl.kill(); };
   }, [isTearing, href]);
