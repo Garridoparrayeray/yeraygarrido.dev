@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, type ReactNode, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
-import gsap from "gsap";
 
 /**
  * TearLink — enlace que, al pulsarlo, cubre la pantalla con una cortina
- * liquida de dos capas (SVG, borde ondulado animado via GSAP) que sube
- * desde abajo hasta cubrir del todo, y SOLO ENTONCES navega de verdad
- * al destino.
+ * liquida de dos capas (SVG, borde ondulado animado a mano via
+ * requestAnimationFrame, ver FIX "aparece ya a medio cubrir" mas abajo)
+ * que sube desde abajo hasta cubrir del todo, y SOLO ENTONCES navega de
+ * verdad al destino.
  *
  * FIX "el out lo tiene que hacer nada mas cargar la pagina web, no
  * antes": un intento anterior hacia el retroceso (el "descubrir") AQUI,
@@ -40,6 +40,21 @@ import gsap from "gsap";
  * FIX "si vas hacia atras se queda asi": 'pageshow' con persisted:true
  * resetea el overlay (y los puntos de control) si la pagina se
  * restaura desde la bfcache tras pulsar Atras en el navegador.
+ *
+ * FIX "aparece ya a medio cubrir, nunca vacio": la version anterior
+ * usaba gsap.timeline() para animar los puntos, pero esta web tiene
+ * gsap.ticker.lagSmoothing(0) activo GLOBALMENTE (necesario para el
+ * sync con Lenis, ver App.tsx) -- eso desactiva la proteccion de GSAP
+ * contra saltos tras un bloqueo del hilo principal, asi que cualquier
+ * jank justo entre crear el timeline y su primer tick real (nada raro
+ * en un movil real, con Lenis y demas corriendo) se aplicaba de golpe:
+ * el primer frame que el usuario llegaba a ver ya podia estar bastante
+ * avanzado, sin pasar nunca por un frame realmente vacio. Se anima a
+ * mano con requestAnimationFrame midiendo el tiempo relativo al primer
+ * frame que de verdad se ejecuta (startTime se fija ahi, no antes) --
+ * misma tecnica ya usada sin problemas en entryTransition.js en la
+ * galeria: el primer frame visible es SIEMPRE t=0, sea cual sea el
+ * retraso previo.
  */
 
 const NUM_POINTS = 10;
@@ -129,15 +144,10 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     const url = new URL(href);
     url.searchParams.set("enter", "wave");
 
-    // navigate() es idempotente: en moviles de gama baja el repintado
-    // del SVG (setAttribute('d', ...) 2 veces por frame) puede ir mas
-    // lento que el reloj logico de GSAP, y el usuario se queda mirando
-    // la ola a medias sin llegar nunca a onComplete. safetyTimer fuerza
-    // la navegacion pasado el tiempo maximo que puede durar la
-    // animacion (con margen) pase lo que pase con el renderizado
-    // visual -- confirmado en produccion que la animacion en si
-    // funciona en movil (Chromium y WebKit), asi que esto es solo para
-    // los dispositivos reales donde el hilo principal va mas justo.
+    // navigate() es idempotente: safetyTimer fuerza la navegacion pasado
+    // el tiempo maximo que puede durar la animacion (con margen), por si
+    // el repintado del SVG va mas lento que el bucle logico en algun
+    // movil de gama baja y el rAF nunca llega a reportar stillRunning=false.
     let navigated = false;
     const navigate = () => {
       if (navigated) return;
@@ -146,11 +156,7 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       window.location.href = url.toString();
     };
 
-    const tl = gsap.timeline({
-      onUpdate: renderPaths,
-      onComplete: navigate,
-      defaults: { ease: "power2.inOut", duration: DURATION },
-    });
+    const easePower2InOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
     // Un retraso aleatorio por punto (compartido entre los dos paths,
     // para que la ola de ambos se corresponda) es lo que rompe la linea
@@ -172,18 +178,51 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       return (prev + delay + next) / 3;
     });
 
+    interface Tween { pathIndex: number; pointIndex: number; start: number }
+    const tweens: Tween[] = [];
     for (let i = 0; i < NUM_PATHS; i++) {
-      const points = pointsRef.current[i];
       const pathDelay = DELAY_PER_PATH * i; // el segundo path va detras del primero, efecto de capas
       for (let j = 0; j < NUM_POINTS; j++) {
-        tl.to(points, { [j]: 100 }, pointsDelay[j] + pathDelay);
+        tweens.push({ pathIndex: i, pointIndex: j, start: pointsDelay[j] + pathDelay });
       }
     }
+
+    // startTime se fija en el PRIMER frame que de verdad se ejecuta, no
+    // al crear el efecto -- ver el FIX explicado en el comentario de
+    // cabecera del componente. Asi el primer frame visible es siempre
+    // t=0, nunca hereda un salto por un bloqueo previo del hilo principal.
+    let startTime: number | null = null;
+    let rafId = 0;
+    const tick = (now: number) => {
+      if (startTime === null) startTime = now;
+      const elapsed = (now - startTime) / 1000;
+      let stillRunning = false;
+
+      tweens.forEach((tw) => {
+        let localT = (elapsed - tw.start) / DURATION;
+        if (localT < 0) { stillRunning = true; return; }
+        if (localT >= 1) {
+          localT = 1;
+        } else {
+          stillRunning = true;
+        }
+        pointsRef.current[tw.pathIndex][tw.pointIndex] = 100 * easePower2InOut(localT);
+      });
+
+      renderPaths();
+
+      if (stillRunning) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        navigate();
+      }
+    };
+    rafId = requestAnimationFrame(tick);
 
     const maxDelay = DELAY_PER_PATH * (NUM_PATHS - 1) + DELAY_POINTS_MAX;
     const safetyTimer = window.setTimeout(navigate, (maxDelay + DURATION) * 1000 + 700);
 
-    return () => { tl.kill(); window.clearTimeout(safetyTimer); };
+    return () => { cancelAnimationFrame(rafId); window.clearTimeout(safetyTimer); };
   }, [isTearing, href]);
 
   return (
