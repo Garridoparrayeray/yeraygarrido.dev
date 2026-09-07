@@ -155,8 +155,22 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     // Un retraso aleatorio por punto (compartido entre los dos paths,
     // para que la ola de ambos se corresponda) es lo que rompe la linea
     // recta y la convierte en una ola irregular.
-    const pointsDelay: number[] = [];
-    for (let j = 0; j < NUM_POINTS; j++) pointsDelay[j] = Math.random() * DELAY_POINTS_MAX;
+    const rawDelay: number[] = [];
+    for (let j = 0; j < NUM_POINTS; j++) rawDelay[j] = Math.random() * DELAY_POINTS_MAX;
+
+    // FIX "se ve partida por el medio": sin suavizar, dos puntos
+    // VECINOS podian sacar un retraso muy distinto entre si (ej. 0 y
+    // 0.3s, sobre 0.9s de duracion total) -- a mitad de animacion uno
+    // iba casi lleno y el de al lado casi vacio, y la curva entre ambos
+    // se veia como un corte/muesca brusco en vez de una ola continua.
+    // Media movil de 3 (con los vecinos existentes en los extremos): los
+    // retrasos siguen siendo aleatorios e irregulares, pero correlados
+    // con sus vecinos inmediatos, sin saltos bruscos entre puntos contiguos.
+    const pointsDelay: number[] = rawDelay.map((delay, j) => {
+      const prev = rawDelay[j - 1] ?? delay;
+      const next = rawDelay[j + 1] ?? delay;
+      return (prev + delay + next) / 3;
+    });
 
     for (let i = 0; i < NUM_PATHS; i++) {
       const points = pointsRef.current[i];
