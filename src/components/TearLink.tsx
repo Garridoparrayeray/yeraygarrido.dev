@@ -52,6 +52,16 @@ function freshPoints(): number[][] {
   return Array.from({ length: NUM_PATHS }, () => Array(NUM_POINTS).fill(0));
 }
 
+// p/cp de cada segmento solo dependen de NUM_POINTS (constante), no de
+// los puntos animados -- precalculados una vez en vez de recalcularlos
+// en cada frame de renderPaths(), que en moviles de gama baja ya va
+// justo de rendimiento con el setAttribute('d', ...) en si.
+const SEGMENTS = Array.from({ length: NUM_POINTS - 1 }, (_, j) => {
+  const p = ((j + 1) / (NUM_POINTS - 1)) * 100;
+  const cp = p - (100 / (NUM_POINTS - 1)) / 2;
+  return { p, cp };
+});
+
 interface TearLinkProps {
   href: string;
   className?: string;
@@ -106,8 +116,7 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
 
         let d = `M 0 100 V ${100 - points[0]} C`;
         for (let j = 0; j < NUM_POINTS - 1; j++) {
-          const p = ((j + 1) / (NUM_POINTS - 1)) * 100;
-          const cp = p - (100 / (NUM_POINTS - 1)) / 2;
+          const { p, cp } = SEGMENTS[j];
           d += ` ${cp} ${100 - points[j]} ${cp} ${100 - points[j + 1]} ${p} ${100 - points[j + 1]}`;
         }
         d += ` V 100 H 0`;
@@ -120,9 +129,26 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     const url = new URL(href);
     url.searchParams.set("enter", "wave");
 
+    // navigate() es idempotente: en moviles de gama baja el repintado
+    // del SVG (setAttribute('d', ...) 2 veces por frame) puede ir mas
+    // lento que el reloj logico de GSAP, y el usuario se queda mirando
+    // la ola a medias sin llegar nunca a onComplete. safetyTimer fuerza
+    // la navegacion pasado el tiempo maximo que puede durar la
+    // animacion (con margen) pase lo que pase con el renderizado
+    // visual -- confirmado en produccion que la animacion en si
+    // funciona en movil (Chromium y WebKit), asi que esto es solo para
+    // los dispositivos reales donde el hilo principal va mas justo.
+    let navigated = false;
+    const navigate = () => {
+      if (navigated) return;
+      navigated = true;
+      window.clearTimeout(safetyTimer);
+      window.location.href = url.toString();
+    };
+
     const tl = gsap.timeline({
       onUpdate: renderPaths,
-      onComplete: () => { window.location.href = url.toString(); },
+      onComplete: navigate,
       defaults: { ease: "power2.inOut", duration: DURATION },
     });
 
@@ -140,7 +166,10 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       }
     }
 
-    return () => { tl.kill(); };
+    const maxDelay = DELAY_PER_PATH * (NUM_PATHS - 1) + DELAY_POINTS_MAX;
+    const safetyTimer = window.setTimeout(navigate, (maxDelay + DURATION) * 1000 + 700);
+
+    return () => { tl.kill(); window.clearTimeout(safetyTimer); };
   }, [isTearing, href]);
 
   return (
