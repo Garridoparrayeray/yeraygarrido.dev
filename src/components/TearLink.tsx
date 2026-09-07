@@ -78,7 +78,21 @@ const SEGMENTS = Array.from({ length: NUM_POINTS - 1 }, (_, j) => {
 // mucho -- el resto (la mayoria de la pantalla) se quedaba transparente
 // pasase lo que pasase con la posicion.
 function randomWavePath(): string {
-  const points = Array.from({ length: NUM_POINTS }, () => Math.random() * JITTER_MAX);
+  const rawPoints = Array.from({ length: NUM_POINTS }, () => Math.random() * JITTER_MAX);
+
+  // FIX "proporcion o forma rara": sin suavizar, dos puntos VECINOS
+  // podian sacar un valor muy distinto entre si (ej. 0 y JITTER_MAX) y
+  // la curva entre ambos se veia como un pico brusco y desproporcionado
+  // en vez de una ola organica -- mismo problema y mismo arreglo que ya
+  // se aplico a los retrasos de la version animada. Media movil de 3
+  // (con los vecinos existentes en los extremos): la forma sigue siendo
+  // irregular, pero correlada entre puntos contiguos.
+  const points = rawPoints.map((point, j) => {
+    const prev = rawPoints[j - 1] ?? point;
+    const next = rawPoints[j + 1] ?? point;
+    return (prev + point + next) / 3;
+  });
+
   let d = `M 0 100 V ${points[0]} C`;
   for (let j = 0; j < NUM_POINTS - 1; j++) {
     const { p, cp } = SEGMENTS[j];
