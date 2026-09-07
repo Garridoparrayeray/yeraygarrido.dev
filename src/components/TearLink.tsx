@@ -2,16 +2,31 @@ import { useEffect, useRef, useState, type ReactNode, type MouseEvent } from "re
 import { createPortal } from "react-dom";
 
 /**
- * TearLink — enlace que, al pulsarlo, cubre la pantalla con dos capas
- * de borde irregular (mismos colores/idea que el "shape overlays" de
- * Blake Bowen que se uso antes) que suben desde abajo hasta cubrir del
- * todo, y SOLO ENTONCES navega de verdad al destino.
+ * TearLink — "diafragma de camara": al pulsar, un octogono (aspas de
+ * diafragma, como el bokeh de un objetivo) gira y crece a toda
+ * velocidad desde el punto exacto donde se ha tocado, CERRANDO el
+ * obturador sobre la pantalla, con un flash blanco justo al terminar de
+ * cubrir -- y SOLO ENTONCES navega de verdad al destino (portfolio de
+ * fotografia). Cuando esa pagina de destino carga, hace la mitad
+ * inversa: aparece ya cerrada y el obturador SE ABRE (ver
+ * entryTransition.js en la galeria), continuando el mismo giro.
+ *
+ * clip-path fijo (octogono, nunca recalculado) + transform:
+ * translate+rotate+scale por CSS transition -- el punto de origen (el
+ * click/tap real) se calcula UNA vez y se usa para posicionar el centro
+ * del octogono ahi, nunca recalculado cuadro a cuadro.
+ *
+ * Responsive gratis: el octogono mide 250vmax de lado (vmax = el mayor
+ * de vw/vh), muy por encima de cualquier diagonal real de pantalla
+ * posible, asi que cubre de sobra la esquina mas lejana desde cualquier
+ * punto de origen, sea cual sea el tamaño/proporcion.
  *
  * FIX "el out lo tiene que hacer nada mas cargar la pagina web, no
- * antes": el retroceso (el "descubrir") pasa en la pagina de DESTINO,
- * nunca aqui -- ver entryTransition.js en el repo de la galeria. Aqui
- * SOLO se cubre, nunca se retrocede; el destino recibe ?enter=wave en
- * la URL para saber que tiene que arrancar ya cubierto.
+ * antes": el retroceso (la apertura de llegada) pasa en la pagina de
+ * DESTINO, nunca aqui -- ver entryTransition.js en el repo de la
+ * galeria. Aqui SOLO se cierra, nunca se abre; el destino recibe
+ * ?enter=flash en la URL para saber que tiene que arrancar ya cerrado y
+ * hacer su propia apertura.
  *
  * FIX real (bug ya corregido en un intento anterior con otro efecto,
  * mismo problema de fondo aqui): portal a document.body -- cualquier
@@ -24,96 +39,32 @@ import { createPortal } from "react-dom";
  * resetea el overlay si la pagina se restaura desde la bfcache tras
  * pulsar Atras en el navegador.
  *
- * FIX "aparece a medio cubrir / plana sin ola / se congela a medio
- * camino, distinto cada vez": version anterior animaba a mano, cuadro a
- * cuadro (primero via gsap.timeline(), luego via requestAnimationFrame
- * propio -- este ultimo IDENTICO en tecnica a entryTransition.js en la
- * galeria, con startTime anclado al primer tick real), 10 puntos de
- * control por capa recalculando el 'd' de un SVG en cada frame.
- *
- * NO VOLVER A UN ENFOQUE JS-POR-FRAME AQUI, aunque "funcione" en
- * pruebas o parezca identico a entryTransition.js -- se ha intentado 3
- * veces (gsap, rAF con anclaje al primer tick, y de nuevo tras pedirlo
- * explicitamente) y las 3 han fallado en dispositivos reales (incluido
- * un iPhone 15 Pro Max, gama alta -- NO es un problema de potencia),
- * sin que NINGUNA prueba automatizada lo reproduzca (movil, escritorio,
- * dos motores de renderizado, CPU limitada hasta 1/20). Diagnostico:
- * entryTransition.js arranca solo al cargar la pagina, sin ningun
- * gesto tactil de por medio. TearLink arranca desde un tap -- y Safari
+ * NO CONVERTIR ESTO EN UNA ANIMACION JS-POR-FRAME (requestAnimationFrame
+ * o similar), aunque parezca mas suave o "de mas nivel" -- historial
+ * largo y doloroso en este mismo componente: 3 intentos distintos
+ * (gsap.timeline(), rAF con anclaje al primer tick, de nuevo tras
+ * pedirlo explicitamente) fallaron en dispositivos reales, incluido un
+ * iPhone 15 Pro Max (gama alta, NO es problema de potencia), sin que
+ * ninguna prueba automatizada lo reprodujera nunca. Causa real: Safari
  * en iOS retrasa/agrupa el trabajo de JS (incluido rAF) alrededor de un
- * gesto tactil para no interferir con el scroll. Aunque el CALCULO
- * ancle correctamente su tiempo cero al primer tick logico, lo que el
- * PINTADO real le enseña al usuario puede ser un frame bastante mas
- * avanzado -- el problema no es la logica del codigo, es el pipeline de
- * renderizado de Safari alrededor de gestos tactiles. Por eso el mismo
- * codigo "funciona" al cargar la pagina (galeria) y falla al pulsar un
- * boton (aqui).
- *
- * Se elimina esa clase entera de fallo: la cortina es un SVG con el
- * borde ondulado FIJO (curvas bezier generadas una vez al arrancar con
- * la MISMA formula que antes, ver randomWavePath() -- pero calculada
- * una unica vez, no recalculada cuadro a cuadro) que se desplaza con
- * transform + transition CSS -- eso lo ejecuta el hilo de composicion
- * (GPU), al margen de qué haga Safari con el gesto tactil en el hilo
- * principal. Se pierde el matiz de que cada punto crezca de forma
- * independiente en el tiempo, pero se conserva el aspecto de ola
- * liquida con curvas suaves -- y es la UNICA version confirmada
- * funcionando en dispositivo real, 3 veces seguidas.
+ * gesto tactil para no interferir con el scroll -- aunque el CALCULO
+ * este bien anclado, lo que el usuario ve PINTADO puede ser un frame ya
+ * bastante avanzado. Una transicion CSS de transform (como esta) la
+ * ejecuta el hilo de composicion (GPU), al margen de eso. Es la UNICA
+ * clase de implementacion confirmada funcionando de verdad en
+ * dispositivo real.
  */
 
-const NUM_POINTS = 10;
-const JITTER_MAX = 20; // % de variacion del borde superior ondulado (0 = recto)
-const DURATION_MS = 900;
-const LAYER_DELAY_MS = 250; // desfase de la 2a capa, efecto de profundidad
+const EXPAND_MS = 550; // duracion del cierre del diafragma
+const FLASH_PEAK_MS = 90; // subida del flash (rapida, "disparo")
+const FLASH_FADE_MS = 220; // bajada del flash
+const CLOSE_ROTATE_DEG = 40; // giro acumulado durante el cierre
 
-// p/cp de cada segmento solo dependen de NUM_POINTS (constante) -- igual
-// que en la version animada anterior, precalculados una sola vez.
-const SEGMENTS = Array.from({ length: NUM_POINTS - 1 }, (_, j) => {
-  const p = ((j + 1) / (NUM_POINTS - 1)) * 100;
-  const cp = p - (100 / (NUM_POINTS - 1)) / 2;
-  return { p, cp };
-});
-
-// Misma interpolacion con curvas bezier cubicas que usaba renderPaths()
-// en la version animada (tecnica "shape overlays" de Blake Bowen), pero
-// llamada UNA sola vez con puntos de control aleatorios fijos, no en
-// cada frame -- de ahi que ya no pueda depender del framerate real del
-// dispositivo para verse bien.
-//
-// FIX "sale desde abajo del todo pero no sube correctamente": la
-// version animada usaba 100-punto porque cada punto CRECIA de 0 a 100
-// con el tiempo (0=nada cubierto, 100=todo cubierto). Esta forma es
-// ESTATICA -- no crece, solo se desplaza entera con translateY -- asi
-// que tiene que nacer ya "completa": el borde ondulado (punto, 0..
-// JITTER_MAX) cerca del BORDE SUPERIOR, y la forma rellena hasta abajo
-// del todo (V 100). Con el 100-punto de la version animada, la forma
-// solo llegaba a cubrir el JITTER_MAX% inferior de la pantalla como
-// mucho -- el resto (la mayoria de la pantalla) se quedaba transparente
-// pasase lo que pasase con la posicion.
-function randomWavePath(): string {
-  const rawPoints = Array.from({ length: NUM_POINTS }, () => Math.random() * JITTER_MAX);
-
-  // FIX "proporcion o forma rara": sin suavizar, dos puntos VECINOS
-  // podian sacar un valor muy distinto entre si (ej. 0 y JITTER_MAX) y
-  // la curva entre ambos se veia como un pico brusco y desproporcionado
-  // en vez de una ola organica -- mismo problema y mismo arreglo que ya
-  // se aplico a los retrasos de la version animada. Media movil de 3
-  // (con los vecinos existentes en los extremos): la forma sigue siendo
-  // irregular, pero correlada entre puntos contiguos.
-  const points = rawPoints.map((point, j) => {
-    const prev = rawPoints[j - 1] ?? point;
-    const next = rawPoints[j + 1] ?? point;
-    return (prev + point + next) / 3;
-  });
-
-  let d = `M 0 100 V ${points[0]} C`;
-  for (let j = 0; j < NUM_POINTS - 1; j++) {
-    const { p, cp } = SEGMENTS[j];
-    d += ` ${cp} ${points[j]} ${cp} ${points[j + 1]} ${p} ${points[j + 1]}`;
-  }
-  d += ` V 100 H 0`;
-  return d;
-}
+// Octogono regular -- mismo "aspecto de diafragma/bokeh" reconocible en
+// fotografia. Forma FIJA, nunca recalculada: todo el movimiento lo hace
+// el transform (translate/rotate/scale) via transicion CSS.
+const BLADE_CLIP_PATH =
+  "polygon(35% 0%, 65% 0%, 100% 35%, 100% 65%, 65% 100%, 35% 100%, 0% 65%, 0% 35%)";
 
 interface TearLinkProps {
   href: string;
@@ -124,15 +75,16 @@ interface TearLinkProps {
 
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
   const [isTearing, setIsTearing] = useState(false);
-  const [isCovering, setIsCovering] = useState(false);
-  const wavePaths = useRef<[string, string]>(["", ""]);
+  const [isClosed, setIsClosed] = useState(false);
+  const [flashPeak, setFlashPeak] = useState(false);
+  const originRef = useRef({ x: "50%", y: "50%" });
   const navigatedRef = useRef(false);
 
   const navigate = () => {
     if (navigatedRef.current) return;
     navigatedRef.current = true;
     const url = new URL(href);
-    url.searchParams.set("enter", "wave");
+    url.searchParams.set("enter", "flash");
     window.location.href = url.toString();
   };
 
@@ -144,7 +96,10 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (isTearing) return;
-    wavePaths.current = [randomWavePath(), randomWavePath()];
+    // Origen real del click/tap -- el diafragma nace exactamente ahi,
+    // no en el centro de la pantalla. clientX/Y ya son relativas al
+    // viewport, igual que la referencia de position:fixed.
+    originRef.current = { x: `${e.clientX}px`, y: `${e.clientY}px` };
     setIsTearing(true);
   };
 
@@ -152,7 +107,8 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     const handlePageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
         navigatedRef.current = false;
-        setIsCovering(false);
+        setIsClosed(false);
+        setFlashPeak(false);
         setIsTearing(false);
       }
     };
@@ -161,26 +117,28 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
   }, []);
 
   // El overlay se monta condicionalmente en el JSX de abajo, arrancando
-  // en transform:translateY(100%) (fuera de pantalla). Necesita pintarse
-  // asi en un frame real ANTES de pasar a translateY(0) -- si no, el
-  // navegador puede fusionar ambos estados en un solo frame y saltarse
-  // la transicion entera. Doble rAF: el primero espera al frame donde ya
-  // se pinto el estado inicial, el segundo dispara el cambio.
+  // en scale(0) (invisible). Necesita pintarse asi en un frame real
+  // ANTES de pasar a scale(1) -- si no, el navegador puede fusionar
+  // ambos estados en un solo frame y saltarse la transicion entera.
+  // Doble rAF: el primero espera al frame donde ya se pinto el estado
+  // inicial, el segundo dispara el cambio.
   useEffect(() => {
     if (!isTearing) return;
 
     let rafId = requestAnimationFrame(() => {
-      rafId = requestAnimationFrame(() => setIsCovering(true));
+      rafId = requestAnimationFrame(() => setIsClosed(true));
     });
 
     // Red de seguridad: fuerza la navegacion pasado el tiempo maximo que
-    // puede durar la transicion (con margen), por si 'transitionend' no
-    // llegara a dispararse por algun motivo.
-    const safetyTimer = window.setTimeout(navigate, DURATION_MS + LAYER_DELAY_MS + 600);
+    // puede durar toda la secuencia (cierre + flash), por si algun
+    // 'transitionend' no llegara a dispararse.
+    const safetyTimer = window.setTimeout(navigate, EXPAND_MS + FLASH_PEAK_MS + FLASH_FADE_MS + 700);
 
     return () => { cancelAnimationFrame(rafId); window.clearTimeout(safetyTimer); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTearing, href]);
+
+  const { x: ox, y: oy } = originRef.current;
 
   return (
     <>
@@ -190,50 +148,45 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
 
       {isTearing && createPortal(
         <div className="fixed inset-0 z-[999] pointer-events-none" aria-hidden="true">
-          {/* Colores de las dos paginas: tinta casi negra (esta web)
-              hacia el beige del portfolio de fotografia (destino), en
-              dos capas ligeramente desfasadas entre si. viewBox +
-              preserveAspectRatio:none hace que el path (en coordenadas
-              0-100) se estire para llenar el viewport real, sea cual
-              sea su tamaño -- por eso el SVG en vez de clip-path con
-              pixeles absolutos. */}
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            style={{
-              transform: isCovering ? "translateY(0%)" : "translateY(100%)",
-              transition: `transform ${DURATION_MS}ms cubic-bezier(.65,0,.35,1)`,
-            }}
-          >
-            <defs>
-              <linearGradient id="tearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#8c8378" />
-                <stop offset="100%" stopColor="#e8dfd0" />
-              </linearGradient>
-            </defs>
-            <path d={wavePaths.current[0]} fill="url(#tearGradient2)" />
-          </svg>
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
+          {/* El diafragma -- degradado radial centrado en el mismo
+              punto de origen, para que tambien parezca que el "brillo"
+              emana de donde se ha tocado. */}
+          <div
             onTransitionEnd={(e) => {
-              if (e.propertyName === "transform") navigate();
+              if (e.propertyName !== "transform") return;
+              // Diafragma cerrado del todo -- dispara el flash: sube
+              // rapido (90ms), se mantiene un instante, baja (220ms), y
+              // SOLO ENTONCES navega -- mismo patron de siempre (estado
+              // + setTimeout, nada de rAF).
+              setFlashPeak(true);
+              window.setTimeout(() => setFlashPeak(false), FLASH_PEAK_MS + 80);
+              window.setTimeout(navigate, FLASH_PEAK_MS + 80 + FLASH_FADE_MS);
             }}
             style={{
-              transform: isCovering ? "translateY(0%)" : "translateY(100%)",
-              transition: `transform ${DURATION_MS}ms cubic-bezier(.65,0,.35,1) ${LAYER_DELAY_MS}ms`,
+              position: "fixed",
+              left: ox,
+              top: oy,
+              width: "250vmax",
+              height: "250vmax",
+              background: `radial-gradient(circle at center, #8c8378 0%, #171614 75%)`,
+              clipPath: BLADE_CLIP_PATH,
+              transform: isClosed
+                ? `translate(-50%, -50%) rotate(${CLOSE_ROTATE_DEG}deg) scale(1)`
+                : `translate(-50%, -50%) rotate(0deg) scale(0)`,
+              transition: `transform ${EXPAND_MS}ms cubic-bezier(.7,0,.3,1)`,
             }}
-          >
-            <defs>
-              <linearGradient id="tearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#171614" />
-                <stop offset="100%" stopColor="#8c8378" />
-              </linearGradient>
-            </defs>
-            <path d={wavePaths.current[1]} fill="url(#tearGradient1)" />
-          </svg>
+          />
+          {/* Flash -- blanco, sube rapido tipo disparo de camara, baja
+              mas suave. */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "#fff",
+              opacity: flashPeak ? 1 : 0,
+              transition: `opacity ${flashPeak ? FLASH_PEAK_MS : FLASH_FADE_MS}ms ease-out`,
+            }}
+          />
         </div>,
         document.body
       )}
