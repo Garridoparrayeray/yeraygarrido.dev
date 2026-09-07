@@ -1,32 +1,44 @@
-import { useEffect, useRef, useState, type ReactNode, type MouseEvent } from "react";
+import { useState, useEffect, type ReactNode, type MouseEvent, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 
 /**
- * TearLink — "diafragma de camara": al pulsar, un octogono (aspas de
- * diafragma, como el bokeh de un objetivo) gira y crece, lento y
- * deliberado, desde el punto exacto donde se ha tocado, CERRANDO el
- * obturador sobre la pantalla -- y SOLO ENTONCES navega de verdad al
- * destino (portfolio de fotografia). Cuando esa pagina de destino
- * carga, hace la mitad inversa: aparece ya cerrada y el obturador SE
- * ABRE (ver entryTransition.js en la galeria), continuando el mismo
- * giro. Sin flash -- solo el gesto mecanico de las aspas.
+ * TearLink — "rejilla de baldosas": al pulsar, la pantalla se cubre con
+ * una rejilla de decenas de baldosas que vuelan en 3D (flip
+ * rotateX/rotateY, como piezas de un mosaico cayendo en su sitio) en
+ * una ola circular que EMANA del punto exacto donde se ha tocado -- y
+ * SOLO ENTONCES navega de verdad al destino (portfolio de fotografia).
+ * Cuando esa pagina de destino carga, hace la mitad inversa: aparece ya
+ * cubierta y las baldosas vuelan hacia FUERA revelando la galeria (ver
+ * entryTransition.js en la galeria), misma tecnica, ola desde el
+ * centro.
  *
- * clip-path fijo (octogono, nunca recalculado) + transform:
- * translate+rotate+scale por CSS transition -- el punto de origen (el
- * click/tap real) se calcula UNA vez y se usa para posicionar el centro
- * del octogono ahi, nunca recalculado cuadro a cuadro.
+ * Tecnica adaptada de un recurso de rejilla de fragmentos con flip 3D
+ * (grid de <div>, cada uno con su propio @keyframes con transform:
+ * rotateX/rotateY + opacity, retrasado con animation-delay calculado
+ * UNA vez por celda segun su distancia al origen) -- se sustituye el
+ * "revelar una imagen a trozos" original por "cubrir/descubrir la
+ * pantalla entera a trozos" con color solido, y se elige un unico
+ * patron de ola (radial, distancia al punto de origen) en vez de los
+ * ~14 patrones del recurso original.
  *
- * Responsive gratis: el octogono mide 250vmax de lado (vmax = el mayor
- * de vw/vh), muy por encima de cualquier diagonal real de pantalla
- * posible, asi que cubre de sobra la esquina mas lejana desde cualquier
- * punto de origen, sea cual sea el tamaño/proporcion.
+ * CADA BALDOSA ANIMA VIA SU PROPIO @keyframes CSS, CON animation-delay
+ * FIJADO UNA VEZ (nunca por-frame) -- el navegador entero se encarga
+ * del movimiento sin que ni un solo callback de JS corra durante la
+ * animacion. Se sabe cuando ha terminado TODO por calculo (delay+
+ * duracion maximos de la rejilla, deterministas), nunca escuchando
+ * eventos de cada baldosa. Ver el porque de esta restriccion en el
+ * historial mas abajo.
+ *
+ * Responsive gratis: la rejilla usa CSS Grid con columnas/filas 1fr
+ * sobre un contenedor fixed inset-0 -- el tamaño de cada baldosa se
+ * adapta solo al viewport real, sea cual sea.
  *
  * FIX "el out lo tiene que hacer nada mas cargar la pagina web, no
- * antes": el retroceso (la apertura de llegada) pasa en la pagina de
- * DESTINO, nunca aqui -- ver entryTransition.js en el repo de la
- * galeria. Aqui SOLO se cierra, nunca se abre; el destino recibe
- * ?enter=flash en la URL para saber que tiene que arrancar ya cerrado y
- * hacer su propia apertura.
+ * antes": el "descubrir" de llegada pasa en la pagina de DESTINO, nunca
+ * aqui -- ver entryTransition.js en el repo de la galeria. Aqui SOLO se
+ * cubre, nunca se descubre; el destino recibe ?enter=flash en la URL
+ * para saber que tiene que arrancar ya cubierto y hacer su propio
+ * descubrir.
  *
  * FIX real (bug ya corregido en un intento anterior con otro efecto,
  * mismo problema de fondo aqui): portal a document.body -- cualquier
@@ -49,20 +61,44 @@ import { createPortal } from "react-dom";
  * en iOS retrasa/agrupa el trabajo de JS (incluido rAF) alrededor de un
  * gesto tactil para no interferir con el scroll -- aunque el CALCULO
  * este bien anclado, lo que el usuario ve PINTADO puede ser un frame ya
- * bastante avanzado. Una transicion CSS de transform (como esta) la
- * ejecuta el hilo de composicion (GPU), al margen de eso. Es la UNICA
- * clase de implementacion confirmada funcionando de verdad en
- * dispositivo real.
+ * bastante avanzado. Una animacion CSS (@keyframes, como esta) la
+ * ejecuta el hilo de composicion (GPU) end-to-end, sin ni un callback
+ * de JS durante el movimiento -- al margen de eso. Es la UNICA clase de
+ * implementacion confirmada funcionando de verdad en dispositivo real.
  */
 
-const EXPAND_MS = 1800; // duracion del cierre del diafragma -- lento y deliberado
-const CLOSE_ROTATE_DEG = 55; // giro acumulado durante el cierre
+const COLS = 14;
+const ROWS = 9;
+const TILE_DURATION_MS = 550;
+const DELAY_STEP_MS = 55;
+const COLORS = ["#171614", "#8c8378"];
 
-// Octogono regular -- mismo "aspecto de diafragma/bokeh" reconocible en
-// fotografia. Forma FIJA, nunca recalculada: todo el movimiento lo hace
-// el transform (translate/rotate/scale) via transicion CSS.
-const BLADE_CLIP_PATH =
-  "polygon(35% 0%, 65% 0%, 100% 35%, 100% 65%, 65% 100%, 35% 100%, 0% 65%, 0% 35%)";
+interface Tile {
+  key: string;
+  delay: number;
+  color: string;
+  keyframe: "tearTileInX" | "tearTileInY";
+}
+
+function buildTiles(originCol: number, originRow: number): Tile[] {
+  const tiles: Tile[] = [];
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      const dist = Math.hypot(col - originCol, row - originRow);
+      tiles.push({
+        key: `${row}-${col}`,
+        delay: dist * DELAY_STEP_MS,
+        color: COLORS[(row + col) % 2],
+        keyframe: (row + col) % 2 === 0 ? "tearTileInX" : "tearTileInY",
+      });
+    }
+  }
+  return tiles;
+}
+
+function maxDelay(tiles: Tile[]): number {
+  return tiles.reduce((max, t) => Math.max(max, t.delay), 0);
+}
 
 interface TearLinkProps {
   href: string;
@@ -72,18 +108,7 @@ interface TearLinkProps {
 }
 
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
-  const [isTearing, setIsTearing] = useState(false);
-  const [isClosed, setIsClosed] = useState(false);
-  const originRef = useRef({ x: "50%", y: "50%" });
-  const navigatedRef = useRef(false);
-
-  const navigate = () => {
-    if (navigatedRef.current) return;
-    navigatedRef.current = true;
-    const url = new URL(href);
-    url.searchParams.set("enter", "flash");
-    window.location.href = url.toString();
-  };
+  const [tiles, setTiles] = useState<Tile[] | null>(null);
 
   const handleClick = (e: MouseEvent) => {
     // Click con modificador (abrir en pestana nueva, etc.) o boton
@@ -92,49 +117,42 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     // otra cosa (nueva pestana/ventana), no tiene sentido interceptarlo.
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
-    if (isTearing) return;
-    // Origen real del click/tap -- el diafragma nace exactamente ahi,
-    // no en el centro de la pantalla. clientX/Y ya son relativas al
-    // viewport, igual que la referencia de position:fixed.
-    originRef.current = { x: `${e.clientX}px`, y: `${e.clientY}px` };
-    setIsTearing(true);
+    if (tiles) return;
+    // Origen real del click/tap, convertido a coordenadas de rejilla --
+    // la ola de baldosas emana de ahi, no del centro de la pantalla.
+    const originCol = (e.clientX / window.innerWidth) * (COLS - 1);
+    const originRow = (e.clientY / window.innerHeight) * (ROWS - 1);
+    setTiles(buildTiles(originCol, originRow));
   };
 
   useEffect(() => {
+    if (!tiles) return;
+
+    const url = new URL(href);
+    url.searchParams.set("enter", "flash");
+
+    let navigated = false;
+    const navigate = () => {
+      if (navigated) return;
+      navigated = true;
+      window.location.href = url.toString();
+    };
+
+    // Deterministico: se sabe de antemano cuanto va a tardar la ultima
+    // baldosa en terminar (delay maximo + duracion de cada una), asi
+    // que un unico setTimeout basta -- no hace falta escuchar el evento
+    // 'animationend' de 126 elementos.
+    const timer = window.setTimeout(navigate, maxDelay(tiles) + TILE_DURATION_MS + 150);
+    return () => window.clearTimeout(timer);
+  }, [tiles, href]);
+
+  useEffect(() => {
     const handlePageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) {
-        navigatedRef.current = false;
-        setIsClosed(false);
-        setIsTearing(false);
-      }
+      if (e.persisted) setTiles(null);
     };
     window.addEventListener("pageshow", handlePageShow);
     return () => window.removeEventListener("pageshow", handlePageShow);
   }, []);
-
-  // El overlay se monta condicionalmente en el JSX de abajo, arrancando
-  // en scale(0) (invisible). Necesita pintarse asi en un frame real
-  // ANTES de pasar a scale(1) -- si no, el navegador puede fusionar
-  // ambos estados en un solo frame y saltarse la transicion entera.
-  // Doble rAF: el primero espera al frame donde ya se pinto el estado
-  // inicial, el segundo dispara el cambio.
-  useEffect(() => {
-    if (!isTearing) return;
-
-    let rafId = requestAnimationFrame(() => {
-      rafId = requestAnimationFrame(() => setIsClosed(true));
-    });
-
-    // Red de seguridad: fuerza la navegacion pasado el tiempo maximo que
-    // puede durar el cierre (con margen), por si 'transitionend' no
-    // llegara a dispararse.
-    const safetyTimer = window.setTimeout(navigate, EXPAND_MS + 700);
-
-    return () => { cancelAnimationFrame(rafId); window.clearTimeout(safetyTimer); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isTearing, href]);
-
-  const { x: ox, y: oy } = originRef.current;
 
   return (
     <>
@@ -142,33 +160,39 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
         {children}
       </a>
 
-      {isTearing && createPortal(
-        <div className="fixed inset-0 z-[999] pointer-events-none" aria-hidden="true">
-          {/* El diafragma -- degradado radial centrado en el mismo
-              punto de origen, para que tambien parezca que el "brillo"
-              emana de donde se ha tocado. */}
+      {tiles && createPortal(
+        <>
+          <style>{`
+            @keyframes tearTileInX {
+              from { transform: perspective(900px) rotateX(90deg); opacity: 0; }
+              to   { transform: perspective(900px) rotateX(0deg); opacity: 1; }
+            }
+            @keyframes tearTileInY {
+              from { transform: perspective(900px) rotateY(90deg); opacity: 0; }
+              to   { transform: perspective(900px) rotateY(0deg); opacity: 1; }
+            }
+          `}</style>
           <div
-            onTransitionEnd={(e) => {
-              if (e.propertyName !== "transform") return;
-              // Diafragma cerrado del todo -- navega directamente, sin
-              // flash de por medio.
-              navigate();
-            }}
-            style={{
-              position: "fixed",
-              left: ox,
-              top: oy,
-              width: "250vmax",
-              height: "250vmax",
-              background: `radial-gradient(circle at center, #8c8378 0%, #171614 75%)`,
-              clipPath: BLADE_CLIP_PATH,
-              transform: isClosed
-                ? `translate(-50%, -50%) rotate(${CLOSE_ROTATE_DEG}deg) scale(1)`
-                : `translate(-50%, -50%) rotate(0deg) scale(0)`,
-              transition: `transform ${EXPAND_MS}ms cubic-bezier(.76,0,.24,1)`,
-            }}
-          />
-        </div>,
+            className="fixed inset-0 z-[999] pointer-events-none grid"
+            style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)`, gridTemplateRows: `repeat(${ROWS}, 1fr)` }}
+            aria-hidden="true"
+          >
+            {tiles.map((tile) => (
+              <div
+                key={tile.key}
+                style={{
+                  backgroundColor: tile.color,
+                  backfaceVisibility: "hidden",
+                  animationName: tile.keyframe,
+                  animationDuration: `${TILE_DURATION_MS}ms`,
+                  animationDelay: `${tile.delay}ms`,
+                  animationTimingFunction: "ease-out",
+                  animationFillMode: "both",
+                } as CSSProperties}
+              />
+            ))}
+          </div>
+        </>,
         document.body
       )}
     </>
