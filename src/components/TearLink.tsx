@@ -2,105 +2,80 @@ import { useEffect, useRef, useState, type ReactNode, type MouseEvent } from "re
 import { createPortal } from "react-dom";
 
 /**
- * TearLink — enlace que, al pulsarlo, cubre la pantalla con dos capas
- * de borde irregular (mismos colores/idea que el "shape overlays" de
- * Blake Bowen que se uso antes) que suben desde abajo hasta cubrir del
- * todo, y SOLO ENTONCES navega de verdad al destino.
+ * TearLink — enlace que, al pulsarlo, cubre la pantalla con una cortina
+ * liquida de dos capas (SVG, borde ondulado animado a mano via
+ * requestAnimationFrame, ver FIX "aparece ya a medio cubrir" mas abajo)
+ * que sube desde abajo hasta cubrir del todo, y SOLO ENTONCES navega de
+ * verdad al destino.
  *
  * FIX "el out lo tiene que hacer nada mas cargar la pagina web, no
- * antes": el retroceso (el "descubrir") pasa en la pagina de DESTINO,
- * nunca aqui -- ver entryTransition.js en el repo de la galeria. Aqui
- * SOLO se cubre, nunca se retrocede; el destino recibe ?enter=wave en
- * la URL para saber que tiene que arrancar ya cubierto.
+ * antes": un intento anterior hacia el retroceso (el "descubrir") AQUI,
+ * en esta misma pagina, antes de navegar -- pero eso no sirve de nada:
+ * el usuario ya se ha ido, nadie ve ese retroceso. El descubrir tiene
+ * que pasar en la pagina de DESTINO, justo al cargar ahi. Por eso:
+ * 1) aqui SOLO se cubre, nunca se retrocede.
+ * 2) el destino recibe un marcador en la URL (?enter=wave) para saber
+ *    que tiene que arrancar ya cubierto y hacer el descubrir el solo
+ *    (ver entryTransition.js en el repo de la galeria, que replica esta
+ *    misma tecnica en JS puro, sin GSAP, porque ese proyecto no lo usa).
+ *
+ * Tecnica base: "Shape overlays" de Blake Bowen
+ * (https://codepen.io/osublake/pen/BYwgBg) -- 2 <path> SVG cuyo borde se
+ * genera interpolando NUM_POINTS puntos de control con curvas bezier
+ * cubicas (ver renderPaths()); cada punto anima a su propio ritmo
+ * (delay aleatorio) para que el borde no suba en linea recta sino como
+ * una ola irregular, y los dos paths llevan ademas un desfase entre si
+ * (DELAY_PER_PATH) para el efecto de capas. Adaptado a un solo sentido
+ * (cubrir y navegar, no un toggle abrir/cerrar reutilizable y accionado
+ * por su propio click).
  *
  * FIX real (bug ya corregido en un intento anterior con otro efecto,
  * mismo problema de fondo aqui): portal a document.body -- cualquier
  * ancestro con transform/filter/backdrop-filter/will-change:transform
- * crea su propio containing block para descendientes fixed, asi que
- * sin portal el overlay podia quedar encajonado dentro de un ancestro
- * en vez de cubrir el viewport entero.
+ * (el Header lo tiene via backdrop-blur-md cuando esta scrolled) crea
+ * su propio containing block para descendientes fixed, asi que sin
+ * portal el overlay podia quedar encajonado dentro de un ancestro en
+ * vez de cubrir el viewport entero.
  *
  * FIX "si vas hacia atras se queda asi": 'pageshow' con persisted:true
- * resetea el overlay si la pagina se restaura desde la bfcache tras
- * pulsar Atras en el navegador.
+ * resetea el overlay (y los puntos de control) si la pagina se
+ * restaura desde la bfcache tras pulsar Atras en el navegador.
  *
- * FIX "aparece a medio cubrir / plana sin ola / se congela a medio
- * camino, distinto cada vez": version anterior animaba a mano, cuadro a
- * cuadro (primero via gsap.timeline(), luego via requestAnimationFrame
- * propio), 10 puntos de control por capa recalculando el 'd' de un
- * SVG en cada frame. En dispositivos reales el resultado era
- * inconsistente de formas distintas segun el dispositivo (confirmado
- * que NINGUNA prueba automatizada -- movil, escritorio, dos motores de
- * renderizado, CPU limitada a una sexta parte -- lograba reproducir lo
- * que se veia en capturas reales), señal de que el problema de fondo
- * era depender de JS por-frame en absoluto, no un bug puntual
- * concreto. Se elimina esa clase entera de fallo: la cortina es ahora
- * un SVG con el borde ondulado FIJO (curvas bezier generadas una vez al
- * arrancar con la MISMA formula que antes, ver randomWavePath() --
- * pero calculada una unica vez, no recalculada cuadro a cuadro) que se
- * desplaza con transform + transition CSS -- eso lo ejecuta el hilo de
- * composicion del navegador, no JavaScript, y no puede depender de
- * cuantos frames de rAF lleguen a ejecutarse ni de cuando llega el
- * primero. Se pierde el matiz de que cada punto crezca de forma
- * independiente en el tiempo (eso SI necesitaria JS por-frame), pero se
- * conserva el aspecto de ola liquida con curvas suaves en vez de picos
- * angulares -- pedido explicitamente tras el fix: "quiero la otra
- * animacion pero con ese fix".
+ * FIX "aparece ya a medio cubrir, nunca vacio": la version anterior
+ * usaba gsap.timeline() para animar los puntos, pero esta web tiene
+ * gsap.ticker.lagSmoothing(0) activo GLOBALMENTE (necesario para el
+ * sync con Lenis, ver App.tsx) -- eso desactiva la proteccion de GSAP
+ * contra saltos tras un bloqueo del hilo principal, asi que cualquier
+ * jank justo entre crear el timeline y su primer tick real (nada raro
+ * en un movil real, con Lenis y demas corriendo) se aplicaba de golpe:
+ * el primer frame que el usuario llegaba a ver ya podia estar bastante
+ * avanzado, sin pasar nunca por un frame realmente vacio. Se anima a
+ * mano con requestAnimationFrame midiendo el tiempo relativo al primer
+ * frame que de verdad se ejecuta (startTime se fija ahi, no antes) --
+ * misma tecnica ya usada sin problemas en entryTransition.js en la
+ * galeria: el primer frame visible es SIEMPRE t=0, sea cual sea el
+ * retraso previo.
  */
 
 const NUM_POINTS = 10;
-const JITTER_MAX = 20; // % de variacion del borde superior ondulado (0 = recto)
-const DURATION_MS = 900;
-const LAYER_DELAY_MS = 250; // desfase de la 2a capa, efecto de profundidad
+const NUM_PATHS = 2;
+const DELAY_POINTS_MAX = 0.3;
+const DELAY_PER_PATH = 0.25;
+const DURATION = 0.9;
 
-// p/cp de cada segmento solo dependen de NUM_POINTS (constante) -- igual
-// que en la version animada anterior, precalculados una sola vez.
+function freshPoints(): number[][] {
+  return Array.from({ length: NUM_PATHS }, () => Array(NUM_POINTS).fill(0));
+}
+
+// p/cp de cada segmento solo dependen de NUM_POINTS (constante), no de
+// los puntos animados -- precalculados una vez en vez de recalcularlos
+// en cada frame de renderPaths(), que en moviles de gama baja ya va
+// justo de rendimiento con el setAttribute('d', ...) en si.
 const SEGMENTS = Array.from({ length: NUM_POINTS - 1 }, (_, j) => {
   const p = ((j + 1) / (NUM_POINTS - 1)) * 100;
   const cp = p - (100 / (NUM_POINTS - 1)) / 2;
   return { p, cp };
 });
-
-// Misma interpolacion con curvas bezier cubicas que usaba renderPaths()
-// en la version animada (tecnica "shape overlays" de Blake Bowen), pero
-// llamada UNA sola vez con puntos de control aleatorios fijos, no en
-// cada frame -- de ahi que ya no pueda depender del framerate real del
-// dispositivo para verse bien.
-//
-// FIX "sale desde abajo del todo pero no sube correctamente": la
-// version animada usaba 100-punto porque cada punto CRECIA de 0 a 100
-// con el tiempo (0=nada cubierto, 100=todo cubierto). Esta forma es
-// ESTATICA -- no crece, solo se desplaza entera con translateY -- asi
-// que tiene que nacer ya "completa": el borde ondulado (punto, 0..
-// JITTER_MAX) cerca del BORDE SUPERIOR, y la forma rellena hasta abajo
-// del todo (V 100). Con el 100-punto de la version animada, la forma
-// solo llegaba a cubrir el JITTER_MAX% inferior de la pantalla como
-// mucho -- el resto (la mayoria de la pantalla) se quedaba transparente
-// pasase lo que pasase con la posicion.
-function randomWavePath(): string {
-  const rawPoints = Array.from({ length: NUM_POINTS }, () => Math.random() * JITTER_MAX);
-
-  // FIX "proporcion o forma rara": sin suavizar, dos puntos VECINOS
-  // podian sacar un valor muy distinto entre si (ej. 0 y JITTER_MAX) y
-  // la curva entre ambos se veia como un pico brusco y desproporcionado
-  // en vez de una ola organica -- mismo problema y mismo arreglo que ya
-  // se aplico a los retrasos de la version animada. Media movil de 3
-  // (con los vecinos existentes en los extremos): la forma sigue siendo
-  // irregular, pero correlada entre puntos contiguos.
-  const points = rawPoints.map((point, j) => {
-    const prev = rawPoints[j - 1] ?? point;
-    const next = rawPoints[j + 1] ?? point;
-    return (prev + point + next) / 3;
-  });
-
-  let d = `M 0 100 V ${points[0]} C`;
-  for (let j = 0; j < NUM_POINTS - 1; j++) {
-    const { p, cp } = SEGMENTS[j];
-    d += ` ${cp} ${points[j]} ${cp} ${points[j + 1]} ${p} ${points[j + 1]}`;
-  }
-  d += ` V 100 H 0`;
-  return d;
-}
 
 interface TearLinkProps {
   href: string;
@@ -111,17 +86,8 @@ interface TearLinkProps {
 
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
   const [isTearing, setIsTearing] = useState(false);
-  const [isCovering, setIsCovering] = useState(false);
-  const wavePaths = useRef<[string, string]>(["", ""]);
-  const navigatedRef = useRef(false);
-
-  const navigate = () => {
-    if (navigatedRef.current) return;
-    navigatedRef.current = true;
-    const url = new URL(href);
-    url.searchParams.set("enter", "wave");
-    window.location.href = url.toString();
-  };
+  const pathRefs = useRef<(SVGPathElement | null)[]>([]);
+  const pointsRef = useRef<number[][]>(freshPoints());
 
   const handleClick = (e: MouseEvent) => {
     // Click con modificador (abrir en pestana nueva, etc.) o boton
@@ -131,15 +97,13 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (isTearing) return;
-    wavePaths.current = [randomWavePath(), randomWavePath()];
     setIsTearing(true);
   };
 
   useEffect(() => {
     const handlePageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
-        navigatedRef.current = false;
-        setIsCovering(false);
+        pointsRef.current = freshPoints();
         setIsTearing(false);
       }
     };
@@ -147,26 +111,118 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     return () => window.removeEventListener("pageshow", handlePageShow);
   }, []);
 
-  // El overlay se monta condicionalmente en el JSX de abajo, arrancando
-  // en transform:translateY(100%) (fuera de pantalla). Necesita pintarse
-  // asi en un frame real ANTES de pasar a translateY(0) -- si no, el
-  // navegador puede fusionar ambos estados en un solo frame y saltarse
-  // la transicion entera. Doble rAF: el primero espera al frame donde ya
-  // se pinto el estado inicial, el segundo dispara el cambio.
+  // El overlay se monta condicionalmente en el JSX de abajo -- justo
+  // tras setIsTearing(true), React todavia NO ha actualizado el DOM,
+  // asi que las refs de los <path> seguirian siendo null si la
+  // animacion se lanzara ahi mismo. Dispararla aqui, en un effect que
+  // depende de isTearing, garantiza que los elementos reales ya existen.
   useEffect(() => {
     if (!isTearing) return;
 
-    let rafId = requestAnimationFrame(() => {
-      rafId = requestAnimationFrame(() => setIsCovering(true));
+    // Construye el atributo 'd' de cada path a partir de sus puntos de
+    // control actuales -- cada punto representa cuanto ha "crecido"
+    // hacia arriba desde el borde inferior (0 = nada, 100 = pantalla
+    // entera cubierta); la coordenada Y real de la ola es 100-punto.
+    const renderPaths = () => {
+      for (let i = 0; i < NUM_PATHS; i++) {
+        const path = pathRefs.current[i];
+        const points = pointsRef.current[i];
+        if (!path) continue;
+
+        let d = `M 0 100 V ${100 - points[0]} C`;
+        for (let j = 0; j < NUM_POINTS - 1; j++) {
+          const { p, cp } = SEGMENTS[j];
+          d += ` ${cp} ${100 - points[j]} ${cp} ${100 - points[j + 1]} ${p} ${100 - points[j + 1]}`;
+        }
+        d += ` V 100 H 0`;
+        path.setAttribute("d", d);
+      }
+    };
+
+    // El destino arranca ya "cubierto" y hace el descubrir el solo (ver
+    // entryTransition.js en la galeria) -- se le avisa por query param.
+    const url = new URL(href);
+    url.searchParams.set("enter", "wave");
+
+    // navigate() es idempotente: safetyTimer fuerza la navegacion pasado
+    // el tiempo maximo que puede durar la animacion (con margen), por si
+    // el repintado del SVG va mas lento que el bucle logico en algun
+    // movil de gama baja y el rAF nunca llega a reportar stillRunning=false.
+    let navigated = false;
+    const navigate = () => {
+      if (navigated) return;
+      navigated = true;
+      window.clearTimeout(safetyTimer);
+      window.location.href = url.toString();
+    };
+
+    const easePower2InOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+    // Un retraso aleatorio por punto (compartido entre los dos paths,
+    // para que la ola de ambos se corresponda) es lo que rompe la linea
+    // recta y la convierte en una ola irregular.
+    const rawDelay: number[] = [];
+    for (let j = 0; j < NUM_POINTS; j++) rawDelay[j] = Math.random() * DELAY_POINTS_MAX;
+
+    // FIX "se ve partida por el medio": sin suavizar, dos puntos
+    // VECINOS podian sacar un retraso muy distinto entre si (ej. 0 y
+    // 0.3s, sobre 0.9s de duracion total) -- a mitad de animacion uno
+    // iba casi lleno y el de al lado casi vacio, y la curva entre ambos
+    // se veia como un corte/muesca brusco en vez de una ola continua.
+    // Media movil de 3 (con los vecinos existentes en los extremos): los
+    // retrasos siguen siendo aleatorios e irregulares, pero correlados
+    // con sus vecinos inmediatos, sin saltos bruscos entre puntos contiguos.
+    const pointsDelay: number[] = rawDelay.map((delay, j) => {
+      const prev = rawDelay[j - 1] ?? delay;
+      const next = rawDelay[j + 1] ?? delay;
+      return (prev + delay + next) / 3;
     });
 
-    // Red de seguridad: fuerza la navegacion pasado el tiempo maximo que
-    // puede durar la transicion (con margen), por si 'transitionend' no
-    // llegara a dispararse por algun motivo.
-    const safetyTimer = window.setTimeout(navigate, DURATION_MS + LAYER_DELAY_MS + 600);
+    interface Tween { pathIndex: number; pointIndex: number; start: number }
+    const tweens: Tween[] = [];
+    for (let i = 0; i < NUM_PATHS; i++) {
+      const pathDelay = DELAY_PER_PATH * i; // el segundo path va detras del primero, efecto de capas
+      for (let j = 0; j < NUM_POINTS; j++) {
+        tweens.push({ pathIndex: i, pointIndex: j, start: pointsDelay[j] + pathDelay });
+      }
+    }
+
+    // startTime se fija en el PRIMER frame que de verdad se ejecuta, no
+    // al crear el efecto -- ver el FIX explicado en el comentario de
+    // cabecera del componente. Asi el primer frame visible es siempre
+    // t=0, nunca hereda un salto por un bloqueo previo del hilo principal.
+    let startTime: number | null = null;
+    let rafId = 0;
+    const tick = (now: number) => {
+      if (startTime === null) startTime = now;
+      const elapsed = (now - startTime) / 1000;
+      let stillRunning = false;
+
+      tweens.forEach((tw) => {
+        let localT = (elapsed - tw.start) / DURATION;
+        if (localT < 0) { stillRunning = true; return; }
+        if (localT >= 1) {
+          localT = 1;
+        } else {
+          stillRunning = true;
+        }
+        pointsRef.current[tw.pathIndex][tw.pointIndex] = 100 * easePower2InOut(localT);
+      });
+
+      renderPaths();
+
+      if (stillRunning) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        navigate();
+      }
+    };
+    rafId = requestAnimationFrame(tick);
+
+    const maxDelay = DELAY_PER_PATH * (NUM_PATHS - 1) + DELAY_POINTS_MAX;
+    const safetyTimer = window.setTimeout(navigate, (maxDelay + DURATION) * 1000 + 700);
 
     return () => { cancelAnimationFrame(rafId); window.clearTimeout(safetyTimer); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTearing, href]);
 
   return (
@@ -176,52 +232,28 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       </a>
 
       {isTearing && createPortal(
-        <div className="fixed inset-0 z-[999] pointer-events-none" aria-hidden="true">
-          {/* Colores de las dos paginas: tinta casi negra (esta web)
-              hacia el beige del portfolio de fotografia (destino), en
-              dos capas ligeramente desfasadas entre si. viewBox +
-              preserveAspectRatio:none hace que el path (en coordenadas
-              0-100) se estire para llenar el viewport real, sea cual
-              sea su tamaño -- por eso el SVG en vez de clip-path con
-              pixeles absolutos. */}
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            style={{
-              transform: isCovering ? "translateY(0%)" : "translateY(100%)",
-              transition: `transform ${DURATION_MS}ms cubic-bezier(.65,0,.35,1)`,
-            }}
-          >
-            <defs>
-              <linearGradient id="tearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#8c8378" />
-                <stop offset="100%" stopColor="#e8dfd0" />
-              </linearGradient>
-            </defs>
-            <path d={wavePaths.current[0]} fill="url(#tearGradient2)" />
-          </svg>
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            onTransitionEnd={(e) => {
-              if (e.propertyName === "transform") navigate();
-            }}
-            style={{
-              transform: isCovering ? "translateY(0%)" : "translateY(100%)",
-              transition: `transform ${DURATION_MS}ms cubic-bezier(.65,0,.35,1) ${LAYER_DELAY_MS}ms`,
-            }}
-          >
-            <defs>
-              <linearGradient id="tearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#171614" />
-                <stop offset="100%" stopColor="#8c8378" />
-              </linearGradient>
-            </defs>
-            <path d={wavePaths.current[1]} fill="url(#tearGradient1)" />
-          </svg>
-        </div>,
+        <svg
+          className="fixed inset-0 z-[999] pointer-events-none"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            {/* Colores de las dos paginas: tinta casi negra (esta web)
+                hacia el beige del portfolio de fotografia (destino),
+                en dos capas ligeramente desfasadas entre si. */}
+            <linearGradient id="tearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#171614" />
+              <stop offset="100%" stopColor="#8c8378" />
+            </linearGradient>
+            <linearGradient id="tearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#8c8378" />
+              <stop offset="100%" stopColor="#e8dfd0" />
+            </linearGradient>
+          </defs>
+          <path ref={(el) => { pathRefs.current[0] = el; }} fill="url(#tearGradient2)" />
+          <path ref={(el) => { pathRefs.current[1] = el; }} fill="url(#tearGradient1)" />
+        </svg>,
         document.body
       )}
     </>
