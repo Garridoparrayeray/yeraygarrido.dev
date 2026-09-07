@@ -35,26 +35,46 @@ import { createPortal } from "react-dom";
  * que se veia en capturas reales), señal de que el problema de fondo
  * era depender de JS por-frame en absoluto, no un bug puntual
  * concreto. Se elimina esa clase entera de fallo: la cortina es ahora
- * dos <div> con clip-path FIJO (forma irregular generada una vez al
- * arrancar, no recalculada) que se desplazan con transform + transition
- * CSS -- eso lo ejecuta el hilo de composicion del navegador, no
- * JavaScript, y no puede depender de cuantos frames de rAF lleguen a
- * ejecutarse ni de cuando llega el primero.
+ * un SVG con el borde ondulado FIJO (curvas bezier generadas una vez al
+ * arrancar con la MISMA formula que antes, ver randomWavePath() --
+ * pero calculada una unica vez, no recalculada cuadro a cuadro) que se
+ * desplaza con transform + transition CSS -- eso lo ejecuta el hilo de
+ * composicion del navegador, no JavaScript, y no puede depender de
+ * cuantos frames de rAF lleguen a ejecutarse ni de cuando llega el
+ * primero. Se pierde el matiz de que cada punto crezca de forma
+ * independiente en el tiempo (eso SI necesitaria JS por-frame), pero se
+ * conserva el aspecto de ola liquida con curvas suaves en vez de picos
+ * angulares -- pedido explicitamente tras el fix: "quiero la otra
+ * animacion pero con ese fix".
  */
 
-const NUM_POINTS = 8;
-const JITTER_MAX = 12; // % de variacion del borde superior irregular (0 = recto)
+const NUM_POINTS = 10;
+const JITTER_MAX = 20; // % de variacion del borde superior ondulado (0 = recto)
 const DURATION_MS = 900;
 const LAYER_DELAY_MS = 250; // desfase de la 2a capa, efecto de profundidad
 
-function randomClipPath(): string {
-  const points: string[] = [];
-  for (let i = 0; i < NUM_POINTS; i++) {
-    const x = (i / (NUM_POINTS - 1)) * 100;
-    const y = Math.random() * JITTER_MAX;
-    points.push(`${x}% ${y}%`);
+// p/cp de cada segmento solo dependen de NUM_POINTS (constante) -- igual
+// que en la version animada anterior, precalculados una sola vez.
+const SEGMENTS = Array.from({ length: NUM_POINTS - 1 }, (_, j) => {
+  const p = ((j + 1) / (NUM_POINTS - 1)) * 100;
+  const cp = p - (100 / (NUM_POINTS - 1)) / 2;
+  return { p, cp };
+});
+
+// Misma interpolacion con curvas bezier cubicas que usaba renderPaths()
+// en la version animada (tecnica "shape overlays" de Blake Bowen), pero
+// llamada UNA sola vez con puntos de control aleatorios fijos, no en
+// cada frame -- de ahi que ya no pueda depender del framerate real del
+// dispositivo para verse bien.
+function randomWavePath(): string {
+  const points = Array.from({ length: NUM_POINTS }, () => Math.random() * JITTER_MAX);
+  let d = `M 0 100 V ${100 - points[0]} C`;
+  for (let j = 0; j < NUM_POINTS - 1; j++) {
+    const { p, cp } = SEGMENTS[j];
+    d += ` ${cp} ${100 - points[j]} ${cp} ${100 - points[j + 1]} ${p} ${100 - points[j + 1]}`;
   }
-  return `polygon(${points.join(", ")}, 100% 100%, 0% 100%)`;
+  d += ` V 100 H 0`;
+  return d;
 }
 
 interface TearLinkProps {
@@ -67,7 +87,7 @@ interface TearLinkProps {
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
   const [isTearing, setIsTearing] = useState(false);
   const [isCovering, setIsCovering] = useState(false);
-  const clipPaths = useRef<[string, string]>(["", ""]);
+  const wavePaths = useRef<[string, string]>(["", ""]);
   const navigatedRef = useRef(false);
 
   const navigate = () => {
@@ -86,7 +106,7 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (isTearing) return;
-    clipPaths.current = [randomClipPath(), randomClipPath()];
+    wavePaths.current = [randomWavePath(), randomWavePath()];
     setIsTearing(true);
   };
 
@@ -134,30 +154,48 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
         <div className="fixed inset-0 z-[999] pointer-events-none" aria-hidden="true">
           {/* Colores de las dos paginas: tinta casi negra (esta web)
               hacia el beige del portfolio de fotografia (destino), en
-              dos capas ligeramente desfasadas entre si. */}
-          <div
+              dos capas ligeramente desfasadas entre si. viewBox +
+              preserveAspectRatio:none hace que el path (en coordenadas
+              0-100) se estire para llenar el viewport real, sea cual
+              sea su tamaño -- por eso el SVG en vez de clip-path con
+              pixeles absolutos. */}
+          <svg
+            className="absolute inset-0 w-full h-full"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
             style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to bottom, #8c8378 0%, #e8dfd0 100%)",
-              clipPath: clipPaths.current[0],
               transform: isCovering ? "translateY(0%)" : "translateY(100%)",
               transition: `transform ${DURATION_MS}ms cubic-bezier(.65,0,.35,1)`,
             }}
-          />
-          <div
+          >
+            <defs>
+              <linearGradient id="tearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#8c8378" />
+                <stop offset="100%" stopColor="#e8dfd0" />
+              </linearGradient>
+            </defs>
+            <path d={wavePaths.current[0]} fill="url(#tearGradient2)" />
+          </svg>
+          <svg
+            className="absolute inset-0 w-full h-full"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
             onTransitionEnd={(e) => {
               if (e.propertyName === "transform") navigate();
             }}
             style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to bottom, #171614 0%, #8c8378 100%)",
-              clipPath: clipPaths.current[1],
               transform: isCovering ? "translateY(0%)" : "translateY(100%)",
               transition: `transform ${DURATION_MS}ms cubic-bezier(.65,0,.35,1) ${LAYER_DELAY_MS}ms`,
             }}
-          />
+          >
+            <defs>
+              <linearGradient id="tearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#171614" />
+                <stop offset="100%" stopColor="#8c8378" />
+              </linearGradient>
+            </defs>
+            <path d={wavePaths.current[1]} fill="url(#tearGradient1)" />
+          </svg>
         </div>,
         document.body
       )}
