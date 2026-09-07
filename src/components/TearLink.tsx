@@ -3,13 +3,13 @@ import { createPortal } from "react-dom";
 
 /**
  * TearLink — "diafragma de camara": al pulsar, un octogono (aspas de
- * diafragma, como el bokeh de un objetivo) gira y crece a toda
- * velocidad desde el punto exacto donde se ha tocado, CERRANDO el
- * obturador sobre la pantalla, con un flash blanco justo al terminar de
- * cubrir -- y SOLO ENTONCES navega de verdad al destino (portfolio de
- * fotografia). Cuando esa pagina de destino carga, hace la mitad
- * inversa: aparece ya cerrada y el obturador SE ABRE (ver
- * entryTransition.js en la galeria), continuando el mismo giro.
+ * diafragma, como el bokeh de un objetivo) gira y crece, lento y
+ * deliberado, desde el punto exacto donde se ha tocado, CERRANDO el
+ * obturador sobre la pantalla -- y SOLO ENTONCES navega de verdad al
+ * destino (portfolio de fotografia). Cuando esa pagina de destino
+ * carga, hace la mitad inversa: aparece ya cerrada y el obturador SE
+ * ABRE (ver entryTransition.js en la galeria), continuando el mismo
+ * giro. Sin flash -- solo el gesto mecanico de las aspas.
  *
  * clip-path fijo (octogono, nunca recalculado) + transform:
  * translate+rotate+scale por CSS transition -- el punto de origen (el
@@ -55,11 +55,8 @@ import { createPortal } from "react-dom";
  * dispositivo real.
  */
 
-const EXPAND_MS = 1100; // duracion del cierre del diafragma
-const FLASH_PEAK_MS = 120; // subida del flash (rapida, "disparo")
-const FLASH_HOLD_MS = 120; // se mantiene un instante en el pico
-const FLASH_FADE_MS = 350; // bajada del flash
-const CLOSE_ROTATE_DEG = 40; // giro acumulado durante el cierre
+const EXPAND_MS = 1800; // duracion del cierre del diafragma -- lento y deliberado
+const CLOSE_ROTATE_DEG = 55; // giro acumulado durante el cierre
 
 // Octogono regular -- mismo "aspecto de diafragma/bokeh" reconocible en
 // fotografia. Forma FIJA, nunca recalculada: todo el movimiento lo hace
@@ -77,7 +74,6 @@ interface TearLinkProps {
 export default function TearLink({ href, className, ariaLabel, children }: TearLinkProps) {
   const [isTearing, setIsTearing] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
-  const [flashPeak, setFlashPeak] = useState(false);
   const originRef = useRef({ x: "50%", y: "50%" });
   const navigatedRef = useRef(false);
 
@@ -109,7 +105,6 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
       if (e.persisted) {
         navigatedRef.current = false;
         setIsClosed(false);
-        setFlashPeak(false);
         setIsTearing(false);
       }
     };
@@ -131,9 +126,9 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     });
 
     // Red de seguridad: fuerza la navegacion pasado el tiempo maximo que
-    // puede durar toda la secuencia (cierre + flash), por si algun
-    // 'transitionend' no llegara a dispararse.
-    const safetyTimer = window.setTimeout(navigate, EXPAND_MS + FLASH_PEAK_MS + FLASH_HOLD_MS + FLASH_FADE_MS + 700);
+    // puede durar el cierre (con margen), por si 'transitionend' no
+    // llegara a dispararse.
+    const safetyTimer = window.setTimeout(navigate, EXPAND_MS + 700);
 
     return () => { cancelAnimationFrame(rafId); window.clearTimeout(safetyTimer); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -155,13 +150,9 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
           <div
             onTransitionEnd={(e) => {
               if (e.propertyName !== "transform") return;
-              // Diafragma cerrado del todo -- dispara el flash: sube
-              // rapido (90ms), se mantiene un instante, baja (220ms), y
-              // SOLO ENTONCES navega -- mismo patron de siempre (estado
-              // + setTimeout, nada de rAF).
-              setFlashPeak(true);
-              window.setTimeout(() => setFlashPeak(false), FLASH_PEAK_MS + FLASH_HOLD_MS);
-              window.setTimeout(navigate, FLASH_PEAK_MS + FLASH_HOLD_MS + FLASH_FADE_MS);
+              // Diafragma cerrado del todo -- navega directamente, sin
+              // flash de por medio.
+              navigate();
             }}
             style={{
               position: "fixed",
@@ -174,18 +165,7 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
               transform: isClosed
                 ? `translate(-50%, -50%) rotate(${CLOSE_ROTATE_DEG}deg) scale(1)`
                 : `translate(-50%, -50%) rotate(0deg) scale(0)`,
-              transition: `transform ${EXPAND_MS}ms cubic-bezier(.7,0,.3,1)`,
-            }}
-          />
-          {/* Flash -- blanco, sube rapido tipo disparo de camara, baja
-              mas suave. */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "#fff",
-              opacity: flashPeak ? 1 : 0,
-              transition: `opacity ${flashPeak ? FLASH_PEAK_MS : FLASH_FADE_MS}ms ease-out`,
+              transition: `transform ${EXPAND_MS}ms cubic-bezier(.76,0,.24,1)`,
             }}
           />
         </div>,
