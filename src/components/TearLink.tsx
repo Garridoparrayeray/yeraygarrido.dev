@@ -66,12 +66,23 @@ const SEGMENTS = Array.from({ length: NUM_POINTS - 1 }, (_, j) => {
 // llamada UNA sola vez con puntos de control aleatorios fijos, no en
 // cada frame -- de ahi que ya no pueda depender del framerate real del
 // dispositivo para verse bien.
+//
+// FIX "sale desde abajo del todo pero no sube correctamente": la
+// version animada usaba 100-punto porque cada punto CRECIA de 0 a 100
+// con el tiempo (0=nada cubierto, 100=todo cubierto). Esta forma es
+// ESTATICA -- no crece, solo se desplaza entera con translateY -- asi
+// que tiene que nacer ya "completa": el borde ondulado (punto, 0..
+// JITTER_MAX) cerca del BORDE SUPERIOR, y la forma rellena hasta abajo
+// del todo (V 100). Con el 100-punto de la version animada, la forma
+// solo llegaba a cubrir el JITTER_MAX% inferior de la pantalla como
+// mucho -- el resto (la mayoria de la pantalla) se quedaba transparente
+// pasase lo que pasase con la posicion.
 function randomWavePath(): string {
   const points = Array.from({ length: NUM_POINTS }, () => Math.random() * JITTER_MAX);
-  let d = `M 0 100 V ${100 - points[0]} C`;
+  let d = `M 0 100 V ${points[0]} C`;
   for (let j = 0; j < NUM_POINTS - 1; j++) {
     const { p, cp } = SEGMENTS[j];
-    d += ` ${cp} ${100 - points[j]} ${cp} ${100 - points[j + 1]} ${p} ${100 - points[j + 1]}`;
+    d += ` ${cp} ${points[j]} ${cp} ${points[j + 1]} ${p} ${points[j + 1]}`;
   }
   d += ` V 100 H 0`;
   return d;
