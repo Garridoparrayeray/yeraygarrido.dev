@@ -55,9 +55,10 @@ import { createPortal } from "react-dom";
  * dispositivo real.
  */
 
-const EXPAND_MS = 550; // duracion del cierre del diafragma
-const FLASH_PEAK_MS = 90; // subida del flash (rapida, "disparo")
-const FLASH_FADE_MS = 220; // bajada del flash
+const EXPAND_MS = 1100; // duracion del cierre del diafragma
+const FLASH_PEAK_MS = 120; // subida del flash (rapida, "disparo")
+const FLASH_HOLD_MS = 120; // se mantiene un instante en el pico
+const FLASH_FADE_MS = 350; // bajada del flash
 const CLOSE_ROTATE_DEG = 40; // giro acumulado durante el cierre
 
 // Octogono regular -- mismo "aspecto de diafragma/bokeh" reconocible en
@@ -132,7 +133,7 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
     // Red de seguridad: fuerza la navegacion pasado el tiempo maximo que
     // puede durar toda la secuencia (cierre + flash), por si algun
     // 'transitionend' no llegara a dispararse.
-    const safetyTimer = window.setTimeout(navigate, EXPAND_MS + FLASH_PEAK_MS + FLASH_FADE_MS + 700);
+    const safetyTimer = window.setTimeout(navigate, EXPAND_MS + FLASH_PEAK_MS + FLASH_HOLD_MS + FLASH_FADE_MS + 700);
 
     return () => { cancelAnimationFrame(rafId); window.clearTimeout(safetyTimer); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,8 +160,8 @@ export default function TearLink({ href, className, ariaLabel, children }: TearL
               // SOLO ENTONCES navega -- mismo patron de siempre (estado
               // + setTimeout, nada de rAF).
               setFlashPeak(true);
-              window.setTimeout(() => setFlashPeak(false), FLASH_PEAK_MS + 80);
-              window.setTimeout(navigate, FLASH_PEAK_MS + 80 + FLASH_FADE_MS);
+              window.setTimeout(() => setFlashPeak(false), FLASH_PEAK_MS + FLASH_HOLD_MS);
+              window.setTimeout(navigate, FLASH_PEAK_MS + FLASH_HOLD_MS + FLASH_FADE_MS);
             }}
             style={{
               position: "fixed",
