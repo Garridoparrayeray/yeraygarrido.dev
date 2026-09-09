@@ -95,9 +95,9 @@ export default function Projects() {
       title: { es: "Zalbi Aisia", en: "Zalbi Aisia", eu: "Zalbi Aisia" },
       tech: "PHP 8, WordPress (_s), CPTs, ACF, Vanilla JS, CSS Grid",
       desc: {
-        es: "Plataforma corporativa y catálogo interactivo sin constructores visuales ni plantillas.",
-        en: "Corporate platform and interactive catalog without visual builders or templates.",
-        eu: "Plataforma korporatiboa eta katalogo interaktiboa, eraikitzaile bisualik edo txantiloirik gabe.",
+        es: "Plataforma corporativa desarrollada 100% a medida desde cero, fiel a la visión de negocio y el diseño exactos que buscaba el cliente.",
+        en: "Corporate platform built 100% from scratch, true to the exact business vision and design the client wanted.",
+        eu: "Bezeroak nahi zuen negozio-ikuspegi eta diseinu zehatzari jarraituz, hutsetik %100 pertsonalizatuta garatutako plataforma korporatiboa.",
       },
       link: "https://github.com/Garridoparrayeray/zalbi-theme",
       demoUrl: "https://zalbi.eu/",
@@ -143,30 +143,30 @@ export default function Projects() {
       images: ["/img/projects/portfolio_captura.webp", "/img/projects/all_proyects_portfolio.webp", "/img/projects/mobile_stack_view_portfolio.webp"],
     },
     {
-      id: "glocalium",
-      title: { es: "Glocalium Services", en: "Glocalium Services", eu: "Glocalium Services" },
-      tech: "WordPress, PHP 8, MySQL, Contact Form 7, Plugins GPLv2, SEO Técnico, Hostalia",
+      id: "bizkaibus",
+      title: { es: "BizkaiBus+", en: "BizkaiBus+", eu: "BizkaiBus+" },
+      tech: "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, Vercel Serverless, GitHub Actions",
       desc: {
-        es: "Web corporativa completa con dos plugins PHP propios: persistencia en BD relacional con visor admin y exportación automática a Google Sheets vía CRON + webhook.",
-        en: "Full corporate website with two custom PHP plugins: relational DB persistence with admin viewer and automatic export to Google Sheets via CRON + webhook.",
-        eu: "Web korporatiboa bi PHP plugin propiorekin: datu-basearen iraunkortasuna eta Google Sheets-era esportazio automatikoa.",
+        es: "App no oficial de Bizkaibus con horarios y seguimiento en vivo, dos temas visuales sobre el mismo motor, y una ETA propia calculada cruzando la posición real del bus con el horario.",
+        en: "Unofficial Bizkaibus app with timetables and live tracking, two visual themes on the same engine, and a custom ETA calculated by cross-referencing the bus's real position with the schedule.",
+        eu: "Bizkaibus-en app ez-ofiziala, ordutegi eta jarraipen bizian, bi tema bisual motore beraren gainean, eta autobusaren posizio erreala ordutegiarekin gurutzatuz kalkulatutako ETA propioa.",
       },
-      link: "https://github.com/Garridoparrayeray/wp_custom_scripts",
-      demoUrl: "https://glocalium.com/",
-      role: { es: "Full Stack WordPress Developer", en: "Full Stack WordPress Developer", eu: "Full Stack WordPress Garatzailea" },
-      year: "2025",
-      longDescChallenge: { 
-        es: "El cliente necesitaba reemplazar su web antigua por una plataforma profesional y requería automatizar la gestión de leads a una hoja de cálculo externa sin usar herramientas de pago. Debía integrar Contact Form 7 con una base de datos relacional MySQL y configurar un sistema de exportación automática sin costos mensuales.", 
-        en: "The client needed to replace their old site with a professional platform and required lead management automation to an external spreadsheet without using paid tools. Had to integrate Contact Form 7 with a MySQL relational database and set up an automatic export system without monthly costs.", 
-        eu: "Bezeroak web zaharra plataforma profesional batekin ordezkatu behar zuen eta lead-en kudeaketa automatizatzea behar zuen kanpoko kalkulu-orri batera, ordainpeko tresnarik erabili gabe. Contact Form 7 MySQL datu-base erlazional batekin integratu eta esportazio automatikoko sistema konfiguratu behar zen hilabeteko kosturik gabe." 
+      link: "https://github.com/Garridoparrayeray/bizkaibus-renewed",
+      demoUrl: "https://bizkaibus-renewed.vercel.app",
+      role: { es: "Full Stack (PHP + Vanilla JS)", en: "Full Stack (PHP + Vanilla JS)", eu: "Full Stack (PHP + Vanilla JS)" },
+      year: "2026",
+      longDescChallenge: {
+        es: "Empezó como un favor: a mi mujer no le convencía la app oficial de Bizkaibus, poco intuitiva y lenta de usar. El reto real llegó al construir el seguimiento en vivo: el feed SIRI-VM del operador no da una cuenta atrás lista para usar, solo la posición confirmada del bus y un retraso genérico que no siempre coincide con la realidad. A mitad de proyecto descubrí además que la fuente de datos estática que usaba llevaba más de un año sin actualizarse, así que un desvío real de temporada de verano era invisible para la app.",
+        en: "It started as a favor: my wife wasn't convinced by the official Bizkaibus app, unintuitive and slow to use. The real challenge came building live tracking: the operator's SIRI-VM feed doesn't give a ready-to-use countdown, only the bus's confirmed position and a generic delay figure that doesn't always match reality. Halfway through, I also found the static data source I was using hadn't been updated in over a year, so a real summer-season route detour was invisible to the app.",
+        eu: "Mesede gisa hasi zen: nire emazteari ez zitzaion gustatzen Bizkaibus-en app ofiziala, ez intuitiboa eta erabiltzeko motela. Benetako erronka jarraipen bizia eraikitzean iritsi zen: operadorearen SIRI-VM feed-ak ez du kontagailu bat ematen zuzenean erabiltzeko, autobusaren posizio baieztatua eta atzerapen generiko bat baino ez, ez dena beti errealitatearekin bat. Proiektuaren erdian, gainera, erabiltzen nuen datu-iturri estatikoa urte batetik gora eguneratu gabe zegoela aurkitu nuen.",
       },
-      longDescSolution: { 
-        es: "Programé dos plugins desde cero: uno para persistencia MySQL de Contact Form 7 con panel de administración para visualizar leads, y otro para exportación vía CRON job a Google Sheets mediante AppScript (webhook). Implementé SEO técnico con schema markup, optimización de imágenes y configuración de Hostalia para máxima velocidad.", 
-        en: "I programmed two plugins from scratch: one for MySQL persistence of Contact Form 7 with admin panel to view leads, and another for CRON job export to Google Sheets via AppScript (webhook). I implemented technical SEO with schema markup, image optimization and Hostalia configuration for maximum speed.", 
-        eu: "Bi plugin programatu nituen hutsetik: bata Contact Form 7-ren MySQL iraunkortasunerako eta lead-ak ikusteko administratzaile-panela, eta bestea CRON job bidezko Google Sheets-era esportaziorako AppScript (webhook) bidez. SEO teknikoa egin nuen schema markup eta irudi-optimizazioarekin." 
+      longDescSolution: {
+        es: "Backend PHP nativo separado por capas (Controllers/Models/Services) que precompila el horario oficial (GTFS) a un fichero SQLite en cada build — sin parseo en producción ni servidor de base de datos que mantener, ideal para serverless (Vercel). Para el seguimiento en vivo cruzo la posición confirmada del feed SIRI-VM con el horario parada a parada para calcular una ETA propia, en vez de fiarme de un único retraso plano para todo el trayecto. Migré la fuente estática de NeTEx (congelada) a GTFS (activamente mantenida) y automaticé la reconstrucción diaria vía GitHub Actions, con una comprobación que aborta el despliegue si el feed descargado indica que su propia temporada ya venció. Todo sobre dos temas visuales completos (uno personal, uno público) con el mismo HTML/JS, resueltos en el cliente antes del primer pintado.",
+        en: "Native PHP backend split into layers (Controllers/Models/Services) that precompiles the official schedule (GTFS) into a SQLite file at build time — no parsing in production, no database server to maintain, ideal for serverless (Vercel). For live tracking I cross-reference the SIRI-VM feed's confirmed position with the stop-by-stop schedule to compute my own ETA instead of trusting a single flat delay for the whole trip. I migrated the static source from NeTEx (frozen) to GTFS (actively maintained) and automated a daily rebuild via GitHub Actions, with a check that aborts the deploy if the downloaded feed's own season has already expired. All running on two complete visual themes (one personal, one public) over the exact same HTML/JS, resolved client-side before first paint.",
+        eu: "PHP backend natiboa, geruzatan banatuta (Controllers/Models/Services), ordutegi ofiziala (GTFS) SQLite fitxategi batean aurrekonpilatzen duena build bakoitzean — produkzioan parseorik gabe, mantendu beharreko datu-base zerbitzaririk gabe, serverless-erako aproposa (Vercel). Jarraipen bizirako, SIRI-VM feed-aren posizio baieztatua ordutegiarekin gurutzatzen dut geltoki-geltoki ETA propioa kalkulatzeko. NeTEx iturri estatikotik (izoztuta) GTFS-ra (aktiboki mantendua) migratu nuen, eta GitHub Actions bidez eguneroko berreraikitzea automatizatu nuen. Proiektu osoak bi tema bisual osatu ditu (pertsonala eta publikoa) HTML/JS berdinaren gainean.",
       },
-      imageUrl: "/img/projects/glocalium_captura.webp",
-      images: ["/img/projects/glocalium_captura.webp", "/img/projects/glocalium_mobile_services.webp", "/img/projects/glocalium_scroll_up_with_accesibility.webp"],
+      imageUrl: "/img/projects/bizkaibus_captura.png",
+      images: ["/img/projects/bizkaibus_captura.png", "/img/projects/bizkaibus_mobile_view.png", "/img/projects/bizkaibus_miamor_theme.png"],
     }
   ];
 
@@ -185,11 +185,34 @@ export default function Projects() {
     }
   };
 
+  // FIX "esa barra lateral pequeña no funciona" (indicador de paginacion
+  // abajo): asumia que cada tarjeta ocupa TODO el ancho visible
+  // (scrollLeft/clientWidth), cierto en movil (w-[82vw], casi el ancho
+  // entero) pero falso en escritorio (w-[45vw] con varias tarjetas
+  // parcialmente visibles a la vez) -- el indice calculado no
+  // correspondia con la tarjeta realmente centrada. Ahora se busca cual
+  // [data-project-card] tiene su centro mas cerca del centro del
+  // contenedor visible, igual de correcto sin importar cuantas tarjetas
+  // quepan a la vez.
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const { scrollLeft, clientWidth } = scrollRef.current;
     containerWidthRef.current = clientWidth;
-    setActiveIndex(Math.round(scrollLeft / clientWidth));
+
+    const items = scrollRef.current.querySelectorAll('[data-project-card]');
+    const containerCenter = scrollLeft + clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    items.forEach((item, i) => {
+      const el = item as HTMLElement;
+      const itemCenter = el.offsetLeft + el.offsetWidth / 2;
+      const distance = Math.abs(itemCenter - containerCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = i;
+      }
+    });
+    setActiveIndex(closestIndex);
   };
 
   const openProjectsModal = () => { setModalTab('portfolio'); setIsModalOpen(true); setActiveIndex(projects.length); };
