@@ -28,7 +28,19 @@
       "es": "Backend PHP con arquitectura ligera (Core/Models), MySQL como base de datos y un flujo móvil independiente construido a mano (Home con foto aleatoria, selección de categoría, Reels a pantalla completa con swipe, mosaico de miniaturas) sin ningún framework de front. Para el problema de memoria, sustituí la generación de miniaturas en caliente por Imagick con decodificación por muestreo reducido, y sobre todo moví la generación al momento de subir cada foto desde el panel de administración: cada miniatura se crea una sola vez, en un proceso aislado, en vez de competir por memoria con otras peticiones concurrentes de visitantes reales. Añadí también incrustación de metadatos IPTC (autoría y copyright) en cada descarga y despliegue en Hostinger con detección automática de entorno, para que el mismo código sirva en local y en producción sin credenciales expuestas en el repositorio.",
       "en": "PHP backend with a lightweight architecture (Core/Models), MySQL as the database, and an independent hand-built mobile flow (Home with a random photo, category picker, full-screen Reels with swipe, thumbnail mosaic) with no front-end framework. For the memory issue, I replaced on-demand thumbnail generation with Imagick using reduced-sample decoding, and more importantly moved generation to the moment each photo is uploaded from the admin panel: every thumbnail is created once, in an isolated process, instead of competing for memory with concurrent real-visitor requests. I also added IPTC metadata embedding (authorship and copyright) on every download, and deployed to Hostinger with automatic environment detection, so the same code serves both local and production without exposing credentials in the repository.",
       "eu": "PHP backend-a arkitektura arinarekin (Core/Models), MySQL datu-base gisa, eta eskuz eraikitako mugikorreko fluxu independentea (Home ausazko argazkiarekin, kategoria-hautatzailea, Reels pantaila osoan swipe-arekin, miniaturen mosaikoa), front-end frameworkrik gabe. Memoria-arazoarekiko, eskariaren araberako miniatura-sorrera Imagick-ekin ordezkatu nuen, laginketa murriztuko dekodifikazioarekin, eta batez ere sorrera argazki bakoitza administrazio-paneletik igotzen den unera eraman nuen: miniatura bakoitza behin bakarrik sortzen da, prozesu isolatu batean, benetako bisitarien aldiberekotasun-eskaerekin memoria lehiatu beharrean. IPTC metadatuak ere gehitu nituen (egiletza eta copyright) deskarga bakoitzean, eta Hostinger-en zabaldu nuen ingurunea automatikoki detektatzen duen konfigurazioarekin."
-    }
+    
+    },
+    "images": [
+      "/img/projects/fto.webp",
+      "/img/projects/archive_mobile1.webp",
+      "/img/projects/archive_mobile2.webp",
+      "/img/projects/archive_mobile3.webp",
+      "/img/projects/archive1.webp",
+      "/img/projects/archive2.webp",
+      "/img/projects/archive3.webp",
+      "/img/projects/archive4.webp",
+      "/img/projects/archive5.webp"
+    ]
   },
   {
     "id": "gastroaccess",
