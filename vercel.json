@@ -1,4 +1,14 @@
 {
+  "rewrites": [
+    {
+      "source": "/art-gallery",
+      "destination": "https://archive.yeraygarrido.dev/"
+    },
+    {
+      "source": "/art-gallery/:match*",
+      "destination": "https://archive.yeraygarrido.dev/:match*"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
