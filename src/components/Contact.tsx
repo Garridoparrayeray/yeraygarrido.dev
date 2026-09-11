@@ -65,7 +65,7 @@ export default function Contact() {
               {t('contact.email')}
             </div>
           </a>
-          <a href="www.linkedin.com/in/yeray-garrido" target="_blank" rel="noreferrer" className="flex-1 flex group w-full cursor-pointer" aria-label={t('header.linkedinAria')}>
+          <a href="https://www.linkedin.com/in/yeray-garrido" target="_blank" rel="noreferrer" className="flex-1 flex group w-full cursor-pointer" aria-label={t('header.linkedinAria')}>
             <div className="bg-black border border-black w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shrink-0 group-hover:bg-white transition-colors duration-300">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-black transition-colors duration-300"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
             </div>
