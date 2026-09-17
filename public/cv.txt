@@ -1,70 +1,111 @@
 ================================================================================
-                              YERAY GARRIDO
-                  Software Engineer & Full Stack Developer
+                         YERAY GARRIDO PARRA
+              Ingeniero de Software & Desarrollador Full Stack
 ================================================================================
 
-[ CONTACT ]
-Email: garridoparrayeraytx@gmail.com
-GitHub: https://github.com/Garridoparrayeray
-Location: Bilbao, Spain
+[ CONTACTO ]
+Teléfono: +34 622 945 185
+Email:    garridoparrayeraytx@gmail.com
+Web:      https://yeraygarrido.dev
+GitHub:   https://github.com/Garridoparrayeray
+LinkedIn: https://www.linkedin.com/in/yeray-garrido
+Lugar:    Bilbao, Bizkaia, Spain
+Carnet:   Permiso B
 
-[ ABOUT ME ]
-Software Engineer and Full Stack Developer specializing in PHP, Java, MySQL,
-and custom WordPress (_s). I build scalable, optimized, and custom web solutions.
+[ PERFIL PROFESIONAL ]
+Ingeniero de software especializado en Backend, con amplias competencias en
+Frontend, diseño de sistemas y gestión integral de proyectos. Me diferencio
+por evitar el Low-Code, priorizando el desarrollo nativo desde cero para
+construir soluciones escalables, rápidas y seguras. Mi base técnica combina
+el rigor de la gestión de memoria en C (Metodología 42) con arquitecturas
+avanzadas en Java y PHP 8. Acostumbrado a resolver problemas complejos de
+lógica de negocio (ERPs, flotas de transporte, APIs Open Data) operando
+al 100% en entornos Linux.
 
-[ TECH STACK ]
-- Backend:   Java, PHP, MySQL
-- Frontend:  JavaScript, TypeScript, React, HTML5, CSS3
-- Tools:     Git, Figma, Vite
-- CMS:       WordPress (Custom Themes & Plugins)
+[ HABILIDADES TÉCNICAS ]
+- Ingeniería & Backend:        Java 21 (POO, Virtual Threads, JNI), PHP 8.x (Arquitectura nativa), C (Algoritmia, Memoria)
+- IA Aplicada:                 IA Generativa para desarrollo, Arquitecturas RAG, LLMs
+- Despliegue de IA Local:      Ollama, Modelos locales con privacidad total
+- I+D Machine Learning:        Sistemas RAG a medida, Fine-Tuning de modelos
+- Sistemas, Redes & Seguridad: Linux (Bash, Arch), Ciberseguridad, Hacking Ético
+- Frontend, UI/UX:             JavaScript (Vanilla, GSAP), Tailwind CSS, Figma, React 19, TypeScript, Vite, API REST
+- Bases de Datos:              MySQL 8, MariaDB, SQLite
+- Herramientas:                Git, GitHub, CI/CD, Jira, Trello, Scrum
 
-[ EXPERIENCE ]
+[ EXPERIENCIA PROFESIONAL ]
 
-> Software Engineer @ Horión Castillo Ingeniería Informática SL (Jun 2026 - Present)
-  [Dual Vocational Training]
-  Software Engineer working primarily in PHP, building custom enterprise
-  software solutions end-to-end. Developed modules for a proprietary ERP
-  (Horión Enterprise) with a multi-tenant PHP architecture and custom router
-  pattern, including a full email outbox module (sent email history with
-  filters and pagination, binary attachment download from database, and
-  resend with new file uploads) and binary output buffering — plus legacy
-  frontend support in vanilla JS with MooTools.
+> Ingeniero de Software @ Horion Castillo Ingeniería Informática SL (Jun. 2026 - Actualidad)
+  [Formación Dual | Bizkaia (Remoto)]
+  Desarrollo de módulos core para Horión Enterprise (ERP propietario)
+  implementando arquitectura PHP multi-tenant escalable.
+  - Diseño de enrutamiento MVC propio, gestión de output buffering binario
+    y sistemas avanzados de persistencia de datos.
+  - Creación de un módulo integral de buzón de salida con historial de logs,
+    descarga directa desde BBDD y reenvío automático de adjuntos.
+  - Refactorización y mantenimiento de interfaces legacy en Vanilla JS con MooTools.
 
-> Freelance Full Stack Developer (Jan 2025 - Jun 2026)
-  [Self-Employed]
-  Custom web architecture and Full Stack solutions prioritizing extreme
-  performance (WPO), scalability, and user experience.
-  - Zalbi Aisia: custom WordPress CMS with CPTs, taxonomic filtering,
-    Polylang i18n, CI/CD via Webhooks.
-  - yeraygarrido.dev: React 19 SPA, 100/100 Lighthouse, GSAP animations,
-    GDPR-compliant cookie system.
+> Desarrollador Java (Freelance) @ Ayuntamiento de Bermeo (May. 2026 - Jun. 2026)
+  [Freelance | Bermeo, Bizkaia]
+  Ingeniería y programación de un Sistema de Gestión de Objetos Perdidos
+  End-to-End en metodología ágil (sprint de 15 días).
+  - Aplicación de escritorio en Swing/JavaFX para personal administrativo
+    y portal web interactivo para consulta ciudadana.
+  - Arquitectura de alta disponibilidad: BD SQL en servidor con clúster de
+    persistencia local de respaldo y automatización de backups.
 
-> Web Administrator & Plugin Developer @ Glocalium Services SL (Apr 2025 - Jun 2025)
-  [Internship]
-  Developed two Contact Form 7 extensions from scratch: a CSV Exporter with
-  data sanitization and a DB Persistence system with MySQL storage and admin
-  viewer. Server migration management, automated backups, security auditing,
-  and UI/UX prototyping in Figma.
+> Desarrollador Web Full Stack (Freelance) (Ene. 2025 - Jun. 2026)
+  [Iniciativas Independientes | Bilbao, Bizkaia]
+  - Zalbi Aisia: CMS nativa con CPTs, filtrado taxonómico asíncrono y
+    estrategias GEO/SEO adaptadas al cliente.
+  - yeraygarrido.dev: SPA en React 19, 100/100 Lighthouse, portfolio técnico.
+  - archive.yeraygarrido.dev: App web a medida con UI/UX exclusivo y sistema
+    de administración en PHP para portfolio fotográfico.
 
-> Web Developer @ Asociación Educativa Reciclanet (Mar 2022 - Apr 2022)
-  [Internship]
-  Maintenance and update of the organization website, ensuring correct
-  content display and structure.
+> Administrador Web y Desarrollador de Plugins @ Glocalium Services SL (Abr. 2025 - Jun. 2025)
+  [Prácticas | Bilbao, Bizkaia]
+  - Ingeniería de extensiones PHP: motor de exportación CSV y sistema de
+    persistencia DB segura en MySQL.
+  - Gestión de infraestructura: despliegues automatizados, auditorías de
+    ciberseguridad y prototipado UI en Figma.
 
-[ EDUCATION ]
+[ PROYECTOS DESTACADOS ]
 
-> DAW — Higher Degree in Web App Development @ CIFP Zornotza LHII (2024 - Present)
-  Higher Technician Degree in Web Application Development (Dual VET track).
+> Ecosistema Open Data (BizkaiBus+ / Metro+)
+  PWA de movilidad predictiva en tiempo real. Precompilación automatizada de
+  datos GTFS a SQLite local (arquitectura zero-load en servidor) cruzando
+  flujos SIRI-VM/SIRI-SX en vivo. SPA en Vanilla JS, PHP 8 y Leaflet.
 
-> Level 3 Professional Certificate (2021 - 2022)
-  Web Application Development — Fundación EDE. Score: 9/10.
-  Official certification in frontend and backend development, database
-  management, and web application deployment.
+> GastroAccess Euskadi
+  SPA (React, TypeScript, Vite) que consume APIs de Open Data Euskadi mediante
+  algoritmos propios para evaluar la accesibilidad real en hostelería.
 
-> Software Engineering Student @ 42 Urduliz (2022 - 2023)
-  Peer-to-peer methodology with no teachers. Focused on C programming,
-  algorithms, memory management, and system architecture fundamentals.
+[ FORMACIÓN ACADÉMICA ]
+
+> Técnico Superior en DAW (FP Dual) @ CIFP Zornotza LHII (2024 - 2027)
+  Amorebieta-Etxano
+
+> Piscina de Programación y Core Curriculum (C, Algoritmos, SO Linux)
+  @ 42 Urduliz (Fundación Telefónica) (2022 - 2023)
+  Bizkaia
+
+> Certificado de Profesionalidad Nivel 3 (Desarrollo Web)
+  @ Fundación EDE (2021 - 2022)
+  Bilbao | Nota media: 9.0/10 (590h)
+
+[ CERTIFICACIONES ADICIONALES ]
+- Ciberseguridad y Hacking Ético (BIG School, 2026)
+- SEO y GEO Avanzado (Webpositer, 2026)
+
+[ IDIOMAS ]
+- Euskera:    Competencia Nativa
+- Castellano: Competencia Nativa
+- Inglés:     Competencia de comunicación fluída
+
+[ SOFT SKILLS ]
+Altamente resolutivo ante incidencias operativas críticas en tiempo real.
+Pensamiento analítico y capacidad de aprendizaje tecnológico autónomo y acelerado.
 
 ================================================================================
-"Code is like humor. When you have to explain it, it's bad." - Cory House
+  CV legible por máquina (XML API): https://yeraygarrido.dev/cv.xml
+  "Code is like humor. When you have to explain it, it's bad." - Cory House
 ================================================================================
