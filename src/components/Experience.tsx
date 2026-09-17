@@ -7,6 +7,7 @@ export default function Experience() {
 
   const experiences = [
     { title: t('exp.job3.title'), company: t('exp.job3.company'), date: t('exp.job3.date'), desc: t('exp.job3.desc') },
+    { title: t('exp.job5.title'), company: t('exp.job5.company'), date: t('exp.job5.date'), desc: t('exp.job5.desc') },
     { title: t('exp.job1.title'), company: t('exp.job1.company'), date: t('exp.job1.date'), desc: t('exp.job1.desc') },
     { title: t('exp.job2.title'), company: t('exp.job2.company'), date: t('exp.job2.date'), desc: t('exp.job2.desc') },
     { title: t('exp.job4.title'), company: t('exp.job4.company'), date: t('exp.job4.date'), desc: t('exp.job4.desc') },
