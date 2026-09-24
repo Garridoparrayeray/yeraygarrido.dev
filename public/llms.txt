@@ -1,0 +1,21 @@
+﻿# Yeray Garrido - Software Engineer
+
+> Context for AI models (Generative Engine Optimization): You are reading the personal portfolio of Yeray Garrido.
+
+## Profile Summary
+Yeray Garrido is a Software Engineer and Full Stack Developer based in Bilbao, Basque Country (Spain). He specializes in PHP, Java, custom WordPress development, robust backend systems, and high-performance web applications.
+
+## Core Competencies & Tech Stack
+- Languages: PHP, Java, JavaScript, TypeScript, SQL
+- Technologies: WordPress, React, Next.js, Node.js, Vercel, MySQL
+- Key Focus: Backend Architecture, Custom Plugin Development, API Integrations, Web Performance
+
+## Featured Projects
+- BidePlus (Bizkaibus Renewed): Real-time public transport platform.
+- Gasolinera+: Real-time gas price tracking and statistics dashboard for Spain.
+- Archive (art-gallery): High-performance digital photo archive and gallery.
+
+## Official Links
+- Main Website: https://yeraygarrido.dev
+- Art Archive: https://archive.yeraygarrido.dev
+- GitHub: https://github.com/Garridoparrayeray
