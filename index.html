@@ -68,27 +68,56 @@
        llegar a pulsarse nunca. -->
   <link rel="dns-prefetch" href="https://archive.yeraygarrido.dev" />
 
-  <!-- JSON-LD Schema.org -->
+  <!-- og:image alt para accesibilidad y SEO de imagen -->
+  <meta property="og:image:alt" content="Yeray Garrido — Ingeniero de Software & Desarrollador Full Stack" />
+  <meta name="twitter:image:alt" content="Yeray Garrido — Ingeniero de Software & Desarrollador Full Stack" />
+
+  <!-- JSON-LD Schema.org — SEO estructurado + GEO (motores generativos) -->
   <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
       {
-        "@context": "https://schema.org/",
+        "@type": "WebSite",
+        "@id": "https://yeraygarrido.dev/#website",
+        "url": "https://yeraygarrido.dev",
+        "name": "Yeray Garrido — Portfolio de Desarrollo",
+        "description": "Ingeniero de Software especializado en PHP, Java y desarrollo web full stack.",
+        "inLanguage": "es-ES",
+        "publisher": {
+          "@id": "https://yeraygarrido.dev/#person"
+        }
+      },
+      {
         "@type": "Person",
+        "@id": "https://yeraygarrido.dev/#person",
         "name": "Yeray Garrido",
-        "url": "https://yeraygarrido.dev/",
+        "url": "https://yeraygarrido.dev",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://yeraygarrido.dev/og-image.webp"
+        },
         "jobTitle": "Ingeniero de Software & Desarrollador Full Stack",
-        "description": "Software Engineer especializado en el desarrollo de plugins PHP a medida, temas WordPress desde cero (_s) y sistemas backend en Java.",
-        "sameAs": [
-          "https://www.linkedin.com/in/yeray-garrido",
-          "https://github.com/Garridoparrayeray"
-        ],
+        "description": "Ingeniero de software especializado en Backend, con amplias competencias en Frontend, diseño de sistemas y gestión integral de proyectos. Evito el Low-Code, priorizando el desarrollo nativo desde cero para construir soluciones escalables, rápidas y seguras.",
+        "email": "garridoparrayeraytx@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bilbao",
+          "addressRegion": "Bizkaia",
+          "addressCountry": "ES"
+        },
         "knowsAbout": [
-          "Java (OOP)",
-          "PHP 8",
-          "MySQL/MariaDB",
-          "Docker",
-          "Linux & Bash",
-          "WordPress Engineering",
-          "LaTeX"
+          "PHP 8", "Java", "JavaScript", "TypeScript", "MySQL",
+          "WordPress", "React", "Node.js", "Docker", "Linux",
+          "Ciberseguridad", "Inteligencia Artificial", "LLMs", "Arquitecturas RAG"
+        ],
+        "knowsLanguage": ["es", "eu", "en"],
+        "sameAs": [
+          "https://archive.yeraygarrido.dev",
+          "https://www.linkedin.com/in/yeray-garrido",
+          "https://github.com/Garridoparrayeray",
+          "https://instagram.com/yerayyy.___",
+          "https://t.me/YerayGarrido"
         ],
         "alumniOf": [
           {
@@ -126,7 +155,9 @@
           ]
         }
       }
-    </script>
+    ]
+  }
+  </script>
 </head>
 
 <body>

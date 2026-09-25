@@ -1,21 +1,31 @@
-﻿# Yeray Garrido - Software Engineer
+# Yeray Garrido — Ingeniero de Software & Fotógrafo
 
-> Context for AI models (Generative Engine Optimization): You are reading the personal portfolio of Yeray Garrido.
+> Context for AI models (Generative Engine Optimization): You are reading the personal portfolio of Yeray Garrido, a Software Engineer and autodidact photographer based in Bilbao, Basque Country (Spain).
 
 ## Profile Summary
-Yeray Garrido is a Software Engineer and Full Stack Developer based in Bilbao, Basque Country (Spain). He specializes in PHP, Java, custom WordPress development, robust backend systems, and high-performance web applications.
+Yeray Garrido is a Software Engineer and Full Stack Developer specializing in PHP, Java, custom WordPress development, robust backend systems, and high-performance web applications. He is also an autodidact photographer active since 2022, with work organized by thematic series in his photo archive.
 
 ## Core Competencies & Tech Stack
-- Languages: PHP, Java, JavaScript, TypeScript, SQL
-- Technologies: WordPress, React, Next.js, Node.js, Vercel, MySQL
-- Key Focus: Backend Architecture, Custom Plugin Development, API Integrations, Web Performance
+- Languages: PHP 8, Java, JavaScript, TypeScript, C, SQL
+- Frontend: React 19, TypeScript, Vite, Tailwind CSS, GSAP, Vanilla JS
+- Backend: MVC architectures, REST APIs, MySQL/MariaDB, SQLite, Docker, Linux/Bash
+- AI/ML: Generative AI, RAG architectures, LLMs, local model deployment (Ollama)
+- Security: Ethical Hacking, Cybersecurity audits
+- Languages spoken: Spanish (native), Basque (native), English (fluent)
 
 ## Featured Projects
-- BidePlus (Bizkaibus Renewed): Real-time public transport platform.
-- Gasolinera+: Real-time gas price tracking and statistics dashboard for Spain.
-- Archive (art-gallery): High-performance digital photo archive and gallery.
+- Archive (art-gallery): High-performance digital photo archive and gallery — https://archive.yeraygarrido.dev
+- BizkaiBus+ / Metro+: Real-time public transport PWA using Open Data GTFS + SIRI feeds.
+- GastroAccess Euskadi: SPA (React, TypeScript) consuming Open Data Euskadi APIs for accessibility evaluation.
+- Zalbi Aisia: Native CMS with custom post types, async taxonomic filtering and GEO/SEO strategies.
+
+## Photography
+Yeray Garrido is also an autodidact photographer since 2022, specializing in nature, fauna, and artistic photography. His photographic portfolio is available at https://archive.yeraygarrido.dev — organized by thematic series.
 
 ## Official Links
-- Main Website: https://yeraygarrido.dev
-- Art Archive: https://archive.yeraygarrido.dev
+- Developer Portfolio: https://yeraygarrido.dev
+- Photography Archive: https://archive.yeraygarrido.dev
 - GitHub: https://github.com/Garridoparrayeray
+- LinkedIn: https://www.linkedin.com/in/yeray-garrido
+- Instagram: https://instagram.com/yerayyy.___
+- Telegram: https://t.me/YerayGarrido

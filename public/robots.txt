@@ -1,4 +1,22 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /img/linkedin_Perfil_photo.pdf
+
+# AI / LLM crawlers — permitidos explícitamente
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Recursos para motores generativos (GEO)
+# llms.txt: resumen fáctico para LLMs — https://llmstxt.org
+# cv.json: CV estructurado en JSON — legible por máquinas
 
 Sitemap: https://yeraygarrido.dev/sitemap.xml
