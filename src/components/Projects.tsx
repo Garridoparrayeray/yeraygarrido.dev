@@ -307,11 +307,13 @@ export default function Projects() {
               <button
                 key={i}
                 onClick={() => scrollToProject(i)}
-                className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeIndex === i ? 'w-6 bg-white' : 'w-1 bg-white/30 hover:bg-white/60'
-                }`}
+                className={`group p-2 cursor-pointer touch-manipulation`}
                 aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
-              />
+              >
+                <div className={`h-1 rounded-full transition-all duration-300 ${
+                  activeIndex === i ? 'w-6 bg-white' : 'w-1 bg-white/30 group-hover:bg-white/60'
+                }`} />
+              </button>
             ))}
           </div>
         </div>

@@ -14,18 +14,18 @@ Yeray Garrido is a Software Engineer and Full Stack Developer specializing in PH
 - Languages spoken: Spanish (native), Basque (native), English (fluent)
 
 ## Featured Projects
-- Archive (art-gallery): High-performance digital photo archive and gallery — https://archive.yeraygarrido.dev
+- Archive (art-gallery): High-performance digital photo archive and gallery — [archive.yeraygarrido.dev](https://archive.yeraygarrido.dev)
 - BizkaiBus+ / Metro+: Real-time public transport PWA using Open Data GTFS + SIRI feeds.
 - GastroAccess Euskadi: SPA (React, TypeScript) consuming Open Data Euskadi APIs for accessibility evaluation.
 - Zalbi Aisia: Native CMS with custom post types, async taxonomic filtering and GEO/SEO strategies.
 
 ## Photography
-Yeray Garrido is also an autodidact photographer since 2022, specializing in nature, fauna, and artistic photography. His photographic portfolio is available at https://archive.yeraygarrido.dev — organized by thematic series.
+Yeray Garrido is also an autodidact photographer since 2022, specializing in nature, fauna, and artistic photography. His photographic portfolio is available at [archive.yeraygarrido.dev](https://archive.yeraygarrido.dev) — organized by thematic series.
 
 ## Official Links
-- Developer Portfolio: https://yeraygarrido.dev
-- Photography Archive: https://archive.yeraygarrido.dev
-- GitHub: https://github.com/Garridoparrayeray
-- LinkedIn: https://www.linkedin.com/in/yeray-garrido
-- Instagram: https://instagram.com/yerayyy.___
-- Telegram: https://t.me/YerayGarrido
+- Developer Portfolio: [yeraygarrido.dev](https://yeraygarrido.dev)
+- Photography Archive: [archive.yeraygarrido.dev](https://archive.yeraygarrido.dev)
+- GitHub: [Garridoparrayeray](https://github.com/Garridoparrayeray)
+- LinkedIn: [yeray-garrido](https://www.linkedin.com/in/yeray-garrido)
+- Instagram: [yerayyy.___](https://instagram.com/yerayyy.___)
+- Telegram: [YerayGarrido](https://t.me/YerayGarrido)
