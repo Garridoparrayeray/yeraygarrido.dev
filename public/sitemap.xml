@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Portfolio de desarrollo -->
+  <!-- Portfolio principal (SPA React) -->
   <url>
     <loc>https://yeraygarrido.dev/</loc>
     <lastmod>2026-09-25</lastmod>
@@ -9,12 +9,44 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- CV en XML estructurado — indexable directamente sin JS (SEO + GEO) -->
+  <url>
+    <loc>https://yeraygarrido.dev/cv.xml</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- CV en texto plano — legible por cualquier crawler y LLM -->
+  <url>
+    <loc>https://yeraygarrido.dev/cv.txt</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CV en JSON estructurado — para APIs y motores generativos -->
+  <url>
+    <loc>https://yeraygarrido.dev/cv.json</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- llms.txt — contexto fáctico para LLMs (GEO) -->
+  <url>
+    <loc>https://yeraygarrido.dev/llms.txt</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Galería fotográfica — sitio hermano -->
   <url>
     <loc>https://archive.yeraygarrido.dev/</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
