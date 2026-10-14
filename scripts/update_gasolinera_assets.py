@@ -147,3 +147,4 @@ if __name__ == "__main__":
     process_screenshots()
     generate_orange_gasolinera_gif()
     print("ALL GASOLINERA+ ASSETS UPDATED SUCCESSFULLY!")
+
