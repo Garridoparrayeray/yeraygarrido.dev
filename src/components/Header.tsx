@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 py-2 ${scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/10" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 py-4 md:py-6 ${scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/10" : "bg-transparent"}`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <a
@@ -37,32 +37,32 @@ export default function Header() {
           <img
             src="/img/logo.webp"
             alt={t("header.logoAlt")}
-            width="72"
-            height="48"
-            className="h-12 md:h-14 w-auto hover:scale-105 transition-transform object-contain"
+            width="90"
+            height="60"
+            className="h-14 md:h-16 lg:h-20 w-auto hover:scale-105 transition-transform object-contain"
           />
         </a>
 
-        <div className="flex items-center gap-6 md:gap-8">
-          <div className="hidden md:flex items-center gap-5">
+        <div className="flex items-center gap-6 md:gap-10">
+          <div className="hidden md:flex items-center gap-6">
             <a
               href="https://github.com/Garridoparrayeray"
               target="_blank"
               rel="noreferrer"
-              className="header-item text-white/60 hover:text-white transition-colors"
+              className="header-item text-white/80 hover:text-white transition-colors"
               aria-label={t("header.githubAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-5 h-5"
+                className="w-6 h-6 md:w-7 md:h-7"
               >
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path>
               </svg>
@@ -71,20 +71,20 @@ export default function Header() {
               href="https://linkedin.com/in/yeray-garrido/"
               target="_blank"
               rel="noreferrer"
-              className="header-item text-white/60 hover:text-white transition-colors"
+              className="header-item text-white/80 hover:text-white transition-colors"
               aria-label={t("header.linkedinAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-5 h-5"
+                className="w-6 h-6 md:w-7 md:h-7"
               >
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                 <rect width="4" height="12" x="2" y="9"></rect>
@@ -93,20 +93,20 @@ export default function Header() {
             </a>
             <a
               href="mailto:garridoparrayeraytx@gmail.com"
-              className="header-item text-white/60 hover:text-white transition-colors"
+              className="header-item text-white/80 hover:text-white transition-colors"
               aria-label={t("header.emailAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-5 h-5"
+                className="w-6 h-6 md:w-7 md:h-7"
               >
                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -114,20 +114,20 @@ export default function Header() {
             </a>
             <TearLink
               href="https://archive.yeraygarrido.dev"
-              className="header-item text-white/60 hover:text-white transition-colors"
+              className="header-item text-white/80 hover:text-white transition-colors"
               ariaLabel={t("header.photographyAria")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-5 h-5"
+                className="w-6 h-6 md:w-7 md:h-7"
               >
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
                 <circle cx="12" cy="13" r="4"></circle>
@@ -135,7 +135,7 @@ export default function Header() {
             </TearLink>
           </div>
 
-          <div className="hidden md:block header-item w-px h-6 bg-white/20"></div>
+          <div className="hidden md:block header-item w-px h-8 bg-white/30"></div>
 
           {/* Selector de Idiomas */}
           <div className="relative header-item flex flex-col items-center">
@@ -145,19 +145,19 @@ export default function Header() {
               aria-expanded={isLangMenuOpen}
               aria-haspopup="true"
               aria-label={t("header.switchLanguage")} // <--- TRADUCIDO
-              className="flex items-center justify-center gap-1.5 font-sans text-xs tracking-widest uppercase font-bold px-4 py-2 border border-white/20 hover:bg-white hover:text-black transition-all duration-300 text-white min-w-[72px]"
+              className="flex items-center justify-center gap-2 font-sans text-sm md:text-base tracking-widest uppercase font-bold px-5 py-2.5 md:px-6 md:py-3 border border-white/30 hover:border-white hover:bg-white hover:text-black transition-all duration-300 text-white min-w-[84px] md:min-w-[96px] cursor-pointer"
             >
               <span>{language}</span>
               <svg
-                className={`w-3 h-3 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${isLangMenuOpen ? "rotate-180" : ""}`}
+                className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] ${isLangMenuOpen ? "rotate-180" : ""}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                strokeWidth={2.5}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
@@ -165,7 +165,7 @@ export default function Header() {
 
             {/* Menú Desplegable */}
             <div
-              className={`absolute top-full mt-2 w-full bg-black/95 backdrop-blur-md border border-white/20 flex flex-col overflow-hidden origin-top transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+              className={`absolute top-full mt-2 w-full bg-black/95 backdrop-blur-md border border-white/30 flex flex-col overflow-hidden origin-top transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
                 ${isLangMenuOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"}`}
             >
               {languages.map((lang, index) => (
@@ -175,9 +175,9 @@ export default function Header() {
                     setLanguage(lang.code as any);
                     setIsLangMenuOpen(false);
                   }}
-                  className={`font-sans text-xs tracking-widest uppercase font-bold py-3 w-full text-center transition-colors duration-200 
+                  className={`font-sans text-sm md:text-base tracking-widest uppercase font-bold py-3 md:py-3.5 w-full text-center transition-colors duration-200 cursor-pointer
                     ${index !== languages.length - 1 ? "border-b border-white/10" : ""}
-                    ${language === lang.code ? "bg-white text-black" : "text-white/60 hover:text-white hover:bg-white/10"}`}
+                    ${language === lang.code ? "bg-white text-black" : "text-white/70 hover:text-white hover:bg-white/10"}`}
                 >
                   {lang.label}
                 </button>
