@@ -43,6 +43,32 @@ export default function Projects() {
   const l = (text: LocalizedText) =>
     text[language as keyof LocalizedText] || text.es;
 
+  const renderTitle = (title: string) => {
+    if (!title.includes("+")) return title;
+    const parts = title.split("+");
+    let plusColor = "text-[#FF7A1A]";
+    if (/bide/i.test(title)) {
+      plusColor = "text-[#C8102E]";
+    } else if (/gasolinera/i.test(title)) {
+      plusColor = "text-[#FF7A1A]";
+    }
+
+    return (
+      <>
+        {parts.map((part, idx) => (
+          <span key={idx}>
+            {part}
+            {idx < parts.length - 1 && (
+              <span className={`inline-block animate-plus-spin origin-center ml-0.5 ${plusColor}`}>
+                +
+              </span>
+            )}
+          </span>
+        ))}
+      </>
+    );
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTab, setModalTab] = useState<'portfolio' | 'github'>('portfolio');
   const [activeProject, setActiveProject] = useState<FeaturedProject | null>(null);
@@ -165,7 +191,7 @@ export default function Projects() {
         en: "Native PHP backend with clean layered architecture (Controllers/Models/Services) precompiling official GTFS feeds daily into an embedded SQLite database at build time — zero database server latency, optimal for Vercel serverless. Engineered a proprietary ETA algorithm projecting real-time bus GPS telemetry onto geometric route paths stop-by-stop, cutting arrival estimation error from ~5 minutes down to sub-1.5 minutes. Includes live service alerts, offline PWA caching for recent searches, two visual themes, and bilingual support (ES/EU).",
         eu: "PHP backend natiboa geruzatan antolatua (Controllers/Models/Services), egunero GTFS datu ofizialak build-ean txertatutako SQLite datu-base batera aurrekonpilatzen duena — kanpoko datu-basearen latentziarik gabe, Vercel serverless arkitekturarako ezin hobea. ETA algoritmo propioa garatu nuen: autobusaren GPS posizioa ibilbide geometrikoaren gainean kokatzen du geltokiz geltoki, errore-marjina 5 minututik 1.5 minutu baino gutxiagora murriztuz. Gertakarien abisuak denbora errealean, lineaz kanpoko PWA katxea, bi tema bisual eta elebitasuna (ES/EU) biltzen ditu.",
       },
-      imageUrl: "/img/projects/bideplus_desktop.webp",
+      imageUrl: "/img/projects/bideplus_loading.gif",
       images: [
         "/img/projects/bideplus_loading.gif",
         "/img/projects/bideplus_desktop.webp",
@@ -179,10 +205,83 @@ export default function Projects() {
         "/img/projects/bizkaibus_mobile_view.png",
         "/img/projects/bizkaibus_miamor_theme.png"
       ],
+    },
+    {
+      id: "gasolinera-plus",
+      title: { es: "Gasolinera+", en: "Gasolinera+", eu: "Gasolinera+" },
+      tech: "PHP 8 (API REST), HTML5, CSS3, Vanilla JS, Geolocation API, MITECO Open Data, Leaflet, Canvas",
+      desc: {
+        es: "Buscador y comparador en tiempo real de precios de combustible en España (MITECO), con gestor de vehículos y consumo, ordenador de viaje en vivo con velocímetro y mapa interactivo de calor.",
+        en: "Real-time fuel price finder and comparator across Spain (MITECO), featuring vehicle telemetry & fuel logging, live trip computer with speedometer, and interactive price heatmap.",
+        eu: "Espainia osoko erregai-prezioak denbora errealean bilatu eta alderatzeko tresna (MITECO), ibilgailuen kudeaketarekin, kontsumo-kontrolekin, denbora errealeko bidaia-ordenagailuarekin eta bero-maparekin.",
+      },
+      link: "https://github.com/Garridoparrayeray/gasolinera-plus",
+      role: { es: "Full Stack (PHP + Vanilla JS)", en: "Full Stack (PHP + Vanilla JS)", eu: "Full Stack (PHP + Vanilla JS)" },
+      year: "2025",
+      longDescChallenge: {
+        es: "Encontrar el combustible más económico en ruta suele depender de aplicaciones lentas, sobrecargadas de publicidad o con datos desfasados. Además, los conductores carecen de herramientas integradas para monitorizar el gasto real de su propio vehículo (depósito restante, coste por kilómetro, histórico de repostajes) y registrar sus trayectos sin depender de servicios de terceros que recopilan telemetría privada. El reto fue crear una suite de movilidad ultrarrápida, con identidad visual oscura y acento naranja (#FF7A1A), sin publicidad invasiva y con almacenamiento y geolocalización client-side respetuosos al 100% con la privacidad.",
+        en: "Finding the cheapest fuel usually involves ad-heavy, sluggish apps or outdated information. Furthermore, drivers lack lightweight privacy-respecting tools to log personal vehicle metrics (tank levels, cost per km, fill-up history) and track live road trips without invasive cloud telematics. The challenge was building an ultra-fast, zero-ad mobility suite in a dark theme with vibrant orange branding (#FF7A1A), running entirely client-side for maximum speed and privacy.",
+        eu: "Erregai merkeena aurkitzeak sarritan publizitatez betetako edo datu zaharrak dituzten aplikazio motelak erabiltzea eskatzen du. Gainera, gidariek ez dituzte ibilgailuaren gastu propioa kudeatzeko tresna arinak (gainerako erregaia, kilometroko kostua, birkargak) eta telemetria pribatua erregistratzeko aukerarik. Erronka mugikortasun-suite ultra-azkarra sortzea zen, estilo ilunarekin eta laranja biziarekin (#FF7A1A), publizitaterik gabe eta bezero-aldeko pribatutasun osoarekin."
+      },
+      longDescSolution: {
+        es: "Arquitectura Full Stack sin dependencias pesadas: backend PHP nativo que consulta, normaliza y cachea los datos oficiales del Ministerio para más de 11.400 estaciones de servicio en todo el país (Gasóleo A, Gasolina 95, 98, GLP, etc.). En el cliente, una SPA ultrarrápida en Vanilla JS con: 1) Buscador geolocalizado y mapa interactivo con clusters y capas de mapa de calor de precios; 2) Módulo de Garaje/Coche para control de depósitos, histórico de repostajes, medias de consumo (L/100km) y exportación gráfica a imagen y PDF; y 3) Ordenador de a bordo para trayectos ('Grabando viaje') con velocímetro digital en tiempo real (km/h), cálculo de distancia, tiempo y velocidad media sin consumo excesivo de batería.",
+        en: "Zero-dependency Full Stack architecture: native PHP backend querying, normalizing, and caching live official Ministry feeds for over 11,400 fuel stations across Spain (Gasóleo A, Gasoline 95, 98, LPG). On the frontend, a snappy vanilla JS SPA featuring: 1) Geolocation finder and interactive map with station clusters and price heatmap layers; 2) 'Coche' vehicle telemetry hub tracking fuel tank capacity, fill-ups, average L/100km consumption, and summary export to image/PDF; and 3) Live onboard trip computer with digital speedometer (km/h), elapsed time, distance, and average speed.",
+        eu: "Menpekotasunik gabeko Full Stack irtenbidea: PHP natiboko backend-a Ministerioko 11.400 gasolindegiren datu ofizialak normalizatzeko eta katxeatzeko. Bezeroan, Vanilla JS SPA azkarra: 1) Geokokapen bidezko bilatzailea eta mapa interaktiboa bero-mapa geruzekin; 2) 'Coche' garaje-modulua depozituaren jarraipenerako, birkargak, batez besteko kontsumoa (L/100km) eta irudi/PDF esportazioa; eta 3) Denbora errealeko bidaia-ordenagailua abiadura-neurgailu digitalarekin (km/h), distantzia eta denbora kalkuluarekin."
+      },
+      imageUrl: "/img/projects/gasolinera_loading.gif",
+      images: [
+        "/img/projects/gasolinera_loading.gif",
+        "/img/projects/gasolinera_desktop.webp",
+        "/img/projects/gasolinera_coche_desktop.webp",
+        "/img/projects/gasolinera_mobile.webp",
+        "/img/projects/gasolinera_viaje_mobile.webp"
+      ],
+    },
+    {
+      id: "card-psa-tracker",
+      title: { es: "Pokémon Card PSA Tracker", en: "Pokémon Card PSA Tracker", eu: "Pokémon Card PSA Tracker" },
+      tech: "Vanilla JS, CSS3 Moderno, Animaciones Keyframes, Pokédex UI Design, Figma",
+      desc: {
+        es: "App de seguimiento y tasación de cartas coleccionables Pokémon graduadas por PSA, con interfaz temática Pokédex, animaciones dinámicas y panel analítico. Demo no completada con datos en vivo debido a que la API de mercado pasó a ser de pago.",
+        en: "Graded Pokémon card tracking and valuation app with authentic Pokédex UI styling, custom keyframe animations, and portfolio analytics. Live market demo paused as the underlying pricing API switched to a paid subscription model.",
+        eu: "PSA-k graduatutako Pokemon txartelen jarraipen eta balorazio aplikazioa, Pokédex interfazearekin, animazioekin eta analitika-panelarekin. Datu bizien demoa ez da osatu merkatuko APIa ordainpeko eredura igaro zelako."
+      },
+      link: "https://github.com/Garridoparrayeray/card_psa_tracker",
+      demoUrl: "https://garridoparrayeray.github.io/card_psa_tracker/",
+      role: { es: "UI/UX Designer & Frontend Developer", en: "UI/UX Designer & Frontend Developer", eu: "UI/UX Diseinatzailea & Frontend Garatzailea" },
+      year: "2025",
+      longDescChallenge: {
+        es: "El sector del coleccionismo de cartas coleccionables Pokémon y su certificación profesional (PSA, BGS) carece de herramientas con una identidad visual atractiva. El objetivo fue diseñar una experiencia inmersiva basada en la Pokédex original (lente de zafiro superior, Pokéballs giratorias, temas de color Claro y Oscuro, estadísticas de colección y fluctuaciones de precio). Sin embargo, durante la fase de integración con proveedores de datos de mercado (precios históricos y tasaciones), las APIs de terceros eliminaron sus planes gratuitos y pasaron a modelos de suscripción de alto coste, imposibilitando mantener la demo interactiva en tiempo real en producción sin un coste recurrente elevado.",
+        en: "Graded collectible card trading (PSA, BGS) often relies on generic, uninspired portals. The goal was to build a tailored collector hub reflecting the iconic Pokédex aesthetic (sapphire camera lens, animated spinning Pokéball loaders, Light/Dark theme switching, portfolio valuations, and price deltas). However, during external market integration, target card pricing APIs sunsetted their free developer tiers in favor of expensive commercial subscriptions, preventing a full free production rollout with real-time data.",
+        eu: "Graduatutako Pokemon txartelen merkatuak nortasun gutxiko interfaze arruntak izaten ditu. Helburua Pokédex originalean oinarritutako esperientzia murgiltzaile bat sortzea zen (goiko zafiro-lentea, Pokéball birakariak, Gai Argi eta Ilunak, bildumaren balioa eta prezio-aldaketak). Hala ere, merkatuko prezioen datu-hornitzaileek doako sarbidea kendu eta ordainpeko harpidetza garestietara pasa ziren, produkzioko zuzeneko datuen demoa doan mantentzea galaraziz."
+      },
+      longDescSolution: {
+        es: "A pesar de la barrera de costes de la API externa, se completó de manera íntegra el diseño visual y el prototipo funcional de la aplicación en HTML5, CSS3 modular y Vanilla JS. Incorpora animaciones CSS de alta precisión (giro de Pokéball, skeleton loaders), sistema de cambio de tema en caliente mediante variables CSS, selector de grados PSA (1 a 10), métricas de revalorización y diseño adaptable para móvil y escritorio. El prototipo interactivo se encuentra publicado y accesible en GitHub Pages como muestra de diseño UI/UX y maquetación avanzada, con capturas completas de la experiencia tanto en ordenador como en móvil.",
+        en: "Despite external API paywalls, the full visual design system and functional UI prototype were fully implemented using modern HTML5, modular CSS3, and Vanilla JS. It features high-precision keyframe animations (spinning Pokéballs, skeleton loaders), dynamic runtime theme switching via CSS custom properties, PSA grade selectors (1-10), portfolio valuation breakdowns, and responsive mobile-first ergonomics. The interactive UI prototype is live on GitHub Pages, accompanied by comprehensive desktop and mobile visual captures showcasing the craft.",
+        eu: "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
+      },
+      imageUrl: "/img/projects/pokemon_pokeball_loading.gif",
+      images: [
+        "/img/projects/pokemon_pokeball_loading.gif",
+        "/img/projects/psa_card_fullscreen_desktop.webp",
+        "/img/projects/psa_card_fullscreen_mobile.webp",
+        "/img/projects/psa_dark_desktop.webp",
+        "/img/projects/psa_dark_mobile.webp",
+        "/img/projects/psa_admin_menu_desktop.webp",
+        "/img/projects/psa_admin_menu_mobile.webp",
+        "/img/projects/psa_admin_dark_desktop.webp",
+        "/img/projects/psa_admin_light_desktop.webp",
+        "/img/projects/psa_collection_desktop.webp",
+        "/img/projects/psa_collection_mobile.webp",
+        "/img/projects/psa_home_desktop.webp",
+        "/img/projects/psa_stats_desktop.webp"
+      ],
     }
   ];
 
-  const allManualProjects = [...projects, ...(otherProjectsData as FeaturedProject[])];
+  const allManualProjects = Array.from(
+    new Map([...projects, ...(otherProjectsData as FeaturedProject[])].map(p => [p.id, p])).values()
+  );
 
   const scrollToProject = (index: number) => {
     if (!scrollRef.current) return;
@@ -277,6 +376,14 @@ export default function Projects() {
         .animate-modal { animation: modalEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+        @keyframes plus-spin {
+          0% { transform: rotate(0deg) scale(1); }
+          60% { transform: rotate(360deg) scale(1.15); }
+          100% { transform: rotate(360deg) scale(1); }
+        }
+        .animate-plus-spin {
+          animation: plus-spin 0.8s ease-in-out infinite;
+        }
       `}</style>
 
       <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col relative z-10 border-t border-white/10 pb-8 md:pb-24 overflow-hidden">
@@ -295,18 +402,18 @@ export default function Projects() {
                   <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors">
                     {p.imageUrl && <img src={p.imageUrl} alt={l(p.title)} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />}
                     <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </div>
                     <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10">{p.year}</span>
                   </div>
-                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">{l(p.title)}</h3>
+                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">{renderTitle(l(p.title))}</h3>
                   <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed">{l(p.desc)}</p>
                 </div>
               ))}
               <div data-project-card onClick={openProjectsModal} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
                 <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
                   <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   </div>
                 </div>
                 <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors">{t("projects.viewAll")}</h3>
@@ -368,12 +475,12 @@ export default function Projects() {
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                        <span className="font-sans text-xs uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 backdrop-blur-sm px-4 py-2 border border-white/20">Ver más</span>
+                        <span className="font-sans text-xs uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 backdrop-blur-sm px-4 py-2 border border-white/20">+ Ver más</span>
                       </div>
                     </div>
                     <div className="p-4 sm:p-6 flex flex-col flex-1">
                       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-1">
-                        <h3 className="font-wide text-base sm:text-lg text-white uppercase text-center sm:text-left w-full sm:w-auto">{l(p.title)}</h3>
+                        <h3 className="font-wide text-base sm:text-lg text-white uppercase text-center sm:text-left w-full sm:w-auto">{renderTitle(l(p.title))}</h3>
                         <span className="font-sans text-xs text-white/30 shrink-0 w-full sm:w-auto text-center sm:text-right">{p.year}</span>
                       </div>
                       <p className="font-sans text-xs text-white/50 flex-1 line-clamp-3 leading-relaxed text-justify">{l(p.desc)}</p>
@@ -439,7 +546,7 @@ export default function Projects() {
             </button>
             <div className="flex items-center gap-4">
               <span className="font-wide text-sm md:text-lg font-bold uppercase text-white tracking-widest truncate max-w-[45vw] text-right">
-                {l(activeProject.title)}
+                {renderTitle(l(activeProject.title))}
               </span>
               <button 
                 onClick={() => setActiveProject(null)}
@@ -462,14 +569,14 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 </>
               )}
-              {!activeProject.imageUrl && !(activeProject.images && activeProject.images[0]) && <div className="font-display text-4xl md:text-8xl uppercase text-white/5">{l(activeProject.title)}</div>}
+              {!activeProject.imageUrl && !(activeProject.images && activeProject.images[0]) && <div className="font-display text-4xl md:text-8xl uppercase text-white/5">{renderTitle(l(activeProject.title))}</div>}
             </div>
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-6 sm:pt-10 md:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 md:gap-16 pb-16">
               <div className="lg:col-span-8 flex flex-col gap-8 md:gap-16">
                 <div className="space-y-4 md:space-y-5">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-3">
-                    <h1 className="font-wide text-5xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{l(activeProject.title)}</h1>
+                    <h1 className="font-wide text-5xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{renderTitle(l(activeProject.title))}</h1>
                     <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 shrink-0">{activeProject.year}</span>
                   </div>
                   <p className="font-sans text-lg md:text-xl text-white/70 leading-relaxed">{l(activeProject.desc)}</p>
