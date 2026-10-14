@@ -323,42 +323,108 @@ export default function Projects() {
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
-  useEffect(() => {
-    if (!isDragging) return;
-    const handleGlobalMouseUp = () => {
-      setIsDragging(false);
-      setTimeout(() => {
-        hasMovedRef.current = false;
-      }, 50);
-    };
-    window.addEventListener("mouseup", handleGlobalMouseUp);
-    return () => window.removeEventListener("mouseup", handleGlobalMouseUp);
-  }, [isDragging]);
+  const isPointerDownRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragStartScrollLeftRef = useRef(0);
+  const lastXRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const velocityRef = useRef(0);
+  const hasMovedRef = useRef(false);
 
-  const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
-    if (!scrollRef.current) return;
-    setIsDragging(true);
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Only respond to main button (left click) or touch/pen
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const el = scrollRef.current;
+    if (!el) return;
+
+    isPointerDownRef.current = true;
     hasMovedRef.current = false;
-    dragStartX.current = e.pageX - scrollRef.current.offsetLeft;
-    dragScrollLeft.current = scrollRef.current.scrollLeft;
-  };
+    dragStartXRef.current = e.clientX;
+    dragStartScrollLeftRef.current = el.scrollLeft;
+    lastXRef.current = e.clientX;
+    lastTimeRef.current = performance.now();
+    velocityRef.current = 0;
 
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !scrollRef.current) return;
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - dragStartX.current) * 1.2;
-    if (Math.abs(walk) > 6) {
-      hasMovedRef.current = true;
+    // Capture pointer events so dragging works even outside container bounds
+    try {
+      el.setPointerCapture(e.pointerId);
+    } catch {
+      // ignore
     }
-    scrollRef.current.scrollLeft = dragScrollLeft.current - walk;
   };
 
-  const handleMouseUpOrLeave = () => {
-    if (!isDragging) return;
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDownRef.current || !scrollRef.current) return;
+    const el = scrollRef.current;
+    const deltaX = e.clientX - dragStartXRef.current;
+
+    // Threshold of 5px to distinguish click from drag
+    if (!hasMovedRef.current && Math.abs(deltaX) > 5) {
+      hasMovedRef.current = true;
+      setIsDragging(true);
+      // Temporarily disable CSS scroll-snap so dragging is 100% smooth and doesn't snap back mid-drag
+      el.style.scrollSnapType = 'none';
+      el.style.scrollBehavior = 'auto';
+    }
+
+    if (hasMovedRef.current) {
+      const now = performance.now();
+      const dt = now - lastTimeRef.current;
+      if (dt > 0) {
+        velocityRef.current = (e.clientX - lastXRef.current) / dt;
+      }
+      lastXRef.current = e.clientX;
+      lastTimeRef.current = now;
+
+      el.scrollLeft = dragStartScrollLeftRef.current - deltaX;
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isPointerDownRef.current) return;
+    isPointerDownRef.current = false;
+    const el = scrollRef.current;
+
+    try {
+      if (el && el.hasPointerCapture(e.pointerId)) {
+        el.releasePointerCapture(e.pointerId);
+      }
+    } catch {
+      // ignore
+    }
+
+    if (el && hasMovedRef.current) {
+      // Restore CSS scroll snap
+      el.style.scrollSnapType = '';
+      el.style.scrollBehavior = '';
+
+      // Project scroll with release velocity (inertia)
+      const velocity = velocityRef.current;
+      const projectedScroll = el.scrollLeft - velocity * 120;
+
+      const parentEl = el.firstElementChild as HTMLElement;
+      const baseOffset = parentEl ? parentEl.offsetLeft : 0;
+      const items = el.querySelectorAll('[data-project-card]');
+      let closestIndex = 0;
+      let closestDist = Infinity;
+
+      items.forEach((item, i) => {
+        const itemEl = item as HTMLElement;
+        const target = itemEl.offsetLeft - baseOffset;
+        const dist = Math.abs(target - projectedScroll);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = i;
+        }
+      });
+
+      scrollToProject(closestIndex);
+    }
+
     setIsDragging(false);
     setTimeout(() => {
       hasMovedRef.current = false;
-    }, 50);
+    }, 80);
   };
 
   const scrollToProject = (index: number) => {
@@ -494,16 +560,17 @@ export default function Projects() {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUpOrLeave}
-            onMouseLeave={handleMouseUpOrLeave}
-            className={`flex items-stretch overflow-x-auto snap-x snap-mandatory md:snap-proximity hide-scrollbar py-4 md:py-6 select-none ${
-              isDragging ? "cursor-grabbing" : "cursor-grab"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            onDragStart={(e) => e.preventDefault()}
+            className={`flex items-stretch overflow-x-auto snap-x snap-mandatory md:snap-proximity hide-scrollbar py-4 md:py-6 select-none cursor-grab active:cursor-grabbing ${
+              isDragging ? "cursor-grabbing" : ""
             }`}
-            style={{ scrollbarWidth: "none" }}
+            style={{ scrollbarWidth: "none", touchAction: "pan-y" }}
           >
-            <div className="flex gap-6 md:gap-8 w-max items-stretch pr-6 md:pr-12">
+            <div className="flex gap-6 md:gap-8 w-max items-stretch pr-6 md:pr-12 pointer-events-auto">
               {projects.map((p) => (
                 <div
                   key={p.id}
@@ -512,9 +579,9 @@ export default function Projects() {
                     if (hasMovedRef.current) return;
                     setActiveProject(p);
                   }}
-                  className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-pointer h-full"
+                  className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-grab active:cursor-grabbing select-none h-full"
                 >
-                  <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors">
+                  <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors pointer-events-none">
                     {p.imageUrl && (
                       <img
                         src={p.imageUrl}
@@ -523,20 +590,20 @@ export default function Projects() {
                         className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none"
                       />
                     )}
-                    <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm pointer-events-none">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                       </svg>
                     </div>
-                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10">
+                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10 pointer-events-none">
                       {p.year}
                     </span>
                   </div>
-                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">
+                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold pointer-events-none">
                     {renderTitle(l(p.title))}
                   </h3>
-                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed">
+                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed pointer-events-none">
                     {l(p.desc)}
                   </p>
                 </div>
@@ -548,9 +615,9 @@ export default function Projects() {
                   if (hasMovedRef.current) return;
                   openProjectsModal();
                 }}
-                className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-pointer h-full"
+                className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-grab active:cursor-grabbing select-none h-full"
               >
-                <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
+                <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all pointer-events-none">
                   <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                     <svg
                       width="26"
@@ -568,7 +635,7 @@ export default function Projects() {
                     </svg>
                   </div>
                 </div>
-                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors">
+                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors pointer-events-none">
                   {t("projects.viewAll")}
                 </h3>
               </div>
