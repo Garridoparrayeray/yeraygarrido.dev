@@ -167,6 +167,7 @@ export default function Projects() {
       },
       imageUrl: "/img/projects/bideplus_desktop.webp",
       images: [
+        "/img/projects/bideplus_loading.gif",
         "/img/projects/bideplus_desktop.webp",
         "/img/projects/bideplus_mobile.webp",
         "/img/projects/bideplus_bizkaibus_mobile.webp",

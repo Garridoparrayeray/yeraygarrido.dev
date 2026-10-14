@@ -71,7 +71,9 @@
       "en": "Engineered a zero-dependency Full Stack architecture: native PHP REST API proxy normalizing raw Ministry feeds with caching, categorizing Gasoline 95, 98, Diesel, and LPG. On the frontend, vanilla JS leverages the browser Geolocation API and Haversine formula to sort by price or proximity entirely client-side without storing tracking data. Features interactive map view and sub-1.2s loading speeds.",
       "eu": "Menpekotasunik gabeko Full Stack irtenbidea garatu nuen: PHP natiboko REST API proxy-a Ministerioaren datuak normalizatzeko katxearekin, eta frontend arina Vanilla JS-ekin. Nabigatzailearen Geolocation API eta Haversine formula erabiliz distantziak bezero-aldean kalkulatzen dira zerbitzarian daturik gorde gabe. Mapa interaktiboa du eta 1.2 segundotan kargatzen da."
     },
+    "imageUrl": "/img/projects/gasolinera_desktop.webp",
     "images": [
+      "/img/projects/gasolinera_loading.gif",
       "/img/projects/gasolinera_desktop.webp",
       "/img/projects/gasolinera_mobile.webp",
       "/img/projects/gasolinera_mapa.webp"
@@ -108,7 +110,9 @@
       "en": "Despite external API paywalls, the full visual design system and functional UI prototype were fully implemented using modern HTML5, modular CSS3, and Vanilla JS. It features high-precision keyframe animations (spinning Pokéballs, skeleton loaders), dynamic runtime theme switching via CSS custom properties, PSA grade selectors (1-10), portfolio valuation breakdowns, and responsive mobile-first ergonomics. The interactive UI prototype is live on GitHub Pages, accompanied by comprehensive desktop and mobile visual captures showcasing the craft.",
       "eu": "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
     },
+    "imageUrl": "/img/projects/psa_card_fullscreen_desktop.webp",
     "images": [
+      "/img/projects/pokemon_pokeball_loading.gif",
       "/img/projects/psa_card_fullscreen_desktop.webp",
       "/img/projects/psa_card_fullscreen_mobile.webp",
       "/img/projects/psa_dark_desktop.webp",
