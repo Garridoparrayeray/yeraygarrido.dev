@@ -169,6 +169,11 @@ export default function Projects() {
       images: [
         "/img/projects/bideplus_desktop.webp",
         "/img/projects/bideplus_mobile.webp",
+        "/img/projects/bideplus_bizkaibus_mobile.webp",
+        "/img/projects/bideplus_bizkaibus_desktop.webp",
+        "/img/projects/bideplus_metro_mobile.webp",
+        "/img/projects/bideplus_euskotren_mobile.webp",
+        "/img/projects/bideplus_renfe_mobile.webp",
         "/img/projects/bizkaibus_captura.png",
         "/img/projects/bizkaibus_mobile_view.png",
         "/img/projects/bizkaibus_miamor_theme.png"
