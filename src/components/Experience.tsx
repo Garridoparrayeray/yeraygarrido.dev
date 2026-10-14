@@ -35,7 +35,7 @@ export default function Experience() {
         <div className="relative border-l border-white/20 ml-4 md:ml-0">
           {experiences.map((exp, i) => (
             <div key={i} data-reveal="up" style={{transitionDelay:`${i*0.1}s`}} className="mb-16 md:mb-24 pl-8 md:pl-12 relative group">
-              <div className="absolute w-3 h-3 bg-white rounded-full -left-[6.5px] top-2 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
+              <div className="absolute w-3 h-3 bg-white -left-[6.5px] top-2 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(255,255,255,0.5)]"></div>
               <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 md:gap-8 mb-4">
                 <h3 className="font-wide text-xl md:text-2xl font-bold uppercase">{exp.title}</h3>
                 <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/50 whitespace-nowrap">{exp.date}</span>

@@ -276,13 +276,13 @@ export default function Projects() {
         @keyframes modalEnter { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .animate-modal { animation: modalEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
-        .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
       `}</style>
 
       <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col relative z-10 border-t border-white/10 pb-8 md:pb-24 overflow-hidden">
         <div className="pt-6 md:pt-24 px-6 md:px-24 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
           <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
-          <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors rounded-full cursor-pointer">
+          <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
             {t("projects.viewAll")}
           </button>
         </div>
@@ -292,20 +292,20 @@ export default function Projects() {
             <div className="flex gap-6 md:gap-16 w-max items-stretch">
               {projects.map((p, i) => (
                 <div key={p.id} data-project-card onClick={() => setActiveProject(p)} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
-                  <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors rounded-lg">
+                  <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors">
                     {p.imageUrl && <img src={p.imageUrl} alt={l(p.title)} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />}
-                    <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm">
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
-                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full">{p.year}</span>
+                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10">{p.year}</span>
                   </div>
                   <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">{l(p.title)}</h3>
                   <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed">{l(p.desc)}</p>
                 </div>
               ))}
               <div data-project-card onClick={openProjectsModal} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
-                <div className="aspect-video border border-white/10 rounded-lg mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
-                  <div className="w-14 md:w-16 h-14 md:h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
+                  <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                   </div>
                 </div>
@@ -322,7 +322,7 @@ export default function Projects() {
                 className={`group p-2 cursor-pointer touch-manipulation`}
                 aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
               >
-                <div className={`h-1 rounded-full transition-all duration-300 ${
+                <div className={`h-1 transition-all duration-300 ${
                   activeIndex === i ? 'w-6 bg-white' : 'w-1 bg-white/30 group-hover:bg-white/60'
                 }`} />
               </button>
@@ -358,7 +358,7 @@ export default function Projects() {
             {modalTab === 'portfolio' && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 md:p-12 max-w-7xl mx-auto overflow-hidden">
                 {allManualProjects.map((p) => (
-                  <div key={p.id} onClick={() => setActiveProject(p)} className="bg-[#050505] border border-white/10 hover:border-white/30 group flex flex-col cursor-pointer overflow-hidden transition-all rounded-lg">
+                  <div key={p.id} onClick={() => setActiveProject(p)} className="bg-[#050505] border border-white/10 hover:border-white/30 group flex flex-col cursor-pointer overflow-hidden transition-all">
                     <div className="aspect-[4/3] bg-black relative overflow-hidden">
                       {p.imageUrl || (p.images && p.images[0]) ? (
                         <img src={p.imageUrl || (p.images && p.images[0])} alt={l(p.title)} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
@@ -368,7 +368,7 @@ export default function Projects() {
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                        <span className="font-sans text-xs uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">Ver más</span>
+                        <span className="font-sans text-xs uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 backdrop-blur-sm px-4 py-2 border border-white/20">Ver más</span>
                       </div>
                     </div>
                     <div className="p-4 sm:p-6 flex flex-col flex-1">
@@ -379,7 +379,7 @@ export default function Projects() {
                       <p className="font-sans text-xs text-white/50 flex-1 line-clamp-3 leading-relaxed text-justify">{l(p.desc)}</p>
                       <div className="flex flex-wrap gap-1 sm:gap-2 mt-3 sm:mt-4 justify-center sm:justify-start">
                         {p.tech.split(", ").slice(0, 3).map((tag, j) => (
-                          <span key={j} className="font-sans text-[8px] sm:text-[9px] tracking-widest uppercase text-white/60 bg-white/5 border border-white/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full truncate max-w-[80px] sm:max-w-none">{tag}</span>
+                          <span key={j} className="font-sans text-[8px] sm:text-[9px] tracking-widest uppercase text-white/60 bg-white/5 border border-white/10 px-1.5 sm:px-2 py-0.5 sm:py-1 truncate max-w-[80px] sm:max-w-none">{tag}</span>
                         ))}
                       </div>
                     </div>
@@ -392,11 +392,11 @@ export default function Projects() {
                 {loading ? (
                   <div className="col-span-full text-center py-20 font-sans text-white/30">Cargando repositorios...</div>
                 ) : repos.map((repo) => (
-                  <a key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer" className="bg-[#050505] border border-white/10 hover:border-white/30 p-5 transition-all rounded-lg flex flex-col group">
+                  <a key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer" className="bg-[#050505] border border-white/10 hover:border-white/30 p-5 transition-all flex flex-col group">
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <h3 className="font-wide text-base text-white truncate flex-1 group-hover:text-white/80 transition-colors">{repo.name}</h3>
                       {repo.language && (
-                        <span className="shrink-0 font-sans text-[9px] tracking-widest uppercase text-white/40 bg-white/5 border border-white/10 px-2 py-1 rounded-full">
+                        <span className="shrink-0 font-sans text-[9px] tracking-widest uppercase text-white/40 bg-white/5 border border-white/10 px-2 py-1">
                           {repo.language}
                         </span>
                       )}
@@ -470,7 +470,7 @@ export default function Projects() {
                 <div className="space-y-4 md:space-y-5">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-3">
                     <h1 className="font-wide text-5xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{l(activeProject.title)}</h1>
-                    <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 rounded-sm shrink-0">{activeProject.year}</span>
+                    <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 shrink-0">{activeProject.year}</span>
                   </div>
                   <p className="font-sans text-lg md:text-xl text-white/70 leading-relaxed">{l(activeProject.desc)}</p>
                 </div>
@@ -499,7 +499,7 @@ export default function Projects() {
                         <button
                           key={idx}
                           onClick={() => setLightboxIndex(idx)}
-                          className={`shrink-0 snap-start rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                          className={`shrink-0 snap-start overflow-hidden border-2 transition-all cursor-pointer ${
                             lightboxIndex === idx ? 'border-white' : 'border-white/20 hover:border-white/50'
                           }`}
                         >
@@ -531,16 +531,16 @@ export default function Projects() {
                   <h4 className="font-sans text-xs md:text-xs tracking-widest uppercase text-white/30">{l(uiTexts.stack)}</h4>
                   <div className="flex flex-wrap gap-1 md:gap-2">
                     {activeProject.tech.split(", ").map((tag, j) => (
-                      <span key={j} className="font-sans text-xs md:text-xs tracking-widest text-white/80 bg-white/5 border border-white/10 px-2 md:px-3 py-1 uppercase rounded-sm">{tag}</span>
+                      <span key={j} className="font-sans text-xs md:text-xs tracking-widest text-white/80 bg-white/5 border border-white/10 px-2 md:px-3 py-1 uppercase">{tag}</span>
                     ))}
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 md:gap-3 pt-4">
                   {activeProject.demoUrl && (
-                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-3 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold rounded-sm">{l(uiTexts.live)}</a>
+                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-3 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold">{l(uiTexts.live)}</a>
                   )}
                   {activeProject.link && (
-                    <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold text-white rounded-sm">
+                    <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold text-white">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                       {l(uiTexts.code)}
                     </a>

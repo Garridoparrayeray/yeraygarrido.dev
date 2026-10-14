@@ -92,18 +92,18 @@ export default function CookieBanner() {
       */}
             <div className="fixed inset-0 z-999 pointer-events-none flex items-end justify-end">
                 <div
-                    className={`cookie-banner pointer-events-auto w-full md:w-auto md:max-w-sm md:m-6 md:rounded-2xl ${isExiting ? "exiting" : ""}
+                    className={`cookie-banner pointer-events-auto w-full md:w-auto md:max-w-sm md:m-6 ${isExiting ? "exiting" : ""}
             bg-[#0a0a0a] border-t border-white/10
             md:border md:border-white/10
             shadow-[0_-4px_40px_rgba(0,0,0,0.6)] md:shadow-2xl
           `}
                 >
-                    <div className="hidden md:block h-px bg-linear-to-r from-white/0 via-white/30 to-white/0 rounded-t-2xl" />
+                    <div className="hidden md:block h-px bg-linear-to-r from-white/0 via-white/30 to-white/0" />
 
                     <div className="px-5 py-5 md:px-6 md:py-6 flex flex-col gap-4">
                         {/* Header */}
                         <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center shrink-0">
+                            <div className="w-7 h-7 border border-white/20 flex items-center justify-center shrink-0">
                                 <svg
                                     width="14"
                                     height="14"
@@ -136,13 +136,13 @@ export default function CookieBanner() {
                         <div className="flex gap-2.5">
                             <button
                                 onClick={() => handleDecision("rejected")}
-                                className="flex-1 font-sans text-[10px] uppercase tracking-[0.15em] py-3 border border-white/15 text-white/50 hover:text-white hover:border-white/30 active:scale-95 transition-all duration-200 rounded-lg cursor-pointer"
+                                className="flex-1 font-sans text-[10px] uppercase tracking-[0.15em] py-3 border border-white/15 text-white/50 hover:text-white hover:border-white/30 active:scale-95 transition-all duration-200 cursor-pointer"
                             >
                                 {t.reject}
                             </button>
                             <button
                                 onClick={() => handleDecision("accepted")}
-                                className="flex-1 font-sans text-[10px] uppercase tracking-[0.15em] py-3 bg-white text-black font-bold hover:bg-white/85 active:scale-95 transition-all duration-200 rounded-lg cursor-pointer"
+                                className="flex-1 font-sans text-[10px] uppercase tracking-[0.15em] py-3 bg-white text-black font-bold hover:bg-white/85 active:scale-95 transition-all duration-200 cursor-pointer"
                             >
                                 {t.accept}
                             </button>

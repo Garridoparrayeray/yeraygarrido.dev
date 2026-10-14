@@ -80,12 +80,12 @@ export default function Footer() {
       {activeModal && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-12 animate-fade-in">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer" onClick={() => setActiveModal(null)}></div>
-          <div className="relative w-full max-w-2xl max-h-[80vh] bg-white border border-black/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-scale-up">
+          <div className="relative w-full max-w-2xl max-h-[80vh] bg-white border border-black/10 shadow-2xl flex flex-col overflow-hidden animate-scale-up">
             <div className="flex justify-between items-center p-6 border-b border-black/10">
               <h2 className="font-wide text-xl text-black font-bold">
                 {currentContent.modalContent[activeModal].title}
               </h2>
-              <button onClick={() => setActiveModal(null)} className="cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-black/5 hover:bg-black/10 transition-colors text-black">
+              <button onClick={() => setActiveModal(null)} className="cursor-pointer w-8 h-8 flex items-center justify-center border border-black/10 bg-black/5 hover:bg-black/10 transition-colors text-black">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
             </div>
@@ -104,7 +104,7 @@ export default function Footer() {
         .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
         .animate-scale-up { animation: scaleUp 0.3s ease-out forwards; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
-        .modal-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 10px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
       `}</style>
     </>
   );

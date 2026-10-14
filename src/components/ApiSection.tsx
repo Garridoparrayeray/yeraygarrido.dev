@@ -35,12 +35,12 @@ export default function ApiSection() {
           <p className="font-sans text-white/60 text-lg leading-relaxed mb-8 max-w-xl">{t('api.desc')}</p>
         </div>
         <div className="w-full md:w-auto flex-1">
-          <div className="bg-[#1e1e1e] rounded-lg border border-white/10 overflow-hidden shadow-2xl">
+          <div className="bg-[#1e1e1e] border border-white/10 overflow-hidden shadow-2xl">
             <div className="flex items-center justify-between px-4 py-3 bg-[#2d2d2d] border-b border-white/10">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className="w-2.5 h-2.5 bg-red-500"></div>
+                <div className="w-2.5 h-2.5 bg-yellow-500"></div>
+                <div className="w-2.5 h-2.5 bg-green-500"></div>
               </div>
               <span className="font-mono text-xs text-white/50">xml</span>
             </div>
@@ -48,7 +48,7 @@ export default function ApiSection() {
               <code className="font-mono text-sm md:text-base text-green-400 break-all">
                 <span className="text-white/50 select-none">$ </span>{command}
               </code>
-              <button onClick={handleCopy} className="p-2 hover:bg-white/10 rounded-md transition-colors" aria-label="Copy command">
+              <button onClick={handleCopy} className="p-2 hover:bg-white/10 transition-colors" aria-label="Copy command">
                 {copied
                   ? <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-400"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   : <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/50"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
