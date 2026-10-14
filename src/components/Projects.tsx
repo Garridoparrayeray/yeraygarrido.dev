@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import otherProjectsData from "../data/otherProjects.json";
 
@@ -331,7 +331,7 @@ export default function Projects() {
   const velocityRef = useRef(0);
   const hasMovedRef = useRef(false);
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerDown = (e: PointerEvent<HTMLDivElement>) => {
     // Only respond to main button (left click) or touch/pen
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     const el = scrollRef.current;
@@ -353,7 +353,7 @@ export default function Projects() {
     }
   };
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e: PointerEvent<HTMLDivElement>) => {
     if (!isPointerDownRef.current || !scrollRef.current) return;
     const el = scrollRef.current;
     const deltaX = e.clientX - dragStartXRef.current;
@@ -380,7 +380,7 @@ export default function Projects() {
     }
   };
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+  const handlePointerUp = (e: PointerEvent<HTMLDivElement>) => {
     if (!isPointerDownRef.current) return;
     isPointerDownRef.current = false;
     const el = scrollRef.current;
