@@ -1,152 +1,224 @@
-[{
-        "id": "art-gallery",
-        "title": {
-            "es": "Portfolio Fotográfico",
-            "en": "Photography Portfolio",
-            "eu": "Argazki Portfolioa"
-        },
-        "tech": "PHP 8, MySQL, Vanilla JS, Imagick, IPTC, Hostinger",
-        "desc": {
-            "es": "Portfolio fotográfico a medida con un flujo móvil propio tipo Reels, generación automática de miniaturas y marca de agua con metadatos de autoría.",
-            "en": "Custom photography portfolio with its own Reels-style mobile flow, automatic thumbnail generation, and watermarking with authorship metadata.",
-            "eu": "Neurrira egindako argazki-portfolioa, Reels estiloko mugikorreko fluxu propioarekin, miniaturen sorrera automatikoarekin eta egiletza-metadatuak dituen ur-marka batekin."
-        },
-        "demoUrl": "https://archive.yeraygarrido.dev",
-        "role": {
-            "es": "Full Stack (PHP + Vanilla JS)",
-            "en": "Full Stack (PHP + Vanilla JS)",
-            "eu": "Full Stack (PHP + Vanilla JS)"
-        },
-        "year": "2026",
-        "longDescChallenge": {
-            "es": "El encargo era un portfolio fotográfico personal que se sintiera cuidado en cualquier dispositivo, no una galería genérica. En escritorio quería una biblioteca tipo tira de negativo con recorrido narrativo por categorías; en móvil, un formato inmerso tipo Reels con swipe vertical, algo que ningún patrón de galería estándar resuelve de fábrica. A eso se sumó un requisito técnico serio: las fotos de resolución completa (hasta 6000px) agotaban la memoria del hosting compartido al generar miniaturas bajo demanda, tumbando la web de forma intermitente en producción.",
-            "en": "The brief was a personal photography portfolio that felt considered on any device, not a generic gallery. On desktop I wanted a filmstrip-style library with a narrative scroll through categories; on mobile, an immersive Reels-style format with vertical swipe — something no off-the-shelf gallery pattern solves out of the box. On top of that came a real technical constraint: full-resolution photos (up to 6000px) were exhausting shared-hosting memory when generating thumbnails on demand, intermittently taking the site down in production.",
-            "eu": "Enkargua argazki-portfolio pertsonal bat zen, edozein gailutan zaindua sentitzeko modukoa, ez galeria generiko bat. Mahaigainean, negatibo-zerrenda itxurako liburutegi bat nahi nuen, kategorien arteko ibilbide narratiboarekin; mugikorrean, Reels estiloko formatu murgiltzailea, swipe bertikalarekin — galeria-eredu estandar batek ere ez duena hutsetik ebazten. Horri gehitu behar diot benetako muga teknikoa: bereizmen osoko argazkiek (6000px arte) partekatutako ostalaritzaren memoria agortzen zuten eskariaren arabera miniaturak sortzean, produkzioan webgunea aldizka erortzea eraginez."
-        },
-        "longDescSolution": {
-            "es": "Backend PHP con arquitectura ligera (Core/Models), MySQL como base de datos y un flujo móvil independiente construido a mano (Home con foto aleatoria, selección de categoría, Reels a pantalla completa con swipe, mosaico de miniaturas) sin ningún framework de front. Para el problema de memoria, sustituí la generación de miniaturas en caliente por Imagick con decodificación por muestreo reducido, y sobre todo moví la generación al momento de subir cada foto desde el panel de administración: cada miniatura se crea una sola vez, en un proceso aislado, en vez de competir por memoria con otras peticiones concurrentes de visitantes reales. Añadí también incrustación de metadatos IPTC (autoría y copyright) en cada descarga y despliegue en Hostinger con detección automática de entorno, para que el mismo código sirva en local y en producción sin credenciales expuestas en el repositorio.",
-            "en": "PHP backend with a lightweight architecture (Core/Models), MySQL as the database, and an independent hand-built mobile flow (Home with a random photo, category picker, full-screen Reels with swipe, thumbnail mosaic) with no front-end framework. For the memory issue, I replaced on-demand thumbnail generation with Imagick using reduced-sample decoding, and more importantly moved generation to the moment each photo is uploaded from the admin panel: every thumbnail is created once, in an isolated process, instead of competing for memory with concurrent real-visitor requests. I also added IPTC metadata embedding (authorship and copyright) on every download, and deployed to Hostinger with automatic environment detection, so the same code serves both local and production without exposing credentials in the repository.",
-            "eu": "PHP backend-a arkitektura arinarekin (Core/Models), MySQL datu-base gisa, eta eskuz eraikitako mugikorreko fluxu independentea (Home ausazko argazkiarekin, kategoria-hautatzailea, Reels pantaila osoan swipe-arekin, miniaturen mosaikoa), front-end frameworkrik gabe. Memoria-arazoarekiko, eskariaren araberako miniatura-sorrera Imagick-ekin ordezkatu nuen, laginketa murriztuko dekodifikazioarekin, eta batez ere sorrera argazki bakoitza administrazio-paneletik igotzen den unera eraman nuen: miniatura bakoitza behin bakarrik sortzen da, prozesu isolatu batean, benetako bisitarien aldiberekotasun-eskaerekin memoria lehiatu beharrean. IPTC metadatuak ere gehitu nituen (egiletza eta copyright) deskarga bakoitzean, eta Hostinger-en zabaldu nuen ingurunea automatikoki detektatzen duen konfigurazioarekin."
-        },
-        "images": [
-            "/img/projects/fto.webp",
-            "/img/projects/archive_mobile1.webp",
-            "/img/projects/archive_mobile2.webp",
-            "/img/projects/archive_mobile3.webp",
-            "/img/projects/archive1.webp",
-            "/img/projects/archive2.webp",
-            "/img/projects/archive3.webp",
-            "/img/projects/archive4.webp",
-            "/img/projects/archive5.webp"
-        ]
+[
+  {
+    "id": "art-gallery",
+    "title": {
+      "es": "Portfolio Fotográfico",
+      "en": "Photography Portfolio",
+      "eu": "Argazki Portfolioa"
     },
-    {
-        "id": "gastroaccess",
-        "title": {
-            "es": "GastroAccess Euskadi",
-            "en": "GastroAccess Euskadi",
-            "eu": "GastroAccess Euskadi"
-        },
-        "tech": "React 19, TypeScript, Vite, Tailwind CSS, Leaflet",
-        "desc": {
-            "es": "MVP para validar accesibilidad en restaurantes usando datos oficiales de Open Data Euskadi.",
-            "en": "MVP to validate restaurant accessibility using official data from Open Data Euskadi.",
-            "eu": "Jatetxeen irisgarritasuna balioztatzeko MVP-a, Open Data Euskadiko datu ofizialak erabiliz."
-        },
-        "link": "https://github.com/Garridoparrayeray/GastroAccess-Euskadi",
-        "role": {
-            "es": "Frontend & Data Integration",
-            "en": "Frontend & Data Integration",
-            "eu": "Frontend & Datuen Integrazioa"
-        },
-        "year": "2026",
-        "images": [
-            "/img/projects/gastroAccess.webp",
-            "/img/projects/gastro_access_mobile_view.webp"
-        ],
-        "longDescChallenge": {
-            "es": "El reto de 'Euskadi Data Lab' consistía en asimilar datos públicos y transformarlos en una solución digital. Detectamos que las personas con diversidad funcional se enfrentan a falta de información al salir a comer, ya que las apps generales se basan en opiniones subjetivas.",
-            "en": "The 'Euskadi Data Lab' challenge was to assimilate public data and transform it into a digital solution. We noticed that people with functional diversity face a lack of info when dining out, as general apps rely on subjective opinions.",
-            "eu": "'Euskadi Data Lab' erronka datu publikoak irtenbide digital bihurtzea zen. Mugikortasun urriko pertsonek informazio falta dutela ikusi genuen, aplikazio orokorrak iritzi subjektiboetan oinarritzen direlako."
-        },
-        "longDescSolution": {
-            "es": "Diseñamos un MVP de validación de accesibilidad basado en auditorías oficiales del Gobierno Vasco. Desarrollamos un algoritmo (ETL) que evalúa variables físicas, visuales y auditivas para clasificar locales en Oro, Plata o Estándar.",
-            "en": "We designed an accessibility validation MVP based on official Basque Government audits. We developed an ETL algorithm that evaluates physical, visual, and auditory variables to classify venues as Gold, Silver, or Standard.",
-            "eu": "Eusko Jaurlaritzaren auditoria ofizialetan oinarritutako irisgarritasuna balioztatzeko MVP bat diseinatu genuen. Algoritmo bat (ETL) garatu genuen lokalak Urre, Zilar edo Estandar gisa sailkatzeko."
-        }
+    "tech": "PHP 8, MySQL, Vanilla JS, Imagick, IPTC, Hostinger",
+    "desc": {
+      "es": "Portfolio fotográfico a medida con un flujo móvil propio tipo Reels, generación automática de miniaturas y marca de agua con metadatos de autoría.",
+      "en": "Custom photography portfolio with its own Reels-style mobile flow, automatic thumbnail generation, and watermarking with authorship metadata.",
+      "eu": "Neurrira egindako argazki-portfolioa, Reels estiloko mugikorreko fluxu propioarekin, miniaturen sorrera automatikoarekin eta egiletza-metadatuak dituen ur-marka batekin."
     },
-    {
-        "id": "glocalium",
-        "title": {
-            "es": "Glocalium Services",
-            "en": "Glocalium Services",
-            "eu": "Glocalium Services"
-        },
-        "tech": "WordPress, PHP 8, MySQL, Contact Form 7, Plugins GPLv2, SEO Técnico, Hostalia",
-        "desc": {
-            "es": "Web corporativa completa con dos plugins PHP propios: persistencia en BD relacional con visor admin y exportación automática a Google Sheets vía CRON + webhook.",
-            "en": "Full corporate website with two custom PHP plugins: relational DB persistence with admin viewer and automatic export to Google Sheets via CRON + webhook.",
-            "eu": "Web korporatiboa bi PHP plugin propiorekin: datu-basearen iraunkortasuna eta Google Sheets-era esportazio automatikoa."
-        },
-        "link": "https://github.com/Garridoparrayeray/wp_custom_scripts",
-        "demoUrl": "https://glocalium.com/",
-        "role": {
-            "es": "Full Stack WordPress Developer",
-            "en": "Full Stack WordPress Developer",
-            "eu": "Full Stack WordPress Garatzailea"
-        },
-        "year": "2025",
-        "images": [
-            "/img/projects/glocalium_captura.webp",
-            "/img/projects/glocalium_mobile_services.webp",
-            "/img/projects/glocalium_scroll_up_with_accesibility.webp"
-        ],
-        "longDescChallenge": {
-            "es": "El cliente necesitaba reemplazar su web antigua por una plataforma profesional y requería automatizar la gestión de leads a una hoja de cálculo externa sin usar herramientas de pago. Debía integrar Contact Form 7 con una base de datos relacional MySQL y configurar un sistema de exportación automática sin costos mensuales.",
-            "en": "The client needed to replace their old site with a professional platform and required lead management automation to an external spreadsheet without using paid tools. Had to integrate Contact Form 7 with a MySQL relational database and set up an automatic export system without monthly costs.",
-            "eu": "Bezeroak web zaharra plataforma profesional batekin ordezkatu behar zuen eta lead-en kudeaketa automatizatzea behar zuen kanpoko kalkulu-orri batera, ordainpeko tresnarik erabili gabe. Contact Form 7 MySQL datu-base erlazional batekin integratu eta esportazio automatikoko sistema konfiguratu behar zen hilabeteko kosturik gabe."
-        },
-        "longDescSolution": {
-            "es": "Programé dos plugins desde cero: uno para persistencia MySQL de Contact Form 7 con panel de administración para visualizar leads, y otro para exportación vía CRON job a Google Sheets mediante AppScript (webhook). Implementé SEO técnico con schema markup, optimización de imágenes y configuración de Hostalia para máxima velocidad.",
-            "en": "I programmed two plugins from scratch: one for MySQL persistence of Contact Form 7 with admin panel to view leads, and another for CRON job export to Google Sheets via AppScript (webhook). I implemented technical SEO with schema markup, image optimization and Hostalia configuration for maximum speed.",
-            "eu": "Bi plugin programatu nituen hutsetik: bata Contact Form 7-ren MySQL iraunkortasunerako eta lead-ak ikusteko administratzaile-panela, eta bestea CRON job bidezko Google Sheets-era esportaziorako AppScript (webhook) bidez. SEO teknikoa egin nuen schema markup eta irudi-optimizazioarekin."
-        }
+    "demoUrl": "https://archive.yeraygarrido.dev",
+    "role": {
+      "es": "Full Stack (PHP + Vanilla JS)",
+      "en": "Full Stack (PHP + Vanilla JS)",
+      "eu": "Full Stack (PHP + Vanilla JS)"
     },
-    {
-        "id": "bizkaibus-renewed",
-        "title": {
-            "es": "Bizkaibus Renewed",
-            "en": "Bizkaibus Renewed",
-            "eu": "Bizkaibus Renewed"
-        },
-        "tech": "JS , PHP, Vite, Tailwind CSS, Leaflet, GitHub Actions, Vercel",
-        "desc": {
-            "es": "Rediseño moderno y optimizado para la consulta de paradas, horarios y rutas de Bizkaibus en tiempo real con geocaching automatizado.",
-            "en": "Modern and optimized redesign to check Bizkaibus stops, timetables and routes in real-time with automated geocaching.",
-            "eu": "Bizkaibuseko geltokiak, ordutegiak eta ibilbideak denbora errealean kontsultatzeko birpentsatze moderno eta optimizatua, geocaching automatizatuarekin."
-        },
-        "link": "https://github.com/Garridoparrayeray/bizkaibus-renewed",
-        "demoUrl": "https://bizkaibus-renewed.vercel.app",
-        "role": {
-            "es": "Frontend & Data Automation",
-            "en": "Frontend & Data Automation",
-            "eu": "Frontend & Datu Automatizazioa"
-        },
-        "year": "2026",
-        "images": [
-            "/img/projects/bizkaibus_captura.png",
-            "/img/projects/bizkaibus_mobile_view.png",
-            "/img/projects/bizkaibus_miamor_theme.png"
-        ],
-        "longDescChallenge": {
-            "es": "La aplicación y web oficial de Bizkaibus presentan interfaces anticuadas, lentas y difíciles de consultar desde dispositivos móviles. El reto principal fue construir una experiencia de usuario rápida, accesible y moderna, optimizando el consumo de coordenadas y paradas sin sobrecargar las consultas en cliente.",
-            "en": "The official Bizkaibus app and site feature dated, slow interfaces that are hard to navigate on mobile devices. The main challenge was to deliver a fast, accessible, modern user experience while caching and optimizing coordinates without overwhelming client-side requests.",
-            "eu": "Bizkaibuseko aplikazio eta webgune ofizialek interfaze zaharkituak dituzte, motelak eta mugikorretik erabiltzeko zailak. Erronka nagusia erabiltzaile-esperientzia azkar, eskuragarri eta modernoa sortzea izan zen, koordenatuen eta geltokien kontsumoa optimizatuz."
-        },
-        "longDescSolution": {
-            "es": "Desarrollé una SPA moderna con React, TypeScript y Tailwind CSS, integrando mapas interactivos con Leaflet. Implementé un flujo automatizado mediante GitHub Actions que procesa y actualiza periódicamente una caché local de geolocalización (geocache.json), permitiendo búsquedas instantáneas y reduciendo drásticamente las llamadas redundantes a APIs externas.",
-            "en": "I built a modern SPA using React, TypeScript, and Tailwind CSS, featuring interactive maps with Leaflet. Implemented a GitHub Actions automation pipeline that periodically updates a local geolocation cache (geocache.json), enabling instant stop queries and minimizing redundant external API requests.",
-            "eu": "React, TypeScript eta Tailwind CSS-ekin SPA moderno bat garatu nuen, Leaflet bidezko mapa interaktiboekin. GitHub Actions bidezko fluxu automatizatu bat ezarri nuen geokokapen-katxe lokala (geocache.json) eguneratzeko, bilaketak azkartuz eta kanpoko APIetara egindako deiak murriztuz."
-        }
+    "year": "2026",
+    "longDescChallenge": {
+      "es": "El encargo era un portfolio fotográfico personal que se sintiera cuidado en cualquier dispositivo, no una galería genérica. En escritorio quería una biblioteca tipo tira de negativo con recorrido narrativo por categorías; en móvil, un formato inmersivo tipo Reels con swipe vertical, algo que ningún patrón de galería estándar resuelve de fábrica. A eso se sumó un requisito técnico serio: las fotos de resolución completa (hasta 6000px) agotaban la memoria del hosting compartido al generar miniaturas bajo demanda, tumbando la web de forma intermitente en producción.",
+      "en": "The brief was a personal photography portfolio that felt considered on any device, not a generic gallery. On desktop I wanted a filmstrip-style library with a narrative scroll through categories; on mobile, an immersive Reels-style format with vertical swipe — something no off-the-shelf gallery pattern solves out of the box. On top of that came a real technical constraint: full-resolution photos (up to 6000px) were exhausting shared-hosting memory when generating thumbnails on demand, intermittently taking the site down in production.",
+      "eu": "Enkargua argazki-portfolio pertsonal bat zen, edozein gailutan zaindua sentitzeko modukoa, ez galeria generiko bat. Mahaigainean, negatibo-zerrenda itxurako liburutegi bat nahi nuen, kategorien arteko ibilbide narratiboarekin; mugikorrean, Reels estiloko formatu murgiltzailea, swipe bertikalarekin — galeria-eredu estandar batek ere ez duena hutsetik ebazten. Horri gehitu behar diot benetako muga teknikoa: bereizmen osoko argazkiek (6000px arte) partekatutako ostalaritzaren memoria agortzen zuten eskariaren arabera miniaturak sortzean, produkzioan webgunea aldizka erortzea eraginez."
+    },
+    "longDescSolution": {
+      "es": "Backend PHP con arquitectura ligera (Core/Models), MySQL como base de datos y un flujo móvil independiente construido a mano (Home con foto aleatoria, selección de categoría, Reels a pantalla completa con swipe, mosaico de miniaturas) sin ningún framework de front. Para el problema de memoria, sustituí la generación de miniaturas en caliente por Imagick con decodificación por muestreo reducido, y sobre todo moví la generación al momento de subir cada foto desde el panel de administración: cada miniatura se crea una sola vez, en un proceso aislado, en vez de competir por memoria con otras peticiones concurrentes de visitantes reales. Añadí también incrustación de metadatos IPTC (autoría y copyright) en cada descarga y despliegue en Hostinger con detección automática de entorno, para que el mismo código sirva en local y en producción sin credenciales expuestas en el repositorio.",
+      "en": "PHP backend with a lightweight architecture (Core/Models), MySQL as the database, and an independent hand-built mobile flow (Home with a random photo, category picker, full-screen Reels with swipe, thumbnail mosaic) with no front-end framework. For the memory issue, I replaced on-demand thumbnail generation with Imagick using reduced-sample decoding, and more importantly moved generation to the moment each photo is uploaded from the admin panel: every thumbnail is created once, in an isolated process, instead of competing for memory with concurrent real-visitor requests. I also added IPTC metadata embedding (authorship and copyright) on every download, and deployed to Hostinger with automatic environment detection, so the same code serves both local and production without exposing credentials in the repository.",
+      "eu": "PHP backend-a arkitektura arinarekin (Core/Models), MySQL datu-base gisa, eta eskuz eraikitako mugikorreko fluxu independentea (Home ausazko argazkiarekin, kategoria-hautatzailea, Reels pantaila osoan swipe-arekin, miniaturen mosaikoa), front-end frameworkrik gabe. Memoria-arazoarekiko, eskariaren araberako miniatura-sorrera Imagick-ekin ordezkatu nuen, laginketa murriztuko dekodifikazioarekin, eta batez ere sorrera argazki bakoitza administrazio-paneletik igotzen den unera eraman nuen: miniatura bakoitza behin bakarrik sortzen da, prozesu isolatu batean, benetako bisitarien aldiberekotasun-eskaerekin memoria lehiatu beharrean. IPTC metadatuak ere gehitu nituen (egiletza eta copyright) deskarga bakoitzean, eta Hostinger-en zabaldu nuen ingurunea automatikoki detektatzen duen konfigurazioarekin."
+    },
+    "images": [
+      "/img/projects/fto.webp",
+      "/img/projects/archive_mobile1.webp",
+      "/img/projects/archive_mobile2.webp",
+      "/img/projects/archive_mobile3.webp",
+      "/img/projects/archive1.webp",
+      "/img/projects/archive2.webp",
+      "/img/projects/archive3.webp",
+      "/img/projects/archive4.webp",
+      "/img/projects/archive5.webp"
+    ]
+  },
+  {
+    "id": "gasolinera-plus",
+    "title": {
+      "es": "Gasolinera+",
+      "en": "Gasolinera+",
+      "eu": "Gasolinera+"
+    },
+    "tech": "PHP 8 (API REST), HTML5, CSS3, Vanilla JS, Geolocation API, MITECO Open Data",
+    "desc": {
+      "es": "Buscador y comparador en tiempo real de precios de combustible en toda España cerca de ti, utilizando datos oficiales del Ministerio para la Transición Ecológica.",
+      "en": "Real-time fuel price comparator and finder across Spain near you, powered by official data from Spain's Ministry for Ecological Transition.",
+      "eu": "Espainia osoko erregai-prezioak denbora errealean bilatu eta alderatzeko tresna, Trantsizio Ekologikorako Ministerioaren datu ofizialekin."
+    },
+    "link": "https://github.com/Garridoparrayeray/gasolinera-plus",
+    "role": {
+      "es": "Full Stack (PHP + Vanilla JS)",
+      "en": "Full Stack (PHP + Vanilla JS)",
+      "eu": "Full Stack (PHP + Vanilla JS)"
+    },
+    "year": "2025",
+    "longDescChallenge": {
+      "es": "Encontrar el combustible más económico en ruta suele depender de aplicaciones lentas, sobrecargadas de publicidad o con datos desfasados. La fuente oficial del Ministerio para la Transición Ecológica (geoportalgasolineras.es) ofrece los precios de todas las estaciones de servicio del territorio nacional, pero su endpoint público devuelve un volumen de datos masivo y no optimizado para navegación móvil. El reto fue crear una herramienta ultrarrápida, limpia, sin publicidad invasiva y con geolocalización client-side respetuosa con la privacidad de los usuarios.",
+      "en": "Finding the cheapest fuel usually involves ad-heavy, sluggish apps or outdated information. Spain's official Ministry for Ecological Transition portal (geoportalgasolineras.es) exposes live fuel prices for every station, but returns unoptimized, heavy datasets difficult to consume directly on mobile networks. The challenge was building an ultra-fast, zero-ad tool that calculates nearest stations client-side while respecting user privacy.",
+      "eu": "Erregai merkeena aurkitzeak sarritan publizitatez betetako edo datu zaharrak dituzten aplikazio motelak erabiltzea eskatzen du. Trantsizio Ekologikorako Ministerioak (geoportalgasolineras.es) datu ofizialak eskaintzen ditu, baina bere endpoint-ak pisu handiko datuak itzultzen ditu. Erronka publizitaterik gabeko tresna ultra-azkarra sortzea zen, erabiltzailearen pribatutasuna errespetatuz bezero-aldean egindako geokokapenarekin."
+    },
+    "longDescSolution": {
+      "es": "Desarrollé una solución Full Stack sin dependencias pesadas: backend en PHP nativo que actúa como API REST proxy normalizando la respuesta del Ministerio, gestionando caché y estructurando precios de Gasolina 95, 98, Diésel y GLP. En el cliente, una interfaz responsive en Vanilla JS que utiliza la Geolocation API del navegador y la fórmula de Haversine para ordenar gasolineras por precio o distancia sin registrar ni enviar la ubicación del usuario a servidores externos. Incluye vista interactiva de mapa y carga en menos de 1.2 segundos.",
+      "en": "Engineered a zero-dependency Full Stack architecture: native PHP REST API proxy normalizing raw Ministry feeds with caching, categorizing Gasoline 95, 98, Diesel, and LPG. On the frontend, vanilla JS leverages the browser Geolocation API and Haversine formula to sort by price or proximity entirely client-side without storing tracking data. Features interactive map view and sub-1.2s loading speeds.",
+      "eu": "Menpekotasunik gabeko Full Stack irtenbidea garatu nuen: PHP natiboko REST API proxy-a Ministerioaren datuak normalizatzeko katxearekin, eta frontend arina Vanilla JS-ekin. Nabigatzailearen Geolocation API eta Haversine formula erabiliz distantziak bezero-aldean kalkulatzen dira zerbitzarian daturik gorde gabe. Mapa interaktiboa du eta 1.2 segundotan kargatzen da."
+    },
+    "images": [
+      "/img/projects/gasolinera_desktop.webp",
+      "/img/projects/gasolinera_mobile.webp",
+      "/img/projects/gasolinera_mapa.webp"
+    ]
+  },
+  {
+    "id": "card-psa-tracker",
+    "title": {
+      "es": "Pokémon Card PSA Tracker",
+      "en": "Pokémon Card PSA Tracker",
+      "eu": "Pokémon Card PSA Tracker"
+    },
+    "tech": "Vanilla JS, CSS3 Moderno, Animaciones Keyframes, Pokédex UI Design, Figma",
+    "desc": {
+      "es": "App de seguimiento y tasación de cartas coleccionables Pokémon graduadas por PSA, con interfaz temática Pokédex, animaciones dinámicas y panel analítico. Demo no completada con datos en vivo debido a que la API de mercado pasó a ser de pago.",
+      "en": "Graded Pokémon card tracking and valuation app with authentic Pokédex UI styling, custom keyframe animations, and portfolio analytics. Live market demo paused as the underlying pricing API switched to a paid subscription model.",
+      "eu": "PSA-k graduatutako Pokemon txartelen jarraipen eta balorazio aplikazioa, Pokédex interfazearekin, animazioekin eta analitika-panelarekin. Datu bizien demoa ez da osatu merkatuko APIa ordainpeko eredura igaro zelako."
+    },
+    "link": "https://github.com/Garridoparrayeray/card_psa_tracker",
+    "demoUrl": "https://garridoparrayeray.github.io/card_psa_tracker/",
+    "role": {
+      "es": "UI/UX Designer & Frontend Developer",
+      "en": "UI/UX Designer & Frontend Developer",
+      "eu": "UI/UX Diseinatzailea & Frontend Garatzailea"
+    },
+    "year": "2025",
+    "longDescChallenge": {
+      "es": "El sector del coleccionismo de cartas coleccionables Pokémon y su certificación profesional (PSA, BGS) carece de herramientas con una identidad visual atractiva. El objetivo fue diseñar una experiencia inmersiva basada en la Pokédex original (lente de zafiro superior, Pokéballs giratorias, temas de color Claro y Oscuro, estadísticas de colección y fluctuaciones de precio). Sin embargo, durante la fase de integración con proveedores de datos de mercado (precios históricos y tasaciones), las APIs de terceros eliminaron sus planes gratuitos y pasaron a modelos de suscripción de alto coste, imposibilitando mantener la demo interactiva en tiempo real en producción sin un coste recurrente elevado.",
+      "en": "Graded collectible card trading (PSA, BGS) often relies on generic, uninspired portals. The goal was to build a tailored collector hub reflecting the iconic Pokédex aesthetic (sapphire camera lens, animated spinning Pokéball loaders, Light/Dark theme switching, portfolio valuations, and price deltas). However, during external market integration, target card pricing APIs sunsetted their free developer tiers in favor of expensive commercial subscriptions, preventing a full free production rollout with real-time data.",
+      "eu": "Graduatutako Pokemon txartelen merkatuak nortasun gutxiko interfaze arruntak izaten ditu. Helburua Pokédex originalean oinarritutako esperientzia murgiltzaile bat sortzea zen (goiko zafiro-lentea, Pokéball birakariak, Gai Argi eta Ilunak, bildumaren balioa eta prezio-aldaketak). Hala ere, merkatuko prezioen datu-hornitzaileek doako sarbidea kendu eta ordainpeko harpidetza garestietara pasa ziren, produkzioko zuzeneko datuen demoa doan mantentzea galaraziz."
+    },
+    "longDescSolution": {
+      "es": "A pesar de la barrera de costes de la API externa, se completó de manera íntegra el diseño visual y el prototipo funcional de la aplicación en HTML5, CSS3 modular y Vanilla JS. Incorpora animaciones CSS de alta precisión (giro de Pokéball, skeleton loaders), sistema de cambio de tema en caliente mediante variables CSS, selector de grados PSA (1 a 10), métricas de revalorización y diseño adaptable para móvil y escritorio. El prototipo interactivo se encuentra publicado y accesible en GitHub Pages como muestra de diseño UI/UX y maquetación avanzada, con capturas completas de la experiencia tanto en ordenador como en móvil.",
+      "en": "Despite external API paywalls, the full visual design system and functional UI prototype were fully implemented using modern HTML5, modular CSS3, and Vanilla JS. It features high-precision keyframe animations (spinning Pokéballs, skeleton loaders), dynamic runtime theme switching via CSS custom properties, PSA grade selectors (1-10), portfolio valuation breakdowns, and responsive mobile-first ergonomics. The interactive UI prototype is live on GitHub Pages, accompanied by comprehensive desktop and mobile visual captures showcasing the craft.",
+      "eu": "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
+    },
+    "images": [
+      "/img/projects/psa_collection_desktop.webp",
+      "/img/projects/psa_collection_mobile.webp",
+      "/img/projects/psa_home_desktop.webp",
+      "/img/projects/psa_home_mobile.webp",
+      "/img/projects/psa_stats_desktop.webp",
+      "/img/projects/psa_stats_mobile.webp",
+      "/img/projects/psa_admin_light_desktop.webp"
+    ]
+  },
+  {
+    "id": "gastroaccess",
+    "title": {
+      "es": "GastroAccess Euskadi",
+      "en": "GastroAccess Euskadi",
+      "eu": "GastroAccess Euskadi"
+    },
+    "tech": "React 19, TypeScript, Vite, Tailwind CSS, Leaflet",
+    "desc": {
+      "es": "MVP para validar accesibilidad en restaurantes usando datos oficiales de Open Data Euskadi.",
+      "en": "MVP to validate restaurant accessibility using official data from Open Data Euskadi.",
+      "eu": "Jatetxeen irisgarritasuna balioztatzeko MVP-a, Open Data Euskadiko datu ofizialak erabiliz."
+    },
+    "link": "https://github.com/Garridoparrayeray/GastroAccess-Euskadi",
+    "role": {
+      "es": "Frontend & Data Integration",
+      "en": "Frontend & Data Integration",
+      "eu": "Frontend & Datuen Integrazioa"
+    },
+    "year": "2026",
+    "images": [
+      "/img/projects/gastroAccess.webp",
+      "/img/projects/gastro_access_mobile_view.webp"
+    ],
+    "longDescChallenge": {
+      "es": "El reto de 'Euskadi Data Lab' consistía en asimilar datos públicos y transformarlos en una solución digital. Detectamos que las personas con diversidad funcional se enfrentan a falta de información al salir a comer, ya que las apps generales se basan en opiniones subjetivas.",
+      "en": "The 'Euskadi Data Lab' challenge was to assimilate public data and transform it into a digital solution. We noticed that people with functional diversity face a lack of info when dining out, as general apps rely on subjective opinions.",
+      "eu": "'Euskadi Data Lab' erronka datu publikoak irtenbide digital bihurtzea zen. Mugikortasun urriko pertsonek informazio falta dutela ikusi genuen, aplikazio orokorrak iritzi subjektiboetan oinarritzen direlako."
+    },
+    "longDescSolution": {
+      "es": "Diseñamos un MVP de validación de accesibilidad basado en auditorías oficiales del Gobierno Vasco. Desarrollamos un algoritmo (ETL) que evalúa variables físicas, visuales y auditivas para clasificar locales en Oro, Plata o Estándar.",
+      "en": "We designed an accessibility validation MVP based on official Basque Government audits. We developed an ETL algorithm that evaluates physical, visual, and auditory variables to classify venues as Gold, Silver, or Standard.",
+      "eu": "Eusko Jaurlaritzaren auditoria ofizialetan oinarritutako irisgarritasuna balioztatzeko MVP bat diseinatu genuen. Algoritmo bat (ETL) garatu genuen lokalak Urre, Zilar edo Estandar gisa sailkatzeko."
     }
+  },
+  {
+    "id": "glocalium",
+    "title": {
+      "es": "Glocalium Services",
+      "en": "Glocalium Services",
+      "eu": "Glocalium Services"
+    },
+    "tech": "WordPress, PHP 8, MySQL, Contact Form 7, Plugins GPLv2, SEO Técnico, Hostalia",
+    "desc": {
+      "es": "Web corporativa completa con dos plugins PHP propios: persistencia en BD relacional con visor admin y exportación automática a Google Sheets vía CRON + webhook.",
+      "en": "Full corporate website with two custom PHP plugins: relational DB persistence with admin viewer and automatic export to Google Sheets via CRON + webhook.",
+      "eu": "Web korporatiboa bi PHP plugin propiorekin: datu-basearen iraunkortasuna eta Google Sheets-era esportazio automatikoa."
+    },
+    "link": "https://github.com/Garridoparrayeray/wp_custom_scripts",
+    "demoUrl": "https://glocalium.com/",
+    "role": {
+      "es": "Full Stack WordPress Developer",
+      "en": "Full Stack WordPress Developer",
+      "eu": "Full Stack WordPress Garatzailea"
+    },
+    "year": "2025",
+    "images": [
+      "/img/projects/glocalium_captura.webp",
+      "/img/projects/glocalium_mobile_services.webp",
+      "/img/projects/glocalium_scroll_up_with_accesibility.webp"
+    ],
+    "longDescChallenge": {
+      "es": "El cliente necesitaba reemplazar su web antigua por una plataforma profesional y requería automatizar la gestión de leads a una hoja de cálculo externa sin usar herramientas de pago. Debía integrar Contact Form 7 con una base de datos relacional MySQL y configurar un sistema de exportación automática sin costos mensuales.",
+      "en": "The client needed to replace their old site with a professional platform and required lead management automation to an external spreadsheet without using paid tools. Had to integrate Contact Form 7 with a MySQL relational database and set up an automatic export system without monthly costs.",
+      "eu": "Bezeroak web zaharra plataforma profesional batekin ordezkatu behar zuen eta lead-en kudeaketa automatizatzea behar zuen kanpoko kalkulu-orri batera, ordainpeko tresnarik erabili gabe. Contact Form 7 MySQL datu-base erlazional batekin integratu eta esportazio automatikoko sistema konfiguratu behar zen hilabeteko kosturik gabe."
+    },
+    "longDescSolution": {
+      "es": "Programé dos plugins desde cero: uno para persistencia MySQL de Contact Form 7 con panel de administración para visualizar leads, y otro para exportación vía CRON job a Google Sheets mediante AppScript (webhook). Implementé SEO técnico con schema markup, optimización de imágenes y configuración de Hostalia para máxima velocidad.",
+      "en": "I programmed two plugins from scratch: one for MySQL persistence of Contact Form 7 with admin panel to view leads, and another for CRON job export to Google Sheets via AppScript (webhook). I implemented technical SEO with schema markup, image optimization and Hostalia configuration for maximum speed.",
+      "eu": "Bi plugin programatu nituen hutsetik: bata Contact Form 7-ren MySQL iraunkortasunerako eta lead-ak ikusteko administratzaile-panela, eta bestea CRON job bidezko Google Sheets-era esportaziorako AppScript (webhook) bidez. SEO teknikoa egin nuen schema markup eta irudi-optimizazioarekin."
+    }
+  },
+  {
+    "id": "rorr-mod",
+    "title": {
+      "es": "RoRR Cut Content Mod (Restomod)",
+      "en": "RoRR Cut Content Mod (Restomod)",
+      "eu": "RoRR Cut Content Mod (Restomod)"
+    },
+    "tech": "Lua, Risk of Rain Returns Modding API, Reverse Engineering, Steam Workshop",
+    "desc": {
+      "es": "Restomod en Lua para Risk of Rain Returns: restauración e integración jugable de arte conceptual y contenido descartado durante el desarrollo del juego.",
+      "en": "Lua-based game restomod for Risk of Rain Returns: restoring and integrating concept art and scrapped content from the original development.",
+      "eu": "Lua bidezko joko-restomoda Risk of Rain Returns-erako: jatorrizko garapenean baztertutako arte kontzeptuala eta edukia berreskuratu eta jokoan txertatuz."
+    },
+    "link": "https://github.com/Garridoparrayeray/RoRR_cut_content_concept_art_mod",
+    "role": {
+      "es": "Game Modder (Lua / Restomod)",
+      "en": "Game Modder (Lua / Restomod)",
+      "eu": "Game Modder (Lua / Restomod)"
+    },
+    "year": "2024",
+    "longDescChallenge": {
+      "es": "Risk of Rain Returns, remake del título clásico de 2013, dejó fuera de su versión final comercial una cantidad sustancial de arte conceptual, animaciones y mecánicas esbozadas en fases tempranas. Este material quedó documentado únicamente en libros de arte y archivos de preproducción. El reto fue rescatar este legado lúdico, comprender la arquitectura interna del motor y diseñar una integración jugable limpia sin desvirtuar el balance ni la estabilidad del juego original.",
+      "en": "Risk of Rain Returns, the remake of the 2013 classic, left a substantial amount of concept art, animations, and sketched mechanics outside the final commercial release. This material was preserved only in art books and preproduction archives. The challenge was rescuing this gaming heritage, understanding the engine's internal data tables, and crafting a playable integration without compromising game balance or stability.",
+      "eu": "Risk of Rain Returns-ek, 2013ko klasikoaren bertsio berrituak, arte kontzeptual, animazio eta mekanika ugari utzi zituen azken kaleratze komertzialetik kanpo. Material hau arte-liburuetan bakarrik zegoen ikusgai. Erronka jokoaren barne-egiturak aztertzea eta jatorrizko oreka kaltetu gabe eduki hori modu jokagarrian txertatzea izan zen."
+    },
+    "longDescSolution": {
+      "es": "Desarrollé un restomod programado en Lua utilizando la API oficial de modding de Risk of Rain Returns. Reconstruí sprites a partir de las láminas de arte conceptual oficial, programé habilidades y comportamientos coherentes con los bocetos de los diseñadores originales, y empaqueté el mod para su distribución comunitaria en Steam Workshop y repositorios abiertos. Al tratarse de un mod de videojuego de consola/PC, el proyecto se presenta como desarrollo de código y lógica sin capturas de interfaz web.",
+      "en": "Engineered a gaming restomod in Lua utilizing the official Risk of Rain Returns modding API. Rebuilt in-game sprites directly from official concept art plates, scripted abilities and enemy behaviors faithful to early designer sketches, and packaged the modification for community distribution on Steam Workshop. As a desktop video game restomod, it stands on source code and logic without web UI captures.",
+      "eu": "Lua-n programatutako restomod bat garatu nuen Risk of Rain Returns-en modding API ofiziala erabiliz. Arte kontzeptualeko fitxetatik abiatuta sprite-ak berreraiki nituen, diseinatzaileen zirriborroekin bat datozen trebetasunak programatu eta Steam Workshop bidez zabaldu nuen. Bideo-joko baten mod-a denez, kode eta logikari ematen zaio lehentasuna web interfazearen pantaila-argazkien ordez."
+    }
+  }
 ]

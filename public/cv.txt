@@ -70,10 +70,13 @@ al 100% en entornos Linux.
 
 [ PROYECTOS DESTACADOS ]
 
-> Ecosistema Open Data (BizkaiBus+ / Metro+)
-  PWA de movilidad predictiva en tiempo real. Precompilación automatizada de
-  datos GTFS a SQLite local (arquitectura zero-load en servidor) cruzando
-  flujos SIRI-VM/SIRI-SX en vivo. SPA en Vanilla JS, PHP 8 y Leaflet.
+> Bide+ (BizkaiBus+ / Metro+ / Euskotren+ / Renfe Cercanías+)
+  PWA de movilidad predictiva en tiempo real en Euskadi. Precompilación automatizada
+  de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX con cálculo propio de ETA.
+
+> Gasolinera+
+  Buscador en tiempo real de precios de combustible en España con API REST propia en
+  PHP nativo sobre datos oficiales del MITECO y geolocalización client-side.
 
 > GastroAccess Euskadi
   SPA (React, TypeScript, Vite) que consume APIs de Open Data Euskadi mediante

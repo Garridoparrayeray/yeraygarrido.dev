@@ -57,8 +57,12 @@
   ],
   "projects": [
     {
-      "name": "Ecosistema Open Data (BizkaiBus+ / Metro+)",
-      "description": "PWA de movilidad predictiva en tiempo real. Precompilación automatizada de datos GTFS a SQLite local (arquitectura zero-load en servidor) cruzando flujos SIRI-VM/SIRI-SX en vivo. Interfaz de usuario SPA desarrollada en Vanilla JS, PHP 8 y Leaflet."
+      "name": "Bide+ (BizkaiBus+ / Metro+ / Euskotren+ / Renfe Cercanías+)",
+      "description": "PWA de movilidad predictiva en tiempo real en Euskadi. Precompilación automatizada de datos GTFS a SQLite local (arquitectura zero-load en servidor) cruzando flujos SIRI-VM/SIRI-SX en vivo con cálculo propio de ETA."
+    },
+    {
+      "name": "Gasolinera+",
+      "description": "Buscador y comparador en tiempo real de precios de combustible en España. API REST propia en PHP nativo sobre datos oficiales del Ministerio para la Transición Ecológica con geolocalización client-side respetuosa con la privacidad."
     },
     {
       "name": "GastroAccess Euskadi",

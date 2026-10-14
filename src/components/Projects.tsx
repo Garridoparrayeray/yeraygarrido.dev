@@ -143,30 +143,36 @@ export default function Projects() {
       images: ["/img/projects/portfolio_captura.webp", "/img/projects/all_proyects_portfolio.webp", "/img/projects/mobile_stack_view_portfolio.webp"],
     },
     {
-      id: "bizkaibus",
-      title: { es: "BizkaiBus+", en: "BizkaiBus+", eu: "BizkaiBus+" },
-      tech: "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, Vercel Serverless, GitHub Actions",
+      id: "bideplus",
+      title: { es: "Bide+", en: "Bide+", eu: "Bide+" },
+      tech: "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, PWA, Vercel Serverless, GitHub Actions",
       desc: {
-        es: "App no oficial de Bizkaibus con horarios y seguimiento en vivo, dos temas visuales sobre el mismo motor, y una ETA propia calculada cruzando la posición real del bus con el horario.",
-        en: "Unofficial Bizkaibus app with timetables and live tracking, two visual themes on the same engine, and a custom ETA calculated by cross-referencing the bus's real position with the schedule.",
-        eu: "Bizkaibus-en app ez-ofiziala, ordutegi eta jarraipen bizian, bi tema bisual motore beraren gainean, eta autobusaren posizio erreala ordutegiarekin gurutzatuz kalkulatutako ETA propioa.",
+        es: "Plataforma web instalable (PWA) de transporte público de Euskadi (Bizkaibus+, Metro+, Euskotren+, Tranvía, Renfe) con horarios, llegadas en tiempo real calculadas por GPS y mapa interactivo.",
+        en: "Installable web app (PWA) unifying Basque Country public transit (Bizkaibus+, Metro+, Euskotren+, Tram, Renfe) with timetables, live GPS-calculated arrivals, and interactive map.",
+        eu: "Euskadiko garraio publikoa (Bizkaibus+, Metro+, Euskotren+, Tranbia, Renfe) batzen duen web aplikazio instalagarria (PWA), ordutegiekin, GPS bidez kalkulatutako etorrerak eta mapa biziarekin.",
       },
       link: "https://github.com/Garridoparrayeray/bizkaibus-renewed",
-      demoUrl: "https://bizkaibus-renewed.vercel.app",
-      role: { es: "Full Stack (PHP + Vanilla JS)", en: "Full Stack (PHP + Vanilla JS)", eu: "Full Stack (PHP + Vanilla JS)" },
+      demoUrl: "https://bideplus.vercel.app",
+      role: { es: "Full Stack / Arquitectura de Datos", en: "Full Stack / Data Architecture", eu: "Full Stack / Datuen Arkitektura" },
       year: "2026",
       longDescChallenge: {
-        es: "Empezó como un favor: a mi mujer no le convencía la app oficial de Bizkaibus, poco intuitiva y lenta de usar. El reto real llegó al construir el seguimiento en vivo: el feed SIRI-VM del operador no da una cuenta atrás lista para usar, solo la posición confirmada del bus y un retraso genérico que no siempre coincide con la realidad. A mitad de proyecto descubrí además que la fuente de datos estática que usaba llevaba más de un año sin actualizarse, así que un desvío real de temporada de verano era invisible para la app.",
-        en: "It started as a favor: my wife wasn't convinced by the official Bizkaibus app, unintuitive and slow to use. The real challenge came building live tracking: the operator's SIRI-VM feed doesn't give a ready-to-use countdown, only the bus's confirmed position and a generic delay figure that doesn't always match reality. Halfway through, I also found the static data source I was using hadn't been updated in over a year, so a real summer-season route detour was invisible to the app.",
-        eu: "Mesede gisa hasi zen: nire emazteari ez zitzaion gustatzen Bizkaibus-en app ofiziala, ez intuitiboa eta erabiltzeko motela. Benetako erronka jarraipen bizia eraikitzean iritsi zen: operadorearen SIRI-VM feed-ak ez du kontagailu bat ematen zuzenean erabiltzeko, autobusaren posizio baieztatua eta atzerapen generiko bat baino ez, ez dena beti errealitatearekin bat. Proiektuaren erdian, gainera, erabiltzen nuen datu-iturri estatikoa urte batetik gora eguneratu gabe zegoela aurkitu nuen.",
+        es: "Empezó como una mejora personal para la app de Bizkaibus, lenta y poco intuitiva, y evolucionó hasta abarcar toda la red de movilidad de Euskadi (Bizkaibus+, Metro+, Euskotren+, Tranvías de Bilbao/Vitoria y Renfe Cercanías). El gran reto técnico fue el seguimiento en tiempo real: el feed SIRI-VM del operador no entrega una cuenta atrás lista para consumir, solo coordenadas y un retraso estimado genérico que a menudo no coincide con la realidad. Además, unificar datos multimodales heterogéneos sin saturar servidores ni penalizar el rendimiento en dispositivos móviles exigía replantear por completo la ingesta de datos.",
+        en: "Started as a personal improvement for the official Bizkaibus app, unintuitive and slow, and evolved into a unified mobility hub for all Basque Country transit (Bizkaibus+, Metro+, Euskotren+, Bilbao/Vitoria Trams, and Renfe Cercanías). The major technical hurdle was live tracking: the SIRI-VM feed provides no ready countdown, only coordinates and a generic delay figure that often misleads passengers. Unifying multimodal feeds without server overload or mobile lag required rethinking data ingestion from the ground up.",
+        eu: "Bizkaibus-en app ofiziala hobetzeko proiektu pertsonal gisa hasi zen, eta Euskadi osoko garraio publikoa (Bizkaibus+, Metroa, Euskotren+, Bilbo/Gasteizko Tranbiak eta Renfe Aldiriak) bateratzera eboluzionatu zuen. Erronka nagusia denbora errealeko jarraipena izan zen: SIRI-VM feed-ak ez du kontagailurik ematen, koordenatuak eta atzerapen generiko bat baino ez. Datu multimodal desberdinak bateratzeak, zerbitzaria kargatu gabe eta mugikorrean arintasuna mantenduz, datuen tratamendua goitik behera birpentsatzea eskatu zuen.",
       },
       longDescSolution: {
-        es: "Backend PHP nativo separado por capas (Controllers/Models/Services) que precompila el horario oficial (GTFS) a un fichero SQLite en cada build — sin parseo en producción ni servidor de base de datos que mantener, ideal para serverless (Vercel). Para el seguimiento en vivo cruzo la posición confirmada del feed SIRI-VM con el horario parada a parada para calcular una ETA propia, en vez de fiarme de un único retraso plano para todo el trayecto. Migré la fuente estática de NeTEx (congelada) a GTFS (activamente mantenida) y automaticé la reconstrucción diaria vía GitHub Actions, con una comprobación que aborta el despliegue si el feed descargado indica que su propia temporada ya venció. Todo sobre dos temas visuales completos (uno personal, uno público) con el mismo HTML/JS, resueltos en el cliente antes del primer pintado.",
-        en: "Native PHP backend split into layers (Controllers/Models/Services) that precompiles the official schedule (GTFS) into a SQLite file at build time — no parsing in production, no database server to maintain, ideal for serverless (Vercel). For live tracking I cross-reference the SIRI-VM feed's confirmed position with the stop-by-stop schedule to compute my own ETA instead of trusting a single flat delay for the whole trip. I migrated the static source from NeTEx (frozen) to GTFS (actively maintained) and automated a daily rebuild via GitHub Actions, with a check that aborts the deploy if the downloaded feed's own season has already expired. All running on two complete visual themes (one personal, one public) over the exact same HTML/JS, resolved client-side before first paint.",
-        eu: "PHP backend natiboa, geruzatan banatuta (Controllers/Models/Services), ordutegi ofiziala (GTFS) SQLite fitxategi batean aurrekonpilatzen duena build bakoitzean — produkzioan parseorik gabe, mantendu beharreko datu-base zerbitzaririk gabe, serverless-erako aproposa (Vercel). Jarraipen bizirako, SIRI-VM feed-aren posizio baieztatua ordutegiarekin gurutzatzen dut geltoki-geltoki ETA propioa kalkulatzeko. NeTEx iturri estatikotik (izoztuta) GTFS-ra (aktiboki mantendua) migratu nuen, eta GitHub Actions bidez eguneroko berreraikitzea automatizatu nuen. Proiektu osoak bi tema bisual osatu ditu (pertsonala eta publikoa) HTML/JS berdinaren gainean.",
+        es: "Backend PHP nativo con arquitectura limpia por capas (Controllers/Models/Services) que precompila diariamente las especificaciones oficiales GTFS a una base de datos SQLite embebida durante el build — cero latencia de base de datos externa, ideal para serverless (Vercel). Diseñé un algoritmo propio de ETA que sitúa la telemetría GPS del autobús directamente sobre el trazado geométrico de la línea y lo coteja parada a parada, reduciendo el margen de error típico de 5 minutos a menos de 1.5 minutos. Integra avisos de incidencias en vivo, soporte PWA sin conexión para consultas recientes, dos temas visuales completos y soporte bilingüe (ES/EU).",
+        en: "Native PHP backend with clean layered architecture (Controllers/Models/Services) precompiling official GTFS feeds daily into an embedded SQLite database at build time — zero database server latency, optimal for Vercel serverless. Engineered a proprietary ETA algorithm projecting real-time bus GPS telemetry onto geometric route paths stop-by-stop, cutting arrival estimation error from ~5 minutes down to sub-1.5 minutes. Includes live service alerts, offline PWA caching for recent searches, two visual themes, and bilingual support (ES/EU).",
+        eu: "PHP backend natiboa geruzatan antolatua (Controllers/Models/Services), egunero GTFS datu ofizialak build-ean txertatutako SQLite datu-base batera aurrekonpilatzen duena — kanpoko datu-basearen latentziarik gabe, Vercel serverless arkitekturarako ezin hobea. ETA algoritmo propioa garatu nuen: autobusaren GPS posizioa ibilbide geometrikoaren gainean kokatzen du geltokiz geltoki, errore-marjina 5 minututik 1.5 minutu baino gutxiagora murriztuz. Gertakarien abisuak denbora errealean, lineaz kanpoko PWA katxea, bi tema bisual eta elebitasuna (ES/EU) biltzen ditu.",
       },
-      imageUrl: "/img/projects/bizkaibus_captura.png",
-      images: ["/img/projects/bizkaibus_captura.png", "/img/projects/bizkaibus_mobile_view.png", "/img/projects/bizkaibus_miamor_theme.png"],
+      imageUrl: "/img/projects/bideplus_desktop.webp",
+      images: [
+        "/img/projects/bideplus_desktop.webp",
+        "/img/projects/bideplus_mobile.webp",
+        "/img/projects/bizkaibus_captura.png",
+        "/img/projects/bizkaibus_mobile_view.png",
+        "/img/projects/bizkaibus_miamor_theme.png"
+      ],
     }
   ];
 
