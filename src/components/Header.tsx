@@ -145,7 +145,7 @@ export default function Header() {
               aria-expanded={isLangMenuOpen}
               aria-haspopup="true"
               aria-label={t("header.switchLanguage")} // <--- TRADUCIDO
-              className="flex items-center justify-center gap-1.5 font-sans text-xs tracking-widest uppercase font-bold px-4 py-2 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-300 text-white min-w-[72px]"
+              className="flex items-center justify-center gap-1.5 font-sans text-xs tracking-widest uppercase font-bold px-4 py-2 border border-white/20 hover:bg-white hover:text-black transition-all duration-300 text-white min-w-[72px]"
             >
               <span>{language}</span>
               <svg
@@ -165,7 +165,7 @@ export default function Header() {
 
             {/* Menú Desplegable */}
             <div
-              className={`absolute top-full mt-2 w-full bg-black/90 backdrop-blur-md border border-white/10 rounded-md flex flex-col overflow-hidden origin-top transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+              className={`absolute top-full mt-2 w-full bg-black/95 backdrop-blur-md border border-white/20 flex flex-col overflow-hidden origin-top transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
                 ${isLangMenuOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"}`}
             >
               {languages.map((lang, index) => (

@@ -349,7 +349,7 @@ export default function Projects() {
                 {modalTab === 'github' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white"></span>}
               </button>
             </div>
-            <button onClick={() => setIsModalOpen(false)} className="cursor-pointer w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
+            <button onClick={() => setIsModalOpen(false)} className="cursor-pointer w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
@@ -429,19 +429,24 @@ export default function Projects() {
       {/* DETALLE PROYECTO */}
       {activeProject && (
         <div className="fixed inset-0 z-200 bg-black animate-modal flex flex-col" onClick={() => setActiveProject(null)}>
-          <div className="sticky top-0 w-full px-6 py-5 md:px-12 md:py-6 flex justify-between items-center bg-black/90 backdrop-blur-xl z-20 border-b border-white/10 shrink-0" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setActiveProject(null)} className="cursor-pointer flex items-center gap-2 font-sans text-sm md:text-xs tracking-widest uppercase text-white/70 hover:text-white transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-              {l(uiTexts.back)}
+          <div className="sticky top-0 w-full px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/95 backdrop-blur-xl z-20 border-b border-white/20 shrink-0" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setActiveProject(null)} 
+              className="cursor-pointer flex items-center gap-2.5 font-sans text-sm md:text-base font-bold tracking-widest uppercase text-white hover:text-white/70 transition-colors py-1.5 px-3 border border-white/20 hover:border-white bg-white/5 hover:bg-white/10"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>{l(uiTexts.back)}</span>
             </button>
-            <span className="font-wide text-xs md:text-xs uppercase text-white/40 tracking-widest truncate max-w-[40vw] text-right">{l(activeProject.title)}</span>
+            <span className="font-wide text-sm md:text-lg font-bold uppercase text-white tracking-widest truncate max-w-[50vw] text-right">
+              {l(activeProject.title)}
+            </span>
           </div>
           
           <div className="flex-1 overflow-y-auto modal-scroll" data-lenis-prevent="true" onClick={(e) => e.stopPropagation()}>
             <div className="w-full h-[30vh] md:h-[55vh] bg-[#050505] border-b border-white/10 flex items-center justify-center relative overflow-hidden">
               {(activeProject.imageUrl || (activeProject.images && activeProject.images[0])) && (
                 <>
-                  <img src={activeProject.imageUrl || (activeProject.images && activeProject.images[0])} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-40" />
+                  <img src={activeProject.imageUrl || (activeProject.images && activeProject.images[0])} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-60" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 </>
               )}
