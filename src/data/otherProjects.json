@@ -48,11 +48,11 @@
       "en": "Gasolinera+",
       "eu": "Gasolinera+"
     },
-    "tech": "PHP 8 (API REST), HTML5, CSS3, Vanilla JS, Geolocation API, MITECO Open Data",
+    "tech": "PHP 8 (API REST), HTML5, CSS3, Vanilla JS, Geolocation API, MITECO Open Data, Leaflet, Canvas",
     "desc": {
-      "es": "Buscador y comparador en tiempo real de precios de combustible en toda España cerca de ti, utilizando datos oficiales del Ministerio para la Transición Ecológica.",
-      "en": "Real-time fuel price comparator and finder across Spain near you, powered by official data from Spain's Ministry for Ecological Transition.",
-      "eu": "Espainia osoko erregai-prezioak denbora errealean bilatu eta alderatzeko tresna, Trantsizio Ekologikorako Ministerioaren datu ofizialekin."
+      "es": "Buscador y comparador en tiempo real de precios de combustible en España (MITECO), con gestor de vehículos y consumo, ordenador de viaje en vivo con velocímetro y mapa interactivo de calor.",
+      "en": "Real-time fuel price finder and comparator across Spain (MITECO), featuring vehicle telemetry & fuel logging, live trip computer with speedometer, and interactive price heatmap.",
+      "eu": "Espainia osoko erregai-prezioak denbora errealean bilatu eta alderatzeko tresna (MITECO), ibilgailuen kudeaketarekin, kontsumo-kontrolekin, denbora errealeko bidaia-ordenagailuarekin eta bero-maparekin."
     },
     "link": "https://github.com/Garridoparrayeray/gasolinera-plus",
     "role": {
@@ -62,21 +62,22 @@
     },
     "year": "2025",
     "longDescChallenge": {
-      "es": "Encontrar el combustible más económico en ruta suele depender de aplicaciones lentas, sobrecargadas de publicidad o con datos desfasados. La fuente oficial del Ministerio para la Transición Ecológica (geoportalgasolineras.es) ofrece los precios de todas las estaciones de servicio del territorio nacional, pero su endpoint público devuelve un volumen de datos masivo y no optimizado para navegación móvil. El reto fue crear una herramienta ultrarrápida, limpia, sin publicidad invasiva y con geolocalización client-side respetuosa con la privacidad de los usuarios.",
-      "en": "Finding the cheapest fuel usually involves ad-heavy, sluggish apps or outdated information. Spain's official Ministry for Ecological Transition portal (geoportalgasolineras.es) exposes live fuel prices for every station, but returns unoptimized, heavy datasets difficult to consume directly on mobile networks. The challenge was building an ultra-fast, zero-ad tool that calculates nearest stations client-side while respecting user privacy.",
-      "eu": "Erregai merkeena aurkitzeak sarritan publizitatez betetako edo datu zaharrak dituzten aplikazio motelak erabiltzea eskatzen du. Trantsizio Ekologikorako Ministerioak (geoportalgasolineras.es) datu ofizialak eskaintzen ditu, baina bere endpoint-ak pisu handiko datuak itzultzen ditu. Erronka publizitaterik gabeko tresna ultra-azkarra sortzea zen, erabiltzailearen pribatutasuna errespetatuz bezero-aldean egindako geokokapenarekin."
+      "es": "Encontrar el combustible más económico en ruta suele depender de aplicaciones lentas, sobrecargadas de publicidad o con datos desfasados. Además, los conductores carecen de herramientas integradas para monitorizar el gasto real de su propio vehículo (depósito restante, coste por kilómetro, histórico de repostajes) y registrar sus trayectos sin depender de servicios de terceros que recopilan telemetría privada. El reto fue crear una suite de movilidad ultrarrápida, con identidad visual oscura y acento naranja (#FF7A1A), sin publicidad invasiva y con almacenamiento y geolocalización client-side respetuosos al 100% con la privacidad.",
+      "en": "Finding the cheapest fuel usually involves ad-heavy, sluggish apps or outdated information. Furthermore, drivers lack lightweight privacy-respecting tools to log personal vehicle metrics (tank levels, cost per km, fill-up history) and track live road trips without invasive cloud telematics. The challenge was building an ultra-fast, zero-ad mobility suite in a dark theme with vibrant orange branding (#FF7A1A), running entirely client-side for maximum speed and privacy.",
+      "eu": "Erregai merkeena aurkitzeak sarritan publizitatez betetako edo datu zaharrak dituzten aplikazio motelak erabiltzea eskatzen du. Gainera, gidariek ez dituzte ibilgailuaren gastu propioa kudeatzeko tresna arinak (gainerako erregaia, kilometroko kostua, birkargak) eta telemetria pribatua erregistratzeko aukerarik. Erronka mugikortasun-suite ultra-azkarra sortzea zen, estilo ilunarekin eta laranja biziarekin (#FF7A1A), publizitaterik gabe eta bezero-aldeko pribatutasun osoarekin."
     },
     "longDescSolution": {
-      "es": "Desarrollé una solución Full Stack sin dependencias pesadas: backend en PHP nativo que actúa como API REST proxy normalizando la respuesta del Ministerio, gestionando caché y estructurando precios de Gasolina 95, 98, Diésel y GLP. En el cliente, una interfaz responsive en Vanilla JS que utiliza la Geolocation API del navegador y la fórmula de Haversine para ordenar gasolineras por precio o distancia sin registrar ni enviar la ubicación del usuario a servidores externos. Incluye vista interactiva de mapa y carga en menos de 1.2 segundos.",
-      "en": "Engineered a zero-dependency Full Stack architecture: native PHP REST API proxy normalizing raw Ministry feeds with caching, categorizing Gasoline 95, 98, Diesel, and LPG. On the frontend, vanilla JS leverages the browser Geolocation API and Haversine formula to sort by price or proximity entirely client-side without storing tracking data. Features interactive map view and sub-1.2s loading speeds.",
-      "eu": "Menpekotasunik gabeko Full Stack irtenbidea garatu nuen: PHP natiboko REST API proxy-a Ministerioaren datuak normalizatzeko katxearekin, eta frontend arina Vanilla JS-ekin. Nabigatzailearen Geolocation API eta Haversine formula erabiliz distantziak bezero-aldean kalkulatzen dira zerbitzarian daturik gorde gabe. Mapa interaktiboa du eta 1.2 segundotan kargatzen da."
+      "es": "Arquitectura Full Stack sin dependencias pesadas: backend PHP nativo que consulta, normaliza y cachea los datos oficiales del Ministerio para más de 11.400 estaciones de servicio en todo el país (Gasóleo A, Gasolina 95, 98, GLP, etc.). En el cliente, una SPA ultrarrápida en Vanilla JS con: 1) Buscador geolocalizado y mapa interactivo con clusters y capas de mapa de calor de precios; 2) Módulo de Garaje/Coche para control de depósitos, histórico de repostajes, medias de consumo (L/100km) y exportación gráfica a imagen y PDF; y 3) Ordenador de a bordo para trayectos ('Grabando viaje') con velocímetro digital en tiempo real (km/h), cálculo de distancia, tiempo y velocidad media sin consumo excesivo de batería.",
+      "en": "Zero-dependency Full Stack architecture: native PHP backend querying, normalizing, and caching live official Ministry feeds for over 11,400 fuel stations across Spain (Gasóleo A, Gasoline 95, 98, LPG). On the frontend, a snappy vanilla JS SPA featuring: 1) Geolocation finder and interactive map with station clusters and price heatmap layers; 2) 'Coche' vehicle telemetry hub tracking fuel tank capacity, fill-ups, average L/100km consumption, and summary export to image/PDF; and 3) Live onboard trip computer with digital speedometer (km/h), elapsed time, distance, and average speed.",
+      "eu": "Menpekotasunik gabeko Full Stack irtenbidea: PHP natiboko backend-a Ministerioko 11.400 gasolindegiren datu ofizialak normalizatzeko eta katxeatzeko. Bezeroan, Vanilla JS SPA azkarra: 1) Geokokapen bidezko bilatzailea eta mapa interaktiboa bero-mapa geruzekin; 2) 'Coche' garaje-modulua depozituaren jarraipenerako, birkargak, batez besteko kontsumoa (L/100km) eta irudi/PDF esportazioa; eta 3) Denbora errealeko bidaia-ordenagailua abiadura-neurgailu digitalarekin (km/h), distantzia eta denbora kalkuluarekin."
     },
     "imageUrl": "/img/projects/gasolinera_desktop.webp",
     "images": [
       "/img/projects/gasolinera_loading.gif",
       "/img/projects/gasolinera_desktop.webp",
+      "/img/projects/gasolinera_coche_desktop.webp",
       "/img/projects/gasolinera_mobile.webp",
-      "/img/projects/gasolinera_mapa.webp"
+      "/img/projects/gasolinera_viaje_mobile.webp"
     ]
   },
   {

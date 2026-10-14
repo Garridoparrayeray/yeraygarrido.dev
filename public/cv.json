@@ -62,7 +62,7 @@
     },
     {
       "name": "Gasolinera+",
-      "description": "Buscador y comparador en tiempo real de precios de combustible en España. API REST propia en PHP nativo sobre datos oficiales del Ministerio para la Transición Ecológica con geolocalización client-side respetuosa con la privacidad."
+      "description": "Buscador y comparador en tiempo real de precios de combustible en España (MITECO) con API REST propia en PHP nativo. Incluye gestor de telemetría de vehículo propio (depósitos, repostajes, consumo medio L/100km), ordenador de viaje en vivo con velocímetro digital y mapa interactivo de calor."
     },
     {
       "name": "GastroAccess Euskadi",

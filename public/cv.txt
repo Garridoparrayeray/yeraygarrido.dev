@@ -76,7 +76,8 @@ al 100% en entornos Linux.
 
 > Gasolinera+
   Buscador en tiempo real de precios de combustible en España con API REST propia en
-  PHP nativo sobre datos oficiales del MITECO y geolocalización client-side.
+  PHP nativo sobre datos oficiales del MITECO, gestor de telemetría de vehículo propio
+  (depósito, repostajes, medias L/100km), ordenador de viaje en vivo y mapas de calor.
 
 > GastroAccess Euskadi
   SPA (React, TypeScript, Vite) que consume APIs de Open Data Euskadi mediante
