@@ -468,8 +468,8 @@ export default function Projects() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col justify-between relative z-10 border-t border-white/10 pb-8 md:pb-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full pt-6 md:pt-20 px-6 md:px-12 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
+      <section ref={sectionRef} className="py-24 md:py-32 bg-black text-white flex flex-col relative z-10 border-t border-white/10 overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
           <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2">
@@ -500,7 +500,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="relative flex-1 flex flex-col justify-center mt-2 md:mt-8 max-w-7xl mx-auto w-full px-6 md:px-12 overflow-hidden">
+        <div className="relative mt-8 md:mt-12 max-w-7xl mx-auto w-full px-6 md:px-12 overflow-hidden">
           <div
             ref={scrollRef}
             onScroll={handleScroll}
