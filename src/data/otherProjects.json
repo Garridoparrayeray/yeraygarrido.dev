@@ -42,6 +42,52 @@
     ]
   },
   {
+    "id": "bideplus",
+    "title": {
+      "es": "Bide+",
+      "en": "Bide+",
+      "eu": "Bide+"
+    },
+    "tech": "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, PWA, Vercel Serverless, GitHub Actions",
+    "desc": {
+      "es": "Plataforma web instalable (PWA) de transporte público de Euskadi (Bizkaibus+, Metro+, Euskotren+, Tranvía, Renfe) con horarios, llegadas en tiempo real calculadas por GPS y mapa interactivo.",
+      "en": "Installable web app (PWA) unifying Basque Country public transit (Bizkaibus+, Metro+, Euskotren+, Tram, Renfe) with timetables, live GPS-calculated arrivals, and interactive map.",
+      "eu": "Euskadiko garraio publikoa (Bizkaibus+, Metro+, Euskotren+, Tranbia, Renfe) batzen duen web aplikazio instalagarria (PWA), ordutegiekin, GPS bidez kalkulatutako etorrerak eta mapa biziarekin."
+    },
+    "link": "https://github.com/Garridoparrayeray/bizkaibus-renewed",
+    "demoUrl": "https://bideplus.vercel.app",
+    "role": {
+      "es": "Full Stack / Arquitectura de Datos",
+      "en": "Full Stack / Data Architecture",
+      "eu": "Full Stack / Datuen Arkitektura"
+    },
+    "year": "2026",
+    "longDescChallenge": {
+      "es": "Empezó como una mejora personal para la app de Bizkaibus, lenta y poco intuitiva, y evolucionó hasta abarcar toda la red de movilidad de Euskadi (Bizkaibus+, Metro+, Euskotren+, Tranvías de Bilbao/Vitoria y Renfe Cercanías). El gran reto técnico fue el seguimiento en tiempo real: el feed SIRI-VM del operador no entrega una cuenta atrás lista para consumir, solo coordenadas y un retraso estimado genérico que a menudo no coincide con la realidad. Además, unificar datos multimodales heterogéneos sin saturar servidores ni penalizar el rendimiento en dispositivos móviles exigía replantear por completo la ingesta de datos.",
+      "en": "Started as a personal improvement for the official Bizkaibus app, unintuitive and slow, and evolved into a unified mobility hub for all Basque Country transit (Bizkaibus+, Metro+, Euskotren+, Bilbao/Vitoria Trams, and Renfe Cercanías). The major technical hurdle was live tracking: the SIRI-VM feed provides no ready countdown, only coordinates and a generic delay figure that often misleads passengers. Unifying multimodal feeds without server overload or mobile lag required rethinking data ingestion from the ground up.",
+      "eu": "Bizkaibus-en app ofiziala hobetzeko proiektu pertsonal gisa hasi zen, eta Euskadi osoko garraio publikoa (Bizkaibus+, Metroa, Euskotren+, Bilbo/Gasteizko Tranbiak eta Renfe Aldiriak) bateratzera eboluzionatu zuen. Erronka nagusia denbora errealeko jarraipena izan zen: SIRI-VM feed-ak ez du kontagailurik ematen, koordenatuak eta atzerapen generiko bat baino ez. Datu multimodal desberdinak bateratzeak, zerbitzaria kargatu gabe eta mugikorrean arintasuna mantenduz, datuen tratamendua goitik behera birpentsatzea eskatu zuen."
+    },
+    "longDescSolution": {
+      "es": "Backend PHP nativo con arquitectura limpia por capas (Controllers/Models/Services) que precompila diariamente las especificaciones oficiales GTFS a una base de datos SQLite embebida durante el build — cero latencia de base de datos externa, ideal para serverless (Vercel). Diseñé un algoritmo propio de ETA que sitúa la telemetría GPS del autobús directamente sobre el trazado geométrico de la línea y lo coteja parada a parada, reduciendo el margen de error típico de 5 minutos a menos de 1.5 minutos. Integra avisos de incidencias en vivo, soporte PWA sin conexión para consultas recientes, dos temas visuales completos y soporte bilingüe (ES/EU).",
+      "en": "Native PHP backend with clean layered architecture (Controllers/Models/Services) precompiling official GTFS feeds daily into an embedded SQLite database at build time — zero database server latency, optimal for Vercel serverless. Engineered a proprietary ETA algorithm projecting real-time bus GPS telemetry onto geometric route paths stop-by-stop, cutting arrival estimation error from ~5 minutes down to sub-1.5 minutes. Includes live service alerts, offline PWA caching for recent searches, two visual themes, and bilingual support (ES/EU).",
+      "eu": "PHP backend natiboa geruzatan antolatua (Controllers/Models/Services), egunero GTFS datu ofizialak build-ean txertatutako SQLite datu-base batera aurrekonpilatzen duena — kanpoko datu-basearen latentziarik gabe, Vercel serverless arkitekturarako ezin hobea. ETA algoritmo propioa garatu nuen: autobusaren GPS posizioa ibilbide geometrikoaren gainean kokatzen du geltokiz geltoki, errore-marjina 5 minututik 1.5 minutu baino gutxiagora murriztuz. Gertakarien abisuak denbora errealean, lineaz kanpoko PWA katxea, bi tema bisual eta elebitasuna (ES/EU) biltzen ditu."
+    },
+    "imageUrl": "/img/projects/bideplus_loading.gif",
+    "images": [
+      "/img/projects/bideplus_loading.gif",
+      "/img/projects/bideplus_desktop.webp",
+      "/img/projects/bideplus_mobile.webp",
+      "/img/projects/bideplus_bizkaibus_mobile.webp",
+      "/img/projects/bideplus_bizkaibus_desktop.webp",
+      "/img/projects/bideplus_metro_mobile.webp",
+      "/img/projects/bideplus_euskotren_mobile.webp",
+      "/img/projects/bideplus_renfe_mobile.webp",
+      "/img/projects/bizkaibus_captura.png",
+      "/img/projects/bizkaibus_mobile_view.png",
+      "/img/projects/bizkaibus_miamor_theme.png"
+    ]
+  },
+  {
     "id": "gasolinera-plus",
     "title": {
       "es": "Gasolinera+",

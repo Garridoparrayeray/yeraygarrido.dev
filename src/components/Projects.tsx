@@ -280,7 +280,7 @@ export default function Projects() {
   ];
 
   const allManualProjects = Array.from(
-    new Map([...projects, ...(otherProjectsData as FeaturedProject[])].map(p => [p.id, p])).values()
+    new Map([...(otherProjectsData as FeaturedProject[]), ...projects].map(p => [p.id, p])).values()
   );
 
   const scrollToProject = (index: number) => {
@@ -400,7 +400,7 @@ export default function Projects() {
               {projects.map((p, i) => (
                 <div key={p.id} data-project-card onClick={() => setActiveProject(p)} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
                   <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors">
-                    {p.imageUrl && <img src={p.imageUrl} alt={l(p.title)} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />}
+                    {p.imageUrl && <img src={p.imageUrl} alt={l(p.title)} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />}
                     <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </div>
@@ -468,7 +468,7 @@ export default function Projects() {
                   <div key={p.id} onClick={() => setActiveProject(p)} className="bg-[#050505] border border-white/10 hover:border-white/30 group flex flex-col cursor-pointer overflow-hidden transition-all">
                     <div className="aspect-[4/3] bg-black relative overflow-hidden">
                       {p.imageUrl || (p.images && p.images[0]) ? (
-                        <img src={p.imageUrl || (p.images && p.images[0])} alt={l(p.title)} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                        <img src={p.imageUrl || (p.images && p.images[0])} alt={l(p.title)} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
                           <span className="font-wide text-4xl text-white/5 uppercase">{p.title.es?.charAt(0) || 'P'}</span>
@@ -565,7 +565,7 @@ export default function Projects() {
             <div className="w-full h-[30vh] md:h-[55vh] bg-[#050505] border-b border-white/10 flex items-center justify-center relative overflow-hidden">
               {(activeProject.imageUrl || (activeProject.images && activeProject.images[0])) && (
                 <>
-                  <img src={activeProject.imageUrl || (activeProject.images && activeProject.images[0])} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-60" />
+                  <img src={activeProject.imageUrl || (activeProject.images && activeProject.images[0])} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-90" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 </>
               )}
