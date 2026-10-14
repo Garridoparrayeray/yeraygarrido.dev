@@ -29,16 +29,17 @@
       "en": "PHP backend with a lightweight architecture (Core/Models), MySQL as the database, and an independent hand-built mobile flow (Home with a random photo, category picker, full-screen Reels with swipe, thumbnail mosaic) with no front-end framework. For the memory issue, I replaced on-demand thumbnail generation with Imagick using reduced-sample decoding, and more importantly moved generation to the moment each photo is uploaded from the admin panel: every thumbnail is created once, in an isolated process, instead of competing for memory with concurrent real-visitor requests. I also added IPTC metadata embedding (authorship and copyright) on every download, and deployed to Hostinger with automatic environment detection, so the same code serves both local and production without exposing credentials in the repository.",
       "eu": "PHP backend-a arkitektura arinarekin (Core/Models), MySQL datu-base gisa, eta eskuz eraikitako mugikorreko fluxu independentea (Home ausazko argazkiarekin, kategoria-hautatzailea, Reels pantaila osoan swipe-arekin, miniaturen mosaikoa), front-end frameworkrik gabe. Memoria-arazoarekiko, eskariaren araberako miniatura-sorrera Imagick-ekin ordezkatu nuen, laginketa murriztuko dekodifikazioarekin, eta batez ere sorrera argazki bakoitza administrazio-paneletik igotzen den unera eraman nuen: miniatura bakoitza behin bakarrik sortzen da, prozesu isolatu batean, benetako bisitarien aldiberekotasun-eskaerekin memoria lehiatu beharrean. IPTC metadatuak ere gehitu nituen (egiletza eta copyright) deskarga bakoitzean, eta Hostinger-en zabaldu nuen ingurunea automatikoki detektatzen duen konfigurazioarekin."
     },
+    "imageUrl": "/img/projects/archive_loading.webp",
     "images": [
-      "/img/projects/fto.webp",
+      "/img/projects/archive_loading.webp",
       "/img/projects/archive_mobile1.webp",
       "/img/projects/archive_mobile2.webp",
       "/img/projects/archive_mobile3.webp",
-      "/img/projects/archive1.webp",
       "/img/projects/archive2.webp",
       "/img/projects/archive3.webp",
       "/img/projects/archive4.webp",
-      "/img/projects/archive5.webp"
+      "/img/projects/archive5.webp",
+      "/img/projects/fto.webp"
     ]
   },
   {
