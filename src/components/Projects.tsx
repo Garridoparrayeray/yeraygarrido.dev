@@ -295,9 +295,6 @@ export default function Projects() {
   );
 
   const [isDragging, setIsDragging] = useState(false);
-  const dragStartX = useRef(0);
-  const dragScrollLeft = useRef(0);
-  const hasMovedRef = useRef(false);
 
   useEffect(() => {
     const el = scrollRef.current;
