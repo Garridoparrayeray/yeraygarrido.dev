@@ -390,125 +390,125 @@ export default function Projects() {
         id="projects"
         className="relative bg-black text-white border-t border-white/10 z-10 py-24 md:py-32 flex flex-col justify-center overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 shrink-0 flex justify-between items-center mb-6 md:mb-10">
-          <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => scrollToProject(Math.max(0, activeIndex - 1))}
-                disabled={activeIndex === 0}
-                aria-label="Proyecto anterior"
-                className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white transition-colors cursor-pointer disabled:cursor-not-allowed"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scrollToProject(Math.min(projects.length, activeIndex + 1))}
-                disabled={activeIndex >= projects.length}
-                aria-label="Proyecto siguiente"
-                className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white transition-colors cursor-pointer disabled:cursor-not-allowed"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+        <div className="relative max-w-7xl mx-auto w-full px-6 md:px-12 flex flex-col overflow-hidden">
+          <div className="shrink-0 flex justify-between items-center mb-6 md:mb-10">
+            <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => scrollToProject(Math.max(0, activeIndex - 1))}
+                  disabled={activeIndex === 0}
+                  aria-label="Proyecto anterior"
+                  className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white transition-colors cursor-pointer disabled:cursor-not-allowed"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scrollToProject(Math.min(projects.length, activeIndex + 1))}
+                  disabled={activeIndex >= projects.length}
+                  aria-label="Proyecto siguiente"
+                  className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white transition-colors cursor-pointer disabled:cursor-not-allowed"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+              <button onClick={openProjectsModal} className="hidden sm:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
+                {t("projects.viewAll")}
               </button>
             </div>
-            <button onClick={openProjectsModal} className="hidden sm:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
-              {t("projects.viewAll")}
-            </button>
           </div>
-        </div>
 
-        <div
-          ref={scrollRef}
-          className="relative w-full overflow-x-hidden overflow-y-hidden hide-scrollbar py-2 md:py-4 select-none touch-pan-y"
-          style={{ scrollbarWidth: "none" }}
-        >
           <div
-            className="flex gap-6 md:gap-8 w-max items-stretch pl-6 md:pl-[max(3rem,calc((100vw-80rem)/2+3rem))] pr-6 md:pr-16"
+            ref={scrollRef}
+            className="relative w-full overflow-x-hidden overflow-y-hidden hide-scrollbar py-2 md:py-4 select-none touch-pan-y"
+            style={{ scrollbarWidth: "none" }}
           >
-            {projects.map((p) => (
+            <div className="flex gap-6 md:gap-8 w-max items-stretch pr-6 md:pr-12">
+              {projects.map((p) => (
+                <div
+                  key={p.id}
+                  data-project-card
+                  onClick={() => setActiveProject(p)}
+                  className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
+                >
+                  <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors pointer-events-none">
+                    {p.imageUrl && (
+                      <img
+                        src={p.imageUrl}
+                        alt={l(p.title)}
+                        draggable={false}
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none"
+                      />
+                    )}
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm pointer-events-none">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </div>
+                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10 pointer-events-none">
+                      {p.year}
+                    </span>
+                  </div>
+                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold pointer-events-none">
+                    {renderTitle(l(p.title))}
+                  </h3>
+                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed pointer-events-none">
+                    {l(p.desc)}
+                  </p>
+                </div>
+              ))}
+
               <div
-                key={p.id}
                 data-project-card
-                onClick={() => setActiveProject(p)}
+                onClick={openProjectsModal}
                 className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
               >
-                <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors pointer-events-none">
-                  {p.imageUrl && (
-                    <img
-                      src={p.imageUrl}
-                      alt={l(p.title)}
-                      draggable={false}
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none"
-                    />
-                  )}
-                  <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm pointer-events-none">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all pointer-events-none">
+                  <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                    <svg
+                      width="26"
+                      height="26"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="square"
+                      strokeLinejoin="miter"
+                      className="transform group-hover:translate-x-1 transition-transform"
+                    >
+                      <line x1="4" y1="12" x2="20" y2="12"></line>
+                      <polyline points="13 5 20 12 13 19"></polyline>
                     </svg>
                   </div>
-                  <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10 pointer-events-none">
-                    {p.year}
-                  </span>
                 </div>
-                <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold pointer-events-none">
-                  {renderTitle(l(p.title))}
+                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors pointer-events-none">
+                  {t("projects.viewAll")}
                 </h3>
-                <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed pointer-events-none">
-                  {l(p.desc)}
-                </p>
               </div>
-            ))}
-
-            <div
-              data-project-card
-              onClick={openProjectsModal}
-              className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
-            >
-              <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all pointer-events-none">
-                <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                  <svg
-                    width="26"
-                    height="26"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="square"
-                    strokeLinejoin="miter"
-                    className="transform group-hover:translate-x-1 transition-transform"
-                  >
-                    <line x1="4" y1="12" x2="20" y2="12"></line>
-                    <polyline points="13 5 20 12 13 19"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors pointer-events-none">
-                {t("projects.viewAll")}
-              </h3>
             </div>
           </div>
-        </div>
 
-        <div className="flex justify-center gap-2 mt-4 md:mt-6 shrink-0">
-          {[...projects, null].map((_, i) => (
-            <button
-              key={i}
-              onClick={() => scrollToProject(i)}
-              className="group p-2 cursor-pointer touch-manipulation"
-              aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
-            >
-              <div
-                className={`h-1 transition-all duration-300 ${
-                  activeIndex === i ? "w-6 bg-white" : "w-1 bg-white/30 group-hover:bg-white/60"
-                }`}
-              />
-            </button>
-          ))}
+          <div className="flex justify-center gap-2 mt-4 md:mt-6 shrink-0">
+            {[...projects, null].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => scrollToProject(i)}
+                className="group p-2 cursor-pointer touch-manipulation"
+                aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
+              >
+                <div
+                  className={`h-1 transition-all duration-300 ${
+                    activeIndex === i ? "w-6 bg-white" : "w-1 bg-white/30 group-hover:bg-white/60"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
