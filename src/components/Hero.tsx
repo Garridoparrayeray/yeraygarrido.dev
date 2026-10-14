@@ -146,7 +146,7 @@ export default function Hero() {
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
             </div>
-            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300 pr-14 md:pr-16 text-center">
+            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300">
               {t("hero.downloadCv")}
             </div>
           </a>
@@ -163,7 +163,7 @@ export default function Hero() {
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path>
               </svg>
             </div>
-            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300 pr-14 md:pr-16 text-center">
+            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300">
               {t("hero.githubProfile")}
             </div>
           </a>
@@ -179,7 +179,7 @@ export default function Hero() {
                 <circle cx="12" cy="13" r="4"></circle>
               </svg>
             </div>
-            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300 pr-14 md:pr-16 text-center">
+            <div className="bg-black border border-white flex-1 flex items-center justify-center font-sans font-bold text-white text-sm md:text-lg tracking-widest uppercase group-hover:bg-white group-hover:text-black transition-colors duration-300">
               {t("hero.photographyProfile")}
             </div>
           </TearLink>

@@ -25,7 +25,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 py-4 md:py-6 ${scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/10" : "bg-transparent"}`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="w-full px-6 md:px-12 lg:px-24 flex items-center justify-between">
         <a
           href="/"
           onClick={(e) => {
