@@ -297,23 +297,28 @@ export default function Projects() {
   const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
+    const sec = sectionRef.current;
     const el = scrollRef.current;
-    if (!el) return;
+    if (!sec || !el) return;
 
     const onWheel = (e: WheelEvent) => {
-      // Intercept vertical wheel moves to scroll horizontally only
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        el.scrollBy({
-          left: e.deltaY * 1.2,
-          behavior: "auto",
-        });
-      }
+      // If modal or lightbox is active, allow normal modal scrolling
+      if (isModalOpen || activeProject || lightboxIndex !== null) return;
+
+      // Intercept wheel moves on the section: scroll projects carousel horizontally only
+      e.preventDefault();
+      e.stopPropagation();
+
+      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      el.scrollBy({
+        left: delta * 1.2,
+        behavior: "auto",
+      });
     };
 
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, []);
+    sec.addEventListener("wheel", onWheel, { passive: false });
+    return () => sec.removeEventListener("wheel", onWheel);
+  }, [isModalOpen, activeProject, lightboxIndex]);
 
   const isPointerDownRef = useRef(false);
   const dragStartXRef = useRef(0);
@@ -515,7 +520,14 @@ export default function Projects() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="py-24 md:py-32 bg-black text-white flex flex-col relative z-10 border-t border-white/10 overflow-hidden">
+      <section
+        ref={sectionRef}
+        data-lenis-prevent="true"
+        data-lenis-prevent-wheel="true"
+        data-lenis-prevent-touch="true"
+        className="py-24 md:py-32 bg-black text-white flex flex-col relative z-10 border-t border-white/10 overflow-hidden"
+        style={{ touchAction: "pan-x" }}
+      >
         <div className="max-w-7xl mx-auto w-full px-6 md:px-12 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
           <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
           <div className="flex items-center gap-3">
@@ -550,6 +562,9 @@ export default function Projects() {
         <div className="relative mt-8 md:mt-12 max-w-7xl mx-auto w-full px-6 md:px-12 overflow-hidden">
           <div
             ref={scrollRef}
+            data-lenis-prevent="true"
+            data-lenis-prevent-wheel="true"
+            data-lenis-prevent-touch="true"
             onScroll={handleScroll}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
