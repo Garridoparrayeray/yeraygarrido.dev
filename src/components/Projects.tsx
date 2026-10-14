@@ -341,13 +341,6 @@ export default function Projects() {
     lastXRef.current = e.clientX;
     lastTimeRef.current = performance.now();
     velocityRef.current = 0;
-
-    // Capture pointer events so dragging works even outside container bounds
-    try {
-      el.setPointerCapture(e.pointerId);
-    } catch {
-      // ignore
-    }
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -359,6 +352,12 @@ export default function Projects() {
     if (!hasMovedRef.current && Math.abs(deltaX) > 5) {
       hasMovedRef.current = true;
       setIsDragging(true);
+      // Capture pointer events only when dragging starts, so clicks are not intercepted
+      try {
+        el.setPointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
       // Temporarily disable CSS scroll-snap so dragging is 100% smooth and doesn't snap back mid-drag
       el.style.scrollSnapType = 'none';
       el.style.scrollBehavior = 'auto';
@@ -421,7 +420,7 @@ export default function Projects() {
     setIsDragging(false);
     setTimeout(() => {
       hasMovedRef.current = false;
-    }, 80);
+    }, 300);
   };
 
   const scrollToProject = (index: number) => {
@@ -561,6 +560,12 @@ export default function Projects() {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
+            onClickCapture={(e) => {
+              if (hasMovedRef.current) {
+                e.stopPropagation();
+                e.preventDefault();
+              }
+            }}
             onDragStart={(e) => e.preventDefault()}
             className={`flex items-stretch overflow-x-auto snap-x snap-mandatory md:snap-proximity hide-scrollbar py-4 md:py-6 select-none cursor-grab active:cursor-grabbing ${
               isDragging ? "cursor-grabbing" : ""
