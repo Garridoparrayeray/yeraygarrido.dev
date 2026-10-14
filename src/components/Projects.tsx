@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/LanguageContext";
 import otherProjectsData from "../data/otherProjects.json";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Repo {
   id: number;
@@ -39,10 +35,7 @@ interface FeaturedProject {
 }
 
 export default function Projects() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const scrollTriggerInstanceRef = useRef<ScrollTrigger | null>(null);
   const modalScrollRef = useRef<HTMLDivElement>(null);
 
   const { t, language } = useLanguage();
@@ -93,7 +86,6 @@ export default function Projects() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
-  const containerWidthRef = useRef(0);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
@@ -300,151 +292,33 @@ export default function Projects() {
     new Map([...(otherProjectsData as FeaturedProject[]), ...projects].map(p => [p.id, p])).values()
   );
 
-  const [isDragging, setIsDragging] = useState(false);
+  const scrollToProject = (index: number) => {
+    const clampedIndex = Math.max(0, Math.min(projects.length, index));
+    setActiveIndex(clampedIndex);
+    if (!scrollRef.current) return;
+    const items = scrollRef.current.querySelectorAll<HTMLElement>('[data-project-card]');
+    if (items[clampedIndex] && items[0]) {
+      const card0Left = items[0].offsetLeft;
+      const targetCardLeft = items[clampedIndex].offsetLeft;
+      const targetScroll = Math.max(0, targetCardLeft - card0Left);
+      scrollRef.current.scrollTo({ left: targetScroll, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      const getScrollAmount = () => {
-        return Math.max(0, track.scrollWidth - window.innerWidth + 80);
-      };
-
-      const tween = gsap.to(track, {
-        x: () => -getScrollAmount(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          pin: true,
-          anticipatePin: 1,
-          scrub: 1,
-          start: "top top",
-          end: () => `+=${getScrollAmount()}`,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const total = projects.length + 1;
-            const currentIdx = Math.min(total - 1, Math.floor(self.progress * total + 0.05));
-            setActiveIndex(currentIdx);
-          },
-        },
-      });
-
-      scrollTriggerInstanceRef.current = tween.scrollTrigger || null;
-
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-        scrollTriggerInstanceRef.current = null;
-      };
-    });
-
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 400);
-
-    return () => {
-      clearTimeout(timer);
-      mm.revert();
+    const handleResize = () => {
+      if (!scrollRef.current) return;
+      const items = scrollRef.current.querySelectorAll<HTMLElement>('[data-project-card]');
+      if (items[activeIndex] && items[0]) {
+        const card0Left = items[0].offsetLeft;
+        const targetCardLeft = items[activeIndex].offsetLeft;
+        const targetScroll = Math.max(0, targetCardLeft - card0Left);
+        scrollRef.current.scrollTo({ left: targetScroll, behavior: "instant" });
+      }
     };
-  }, []);
-
-  const isPointerDownRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const dragStartYRef = useRef(0);
-  const hasMovedRef = useRef(false);
-
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== 'mouse' || e.button !== 0) return;
-    isPointerDownRef.current = true;
-    hasMovedRef.current = false;
-    dragStartXRef.current = e.clientX;
-    const lenis = (window as any).__lenis;
-    dragStartYRef.current = lenis ? lenis.scroll : window.scrollY;
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isPointerDownRef.current || e.pointerType !== 'mouse') return;
-    const deltaX = e.clientX - dragStartXRef.current;
-
-    if (!hasMovedRef.current && Math.abs(deltaX) > 6) {
-      hasMovedRef.current = true;
-      setIsDragging(true);
-    }
-
-    if (hasMovedRef.current) {
-      const st = scrollTriggerInstanceRef.current;
-      if (st && window.innerWidth >= 768) {
-        const targetY = dragStartYRef.current - deltaX * 1.5;
-        const lenis = (window as any).__lenis;
-        if (lenis) {
-          lenis.scrollTo(targetY, { immediate: true });
-        } else {
-          window.scrollTo(0, targetY);
-        }
-      }
-    }
-  };
-
-  const handlePointerUp = () => {
-    if (!isPointerDownRef.current) return;
-    isPointerDownRef.current = false;
-    setIsDragging(false);
-    setTimeout(() => {
-      hasMovedRef.current = false;
-    }, 200);
-  };
-
-  const scrollToProject = (index: number) => {
-    const st = scrollTriggerInstanceRef.current;
-    if (st && window.innerWidth >= 768) {
-      const total = projects.length;
-      const progress = Math.max(0, Math.min(1, index / total));
-      const targetY = st.start + progress * (st.end - st.start);
-      const lenis = (window as any).__lenis;
-      if (lenis) {
-        lenis.scrollTo(targetY, { duration: 0.8 });
-      } else {
-        window.scrollTo({ top: targetY, behavior: "smooth" });
-      }
-      setActiveIndex(index);
-    } else if (scrollRef.current) {
-      const items = scrollRef.current.querySelectorAll('[data-project-card]');
-      if (items[index]) {
-        const item = items[index] as HTMLElement;
-        const parentEl = scrollRef.current.firstElementChild as HTMLElement;
-        const baseOffset = parentEl ? parentEl.offsetLeft : 0;
-        const targetScroll = Math.max(0, item.offsetLeft - baseOffset);
-        scrollRef.current.scrollTo({ left: targetScroll, behavior: "smooth" });
-        setActiveIndex(index);
-      }
-    }
-  };
-
-  const handleScroll = () => {
-    if (window.innerWidth >= 768) return;
-    if (!scrollRef.current) return;
-    const { scrollLeft } = scrollRef.current;
-    const parentEl = scrollRef.current.firstElementChild as HTMLElement;
-    const baseOffset = parentEl ? parentEl.offsetLeft : 0;
-
-    const items = scrollRef.current.querySelectorAll('[data-project-card]');
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-    items.forEach((item, i) => {
-      const el = item as HTMLElement;
-      const itemTarget = el.offsetLeft - baseOffset;
-      const distance = Math.abs(itemTarget - scrollLeft);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = i;
-      }
-    });
-    setActiveIndex(closestIndex);
-  };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [activeIndex]);
 
   const openProjectsModal = () => { setModalTab('portfolio'); setIsModalOpen(true); setActiveIndex(projects.length); };
 
@@ -513,14 +387,13 @@ export default function Projects() {
       `}</style>
 
       <section
-        ref={sectionRef}
         id="projects"
-        className="relative bg-black text-white border-t border-white/10 z-10 min-h-screen md:h-screen flex flex-col justify-center overflow-hidden py-16 md:py-0"
+        className="relative bg-black text-white border-t border-white/10 z-10 py-24 md:py-32 flex flex-col justify-center overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6 mb-6 md:mb-10">
-          <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 shrink-0 flex justify-between items-center mb-6 md:mb-10">
+          <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
           <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => scrollToProject(Math.max(0, activeIndex - 1))}
                 disabled={activeIndex === 0}
@@ -542,7 +415,7 @@ export default function Projects() {
                 </svg>
               </button>
             </div>
-            <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
+            <button onClick={openProjectsModal} className="hidden sm:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
               {t("projects.viewAll")}
             </button>
           </div>
@@ -550,35 +423,18 @@ export default function Projects() {
 
         <div
           ref={scrollRef}
-          onScroll={handleScroll}
-          className="w-full overflow-x-auto md:overflow-visible hide-scrollbar snap-x snap-mandatory md:snap-none select-none"
+          className="relative w-full overflow-x-hidden overflow-y-hidden hide-scrollbar py-2 md:py-4 select-none touch-pan-y"
           style={{ scrollbarWidth: "none" }}
         >
           <div
-            ref={trackRef}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerCancel={handlePointerUp}
-            onClickCapture={(e) => {
-              if (hasMovedRef.current) {
-                e.stopPropagation();
-                e.preventDefault();
-              }
-            }}
-            className={`flex gap-6 md:gap-8 w-max items-stretch pl-6 md:pl-[max(3rem,calc((100vw-80rem)/2+3rem))] pr-6 md:pr-16 py-2 md:py-4 select-none cursor-grab active:cursor-grabbing will-change-transform ${
-              isDragging ? "cursor-grabbing" : ""
-            }`}
+            className="flex gap-6 md:gap-8 w-max items-stretch pl-6 md:pl-[max(3rem,calc((100vw-80rem)/2+3rem))] pr-6 md:pr-16"
           >
             {projects.map((p) => (
               <div
                 key={p.id}
                 data-project-card
-                onClick={() => {
-                  if (hasMovedRef.current) return;
-                  setActiveProject(p);
-                }}
-                className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-pointer select-none h-full"
+                onClick={() => setActiveProject(p)}
+                className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
               >
                 <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors pointer-events-none">
                   {p.imageUrl && (
@@ -610,11 +466,8 @@ export default function Projects() {
 
             <div
               data-project-card
-              onClick={() => {
-                if (hasMovedRef.current) return;
-                openProjectsModal();
-              }}
-              className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-pointer select-none h-full"
+              onClick={openProjectsModal}
+              className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
             >
               <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all pointer-events-none">
                 <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
