@@ -349,8 +349,8 @@ export default function Projects() {
                 {modalTab === 'github' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white"></span>}
               </button>
             </div>
-            <button onClick={() => setIsModalOpen(false)} className="cursor-pointer w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <button onClick={() => setIsModalOpen(false)} aria-label="Cerrar modal" className="cursor-pointer w-12 h-12 md:w-14 md:h-14 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
 
@@ -432,14 +432,26 @@ export default function Projects() {
           <div className="sticky top-0 w-full px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/95 backdrop-blur-xl z-20 border-b border-white/20 shrink-0" onClick={(e) => e.stopPropagation()}>
             <button 
               onClick={() => setActiveProject(null)} 
-              className="cursor-pointer flex items-center gap-2.5 font-sans text-sm md:text-base font-bold tracking-widest uppercase text-white hover:text-white/70 transition-colors py-1.5 px-3 border border-white/20 hover:border-white bg-white/5 hover:bg-white/10"
+              className="cursor-pointer flex items-center gap-2.5 font-sans text-sm md:text-base font-bold tracking-widest uppercase text-white hover:text-white/70 transition-colors py-2 px-3.5 border border-white/20 hover:border-white bg-white/5 hover:bg-white/10"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
               <span>{l(uiTexts.back)}</span>
             </button>
-            <span className="font-wide text-sm md:text-lg font-bold uppercase text-white tracking-widest truncate max-w-[50vw] text-right">
-              {l(activeProject.title)}
-            </span>
+            <div className="flex items-center gap-4">
+              <span className="font-wide text-sm md:text-lg font-bold uppercase text-white tracking-widest truncate max-w-[45vw] text-right">
+                {l(activeProject.title)}
+              </span>
+              <button 
+                onClick={() => setActiveProject(null)}
+                aria-label={l(uiTexts.back)}
+                className="cursor-pointer w-10 h-10 md:w-12 md:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all bg-white/5 shrink-0"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
           </div>
           
           <div className="flex-1 overflow-y-auto modal-scroll" data-lenis-prevent="true" onClick={(e) => e.stopPropagation()}>
@@ -547,24 +559,26 @@ export default function Projects() {
           onClick={() => setLightboxIndex(null)}
         >
           <button 
-            className="absolute top-6 right-6 md:top-10 md:right-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10 cursor-pointer"
+            className="absolute top-6 right-6 md:top-10 md:right-10 w-12 h-12 md:w-14 md:h-14 border border-white/30 bg-black/80 hover:bg-white hover:text-black flex items-center justify-center text-white transition-all z-20 cursor-pointer"
             onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
+            aria-label="Cerrar"
           >
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 font-sans text-xs tracking-widest uppercase text-white/50 bg-black/50 px-4 py-2 rounded-full">
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 font-sans text-xs tracking-widest uppercase text-white font-bold bg-black/80 border border-white/20 px-4 py-2">
             {lightboxIndex + 1} / {activeProject.images.length}
           </div>
 
           <div className="relative w-full h-full max-w-6xl p-4 md:p-12 flex items-center justify-center">
             <button 
-              className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white transition-all hover:scale-110 z-10 cursor-pointer"
+              className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/70 hover:bg-white hover:text-black border border-white/20 flex items-center justify-center text-white transition-all z-10 cursor-pointer"
               onClick={handlePrevImage}
+              aria-label="Anterior"
             >
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -572,15 +586,16 @@ export default function Projects() {
             <img 
               src={activeProject.images[lightboxIndex]} 
               alt={`Vista ampliada ${lightboxIndex + 1}`}
-              className="max-w-full max-h-[85vh] object-contain select-none shadow-2xl rounded-lg"
+              className="max-w-full max-h-[85vh] object-contain select-none shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
 
             <button 
-              className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white transition-all hover:scale-110 z-10 cursor-pointer"
+              className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/70 hover:bg-white hover:text-black border border-white/20 flex items-center justify-center text-white transition-all z-10 cursor-pointer"
               onClick={handleNextImage}
+              aria-label="Siguiente"
             >
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
