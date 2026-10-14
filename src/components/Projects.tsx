@@ -294,15 +294,86 @@ export default function Projects() {
     new Map([...(otherProjectsData as FeaturedProject[]), ...projects].map(p => [p.id, p])).values()
   );
 
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const hasMovedRef = useRef(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      // Intercept vertical wheel moves to scroll horizontally
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const atStart = el.scrollLeft <= 0;
+        const atEnd = Math.ceil(el.scrollLeft + el.clientWidth) >= el.scrollWidth - 4;
+
+        if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
+          e.preventDefault();
+          el.scrollBy({
+            left: e.deltaY * 1.2,
+            behavior: "auto",
+          });
+        }
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
+  useEffect(() => {
+    if (!isDragging) return;
+    const handleGlobalMouseUp = () => {
+      setIsDragging(false);
+      setTimeout(() => {
+        hasMovedRef.current = false;
+      }, 50);
+    };
+    window.addEventListener("mouseup", handleGlobalMouseUp);
+    return () => window.removeEventListener("mouseup", handleGlobalMouseUp);
+  }, [isDragging]);
+
+  const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    hasMovedRef.current = false;
+    dragStartX.current = e.pageX - scrollRef.current.offsetLeft;
+    dragScrollLeft.current = scrollRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollRef.current) return;
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.2;
+    if (Math.abs(walk) > 6) {
+      hasMovedRef.current = true;
+    }
+    scrollRef.current.scrollLeft = dragScrollLeft.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    setTimeout(() => {
+      hasMovedRef.current = false;
+    }, 50);
+  };
+
   const scrollToProject = (index: number) => {
     if (!scrollRef.current) return;
     const items = scrollRef.current.querySelectorAll('[data-project-card]');
     if (items[index]) {
       const item = items[index] as HTMLElement;
+      if (index === 0) {
+        scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+      }
       const containerWidth = containerWidthRef.current || scrollRef.current.clientWidth;
       const itemLeft = item.offsetLeft;
       const itemWidth = item.offsetWidth;
-      const targetScroll = itemLeft - (containerWidth - itemWidth) / 2;
+      const targetScroll = Math.max(0, itemLeft - (containerWidth - itemWidth) / 2);
       scrollRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
     }
   };
@@ -397,55 +468,136 @@ export default function Projects() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col relative z-10 border-t border-white/10 pb-8 md:pb-24 overflow-hidden">
-        <div className="pt-6 md:pt-24 px-6 md:px-24 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
+      <section ref={sectionRef} className="min-h-svh bg-black text-white flex flex-col justify-between relative z-10 border-t border-white/10 pb-8 md:pb-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full pt-6 md:pt-20 px-6 md:px-12 shrink-0 flex flex-col md:flex-row justify-between items-center md:items-end gap-3 md:gap-6">
           <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
-          <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
-            {t("projects.viewAll")}
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-2">
+              <button
+                onClick={() => scrollToProject(Math.max(0, activeIndex - 1))}
+                disabled={activeIndex === 0}
+                aria-label="Proyecto anterior"
+                className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white transition-colors cursor-pointer disabled:cursor-not-allowed"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button
+                onClick={() => scrollToProject(Math.min(projects.length, activeIndex + 1))}
+                disabled={activeIndex >= projects.length}
+                aria-label="Proyecto siguiente"
+                className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white transition-colors cursor-pointer disabled:cursor-not-allowed"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+            <button onClick={openProjectsModal} className="hidden md:block font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
+              {t("projects.viewAll")}
+            </button>
+          </div>
         </div>
 
-        <div className="relative flex-1 flex flex-col justify-center mt-1 md:mt-12 px-6 md:px-24">
-          <div ref={scrollRef} onScroll={handleScroll} className="flex items-stretch overflow-x-auto snap-x snap-mandatory hide-scrollbar py-6 md:py-8 scroll-smooth" style={{ scrollbarWidth: "none" }}>
-            <div className="flex gap-6 md:gap-16 w-max items-stretch">
-              {projects.map((p, i) => (
-                <div key={p.id} data-project-card onClick={() => setActiveProject(p)} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
+        <div className="relative flex-1 flex flex-col justify-center mt-2 md:mt-8 max-w-7xl mx-auto w-full px-6 md:px-12 overflow-hidden">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            className={`flex items-stretch overflow-x-auto snap-x snap-mandatory md:snap-proximity hide-scrollbar py-4 md:py-6 select-none ${
+              isDragging ? "cursor-grabbing" : "cursor-grab"
+            }`}
+            style={{ scrollbarWidth: "none" }}
+          >
+            <div className="flex gap-6 md:gap-8 w-max items-stretch pr-6 md:pr-12">
+              {projects.map((p) => (
+                <div
+                  key={p.id}
+                  data-project-card
+                  onClick={() => {
+                    if (hasMovedRef.current) return;
+                    setActiveProject(p);
+                  }}
+                  className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-pointer h-full"
+                >
                   <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors">
-                    {p.imageUrl && <img src={p.imageUrl} alt={l(p.title)} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />}
+                    {p.imageUrl && (
+                      <img
+                        src={p.imageUrl}
+                        alt={l(p.title)}
+                        draggable={false}
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none"
+                      />
+                    )}
                     <div className="absolute top-3 md:top-4 right-3 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
                     </div>
-                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10">{p.year}</span>
+                    <span className="absolute bottom-3 md:bottom-4 left-3 md:left-4 font-sans text-[10px] md:text-[10px] tracking-widest uppercase text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/10">
+                      {p.year}
+                    </span>
                   </div>
-                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">{renderTitle(l(p.title))}</h3>
-                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed">{l(p.desc)}</p>
+                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold">
+                    {renderTitle(l(p.title))}
+                  </h3>
+                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed">
+                    {l(p.desc)}
+                  </p>
                 </div>
               ))}
-              <div data-project-card onClick={openProjectsModal} className="w-[82vw] md:w-[45vw] max-w-150 shrink-0 flex flex-col group snap-start cursor-pointer h-full">
+
+              <div
+                data-project-card
+                onClick={() => {
+                  if (hasMovedRef.current) return;
+                  openProjectsModal();
+                }}
+                className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group snap-start cursor-pointer h-full"
+              >
                 <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all">
                   <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter" className="transform group-hover:translate-x-1 transition-transform">
+                    <svg
+                      width="26"
+                      height="26"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="square"
+                      strokeLinejoin="miter"
+                      className="transform group-hover:translate-x-1 transition-transform"
+                    >
                       <line x1="4" y1="12" x2="20" y2="12"></line>
                       <polyline points="13 5 20 12 13 19"></polyline>
                     </svg>
                   </div>
                 </div>
-                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors">{t("projects.viewAll")}</h3>
+                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors">
+                  {t("projects.viewAll")}
+                </h3>
               </div>
             </div>
           </div>
           
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-4 md:mt-6">
             {[...projects, null].map((_, i) => (
               <button
                 key={i}
                 onClick={() => scrollToProject(i)}
-                className={`group p-2 cursor-pointer touch-manipulation`}
+                className="group p-2 cursor-pointer touch-manipulation"
                 aria-label={i < projects.length ? `Ir al proyecto ${i + 1}` : l(uiTexts.viewAll)}
               >
-                <div className={`h-1 transition-all duration-300 ${
-                  activeIndex === i ? 'w-6 bg-white' : 'w-1 bg-white/30 group-hover:bg-white/60'
-                }`} />
+                <div
+                  className={`h-1 transition-all duration-300 ${
+                    activeIndex === i ? "w-6 bg-white" : "w-1 bg-white/30 group-hover:bg-white/60"
+                  }`}
+                />
               </button>
             ))}
           </div>
