@@ -59,8 +59,19 @@ export default function Projects() {
           <span key={idx}>
             {part}
             {idx < parts.length - 1 && (
-              <span className={`inline-block animate-plus-spin origin-center ml-0.5 ${plusColor}`}>
-                +
+              <span className="inline-flex items-center justify-center align-middle ml-1 -translate-y-[0.06em]">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3.6"
+                  strokeLinecap="square"
+                  className={`w-[0.55em] h-[0.55em] animate-plus-spin ${plusColor}`}
+                  style={{ transformOrigin: "50% 50%" }}
+                >
+                  <line x1="12" y1="2.5" x2="12" y2="21.5" />
+                  <line x1="2.5" y1="12" x2="21.5" y2="12" />
+                </svg>
               </span>
             )}
           </span>
@@ -191,7 +202,7 @@ export default function Projects() {
         en: "Native PHP backend with clean layered architecture (Controllers/Models/Services) precompiling official GTFS feeds daily into an embedded SQLite database at build time — zero database server latency, optimal for Vercel serverless. Engineered a proprietary ETA algorithm projecting real-time bus GPS telemetry onto geometric route paths stop-by-stop, cutting arrival estimation error from ~5 minutes down to sub-1.5 minutes. Includes live service alerts, offline PWA caching for recent searches, two visual themes, and bilingual support (ES/EU).",
         eu: "PHP backend natiboa geruzatan antolatua (Controllers/Models/Services), egunero GTFS datu ofizialak build-ean txertatutako SQLite datu-base batera aurrekonpilatzen duena — kanpoko datu-basearen latentziarik gabe, Vercel serverless arkitekturarako ezin hobea. ETA algoritmo propioa garatu nuen: autobusaren GPS posizioa ibilbide geometrikoaren gainean kokatzen du geltokiz geltoki, errore-marjina 5 minututik 1.5 minutu baino gutxiagora murriztuz. Gertakarien abisuak denbora errealean, lineaz kanpoko PWA katxea, bi tema bisual eta elebitasuna (ES/EU) biltzen ditu.",
       },
-      imageUrl: "/img/projects/bideplus_loading.gif",
+      imageUrl: "/img/projects/bideplus_static.webp",
       images: [
         "/img/projects/bideplus_loading.gif",
         "/img/projects/bideplus_desktop.webp",
@@ -228,7 +239,7 @@ export default function Projects() {
         en: "Zero-dependency Full Stack architecture: native PHP backend querying, normalizing, and caching live official Ministry feeds for over 11,400 fuel stations across Spain (Gasóleo A, Gasoline 95, 98, LPG). On the frontend, a snappy vanilla JS SPA featuring: 1) Geolocation finder and interactive map with station clusters and price heatmap layers; 2) 'Coche' vehicle telemetry hub tracking fuel tank capacity, fill-ups, average L/100km consumption, and summary export to image/PDF; and 3) Live onboard trip computer with digital speedometer (km/h), elapsed time, distance, and average speed.",
         eu: "Menpekotasunik gabeko Full Stack irtenbidea: PHP natiboko backend-a Ministerioko 11.400 gasolindegiren datu ofizialak normalizatzeko eta katxeatzeko. Bezeroan, Vanilla JS SPA azkarra: 1) Geokokapen bidezko bilatzailea eta mapa interaktiboa bero-mapa geruzekin; 2) 'Coche' garaje-modulua depozituaren jarraipenerako, birkargak, batez besteko kontsumoa (L/100km) eta irudi/PDF esportazioa; eta 3) Denbora errealeko bidaia-ordenagailua abiadura-neurgailu digitalarekin (km/h), distantzia eta denbora kalkuluarekin."
       },
-      imageUrl: "/img/projects/gasolinera_loading.gif",
+      imageUrl: "/img/projects/gasolinera_static.webp",
       images: [
         "/img/projects/gasolinera_loading.gif",
         "/img/projects/gasolinera_desktop.webp",
@@ -260,7 +271,7 @@ export default function Projects() {
         en: "Despite external API paywalls, the full visual design system and functional UI prototype were fully implemented using modern HTML5, modular CSS3, and Vanilla JS. It features high-precision keyframe animations (spinning Pokéballs, skeleton loaders), dynamic runtime theme switching via CSS custom properties, PSA grade selectors (1-10), portfolio valuation breakdowns, and responsive mobile-first ergonomics. The interactive UI prototype is live on GitHub Pages, accompanied by comprehensive desktop and mobile visual captures showcasing the craft.",
         eu: "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
       },
-      imageUrl: "/img/projects/pokemon_pokeball_loading.gif",
+      imageUrl: "/img/projects/pokemon_static.webp",
       images: [
         "/img/projects/pokemon_pokeball_loading.gif",
         "/img/projects/psa_card_fullscreen_desktop.webp",
@@ -563,13 +574,13 @@ export default function Projects() {
           
           <div className="flex-1 overflow-y-auto modal-scroll" data-lenis-prevent="true" onClick={(e) => e.stopPropagation()}>
             <div className="w-full h-[30vh] md:h-[55vh] bg-[#050505] border-b border-white/10 flex items-center justify-center relative overflow-hidden">
-              {(activeProject.imageUrl || (activeProject.images && activeProject.images[0])) && (
+              {((activeProject.images && activeProject.images[0]) || activeProject.imageUrl) && (
                 <>
-                  <img src={activeProject.imageUrl || (activeProject.images && activeProject.images[0])} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-90" />
+                  <img src={(activeProject.images && activeProject.images[0]) || activeProject.imageUrl} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-90" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                 </>
               )}
-              {!activeProject.imageUrl && !(activeProject.images && activeProject.images[0]) && <div className="font-display text-4xl md:text-8xl uppercase text-white/5">{renderTitle(l(activeProject.title))}</div>}
+              {!(activeProject.images && activeProject.images[0]) && !activeProject.imageUrl && <div className="font-display text-4xl md:text-8xl uppercase text-white/5">{renderTitle(l(activeProject.title))}</div>}
             </div>
             
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-6 sm:pt-10 md:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 md:gap-16 pb-16">
