@@ -109,13 +109,18 @@
       "eu": "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
     },
     "images": [
+      "/img/projects/psa_card_fullscreen_desktop.webp",
+      "/img/projects/psa_card_fullscreen_mobile.webp",
+      "/img/projects/psa_dark_desktop.webp",
+      "/img/projects/psa_dark_mobile.webp",
+      "/img/projects/psa_admin_menu_desktop.webp",
+      "/img/projects/psa_admin_menu_mobile.webp",
+      "/img/projects/psa_admin_dark_desktop.webp",
+      "/img/projects/psa_admin_light_desktop.webp",
       "/img/projects/psa_collection_desktop.webp",
       "/img/projects/psa_collection_mobile.webp",
       "/img/projects/psa_home_desktop.webp",
-      "/img/projects/psa_home_mobile.webp",
-      "/img/projects/psa_stats_desktop.webp",
-      "/img/projects/psa_stats_mobile.webp",
-      "/img/projects/psa_admin_light_desktop.webp"
+      "/img/projects/psa_stats_desktop.webp"
     ]
   },
   {
