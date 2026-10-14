@@ -301,18 +301,13 @@ export default function Projects() {
     if (!el) return;
 
     const onWheel = (e: WheelEvent) => {
-      // Intercept vertical wheel moves to scroll horizontally
+      // Intercept vertical wheel moves to scroll horizontally only
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        const atStart = el.scrollLeft <= 0;
-        const atEnd = Math.ceil(el.scrollLeft + el.clientWidth) >= el.scrollWidth - 4;
-
-        if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
-          e.preventDefault();
-          el.scrollBy({
-            left: e.deltaY * 1.2,
-            behavior: "auto",
-          });
-        }
+        e.preventDefault();
+        el.scrollBy({
+          left: e.deltaY * 1.2,
+          behavior: "auto",
+        });
       }
     };
 
@@ -567,10 +562,10 @@ export default function Projects() {
               }
             }}
             onDragStart={(e) => e.preventDefault()}
-            className={`flex items-stretch overflow-x-auto snap-x snap-mandatory md:snap-proximity hide-scrollbar py-4 md:py-6 select-none cursor-grab active:cursor-grabbing ${
+            className={`flex items-stretch overflow-x-auto overflow-y-hidden snap-x snap-mandatory md:snap-proximity hide-scrollbar py-4 md:py-6 select-none cursor-grab active:cursor-grabbing ${
               isDragging ? "cursor-grabbing" : ""
             }`}
-            style={{ scrollbarWidth: "none", touchAction: "pan-y" }}
+            style={{ scrollbarWidth: "none", touchAction: "pan-x", overflowY: "hidden" }}
           >
             <div className="flex gap-6 md:gap-8 w-max items-stretch pr-6 md:pr-12 pointer-events-auto">
               {projects.map((p) => (

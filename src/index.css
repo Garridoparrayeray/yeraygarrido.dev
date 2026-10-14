@@ -146,3 +146,13 @@ html {
   animation: none !important;
   transition: none !important;
 }
+
+/* Ocultar barra de desplazamiento manteniendo funcionalidad de scroll */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
