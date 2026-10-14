@@ -370,36 +370,26 @@ export default function Projects() {
         scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
         return;
       }
-      const containerWidth = containerWidthRef.current || scrollRef.current.clientWidth;
-      const itemLeft = item.offsetLeft;
-      const itemWidth = item.offsetWidth;
-      const targetScroll = Math.max(0, itemLeft - (containerWidth - itemWidth) / 2);
+      const parentEl = scrollRef.current.firstElementChild as HTMLElement;
+      const baseOffset = parentEl ? parentEl.offsetLeft : 0;
+      const targetScroll = Math.max(0, item.offsetLeft - baseOffset);
       scrollRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
     }
   };
 
-  // FIX "esa barra lateral pequeña no funciona" (indicador de paginacion
-  // abajo): asumia que cada tarjeta ocupa TODO el ancho visible
-  // (scrollLeft/clientWidth), cierto en movil (w-[82vw], casi el ancho
-  // entero) pero falso en escritorio (w-[45vw] con varias tarjetas
-  // parcialmente visibles a la vez) -- el indice calculado no
-  // correspondia con la tarjeta realmente centrada. Ahora se busca cual
-  // [data-project-card] tiene su centro mas cerca del centro del
-  // contenedor visible, igual de correcto sin importar cuantas tarjetas
-  // quepan a la vez.
   const handleScroll = () => {
     if (!scrollRef.current) return;
-    const { scrollLeft, clientWidth } = scrollRef.current;
-    containerWidthRef.current = clientWidth;
+    const { scrollLeft } = scrollRef.current;
+    const parentEl = scrollRef.current.firstElementChild as HTMLElement;
+    const baseOffset = parentEl ? parentEl.offsetLeft : 0;
 
     const items = scrollRef.current.querySelectorAll('[data-project-card]');
-    const containerCenter = scrollLeft + clientWidth / 2;
     let closestIndex = 0;
     let closestDistance = Infinity;
     items.forEach((item, i) => {
       const el = item as HTMLElement;
-      const itemCenter = el.offsetLeft + el.offsetWidth / 2;
-      const distance = Math.abs(itemCenter - containerCenter);
+      const itemTarget = el.offsetLeft - baseOffset;
+      const distance = Math.abs(itemTarget - scrollLeft);
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = i;
