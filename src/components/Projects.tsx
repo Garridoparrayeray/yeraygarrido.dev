@@ -390,7 +390,7 @@ export default function Projects() {
         id="projects"
         className="relative bg-black text-white border-t border-white/10 z-10 py-24 md:py-32 flex flex-col justify-center overflow-hidden"
       >
-        <div className="relative max-w-7xl mx-auto w-full px-6 md:px-12 flex flex-col overflow-hidden">
+        <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 flex flex-col overflow-hidden">
           <div className="shrink-0 flex justify-between items-center mb-6 md:mb-10">
             <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
             <button onClick={openProjectsModal} className="font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
@@ -398,22 +398,22 @@ export default function Projects() {
             </button>
           </div>
 
-          <div className="relative w-full">
+          <div className="relative w-full flex items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
             {/* Botón Lateral Izquierdo */}
             <button
               onClick={() => scrollToProject(Math.max(0, activeIndex - 1))}
               disabled={activeIndex === 0}
               aria-label="Proyecto anterior"
-              className="absolute left-2 sm:-left-3 md:-left-6 top-[28%] md:top-[30%] -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-black/80 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-black/80 disabled:hover:text-white transition-all cursor-pointer disabled:cursor-not-allowed shadow-xl group"
+              className="shrink-0 w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-white/40 hover:border-white bg-[#0a0a0a] hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:hover:bg-[#0a0a0a] disabled:hover:text-white disabled:hover:border-white/20 disabled:cursor-not-allowed cursor-pointer group shadow-2xl"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter" className="transform group-hover:-translate-x-0.5 transition-transform">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter">
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
 
             <div
               ref={scrollRef}
-              className="relative w-full overflow-x-hidden overflow-y-hidden hide-scrollbar py-2 md:py-4 select-none touch-pan-y"
+              className="flex-1 overflow-x-hidden overflow-y-hidden hide-scrollbar py-2 md:py-4 select-none touch-pan-y"
               style={{ scrollbarWidth: "none" }}
             >
             <div className="flex gap-6 md:gap-8 w-max items-stretch pr-6 md:pr-12">
@@ -422,7 +422,7 @@ export default function Projects() {
                   key={p.id}
                   data-project-card
                   onClick={() => setActiveProject(p)}
-                  className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
+                  className="w-[calc(100vw-115px)] max-w-[340px] sm:max-w-none sm:w-[400px] md:w-[450px] lg:w-[480px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
                 >
                   <div className="aspect-video bg-[#050505] mb-4 md:mb-6 overflow-hidden relative border border-white/10 group-hover:border-white/40 transition-colors pointer-events-none">
                     {p.imageUrl && (
@@ -455,7 +455,7 @@ export default function Projects() {
               <div
                 data-project-card
                 onClick={openProjectsModal}
-                className="w-[82vw] sm:w-[420px] md:w-[460px] lg:w-[500px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
+                className="w-[calc(100vw-115px)] max-w-[340px] sm:max-w-none sm:w-[400px] md:w-[450px] lg:w-[480px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
               >
                 <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all pointer-events-none">
                   <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
@@ -487,9 +487,9 @@ export default function Projects() {
             onClick={() => scrollToProject(Math.min(projects.length, activeIndex + 1))}
             disabled={activeIndex >= projects.length}
             aria-label="Proyecto siguiente"
-            className="absolute right-2 sm:-right-3 md:-right-6 top-[28%] md:top-[30%] -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-black/80 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black disabled:opacity-20 disabled:hover:bg-black/80 disabled:hover:text-white transition-all cursor-pointer disabled:cursor-not-allowed shadow-xl group"
+            className="shrink-0 w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-white/40 hover:border-white bg-[#0a0a0a] hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:hover:bg-[#0a0a0a] disabled:hover:text-white disabled:hover:border-white/20 disabled:cursor-not-allowed cursor-pointer group shadow-2xl"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter" className="transform group-hover:translate-x-0.5 transition-transform">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
