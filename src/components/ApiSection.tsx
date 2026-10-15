@@ -30,7 +30,7 @@ export default function ApiSection() {
         <div className="flex-1">
           <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/80"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-            <h2 className="font-wide text-3xl md:text-4xl font-bold uppercase">{t('api.title')}</h2>
+            <h2 className="font-wide text-2xl sm:text-3xl md:text-4xl font-bold uppercase">{t('api.title')}</h2>
           </div>
           <p className="font-sans text-white/60 text-lg leading-relaxed mb-8 max-w-xl">{t('api.desc')}</p>
         </div>

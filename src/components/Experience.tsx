@@ -29,7 +29,7 @@ export default function Experience() {
   return (
     <section ref={sectionRef} className="py-24 md:py-32 px-6 md:px-12 bg-black text-white relative z-10 border-t border-white/10">
       <div className="max-w-5xl mx-auto">
-        <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase mb-16 md:mb-24 text-center md:text-left">
+        <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase mb-12 md:mb-24 text-center md:text-left">
           {t('exp.title')}
         </h2>
         <div className="relative border-l border-white/20 ml-4 md:ml-0">

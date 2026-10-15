@@ -41,7 +41,7 @@ export default function Stack() {
   return (
     <section className="py-24 md:py-32 px-6 md:px-12 bg-black border-t border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto w-full">
-        <h2 className="font-wide text-3xl md:text-5xl font-bold uppercase mb-16 md:mb-24 text-center md:text-left">
+        <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase mb-12 md:mb-24 text-center md:text-left">
           {t('stack.title')}
         </h2>
         <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-white/10 border border-white/10">

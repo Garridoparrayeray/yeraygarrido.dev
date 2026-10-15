@@ -392,8 +392,8 @@ export default function Projects() {
       >
         <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 flex flex-col overflow-hidden">
           <div className="shrink-0 flex justify-between items-center mb-6 md:mb-10">
-            <h2 className="font-wide text-2xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
-            <button onClick={openProjectsModal} className="font-sans text-xs tracking-widest uppercase border border-white/30 px-6 py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
+            <h2 className="font-wide text-xl sm:text-3xl md:text-5xl font-bold uppercase text-white">{t("projects.title")}</h2>
+            <button onClick={openProjectsModal} className="font-sans text-[10px] sm:text-xs tracking-widest uppercase border border-white/30 px-3.5 py-2 sm:px-6 sm:py-3 hover:bg-white hover:text-black transition-colors cursor-pointer">
               {t("projects.viewAll")}
             </button>
           </div>
@@ -404,9 +404,9 @@ export default function Projects() {
               onClick={() => scrollToProject(Math.max(0, activeIndex - 1))}
               disabled={activeIndex === 0}
               aria-label="Proyecto anterior"
-              className="shrink-0 w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-white/40 hover:border-white bg-[#0a0a0a] hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:hover:bg-[#0a0a0a] disabled:hover:text-white disabled:hover:border-white/20 disabled:cursor-not-allowed cursor-pointer group shadow-2xl"
+              className="shrink-0 w-9 h-9 sm:w-12 sm:h-12 md:w-16 md:h-16 border-2 border-white/40 hover:border-white bg-[#0a0a0a] hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:hover:bg-[#0a0a0a] disabled:hover:text-white disabled:hover:border-white/20 disabled:cursor-not-allowed cursor-pointer group shadow-2xl"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter">
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
@@ -443,10 +443,10 @@ export default function Projects() {
                       {p.year}
                     </span>
                   </div>
-                  <h3 className="font-wide text-xl md:text-3xl mb-2 md:mb-3 uppercase font-bold pointer-events-none">
+                  <h3 className="font-wide text-lg sm:text-xl md:text-3xl mb-1.5 md:mb-3 uppercase font-bold pointer-events-none">
                     {renderTitle(l(p.title))}
                   </h3>
-                  <p className="font-sans text-sm md:text-sm text-white/50 line-clamp-3 leading-relaxed pointer-events-none">
+                  <p className="font-sans text-xs sm:text-sm text-white/50 line-clamp-3 leading-relaxed pointer-events-none">
                     {l(p.desc)}
                   </p>
                 </div>
@@ -458,10 +458,11 @@ export default function Projects() {
                 className="w-[calc(100vw-115px)] max-w-[340px] sm:max-w-none sm:w-[400px] md:w-[450px] lg:w-[480px] shrink-0 flex flex-col group cursor-pointer select-none h-full"
               >
                 <div className="aspect-video border border-white/10 mb-4 md:mb-6 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-all pointer-events-none">
-                  <div className="w-14 md:w-16 h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                  <div className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                     <svg
-                      width="26"
-                      height="26"
+                      width="22"
+                      height="22"
+                      className="sm:w-[26px] sm:h-[26px]"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -475,7 +476,7 @@ export default function Projects() {
                     </svg>
                   </div>
                 </div>
-                <h3 className="font-wide text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors pointer-events-none">
+                <h3 className="font-wide text-lg sm:text-xl md:text-3xl uppercase font-bold text-white/50 group-hover:text-white transition-colors pointer-events-none">
                   {t("projects.viewAll")}
                 </h3>
               </div>
@@ -487,9 +488,9 @@ export default function Projects() {
             onClick={() => scrollToProject(Math.min(projects.length, activeIndex + 1))}
             disabled={activeIndex >= projects.length}
             aria-label="Proyecto siguiente"
-            className="shrink-0 w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-white/40 hover:border-white bg-[#0a0a0a] hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:hover:bg-[#0a0a0a] disabled:hover:text-white disabled:hover:border-white/20 disabled:cursor-not-allowed cursor-pointer group shadow-2xl"
+            className="shrink-0 w-9 h-9 sm:w-12 sm:h-12 md:w-16 md:h-16 border-2 border-white/40 hover:border-white bg-[#0a0a0a] hover:bg-white text-white hover:text-black flex items-center justify-center transition-all duration-300 disabled:opacity-20 disabled:hover:bg-[#0a0a0a] disabled:hover:text-white disabled:hover:border-white/20 disabled:cursor-not-allowed cursor-pointer group shadow-2xl"
           >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
@@ -517,23 +518,23 @@ export default function Projects() {
       {/* MODAL PRINCIPAL */}
       {isModalOpen && (
         <div className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex flex-col animate-modal" onClick={() => setIsModalOpen(false)}>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-6 md:p-12 border-b border-white/10 shrink-0 gap-6 bg-black" onClick={(e) => e.stopPropagation()}>
-            <div className="flex gap-6">
-              <button onClick={() => setModalTab('portfolio')} className={`pb-3 font-sans text-sm md:text-base uppercase tracking-wider transition-all relative cursor-pointer ${
-                modalTab === 'portfolio' ? 'text-white' : 'text-white/40 hover:text-white/70'
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center px-4 py-4 sm:px-6 md:px-12 md:py-8 border-b border-white/10 shrink-0 gap-4 sm:gap-6 bg-black" onClick={(e) => e.stopPropagation()}>
+            <div className="flex gap-4 sm:gap-6">
+              <button onClick={() => setModalTab('portfolio')} className={`pb-2 sm:pb-3 font-sans text-xs sm:text-sm md:text-base uppercase tracking-wider transition-all relative cursor-pointer ${
+                modalTab === 'portfolio' ? 'text-white font-bold' : 'text-white/40 hover:text-white/70'
               }`}>
                 {l(uiTexts.tabPortfolio)}
                 {modalTab === 'portfolio' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white"></span>}
               </button>
-              <button onClick={handleTabGithub} className={`pb-3 font-sans text-sm md:text-base uppercase tracking-wider transition-all relative cursor-pointer ${
-                modalTab === 'github' ? 'text-white' : 'text-white/40 hover:text-white/70'
+              <button onClick={handleTabGithub} className={`pb-2 sm:pb-3 font-sans text-xs sm:text-sm md:text-base uppercase tracking-wider transition-all relative cursor-pointer ${
+                modalTab === 'github' ? 'text-white font-bold' : 'text-white/40 hover:text-white/70'
               }`}>
                 {l(uiTexts.tabGithub)}
                 {modalTab === 'github' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white"></span>}
               </button>
             </div>
-            <button onClick={() => setIsModalOpen(false)} aria-label="Cerrar modal" className="cursor-pointer w-12 h-12 md:w-14 md:h-14 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <button onClick={() => setIsModalOpen(false)} aria-label="Cerrar modal" className="cursor-pointer w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all shrink-0">
+              <svg width="20" height="20" className="sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
 
@@ -612,24 +613,24 @@ export default function Projects() {
       {/* DETALLE PROYECTO */}
       {activeProject && (
         <div className="fixed inset-0 z-200 bg-black animate-modal flex flex-col" onClick={() => setActiveProject(null)}>
-          <div className="sticky top-0 w-full px-6 py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/95 backdrop-blur-xl z-20 border-b border-white/20 shrink-0" onClick={(e) => e.stopPropagation()}>
+          <div className="sticky top-0 w-full px-4 py-3 sm:px-6 sm:py-4 md:px-12 md:py-6 flex justify-between items-center bg-black/95 backdrop-blur-xl z-20 border-b border-white/20 shrink-0" onClick={(e) => e.stopPropagation()}>
             <button 
               onClick={() => setActiveProject(null)} 
-              className="cursor-pointer flex items-center gap-2.5 font-sans text-sm md:text-base font-bold tracking-widest uppercase text-white hover:text-white/70 transition-colors py-2 px-3.5 border border-white/20 hover:border-white bg-white/5 hover:bg-white/10"
+              className="cursor-pointer flex items-center gap-2 font-sans text-xs sm:text-sm md:text-base font-bold tracking-widest uppercase text-white hover:text-white/70 transition-colors py-1.5 px-3 sm:py-2 sm:px-3.5 border border-white/20 hover:border-white bg-white/5 hover:bg-white/10"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <svg width="16" height="16" className="sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
               <span>{l(uiTexts.back)}</span>
             </button>
-            <div className="flex items-center gap-4">
-              <span className="font-wide text-sm md:text-lg font-bold uppercase text-white tracking-widest truncate max-w-[45vw] text-right">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <span className="hidden sm:block font-wide text-xs md:text-base font-bold uppercase text-white tracking-widest truncate max-w-[40vw] text-right">
                 {renderTitle(l(activeProject.title))}
               </span>
               <button 
                 onClick={() => setActiveProject(null)}
                 aria-label={l(uiTexts.back)}
-                className="cursor-pointer w-10 h-10 md:w-12 md:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all bg-white/5 shrink-0"
+                className="cursor-pointer w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all bg-white/5 shrink-0"
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg width="18" height="18" className="sm:w-[22px] sm:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -638,7 +639,7 @@ export default function Projects() {
           </div>
           
           <div className="flex-1 overflow-y-auto modal-scroll" data-lenis-prevent="true" onClick={(e) => e.stopPropagation()}>
-            <div className="w-full h-[30vh] md:h-[55vh] bg-[#050505] border-b border-white/10 flex items-center justify-center relative overflow-hidden">
+            <div className="w-full h-[28vh] sm:h-[35vh] md:h-[55vh] bg-[#050505] border-b border-white/10 flex items-center justify-center relative overflow-hidden">
               {((activeProject.images && activeProject.images[0]) || activeProject.imageUrl) && (
                 <>
                   <img src={(activeProject.images && activeProject.images[0]) || activeProject.imageUrl} alt={l(activeProject.title)} className="w-full h-full object-cover opacity-90" />
@@ -648,14 +649,14 @@ export default function Projects() {
               {!(activeProject.images && activeProject.images[0]) && !activeProject.imageUrl && <div className="font-display text-4xl md:text-8xl uppercase text-white/5">{renderTitle(l(activeProject.title))}</div>}
             </div>
             
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-6 sm:pt-10 md:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 md:gap-16 pb-16">
-              <div className="lg:col-span-8 flex flex-col gap-8 md:gap-16">
-                <div className="space-y-4 md:space-y-5">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-3">
-                    <h1 className="font-wide text-5xl sm:text-5xl md:text-5xl uppercase text-white leading-tight break-words">{renderTitle(l(activeProject.title))}</h1>
-                    <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-3 py-1.5 shrink-0">{activeProject.year}</span>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-5 sm:pt-10 md:pt-20 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 md:gap-16 pb-16">
+              <div className="lg:col-span-8 flex flex-col gap-6 sm:gap-8 md:gap-16">
+                <div className="space-y-3 sm:space-y-4 md:space-y-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 md:gap-3">
+                    <h1 className="font-wide text-2xl sm:text-4xl md:text-5xl uppercase text-white leading-tight break-normal sm:break-words">{renderTitle(l(activeProject.title))}</h1>
+                    <span className="font-sans text-[10px] sm:text-xs md:text-sm tracking-widest uppercase text-white/30 bg-white/5 border border-white/10 px-2.5 py-1 sm:px-3 sm:py-1.5 shrink-0 self-start sm:self-auto">{activeProject.year}</span>
                   </div>
-                  <p className="font-sans text-lg md:text-xl text-white/70 leading-relaxed">{l(activeProject.desc)}</p>
+                  <p className="font-sans text-sm sm:text-base md:text-xl text-white/70 leading-relaxed">{l(activeProject.desc)}</p>
                 </div>
                 
                 <div className="h-px w-full bg-white/10"></div>
@@ -720,10 +721,10 @@ export default function Projects() {
                 </div>
                 <div className="flex flex-col gap-2 md:gap-3 pt-4">
                   {activeProject.demoUrl && (
-                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-3 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold">{l(uiTexts.live)}</a>
+                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-2.5 sm:py-3.5 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-xs sm:text-sm uppercase tracking-widest font-bold">{l(uiTexts.live)}</a>
                   )}
                   {activeProject.link && (
-                    <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-sm md:text-sm uppercase tracking-widest font-bold text-white">
+                    <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 md:gap-3 py-2.5 sm:py-3.5 md:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-xs sm:text-sm uppercase tracking-widest font-bold text-white">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                       {l(uiTexts.code)}
                     </a>
