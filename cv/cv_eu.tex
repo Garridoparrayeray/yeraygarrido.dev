@@ -1,0 +1,123 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[basque]{babel}
+\usepackage[left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+
+% --- KOLOREAK ---
+\definecolor{primary}{RGB}{35, 55, 75}
+
+\hypersetup{colorlinks=true, linkcolor=primary, urlcolor=primary}
+
+% --- IBURBURUEN FORMATUA ---
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{\MakeUppercase}[\titlerule]
+\titlespacing{\section}{0pt}{12pt}{6pt}
+
+% Esperientzia eta hezkuntzarako komando pertsonalizatua
+\newcommand{\jobheader}[4]{
+    \noindent\textbf{#1} \hfill \textbf{#2} \\
+    \textit{#3} \hfill \textit{#4} \vspace{3pt}
+}
+
+\begin{document}
+
+% --- GOIBURUA / HEADER ---
+\begin{center}
+    {\huge \textbf{YERAY GARRIDO PARRA}} \\ \vspace{4pt}
+    {\large \textbf{Software Ingeniaria \& Full Stack Garatzailea}} \\ \vspace{6pt}
+    \small
+    \faPhone*\hspace{0.5em} +34 622 945 185 \hspace{0.5em} | \hspace{0.5em}
+    \faEnvelope \hspace{0.5em} \href{mailto:garridoparrayeraytx@gmail.com}{garridoparrayeraytx@gmail.com} \hspace{0.5em} | \hspace{0.5em}
+    \faCar \hspace{0.5em} B Gidabaimena \\ \vspace{3pt}
+    \faGlobe \hspace{0.5em} \href{https://yeraygarrido.dev}{yeraygarrido.dev} \hspace{0.5em} | \hspace{0.5em}
+    \faGithub \hspace{0.5em} \href{https://github.com/Garridoparrayeray}{github.com/Garridoparrayeray} \hspace{0.5em} | \hspace{0.5em}
+    \faLinkedin\href{https://www.linkedin.com/in/yeray-garrido}{/in/yeray-garrido} \\ \vspace{3pt}
+    \faCode \textit{ \href{https://yeraygarrido.dev/cv.xml}{Machine Readable CV (XML API): yeraygarrido.dev/cv.xml}}
+\end{center}
+
+\vspace{4pt}
+
+% --- PROFIL PROFESIONALA ---
+\section{Profil Profesionala}
+Backend arloan espezializatutako software ingeniaria, Frontend-ean, sistemen diseinuan eta proiektuen kudeaketa integralean gaitasun sendoekin. Nire oinarri teknikoak C lengoaian memoria kudeatzearen zorroztasuna (42 Metodologia) eta Java zein PHP 8 bidezko arkitektura aurreratuak uztartzen ditu. Negozio-logika konplexuko erronkak ebazten ohitua (ERP, garraio-flotak, Open Data APIak), Linux inguruneetan trebea.
+
+% --- GAITASUN TEKNIKOAK ---
+\section{Gaitasun Teknikoak}
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=3pt, topsep=4pt]
+    \item \textbf{Ingeniaritza \& Backend-a:} Java 21, PHP 8.x, C (Algoritmia, Memoria-kudeaketa).
+    \item \textbf{Adimen Artifizial Aplikatua:} Garapen-fluxuak optimizatzeko IA sortzailearen erabilera eraginkorra. RAG arkitekturak eta LLM-en funtzionamenduan oinarri sendoak.
+    \item \textbf{Tokiko IA Hedapena:} Hardware lokalean IA ereduak programatu, konfiguratu eta exekutatzea (Ollama), datuen pribatutasun osoa bermatuz.
+    \item \textbf{I+G Machine Learning-en:} Ikerketa pertsonala eta esperimentazio praktikoa neurrira egindako RAG sistemen sorkuntzan eta modeloen egokitze tekniketan (Fine-Tuning).
+    \item \textbf{Sistemak, Sareak \& Zibersegurtasuna:} Linux inguruneak.
+    \item \textbf{Frontend-a, UI/UX \& Web Diseinua:} JavaScript (Vanilla), Figma (Interfaze-diseinua, wireframing eta prototipoak). REST APIen integrazioa. Oinarrizko ezagutzak React 19 eta TypeScript-en.
+    \item \textbf{Datu-baseak:} MySQL 8, MariaDB, SQLite.
+    \item \textbf{Tresnak \& Metodologiak:} Git, GitHub, Integrazio eta Inplementazio Jarraituko fluxuak (CI/CD), eta metodologia arinen zein zeregin-kudeaketaren ezagutza (Jira, Trello, Scrum).
+\end{itemize}
+
+% --- LAN ESPERIENTZIA IT ---
+\section{Lan Esperientzia IT}
+
+\jobheader{Software Ingeniaria}{Eka. 2026 -- Gaur egun}{HORION CASTILLO INGENIERIA INFORMATICA SL}{Bizkaia (Urrutikoa)}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item Core moduluen garapena \textbf{Horión Enterprise}-rentzat (ERP jabeduna), PHP arkitektura multi-tenant eskalagarria inplementatuz.
+    \item MVC bideratze propioaren diseinua, \textit{output buffering} bitarraren kudeaketa eta datuen iraunkortasun-sistema aurreratuak.
+    \item Irteera-ontziaren modulu integrala eraikitzea: erregistro-historiala, datu-basetik deskarga zuzena eta eranskinen birbidalketa automatikoa.
+    \item Vanilla JS eta MooTools bidez idatzitako interfaze zaharrak birfaktoreatu eta mantentzea.
+\end{itemize}
+
+\jobheader{Java Garatzailea (Freelance)}{Mai. 2026 -- Eka. 2026}{Bermeoko Udala}{Bermeo, Bizkaia}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item Galdutako Gauzen Kudeaketa Sistema \textit{End-to-End} baten ingeniaritza eta programazioa, metodologia arinean gauzatua (15 eguneko sprint-a).
+    \item Administrazioko langileentzako mahaigaineko aplikazioa \textbf{Swing/JavaFX}-en garatua eta herritarren kontsultarako web atari interaktiboa.
+    \item Erabilgarritasun handiko arkitektura: Zerbitzariko SQL datu-basea, babes-kopiarako tokiko kluster iraunkorrarekin eta segurtasun-kopia automatizatuekin.
+\end{itemize}
+
+\jobheader{Full Stack Web Garatzailea (Freelance)}{Urt. 2025 -- Eka. 2026}{Ekimen Independenteak}{Bilbo, Bizkaia}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item \textbf{Zalbi Aisia:} CMS arkitektura natiboa Custom Post Types (CPT) erabiliz, iragazketa taxonomiko asinkronoa eta bezeroari egokitutako GEO/SEO estrategiak.
+    \item \textbf{yeraygarrido.dev:} Errendimendu handiko webgunea React 19-n, portfolio tekniko pertsonal gisa garatua.
+    \item \textbf{archive.yeraygarrido.dev:} Neurrirako web aplikazioa, UI/UX pertsonalarekin eta PHP bidezko kudeaketa-sistemarekin argazki-portfoliorako.
+\end{itemize}
+
+\jobheader{Web Administratzailea eta Plugin Garatzailea}{Api. 2025 -- Eka. 2025}{GLOCALIUM SERVICES SL}{Bilbo, Bizkaia}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item Backend hedapenen ingeniaritza PHPn: CSV esportazio-motore baten programazioa eta MySQL bidezko datu-base iraunkortasun segurua.
+    \item Web azpiegituraren kudeaketa: hedapenen automatizazioa, zibersegurtasuneko prebentzio-auditoriak eta UI prototipoen diseinua Figman.
+\end{itemize}
+
+% --- PRESTAKUNTZA AKADEMIKOA ---
+\section{Prestakuntza Akademikoa}
+
+\jobheader{Web Aplikazioen Garapeneko Goi Mailako Teknikaria (LH Duala)}{2024 -- 2027}{CIFP Zornotza LHII}{Amorebieta-Etxano}
+\vspace{3pt}
+
+\jobheader{Programazio Igerilekua eta Common Core (C, Algoritmoak, Linux SE)}{2022 -- 2023}{42 Urduliz (Fundación Telefónica)}{Bizkaia}
+\vspace{3pt}
+
+\jobheader{3. Mailako Profesionaltasun Ziurtagiria (Web Garapena)}{2021 -- 2022}{Fundación EDE}{Bilbo}
+\small \textit{Batez besteko nota: 9.0/10 (590 ordu).}
+\vspace{4pt}
+
+\noindent \textbf{Ziurtagiri Gehigarriak:} Zibersegurtasuna eta Hacking Etikoa (BIG School, 2026) | SEO eta GEO Aurreratua (Webpositer, 2026).
+
+% --- INGENIARITZA ETA PROIEKTU NABARMENAK ---
+\section{Ingeniaritza eta Proiektu Nabarmenak}
+
+\begin{itemize}[leftmargin=12pt, itemsep=4pt, topsep=4pt]
+    \item \textbf{Open Data Mugikortasun Ekosistema (BizkaiBus+ / Metro+):} Denbora errealeko mugikortasun iragarleko PWA. GTFS datuen aurre-konpilazio automatizatua tokiko \textbf{SQLite}-ra eguneroko eguneratzearekin. Vanilla JS, PHP 8 eta Leaflet erabiliz garatua.
+    \item \textbf{GastroAccess Euskadi:} SPA (React, TypeScript, Vite) Open Data Euskadiren APIak kontsumitzen dituena algoritmo propioen bidez, ostalaritzako irisgarritasun erreala ebaluatzeko.
+\end{itemize}
+
+% --- HIZKUNTZAK ETA BESTE GAITASUN BATZUK ---
+\section{Hizkuntzak eta Beste Gaitasun Batzuk}
+
+\noindent \textbf{Hizkuntzak:} Euskara (Ama-hizkuntza) | Gaztelania (Ama-hizkuntza) | Ingelesa (Gaitasun profesionala).
+\vspace{4pt}
+
+\noindent \textbf{Zeharkako Gaitasunak (Soft Skills):} Erantzun azkarra eta ebazpen handikoa denbora errealeko gorabehera operatibo kritikoetan (segurtasun logistikoan izandako aldez aurreko esperientzian sendotua). Pentsamendu analitikoa eta teknologia berriak modu autonomo eta azkarrean ikasteko gaitasuna.
+
+\end{document}

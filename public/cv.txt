@@ -14,13 +14,11 @@ Carnet:   Permiso B
 
 [ PERFIL PROFESIONAL ]
 Ingeniero de software especializado en Backend, con amplias competencias en
-Frontend, diseño de sistemas y gestión integral de proyectos. Me diferencio
-por evitar el Low-Code, priorizando el desarrollo nativo desde cero para
-construir soluciones escalables, rápidas y seguras. Mi base técnica combina
-el rigor de la gestión de memoria en C (Metodología 42) con arquitecturas
-avanzadas en Java y PHP 8. Acostumbrado a resolver problemas complejos de
-lógica de negocio (ERPs, flotas de transporte, APIs Open Data) operando
-al 100% en entornos Linux.
+Frontend, diseño de sistemas y gestión integral de proyectos. Mi base técnica
+combina el rigor de la gestión de memoria en C (Metodología 42) con arquitecturas
+avanzadas en Java y PHP 8. Acostumbrado a resolver problemas complejos de lógica
+de negocio (ERP, flotas de transporte, APIs Open Data), experto trabajando en
+entornos Linux.
 
 [ HABILIDADES TÉCNICAS ]
 - Ingeniería & Backend:        Java 21 (POO, Virtual Threads, JNI), PHP 8.x (Arquitectura nativa), C (Algoritmia, Memoria)

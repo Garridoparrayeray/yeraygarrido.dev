@@ -1,0 +1,123 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+
+% --- COLORS ---
+\definecolor{primary}{RGB}{35, 55, 75}
+
+\hypersetup{colorlinks=true, linkcolor=primary, urlcolor=primary}
+
+% --- SECTION TITLE FORMATTING ---
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{\MakeUppercase}[\titlerule]
+\titlespacing{\section}{0pt}{12pt}{6pt}
+
+% Custom command for experience and education
+\newcommand{\jobheader}[4]{
+    \noindent\textbf{#1} \hfill \textbf{#2} \\
+    \textit{#3} \hfill \textit{#4} \vspace{3pt}
+}
+
+\begin{document}
+
+% --- HEADER ---
+\begin{center}
+    {\huge \textbf{YERAY GARRIDO PARRA}} \\ \vspace{4pt}
+    {\large \textbf{Software Engineer \& Full Stack Developer}} \\ \vspace{6pt}
+    \small
+    \faPhone*\hspace{0.5em} +34 622 945 185 \hspace{0.5em} | \hspace{0.5em}
+    \faEnvelope \hspace{0.5em} \href{mailto:garridoparrayeraytx@gmail.com}{garridoparrayeraytx@gmail.com} \hspace{0.5em} | \hspace{0.5em}
+    \faCar \hspace{0.5em} Driving License B \\ \vspace{3pt}
+    \faGlobe \hspace{0.5em} \href{https://yeraygarrido.dev}{yeraygarrido.dev} \hspace{0.5em} | \hspace{0.5em}
+    \faGithub \hspace{0.5em} \href{https://github.com/Garridoparrayeray}{github.com/Garridoparrayeray} \hspace{0.5em} | \hspace{0.5em}
+    \faLinkedin\href{https://www.linkedin.com/in/yeray-garrido}{/in/yeray-garrido} \\ \vspace{3pt}
+    \faCode \textit{ \href{https://yeraygarrido.dev/cv.xml}{Machine Readable CV (XML API): yeraygarrido.dev/cv.xml}}
+\end{center}
+
+\vspace{4pt}
+
+% --- PROFESSIONAL PROFILE ---
+\section{Professional Summary}
+Software engineer specializing in Backend development, with strong competencies in Frontend, system design, and end-to-end project management. My technical foundation blends the rigor of low-level memory management in C (42 Methodology) with modern architectures in Java and PHP 8. Experienced in solving complex business logic challenges (ERPs, fleet management systems, Open Data APIs), operating proficiently in Linux environments.
+
+% --- TECHNICAL SKILLS ---
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=3pt, topsep=4pt]
+    \item \textbf{Engineering \& Backend:} Java 21, PHP 8.x, C (Algorithms, Memory Management).
+    \item \textbf{Applied Artificial Intelligence:} Effective use of Generative AI for development workflow optimization. Solid knowledge of RAG architectures and LLM internals.
+    \item \textbf{Local AI Deployment:} Programming, configuring, and running AI models on local hardware (Ollama), ensuring complete data privacy.
+    \item \textbf{Machine Learning R\&D:} Independent research and hands-on experimentation with custom RAG systems and model adaptation techniques (Fine-Tuning).
+    \item \textbf{Systems, Networks \& Cybersecurity:} Linux Environments.
+    \item \textbf{Frontend, UI/UX \& Web Design:} JavaScript (Vanilla), Figma (UI design, wireframing, and prototyping). REST API integration. Working knowledge of React 19 and TypeScript.
+    \item \textbf{Databases:} MySQL 8, MariaDB, SQLite.
+    \item \textbf{Tools \& Methodologies:} Git, GitHub, Continuous Integration/Continuous Deployment (CI/CD) workflows, and familiarity with Agile methodologies and task management (Jira, Trello, Scrum).
+\end{itemize}
+
+% --- IT WORK EXPERIENCE ---
+\section{Professional IT Experience}
+
+\jobheader{Software Engineer}{Jun. 2026 -- Present}{HORION CASTILLO INGENIERIA INFORMATICA SL}{Bizkaia (Remote)}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item Core module engineering for \textbf{Horión Enterprise} (proprietary ERP) implementing a scalable multi-tenant PHP architecture.
+    \item Custom MVC routing design, binary \textit{output buffering} management, and advanced data persistence systems.
+    \item Built a comprehensive outbox module with audit logs, direct database downloads, and automated attachment resending.
+    \item Refactoring and maintenance of legacy user interfaces built with Vanilla JS and MooTools.
+\end{itemize}
+
+\jobheader{Java Developer (Freelance)}{May 2026 -- Jun. 2026}{Bermeo Town Hall (Ayuntamiento de Bermeo)}{Bermeo, Bizkaia}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item Engineering and development of an \textit{End-to-End} Lost Property Management System executed using agile methodology (15-day sprint).
+    \item Developed a \textbf{Swing/JavaFX} desktop application for administrative staff alongside an interactive citizen-facing web portal.
+    \item High-availability architecture: Remote SQL database with a local fallback persistence cluster and automated backup routines.
+\end{itemize}
+
+\jobheader{Full Stack Web Developer (Freelance)}{Jan. 2025 -- Jun. 2026}{Independent Projects}{Bilbao, Bizkaia}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item \textbf{Zalbi Aisia:} Native CMS architecture featuring Custom Post Types (CPTs), asynchronous taxonomic filtering, and tailored GEO/SEO strategies.
+    \item \textbf{yeraygarrido.dev:} High-performance web application built with React 19, serving as a technical personal portfolio.
+    \item \textbf{archive.yeraygarrido.dev:} Custom web application featuring proprietary UI/UX design and a bespoke PHP administration backend for a photography portfolio.
+\end{itemize}
+
+\jobheader{Web Administrator \& Plugin Developer}{Apr. 2025 -- Jun. 2025}{GLOCALIUM SERVICES SL}{Bilbao, Bizkaia}
+\begin{itemize}[leftmargin=12pt, itemsep=3pt, topsep=4pt]
+    \item PHP backend extension engineering: implemented a CSV export engine and a secure MySQL database persistence layer.
+    \item Web infrastructure management: deployment automation, preventative cybersecurity audits, and UI prototype design in Figma.
+\end{itemize}
+
+% --- EDUCATION & QUALIFICATIONS ---
+\section{Education \& Qualifications}
+
+\jobheader{Higher Technician in Web Application Development (Dual VET)}{2024 -- 2027}{CIFP Zornotza LHII}{Amorebieta-Etxano}
+\vspace{3pt}
+
+\jobheader{Programming Piscine \& Common Core (C, Algorithms, Linux OS)}{2022 -- 2023}{42 Urduliz (Fundación Telefónica)}{Bizkaia}
+\vspace{3pt}
+
+\jobheader{Level 3 Certificate of Higher Professional Studies (Web Development)}{2021 -- 2022}{Fundación EDE}{Bilbao}
+\small \textit{Grade point average: 9.0/10 (590 hours).}
+\vspace{4pt}
+
+\noindent \textbf{Additional Certifications:} Cybersecurity \& Ethical Hacking (BIG School, 2026) | Advanced SEO \& GEO (Webpositer, 2026).
+
+% --- KEY ENGINEERING PROJECTS ---
+\section{Key Engineering Projects}
+
+\begin{itemize}[leftmargin=12pt, itemsep=4pt, topsep=4pt]
+    \item \textbf{Open Data Mobility Ecosystem (BizkaiBus+ / Metro+):} Real-time predictive mobility PWA. Automated pre-compilation of GTFS feeds to local \textbf{SQLite} storage with daily updates. Built using Vanilla JS, PHP 8, and Leaflet.
+    \item \textbf{GastroAccess Euskadi:} SPA (React, TypeScript, Vite) consuming Open Data Euskadi APIs via custom algorithms to evaluate real-world accessibility standards in hospitality.
+\end{itemize}
+
+% --- LANGUAGES & COMPETENCIES ---
+\section{Languages \& Key Competencies}
+
+\noindent \textbf{Languages:} Basque (Native) | Spanish (Native) | English (Professional Working Proficiency).
+\vspace{4pt}
+
+\noindent \textbf{Soft Skills:} Highly decisive in handling critical real-time operational incidents (honed in prior logistics security experience). Strong analytical mindset and rapid, autonomous technological learning capability.
+
+\end{document}
