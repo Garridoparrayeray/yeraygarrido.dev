@@ -2,9 +2,9 @@
   {
     "id": "art-gallery",
     "title": {
-      "es": "Portfolio Fotográfico",
-      "en": "Photography Portfolio",
-      "eu": "Argazki Portfolioa"
+      "es": "YGArchive · Archivo Fotográfico",
+      "en": "YGArchive · Photo Archive",
+      "eu": "YGArchive · Argazki Artxiboa"
     },
     "tech": "PHP 8, MySQL, Vanilla JS, Imagick, IPTC, Hostinger",
     "desc": {
