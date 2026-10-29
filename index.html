@@ -5,10 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Preconnect al origen propio para conexión TCP temprana -->
   <link rel="preconnect" href="https://yeraygarrido.dev" crossorigin />
 
-  <!-- Preload fuentes críticas (hero) -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/anton.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/syncopate-700.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/syncopate-400.woff2" crossorigin />
@@ -16,40 +14,43 @@
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-500.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-600.woff2" crossorigin />
 
-  <title>Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack</title>
-  <meta name="title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
+  <title>Yeray Garrido | Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao</title>
+  <meta name="title" content="Yeray Garrido | Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao" />
   <meta name="description"
-    content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Creación de sistemas backend, plugins personalizados y aplicaciones web de alto rendimiento." />
+    content="Yeray Garrido, Desarrollador Full Stack e Ingeniero de Software en Bilbao (Bizkaia). Especialista en desarrollo backend con PHP y Java, frontend con React y TypeScript, y aplicaciones web a medida de alto rendimiento." />
+  <meta name="keywords"
+    content="desarrollador full stack bilbao, programador bilbao, ingeniero de software bizkaia, full stack developer euskadi, desarrollo web bilbao, programador php bilbao, react typescript bilbao, yeray garrido" />
   <meta name="author" content="Yeray Garrido" />
+
+  <meta name="geo.region" content="ES-BI" />
+  <meta name="geo.placename" content="Bilbao, Bizkaia" />
+  <meta name="geo.position" content="43.2630;-2.9350" />
+  <meta name="ICBM" content="43.2630, -2.9350" />
 
   <link rel="canonical" href="https://yeraygarrido.dev/" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://yeraygarrido.dev/" />
-  <meta property="og:title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
+  <meta property="og:title" content="Yeray Garrido | Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao" />
   <meta property="og:description"
-    content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida. Soluciones backend robustas y aplicaciones de alto rendimiento." />
+    content="Desarrollador Full Stack e Ingeniero de Software en Bilbao (Bizkaia). Arquitecturas backend PHP/Java, React, TypeScript y aplicaciones web de alto rendimiento." />
   <meta property="og:image" content="https://yeraygarrido.dev/og-image.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Yeray Garrido Portfolio" />
   <meta property="og:locale" content="es_ES" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://yeraygarrido.dev/" />
-  <meta name="twitter:title" content="Yeray Garrido | Ingeniero de Software & Desarrollador Full Stack" />
+  <meta name="twitter:title" content="Yeray Garrido | Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao" />
   <meta name="twitter:description"
-    content="Ingeniero de Software especializado en PHP, Java y desarrollo WordPress a medida." />
+    content="Desarrollador Full Stack e Ingeniero de Software en Bilbao (Bizkaia). Backend nativo, React y alto rendimiento." />
   <meta name="twitter:image" content="https://yeraygarrido.dev/og-image.webp" />
 
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow" />
   <meta name="theme-color" content="#000000" />
 
-  <!-- Favicons -->
-  <!-- Favicons for browser tabs and Google Search -->
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
   <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
@@ -57,22 +58,14 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
   <link rel="manifest" href="/img/site.webmanifest" />
 
-
-  <!-- dns-prefetch para APIs lazy -->
   <link rel="dns-prefetch" href="https://api.github.com" />
   <link rel="dns-prefetch" href="https://github-contributions-api.jogruber.de" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <!-- dns-prefetch del portfolio de fotografia (icono del Header, ver
-       TearLink) -- solo resolucion DNS anticipada, no una conexion
-       completa, para no gastar recursos en un enlace que puede no
-       llegar a pulsarse nunca. -->
   <link rel="dns-prefetch" href="https://archive.yeraygarrido.dev" />
 
-  <!-- og:image alt para accesibilidad y SEO de imagen -->
-  <meta property="og:image:alt" content="Yeray Garrido — Ingeniero de Software & Desarrollador Full Stack" />
-  <meta name="twitter:image:alt" content="Yeray Garrido — Ingeniero de Software & Desarrollador Full Stack" />
+  <meta property="og:image:alt" content="Yeray Garrido — Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao" />
+  <meta name="twitter:image:alt" content="Yeray Garrido — Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao" />
 
-  <!-- JSON-LD Schema.org — SEO estructurado + GEO (motores generativos) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -81,8 +74,8 @@
         "@type": "WebSite",
         "@id": "https://yeraygarrido.dev/#website",
         "url": "https://yeraygarrido.dev",
-        "name": "Yeray Garrido — Portfolio de Desarrollo",
-        "description": "Ingeniero de Software especializado en PHP, Java y desarrollo web full stack.",
+        "name": "Yeray Garrido — Desarrollador Full Stack & Ingeniero de Software",
+        "description": "Desarrollador Full Stack e Ingeniero de Software en Bilbao (Bizkaia). Especialista en PHP, Java, React, TypeScript y arquitecturas web de alto rendimiento.",
         "inLanguage": "es-ES",
         "publisher": {
           "@id": "https://yeraygarrido.dev/#person"
@@ -97,8 +90,18 @@
           "@type": "ImageObject",
           "url": "https://yeraygarrido.dev/og-image.webp"
         },
-        "jobTitle": "Ingeniero de Software & Desarrollador Full Stack",
-        "description": "Ingeniero de software especializado en Backend, con amplias competencias en Frontend, diseño de sistemas y gestión integral de proyectos. Evito el Low-Code, priorizando el desarrollo nativo desde cero para construir soluciones escalables, rápidas y seguras.",
+        "jobTitle": [
+          "Desarrollador Full Stack",
+          "Ingeniero de Software",
+          "Full Stack Developer"
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Desarrollador Full Stack",
+          "occupationalCategory": "15-1254.00",
+          "skills": "PHP 8, Java, React 19, TypeScript, MySQL, MariaDB, Docker, Linux, REST APIs, GTFS, Arquitecturas RAG, LLMs"
+        },
+        "description": "Ingeniero de Software y Desarrollador Full Stack ubicado en Bilbao (Bizkaia, España). Especializado en Backend y Frontend nativo, diseño de sistemas escalables, APIs RESTful y aplicaciones web de alto rendimiento.",
         "email": "garridoparrayeraytx@gmail.com",
         "address": {
           "@type": "PostalAddress",
@@ -106,10 +109,45 @@
           "addressRegion": "Bizkaia",
           "addressCountry": "ES"
         },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Bilbao"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Bizkaia"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "País Vasco"
+          },
+          {
+            "@type": "Country",
+            "name": "España"
+          }
+        ],
         "knowsAbout": [
-          "PHP 8", "Java", "JavaScript", "TypeScript", "MySQL",
-          "WordPress", "React", "Node.js", "Docker", "Linux",
-          "Ciberseguridad", "Inteligencia Artificial", "LLMs", "Arquitecturas RAG"
+          "Desarrollo Full Stack",
+          "Full Stack Development",
+          "Desarrollo Backend",
+          "Desarrollo Frontend",
+          "PHP 8",
+          "Java",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "MySQL",
+          "WordPress",
+          "Node.js",
+          "Docker",
+          "Linux",
+          "APIs RESTful",
+          "GTFS",
+          "Ciberseguridad",
+          "Inteligencia Artificial",
+          "LLMs",
+          "Arquitecturas RAG"
         ],
         "knowsLanguage": ["es", "eu", "en"],
         "sameAs": [
@@ -136,20 +174,27 @@
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Software Development Services",
+          "name": "Servicios de Desarrollo de Software",
           "itemListElement": [
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Custom Web Application Development"
+                "name": "Desarrollo Web Full Stack a Medida"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Backend API Design & Implementation"
+                "name": "Diseño e Implementación de APIs y Arquitecturas Backend"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Desarrollo Frontend React & TypeScript"
               }
             }
           ]
@@ -161,7 +206,66 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <header style="max-width:900px;margin:40px auto 20px;padding:0 20px;">
+      <h1>Yeray Garrido — Desarrollador Full Stack &amp; Ingeniero de Software en Bilbao</h1>
+      <p>
+        Desarrollador Full Stack e Ingeniero de Software ubicado en Bilbao (Bizkaia, España).
+        Especializado en arquitecturas backend robustas con PHP 8 y Java, interfaces modernas con React 19 y TypeScript, diseño de APIs RESTful y optimización de rendimiento sin dependencias innecesarias.
+      </p>
+    </header>
+
+    <main style="max-width:900px;margin:0 auto 40px;padding:0 20px;">
+      <section>
+        <h2>Proyectos Destacados</h2>
+        <article>
+          <h3>Bide+ · Movilidad y Transporte Público de Euskadi</h3>
+          <p>
+            Aplicación web progresiva (PWA) que unifica en tiempo real los horarios, llegadas y avisos de Bizkaibus, Metro Bilbao, Euskotren, Renfe Cercanías, Lurraldebus y Tranvías de Bilbao y Vitoria. Implementa algoritmos de estimación de llegada mediante feeds oficiales GTFS y SIRI en tiempo real.
+          </p>
+        </article>
+        <article>
+          <h3>Gasolinera+ · Comparador y Telemetría de Carburantes</h3>
+          <p>
+            Plataforma en tiempo real con datos del Ministerio de Transición Ecológica (MITECO) para la comparación de precios de estaciones de servicio en España, registro de consumos y ordenador de a bordo para vehículos.
+          </p>
+        </article>
+        <article>
+          <h3>Archivo Fotográfico Yeray Garrido</h3>
+          <p>
+            Galería fotográfica minimalista organizada por series temáticas (Fauna, Automovilismo, Macrofotografía, Mascotas), optimizada para carga ultra rápida y visor de alta resolución.
+          </p>
+        </article>
+        <article>
+          <h3>Pokémon Card PSA Tracker</h3>
+          <p>
+            Herramienta de seguimiento de cotización, estado de graduación y valoración de cartas coleccionables con estética inspirada en interfaces retro.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Habilidades y Stack Tecnológico</h2>
+        <ul>
+          <li><strong>Backend:</strong> PHP 8, Java, Node.js, Python, MySQL, MariaDB, SQLite, Arquitectura MVC, APIs RESTful.</li>
+          <li><strong>Frontend:</strong> React 19, TypeScript, JavaScript (ES6+), Vite, Tailwind CSS, GSAP, HTML5 semántico, Accesibilidad web (WCAG / a11y).</li>
+          <li><strong>Sistemas &amp; DevOps:</strong> Linux, Docker, Git, CI/CD, Nginx, Apache, Servidores cloud.</li>
+          <li><strong>Inteligencia Artificial:</strong> Integración de LLMs, arquitecturas RAG, modelos locales con Ollama y optimización para motores generativos (GEO).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Ubicación y Contacto</h2>
+        <p>Bilbao, Bizkaia, País Vasco (España) — Disponible para proyectos de desarrollo a medida y contratación profesional.</p>
+        <p>
+          Email: <a href="mailto:garridoparrayeraytx@gmail.com">garridoparrayeraytx@gmail.com</a> |
+          GitHub: <a href="https://github.com/Garridoparrayeray">github.com/Garridoparrayeray</a> |
+          LinkedIn: <a href="https://www.linkedin.com/in/yeray-garrido">linkedin.com/in/yeray-garrido</a> |
+          Galería: <a href="https://archive.yeraygarrido.dev">archive.yeraygarrido.dev</a>
+        </p>
+      </section>
+    </main>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
