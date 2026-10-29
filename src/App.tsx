@@ -22,6 +22,7 @@ const Footer = lazy(() => import("./components/Footer"));
 const Analytics = lazy(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
 const SpeedInsights = lazy(() => import("@vercel/speed-insights/react").then(m => ({ default: m.SpeedInsights })));
 const CookieBanner = lazy(() => import("./components/Cookie-Banner"));
+const ProjectPopup = lazy(() => import("./components/ProjectPopup"));
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -82,6 +83,7 @@ export default function App() {
             <Analytics />
             <SpeedInsights />
             <CookieBanner />
+            <ProjectPopup />
           </Suspense>
         )}
       </main>
