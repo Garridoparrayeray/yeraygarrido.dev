@@ -40,7 +40,7 @@
 
 ### Sobre mí
 
-Soy un Ingeniero de Software enfocado en la arquitectura Backend y la optimización. Huyo de las soluciones *Low-Code* y las plantillas prefabricadas; mi prioridad es construir sistemas escalables, rápidos y seguros desarrollando arquitecturas nativas y a medida. Actualmente compagino mi trabajo corporativo con el Grado Superior en Desarrollo de Aplicaciones Web (Zornotza FP, Modalidad Dual).
+Soy un Ingeniero de Software enfocado en la arquitectura Backend y la optimización. Huyo de las soluciones *Low-Code* y las plantillas prefabricadas; mi prioridad es construir sistemas escalables, rápidos y seguros desarrollando arquitecturas nativas y a medida. Actualmente compagino mi trabajo corporativo con el Grado Superior en Desarrollo de Aplicaciones Web (Zornotza FP, Modalidad Dual) y proyectos personales como algoritmia y apps.
 
 -  **Experiencia Real:** Ingeniero de Software desarrollando módulos core para sistemas ERP corporativos (arquitecturas PHP multi-tenant, enrutamiento MVC propio, persistencia avanzada de datos). 
 -  **Mentalidad de Ingeniería:** Forjado en la metodología de 42 Urduliz (C, algoritmos, gestión de memoria). Acostumbrado a operar y desarrollar 100% en entornos Linux.
@@ -54,7 +54,7 @@ Soy un Ingeniero de Software enfocado en la arquitectura Backend y la optimizaci
 
 ### About Me
 
-I am a Software Engineer focused on Backend architecture and extreme performance optimization (WPO). I avoid *Low-Code* solutions and pre-built templates; my priority is to build scalable, fast, and secure systems from scratch using native architectures. I currently balance my corporate work as a developer with a Higher Degree in Web Application Development (Dual VET at Zornotza FP).
+I am a Software Engineer focused on Backend architecture and extreme performance optimization (WPO). I avoid *Low-Code* solutions and pre-built templates; my priority is to build scalable, fast, and secure systems from scratch using native architectures. I currently balance my corporate work as a developer with a Higher Degree in Web Application Development (Dual VET at Zornotza FP) alongside personal projects such as algorithms and software applications.
 
 -  **Real Experience:** Software Engineer developing core modules for corporate ERP systems (multi-tenant PHP architectures, custom MVC routing, advanced data persistence).
 -  **Engineering Mindset:** Forged in the 42 Urduliz methodology (C, algorithms, memory management). Accustomed to operating and developing 100% in Linux environments.
