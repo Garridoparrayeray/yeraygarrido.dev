@@ -1,14 +1,15 @@
 <div align="center">
 
   <!-- Header Banner Brutalista estilo yeraygarrido.dev -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1e293b,100:0a0a0a&height=220&section=header&text=YERAY%20GARRIDO%20PARRA&fontSize=42&fontColor=ffffff&fontAlignY=40&desc=SOFTWARE%20ENGINEER%20%7C%20BACKEND%20%2B%20DATA%20ARCHITECTURE%20%7C%20LINUX&descFontSize=15&descColor=94a3b8&descAlignY=62" width="100%" alt="Yeray Garrido Parra Banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1e293b,100:0a0a0a&height=220&section=header&text=YERAY%20GARRIDO%20PARRA&fontSize=42&fontColor=ffffff&fontAlignY=40&desc=SOFTWARE%20ENGINEER%20%7C%20FULL%20STACK%20DEVELOPER%20%7C%20LINUX&descFontSize=15&descColor=94a3b8&descAlignY=62" width="100%" alt="Yeray Garrido Parra Banner" />
 
   <br/><br/>
 
   <!-- Metadata estilo "Data" -->
   <p align="center">
     <a href="https://cifpzornotza.eus/"><img src="https://img.shields.io/badge/DEGREE-FP%20DUAL%20DAW%20(CIFP%20ZORNOTZA)-0a0a0a?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=1f2937" alt="Degree" /></a>
-    <img src="https://img.shields.io/badge/SPECIALIZATION-BACKEND%20%26%20DATA%20ARCHITECTURE-0a0a0a?style=for-the-badge&logo=serverless&logoColor=white&labelColor=1f2937" alt="Specialization" />
+    <img src="https://img.shields.io/badge/ROLE-FULL%20STACK%20ENGINEER-0a0a0a?style=for-the-badge&logo=serverless&logoColor=white&labelColor=1f2937" alt="Full Stack Engineer" />
+    <img src="https://img.shields.io/badge/EXPERTISE-SEO%20%26%20GEO%20AVANZADO-0a0a0a?style=for-the-badge&logo=google&logoColor=white&labelColor=1f2937" alt="SEO & GEO" />
     <img src="https://img.shields.io/badge/LOCATION-BILBAO%2C%20BIZKAIA%20(SPAIN)-0a0a0a?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=1f2937" alt="Location" />
     <a href="https://doi.org/10.5281/zenodo.24041572"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24041572-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo DOI" /></a>
   </p>
@@ -91,6 +92,7 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Vanilla_JS-ES6%2B_%C2%B7_Zero_Framework_DOM-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="Vanilla JS" />
+  <img src="https://img.shields.io/badge/SEO_%26_GEO-Avanzado_%C2%B7_Webpositer_Certified-4285F4?style=flat-square&logo=google&logoColor=white" alt="SEO & GEO" />
   <img src="https://img.shields.io/badge/Leaflet-Geospatial_Clustering_%26_Heatmaps-199900?style=flat-square&logo=leaflet&logoColor=white" alt="Leaflet" />
   <img src="https://img.shields.io/badge/GSAP-High_Performance_Timelines-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" />
 </p>
