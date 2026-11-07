@@ -121,8 +121,8 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 | **YGArchive** | `PHP 8` `MySQL` `Vanilla JS` `Imagick` `IPTC` | Archivo fotográfico de alta resolución con experiencia móvil tipo *Reels* por gestos (swipe vertical), cola de miniaturas aislada en subida y firmado IPTC de autoría. | [Demo](https://archive.yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/art-gallery) |
 | **yeraygarrido.dev** | `React 19` `TypeScript` `Vite` `Tailwind v4` `GSAP` | Portfolio técnico personal con arquitectura SPA de renderizado crítico sin bloqueos, 100/100 Lighthouse y sistema i18n nativo Context API (ES/EN/EU). | [Site](https://yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/yeraygarrido.com.git) |
 | **GastroAccess Euskadi** | `React 19` `TypeScript` `Vite` `Open Data Euskadi` | SPA que consume APIs de Open Data Euskadi mediante algoritmos propios para evaluar y puntuar la accesibilidad real en hostelería. | [Code](https://github.com/Garridoparrayeray/GastroAccess-Euskadi) |
-| **java-scraper** | `Java` `POO` `Data Extraction` | Scraper automatizado para extracción de datos, procesamiento estructurado y saneamiento de información web. | [Code](https://github.com/Garridoparrayeray/java-scraper) |
-| **3_Erronka_T2** | `Java` `Swing` `MVC` `SQL` | Aplicación de escritorio desarrollada en Java para la gestión automatizada de ligas deportivas y torneos. | [Code](https://github.com/Garridoparrayeray/3_Erronka_T2_Txurdinaga) |
+| **bide-eta** | `Python 3` `Zenodo DOI` `GTFS` `SIRI-VM` `Algorithms` | Implementación de referencia, vectores de verificación y evaluador público del método de predicción de llegadas para Bizkaibus+ (Bide+). Registrado bajo DOI en Zenodo (`10.5281/zenodo.24041572`). | [Code](https://github.com/Garridoparrayeray/bide-eta) · [Zenodo](https://doi.org/10.5281/zenodo.24041572) |
+| **Bermeoko Udala** | `JavaFX` `Java` `MariaDB` `Docker Compose` `XML/XSLT` | Sistema integral de gestión de objetos perdidos para el Ayuntamiento de Bermeo (CIFP Zornotza): aplicación de escritorio JavaFX, portal web ciudadano y arquitectura Docker multi-contenedor. | [Code](https://github.com/Garridoparrayeray/Talde14_Erronka_CIFPZornotzaLHII) |
 
 ---
 
@@ -136,8 +136,9 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 
 Investigación personal y publicación de datos abiertos en plataformas científicas para garantizar la reproducibilidad y el análisis técnico:
 
-- **Zenodo Record [24041572](https://doi.org/10.5281/zenodo.24041572):** Repositorio de datos estructurados para investigación y análisis algorítmico.
-- **Próximas Publicaciones:** En proceso de redacción y publicación de 2 artículos técnicos detallando la metodología de predicción de tiempos de llegada en transporte multimodal y la normalización de flujos de precios en combustible.
+- **Repositorio de Código & Datos:** [`Garridoparrayeray/bide-eta`](https://github.com/Garridoparrayeray/bide-eta) — Implementación de referencia, vectores de prueba y datasets evaluados.
+- **Zenodo Record [24041572](https://doi.org/10.5281/zenodo.24041572):** Repositorio de datos estructurados para investigación y análisis algorítmico (*Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados*).
+- **Próximas Publicaciones:** En proceso de redacción y publicación de 2 artículos técnicos detallando la metodología de predicción y la comparación empírica.
 
 ---
 
