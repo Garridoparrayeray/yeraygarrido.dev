@@ -1,7 +1,7 @@
 <div align="center">
 
   <!-- Header Banner Brutalista estilo yeraygarrido.dev -->
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0a0a0a&stroke=ffffff&strokeWidth=1&height=180&section=header&text=YERAY%20GARRIDO%20PARRA&fontSize=42&fontColor=ffffff&fontAlignY=42&desc=SOFTWARE%20ENGINEER%20%7C%20BACKEND%20%26%20DATA%20ARCHITECTURE%20%7C%20LINUX&descFontSize=14&descColor=a3a3a3&descAlignY=68" width="100%" alt="Yeray Garrido Parra Banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1e293b,100:0a0a0a&height=220&section=header&text=YERAY%20GARRIDO%20PARRA&fontSize=42&fontColor=ffffff&fontAlignY=40&desc=SOFTWARE%20ENGINEER%20%7C%20BACKEND%20%2B%20DATA%20ARCHITECTURE%20%7C%20LINUX&descFontSize=15&descColor=94a3b8&descAlignY=62" width="100%" alt="Yeray Garrido Parra Banner" />
 
   <br/><br/>
 
@@ -38,36 +38,28 @@
 <details open>
 <summary>🇪🇸 <strong>Haz clic para ver en Español</strong></summary>
 
-<br/>
+### Sobre mí
 
-Ingeniero de Software especializado en **Backend**, **Diseño de Sistemas** y **Gestión Integral de Proyectos**, con sólidas competencias en desarrollo Frontend y análisis de datos. Mi base técnica combina el rigor de la gestión de memoria y algoritmia en **C** (Metodología 42) con arquitecturas de alta disponibilidad en **Java 21** y **PHP 8**. 
+Soy un Ingeniero de Software enfocado en la arquitectura Backend y la optimización. Huyo de las soluciones *Low-Code* y las plantillas prefabricadas; mi prioridad es construir sistemas escalables, rápidos y seguros desarrollando arquitecturas nativas y a medida. Actualmente compagino mi trabajo corporativo con el Grado Superior en Desarrollo de Aplicaciones Web (Zornotza FP, Modalidad Dual).
 
-Priorizo el **desarrollo nativo desde cero**, evitando soluciones *Low-Code* y constructores visuales para garantizar un rendimiento extremo (WPO), mantenibilidad y escalabilidad. Acostumbrado a resolver problemas complejos de lógica de negocio (ERPs corporativos, flotas de transporte público, algoritmos de estimación en tiempo real y APIs Open Data), operando al 100% en entornos **Linux** (Arch, Bash) y realizando despliegues locales de IA (Ollama) que garantizan la privacidad absoluta de los datos.
-
-Investigador y desarrollador en el ecosistema **Open Data**, con datasets estructurados publicados bajo DOI en **Zenodo** y artículos técnicos en fase de publicación.
-
-- **Ingeniería Core:** Desarrollo de módulos empresariales para ERP propietario (*Horión Enterprise*) bajo arquitectura PHP multi-tenant, enrutamiento MVC propio, control de *output buffering* binario y persistencia segura de datos.
-- **Bajo Nivel & Algoritmia:** Rigor forjado en la Piscina y Common Core de *42 Urduliz* (C, punteros, llamadas al sistema, estructuras de datos y optimización de memoria).
-- **Open Data & Telemetría:** Creador de plataformas cívicas de gran escala (**Bide+**, **Gasolinera+**) que integran y normalizan especificaciones GTFS, flujos SIRI-VM y APIs MITECO con bases de datos embebidas SQLite de latencia cero.
-- **Full Stack & Visualización:** PWAs y aplicaciones web de alto rendimiento desarrolladas con Vanilla JS, Leaflet, Canvas y GSAP para cálculo dinámico de rutas y mapas de calor.
+-  **Experiencia Real:** Ingeniero de Software desarrollando módulos core para sistemas ERP corporativos (arquitecturas PHP multi-tenant, enrutamiento MVC propio, persistencia avanzada de datos). 
+-  **Mentalidad de Ingeniería:** Forjado en la metodología de 42 Urduliz (C, algoritmos, gestión de memoria). Acostumbrado a operar y desarrollar 100% en entornos Linux.
+-  **Enfoque Full Stack:** Desde motores de cálculo y conexiones Java (JNI, Virtual Threads, Swing/JavaFX) hasta arquitecturas SPA de alto rendimiento (React 19, Vite, Tailwind, GSAP).
+-  **Ecosistema Open Data:** Creador de plataformas cívicas en Euskadi consumiendo feeds en tiempo real (GTFS, SIRI-VM) cruzados con bases de datos locales (SQLite/MySQL).
 
 </details>
 
 <details>
 <summary>🇬🇧 <strong>Click to view in English</strong></summary>
 
-<br/>
+### About Me
 
-Software Engineer specializing in **Backend development**, **System Design**, and **End-to-End Project Engineering**, with broad competencies in Frontend engineering and data architectures. My technical foundation blends low-level memory rigor in **C** (42 Methodology) with resilient, modern enterprise architectures in **Java 21** and **PHP 8**.
+I am a Software Engineer focused on Backend architecture and extreme performance optimization (WPO). I avoid *Low-Code* solutions and pre-built templates; my priority is to build scalable, fast, and secure systems from scratch using native architectures. I currently balance my corporate work as a developer with a Higher Degree in Web Application Development (Dual VET at Zornotza FP).
 
-I prioritize **native engineering from scratch**, avoiding *Low-Code* frameworks and commercial builders to guarantee extreme Web Performance Optimization (WPO), security, and full autonomy. Experienced in tackling demanding business logic challenges (enterprise ERPs, transit fleets, real-time telemetry estimation, and Open Data APIs), operating 100% in **Linux** environments (Arch, Bash) and orchestrating local private AI models (Ollama).
-
-Open Data researcher with structured scientific datasets registered with DOI on **Zenodo** and ongoing technical publications.
-
-- **Core Engineering:** Architectural development of core modules for proprietary ERP (*Horión Enterprise*), implementing scalable multi-tenant PHP, custom MVC routing engines, binary output buffering, and robust persistence.
-- **Low-Level Rigor:** Forged in the 42 Urduliz Common Core (C, memory management, pointers, custom algorithms, POSIX system calls).
-- **Open Data & Telemetry:** Creator of civic transit suites (**Bide+**, **Gasolinera+**) parsing and projecting real-time GTFS feeds, SIRI-VM telemetry, and MITECO APIs stop-by-stop onto embedded, zero-latency SQLite clusters.
-- **Full Stack & Visual Analytics:** High-performance PWAs and web platforms utilizing Vanilla JS, Leaflet, Canvas, and GSAP for real-time transit computing and geospatial heatmaps.
+-  **Real Experience:** Software Engineer developing core modules for corporate ERP systems (multi-tenant PHP architectures, custom MVC routing, advanced data persistence).
+-  **Engineering Mindset:** Forged in the 42 Urduliz methodology (C, algorithms, memory management). Accustomed to operating and developing 100% in Linux environments.
+-  **Full Stack Approach:** From calculation engines and Java connections (JNI, Virtual Threads, Swing/JavaFX) to high-performance SPA architectures (React 19, Vite, Tailwind, GSAP).
+-  **Open Data Ecosystem:** Creator of civic platforms in the Basque Country consuming real-time feeds (GTFS, SIRI-VM) merged with local databases (SQLite/MySQL).
 
 </details>
 
@@ -122,7 +114,7 @@ Open Data researcher with structured scientific datasets registered with DOI on 
 
 | Project | Tech Stack | Highlights | Links |
 | :--- | :--- | :--- | :---: |
-| **Bide+** | `PHP 8` `SQLite` `Vanilla JS` `GTFS` `SIRI-VM` `Leaflet` | Plataforma PWA de movilidad predictiva en Euskadi (Bizkaibus+, Metro+, Euskotren+, Renfe). Algoritmo propio de ETA programado en PHP 8 con error < 1.5 min y precompilación GTFS diaria a SQLite local. | [Demo](https://bideplus.vercel.app) · [Code](https://github.com/Garridoparrayeray/bizkaibus-renewed) |
+| **Bide+** | `PHP 8` `SQLite` `Vanilla JS` `GTFS` `SIRI-VM` `Leaflet` | Plataforma PWA de movilidad predictiva en Euskadi (Bizkaibus+, Metro+, Euskotren+, Renfe). Algoritmo propio de ETA programado en PHP y precompilación GTFS diaria a SQLite local. | [Site](https://bideplus.eus) · [Code](https://github.com/Garridoparrayeray/bizkaibus-renewed) |
 | **Gasolinera+** | `PHP 8` `Vanilla JS` `Geolocation` `MITECO` `Leaflet` `Canvas` | Comparador en tiempo real de más de 11.400 estaciones de servicio en España. Incluye mapa de calor de precios, módulo de garaje/consumo y ordenador de a bordo con velocímetro digital. | [Code](https://github.com/Garridoparrayeray/gasolinera-plus) |
 | **Zalbi Aisia** | `PHP 8` `WordPress (_s)` `CPTs` `Vanilla JS` `CSS Grid` | Plataforma corporativa y catálogo dinámico con filtrado taxonómico asíncrono sin *layout thrashing*. Creado 100% a medida desde cero sin constructores visuales. | [Site](https://zalbi.eu/) · [Code](https://github.com/Garridoparrayeray/zalbi-theme) |
 | **YGArchive** | `PHP 8` `MySQL` `Vanilla JS` `Imagick` `IPTC` | Archivo fotográfico de alta resolución con experiencia móvil tipo *Reels* por gestos (swipe vertical), cola de miniaturas aislada en subida y firmado IPTC de autoría. | [Demo](https://archive.yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/art-gallery) |

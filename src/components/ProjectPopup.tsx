@@ -11,7 +11,7 @@ export default function ProjectPopup() {
       badge: "ÚLTIMO LANZAMIENTO",
       title: "Bide+ · Movilidad Euskadi",
       tagline: "Horarios, avisos y tiempo real de Bizkaibus, Metro Bilbao, Euskotren y Renfe en una sola PWA con estimación GPS propia.",
-      pill: "Algoritmo propio · Error < 1.5 min",
+      pill: "Algoritmo propio en PHP 8 · GTFS + SIRI",
       cta: "Probar Bide+",
       close: "Cerrar",
     },
@@ -19,7 +19,7 @@ export default function ProjectPopup() {
       badge: "LATEST RELEASE",
       title: "Bide+ · Euskadi Mobility",
       tagline: "Real-time schedules and alerts for Bizkaibus, Metro Bilbao, Euskotren, and Renfe Cercanías in one PWA.",
-      pill: "Custom GPS algorithm · Error < 1.5 min",
+      pill: "Proprietary PHP 8 algorithm · GTFS + SIRI",
       cta: "Try Bide+",
       close: "Close",
     },
@@ -27,7 +27,7 @@ export default function ProjectPopup() {
       badge: "AZKEN PROIEKTUA",
       title: "Bide+ · Euskadiko Mugikortasuna",
       tagline: "Bizkaibus, Metro Bilbao, Euskotren eta Renfe ordutegiak, abisuak eta denbora erreala PWA bakar batean.",
-      pill: "GPS algoritmo propioa · Errorea < 1.5 min",
+      pill: "PHP 8 algoritmo propioa · GTFS + SIRI",
       cta: "Probatu Bide+",
       close: "Itxi",
     },
@@ -104,7 +104,7 @@ export default function ProjectPopup() {
 
         <div className="flex items-center gap-2.5 pt-1">
           <a
-            href="https://bideplus.vercel.app/?utm_source=yeraygarrido_dev&utm_medium=portfolio_popup&utm_campaign=beta"
+            href="https://bideplus.eus/?utm_source=yeraygarrido_dev&utm_medium=portfolio_popup"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 bg-white text-black hover:bg-emerald-400 hover:text-black font-sans font-bold text-xs uppercase tracking-wider py-2.5 px-4 text-center transition-colors flex items-center justify-center gap-2 group"
