@@ -9,7 +9,6 @@
   <p align="center">
     <a href="https://cifpzornotza.eus/"><img src="https://img.shields.io/badge/DEGREE-FP%20DUAL%20DAW%20(CIFP%20ZORNOTZA)-0a0a0a?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=1f2937" alt="Degree" /></a>
     <img src="https://img.shields.io/badge/ROLE-FULL%20STACK%20ENGINEER-0a0a0a?style=for-the-badge&logo=serverless&logoColor=white&labelColor=1f2937" alt="Full Stack Engineer" />
-    <img src="https://img.shields.io/badge/EXPERTISE-SEO%20%26%20GEO%20AVANZADO-0a0a0a?style=for-the-badge&logo=google&logoColor=white&labelColor=1f2937" alt="SEO & GEO" />
     <img src="https://img.shields.io/badge/LOCATION-BILBAO%2C%20BIZKAIA%20(SPAIN)-0a0a0a?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=1f2937" alt="Location" />
     <a href="https://doi.org/10.5281/zenodo.24041572"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24041572-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo DOI" /></a>
   </p>
