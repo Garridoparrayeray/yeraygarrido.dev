@@ -49,7 +49,7 @@ Investigador y desarrollador en el ecosistema **Open Data**, con datasets estruc
 - **Ingeniería Core:** Desarrollo de módulos empresariales para ERP propietario (*Horión Enterprise*) bajo arquitectura PHP multi-tenant, enrutamiento MVC propio, control de *output buffering* binario y persistencia segura de datos.
 - **Bajo Nivel & Algoritmia:** Rigor forjado en la Piscina y Common Core de *42 Urduliz* (C, punteros, llamadas al sistema, estructuras de datos y optimización de memoria).
 - **Open Data & Telemetría:** Creador de plataformas cívicas de gran escala (**Bide+**, **Gasolinera+**) que integran y normalizan especificaciones GTFS, flujos SIRI-VM y APIs MITECO con bases de datos embebidas SQLite de latencia cero.
-- **Full Stack & Visualización:** Aplicaciones SPA y PWAs de alto rendimiento con React 19, TypeScript, Vanilla JS, GSAP, Leaflet y Canvas para cálculo dinámico de rutas y mapas de calor.
+- **Full Stack & Visualización:** PWAs y aplicaciones web de alto rendimiento desarrolladas con Vanilla JS, Leaflet, Canvas y GSAP para cálculo dinámico de rutas y mapas de calor.
 
 </details>
 
@@ -67,7 +67,7 @@ Open Data researcher with structured scientific datasets registered with DOI on 
 - **Core Engineering:** Architectural development of core modules for proprietary ERP (*Horión Enterprise*), implementing scalable multi-tenant PHP, custom MVC routing engines, binary output buffering, and robust persistence.
 - **Low-Level Rigor:** Forged in the 42 Urduliz Common Core (C, memory management, pointers, custom algorithms, POSIX system calls).
 - **Open Data & Telemetry:** Creator of civic transit suites (**Bide+**, **Gasolinera+**) parsing and projecting real-time GTFS feeds, SIRI-VM telemetry, and MITECO APIs stop-by-stop onto embedded, zero-latency SQLite clusters.
-- **Full Stack & Visual Analytics:** Snappy SPAs and PWAs utilizing React 19, TypeScript, Vanilla JS, GSAP, Leaflet, and HTML5 Canvas for real-time trip computing and geospatial heatmaps.
+- **Full Stack & Visual Analytics:** High-performance PWAs and web platforms utilizing Vanilla JS, Leaflet, Canvas, and GSAP for real-time transit computing and geospatial heatmaps.
 
 </details>
 
@@ -79,7 +79,7 @@ Open Data researcher with structured scientific datasets registered with DOI on 
 
 ### Languages & Core Systems
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=c,java,php,js,ts,bash,python&theme=dark" alt="Languages" />
+  <img src="https://skillicons.dev/icons?i=c,java,php,js,bash,python&theme=dark" alt="Languages" />
 </p>
 
 ### Backend, Databases & Persistence
@@ -87,18 +87,17 @@ Open Data researcher with structured scientific datasets registered with DOI on 
   <img src="https://skillicons.dev/icons?i=mysql,sqlite,linux,nginx&theme=dark" alt="Backend & DB" />
 </p>
 <p align="center">
+  <img src="https://img.shields.io/badge/PHP_8.x-Algoritmo_ETA_Bide%2B_%C2%B7_Multi--tenant_MVC-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8" />
   <img src="https://img.shields.io/badge/Java_21-Virtual_Threads_%C2%B7_JNI_%C2%B7_Swing-ED8B00?style=flat-square&logo=openjdk&logoColor=white" alt="Java 21" />
-  <img src="https://img.shields.io/badge/PHP_8.x-Native_Architecture_%C2%B7_Multi--tenant_MVC-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8" />
   <img src="https://img.shields.io/badge/C-Algoritmia_%C2%B7_Gesti%C3%B3n_Memoria-00599C?style=flat-square&logo=c&logoColor=white" alt="C" />
   <img src="https://img.shields.io/badge/SQLite-Build--time_Precompiled_DB-07405E?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" />
 </p>
 
 ### Frontend, UI/UX & CMS
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,vite,tailwind,html,css,wordpress,figma&theme=dark" alt="Frontend & CMS" />
+  <img src="https://skillicons.dev/icons?i=html,css,tailwind,vite,wordpress,figma&theme=dark" alt="Frontend & CMS" />
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/React_19-SPA_Architecture-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React 19" />
   <img src="https://img.shields.io/badge/Vanilla_JS-ES6%2B_%C2%B7_Zero_Framework_DOM-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="Vanilla JS" />
   <img src="https://img.shields.io/badge/Leaflet-Geospatial_Clustering_%26_Heatmaps-199900?style=flat-square&logo=leaflet&logoColor=white" alt="Leaflet" />
   <img src="https://img.shields.io/badge/GSAP-High_Performance_Timelines-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" />
@@ -123,7 +122,7 @@ Open Data researcher with structured scientific datasets registered with DOI on 
 
 | Project | Tech Stack | Highlights | Links |
 | :--- | :--- | :--- | :---: |
-| **Bide+** | `PHP 8` `SQLite` `Vanilla JS` `GTFS` `SIRI-VM` `Leaflet` | Plataforma PWA de movilidad predictiva en Euskadi (Bizkaibus+, Metro+, Euskotren+, Renfe). Algoritmo propio de ETA con error < 1.5 min y precompilación GTFS diaria a SQLite local. | [Demo](https://bideplus.vercel.app) · [Code](https://github.com/Garridoparrayeray/bizkaibus-renewed) |
+| **Bide+** | `PHP 8` `SQLite` `Vanilla JS` `GTFS` `SIRI-VM` `Leaflet` | Plataforma PWA de movilidad predictiva en Euskadi (Bizkaibus+, Metro+, Euskotren+, Renfe). Algoritmo propio de ETA programado en PHP 8 con error < 1.5 min y precompilación GTFS diaria a SQLite local. | [Demo](https://bideplus.vercel.app) · [Code](https://github.com/Garridoparrayeray/bizkaibus-renewed) |
 | **Gasolinera+** | `PHP 8` `Vanilla JS` `Geolocation` `MITECO` `Leaflet` `Canvas` | Comparador en tiempo real de más de 11.400 estaciones de servicio en España. Incluye mapa de calor de precios, módulo de garaje/consumo y ordenador de a bordo con velocímetro digital. | [Code](https://github.com/Garridoparrayeray/gasolinera-plus) |
 | **Zalbi Aisia** | `PHP 8` `WordPress (_s)` `CPTs` `Vanilla JS` `CSS Grid` | Plataforma corporativa y catálogo dinámico con filtrado taxonómico asíncrono sin *layout thrashing*. Creado 100% a medida desde cero sin constructores visuales. | [Site](https://zalbi.eu/) · [Code](https://github.com/Garridoparrayeray/zalbi-theme) |
 | **YGArchive** | `PHP 8` `MySQL` `Vanilla JS` `Imagick` `IPTC` | Archivo fotográfico de alta resolución con experiencia móvil tipo *Reels* por gestos (swipe vertical), cola de miniaturas aislada en subida y firmado IPTC de autoría. | [Demo](https://archive.yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/art-gallery) |
