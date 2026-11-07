@@ -12,6 +12,7 @@
       "en": "Custom photography portfolio with its own Reels-style mobile flow, automatic thumbnail generation, and watermarking with authorship metadata.",
       "eu": "Neurrira egindako argazki-portfolioa, Reels estiloko mugikorreko fluxu propioarekin, miniaturen sorrera automatikoarekin eta egiletza-metadatuak dituen ur-marka batekin."
     },
+    "link": "https://github.com/Garridoparrayeray/art-gallery",
     "demoUrl": "https://archive.yeraygarrido.dev",
     "role": {
       "es": "Full Stack (PHP + Vanilla JS)",
@@ -278,5 +279,43 @@
       "en": "Engineered a gaming restomod in Lua utilizing the official Risk of Rain Returns modding API. Rebuilt in-game sprites directly from official concept art plates, scripted abilities and enemy behaviors faithful to early designer sketches, and packaged the modification for community distribution on Steam Workshop. As a desktop video game restomod, it stands on source code and logic without web UI captures.",
       "eu": "Lua-n programatutako restomod bat garatu nuen Risk of Rain Returns-en modding API ofiziala erabiliz. Arte kontzeptualeko fitxetatik abiatuta sprite-ak berreraiki nituen, diseinatzaileen zirriborroekin bat datozen trebetasunak programatu eta Steam Workshop bidez zabaldu nuen. Bideo-joko baten mod-a denez, kode eta logikari ematen zaio lehentasuna web interfazearen pantaila-argazkien ordez."
     }
+  },
+  {
+    "id": "portfolio-arquitectura",
+    "title": {
+      "es": "yeraygarrido.dev",
+      "en": "yeraygarrido.dev",
+      "eu": "yeraygarrido.dev"
+    },
+    "tech": "React 19, Vite, Tailwind CSS v4, GSAP, Lenis",
+    "desc": {
+      "es": "Arquitectura frontend (SPA) de alto rendimiento con animaciones complejas y 90+ Lighthouse",
+      "en": "High-performance frontend architecture (SPA) featuring complex animations and 90+ Lighthouse score.",
+      "eu": "Errendimendu handiko frontend arkitektura (SPA), animazio konplexuekin eta 90+ Lighthouse-rekin."
+    },
+    "link": "https://github.com/Garridoparrayeray/yeraygarrido.com.git",
+    "demoUrl": "https://yeraygarrido.dev",
+    "role": {
+      "es": "Frontend Engineer / WPO",
+      "en": "Frontend Engineer / WPO",
+      "eu": "Frontend Ingeniaria / WPO"
+    },
+    "year": "2026",
+    "longDescChallenge": {
+      "es": "El objetivo era crear un portfolio visualmente impactante sin sacrificar el rendimiento (WPO). Las librerías de animación tradicionales suelen arruinar los Core Web Vitals en móviles; el reto fue integrarlas de forma fluida sin causar Layout Thrashing ni penalizar el hilo principal de JavaScript.",
+      "en": "The goal was to create a visually striking portfolio without sacrificing performance (WPO). Traditional animation libraries often ruin Core Web Vitals on mobile; the challenge was seamless integration without layout thrashing or penalizing the main JavaScript thread.",
+      "eu": "Helburua errendimendua sacrificed gabe (WPO) portfolio ikusgarri bat sortzea zen. Animazio liburutegi tradizionalek Core Web Vitals arruinatu ohi dituzte mobilean; erronka integrazio arin bat izan zen, Layout Thrashing sortu gabe eta JavaScript hari nagusia karga gabe."
+    },
+    "longDescSolution": {
+      "es": "Diseñé una arquitectura SPA con React 19 y Vite, priorizando una ruta de renderizado crítico sin bloqueos. Implementé un sistema i18n propio mediante Context API (ES/EN/EU) sin dependencias externas. Desarrollé las animaciones con GSAP y Lenis para scroll suave, sustituyendo ScrollTrigger por IntersectionObserver en componentes lazy, eliminando así los cuellos de botella de Style & Layout en el hilo principal.",
+      "en": "I designed a SPA architecture with React 19 and Vite, prioritizing a zero-blocking critical rendering path. I implemented a custom i18n system via Context API (ES/EN/EU) without external dependencies. I built animations using GSAP and Lenis for smooth scrolling, replacing ScrollTrigger with IntersectionObserver in lazy components, eliminating Style & Layout bottlenecks on the main thread.",
+      "eu": "React 19 eta Vite erabiliz SPA arkitektura diseinatu nuen, blokeorik gabeko renderizado-bide kritikoa lehenetsiz. I18n sistema pertsonalizatua egin nuen Context API bidez (ES/EN/EU) kanpo-menpekotasunik gabe. Animazioak GSAP eta Lenis erabiliz garatu nituen scroll leunetarako, ScrollTrigger IntersectionObserver-rekin ordezkatuz, Style & Layout bottleneck-ak elimiantuz."
+    },
+    "imageUrl": "/img/projects/portfolio_captura.webp",
+    "images": [
+      "/img/projects/portfolio_captura.webp",
+      "/img/projects/all_proyects_portfolio.webp",
+      "/img/projects/mobile_stack_view_portfolio.webp"
+    ]
   }
 ]

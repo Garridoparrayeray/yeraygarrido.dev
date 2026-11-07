@@ -126,58 +126,6 @@ export default function Projects() {
 
   const projects: FeaturedProject[] = [
     {
-      id: "zalbi",
-      title: { es: "Zalbi Aisia", en: "Zalbi Aisia", eu: "Zalbi Aisia" },
-      tech: "PHP 8, WordPress (_s), CPTs, ACF, Vanilla JS, CSS Grid",
-      desc: {
-        es: "Plataforma corporativa desarrollada 100% a medida desde cero, fiel a la visión de negocio y el diseño exactos que buscaba el cliente.",
-        en: "Corporate platform built 100% from scratch, true to the exact business vision and design the client wanted.",
-        eu: "Bezeroak nahi zuen negozio-ikuspegi eta diseinu zehatzari jarraituz, hutsetik %100 pertsonalizatuta garatutako plataforma korporatiboa.",
-      },
-      link: "https://github.com/Garridoparrayeray/zalbi-theme",
-      demoUrl: "https://zalbi.eu/",
-      role: { es: "Full Stack (WP Custom Theme)", en: "Full Stack (WP Custom Theme)", eu: "Full Stack (WP Custom Theme)" },
-      year: "2026",
-      longDescChallenge: { 
-        es: "El requisito principal era desarrollar una plataforma corporativa que el cliente pudiera gestionar de forma autónoma, sin constructores visuales ni plantillas comerciales. Se exigía una optimización extrema de Core Web Vitals con tiempos de carga inferiores a 1.5s. El cliente necesitaba una solución profesional sin dependencias de builders que penalizan el rendimiento.", 
-        en: "The main requirement was to develop a corporate platform manageable autonomously by the client, strictly avoiding visual builders. Extreme Core Web Vitals optimization was required with sub-1.5s load times. The client needed a professional solution without dependencies that penalize performance.", 
-        eu: "Bezeroak kudeaketa autonomoa behar zuen, eraikitzaile bisualik gabe. 1.5s-tik beherako karga denbora lortzea zen erronka nagusia. Bezeroak errendimendua txikitzen duten eraikitzaileen menpeko ez den konponbide profesionala behar zuen." 
-      },
-      longDescSolution: { 
-        es: "Construí el tema desde cero sobre Underscores (_s), evitando cualquier constructor visual. El catálogo incorpora un filtro en Vanilla JS para evitar el 'layout thrashing' y mejorar la fluidez. Implementé CSS Grid para uniformidad de tarjetas y paletas de colores dinámicas generadas en PHP según la categoría del producto. Todo optimizado para carga diferida e imágenes WebP.", 
-        en: "I built the theme from scratch using Underscores (_s), avoiding any visual builder. The catalog features a Vanilla JS filter to avoid layout thrashing and improve fluidity. I implemented CSS Grid for card uniformity and dynamic color palettes generated in PHP based on product category. Everything optimized for lazy loading and WebP images.", 
-        eu: "Hutsetik eraikitako gaia Underscores (_s) erabiliz, eraikitzaile bisualik saihestuz. Iragazki sistema Vanilla JS-rekin egin nuen 'layout thrashing'-a saihesteko. CSS Grid erabili nuen txartelen uniformetarako eta kolore-paleta dinamikoak PHP-n sortzeko produktu-kategoriaren arabera." 
-      },
-      imageUrl: "/img/projects/zalbi_captura.webp",
-      images: ["/img/projects/zalbi_captura.webp", "/img/projects/zalbi_mobile_img.webp", "/img/projects/zalbi_footer_img.webp"],
-    },
-    {
-      id: "portfolio-arquitectura",
-      title: { es: "yeraygarrido.dev", en: "yeraygarrido.dev", eu: "yeraygarrido.dev" },
-      tech: "React 19, Vite, Tailwind CSS v4, GSAP, Lenis",
-      desc: {
-        es: "Arquitectura frontend (SPA) de alto rendimiento con animaciones complejas y 90+ Lighthouse",
-        en: "High-performance frontend architecture (SPA) featuring complex animations and 90+ Lighthouse score.",
-        eu: "Errendimendu handiko frontend arkitektura (SPA), animazio konplexuekin eta 90+ Lighthouse-rekin.",
-      },
-      link: "https://github.com/Garridoparrayeray/yeraygarrido.com.git",
-      demoUrl: "https://yeraygarrido.dev",
-      role: { es: "Frontend Engineer / WPO", en: "Frontend Engineer / WPO", eu: "Frontend Ingeniaria / WPO" },
-      year: "2026",
-      longDescChallenge: { 
-        es: "El objetivo era crear un portfolio visualmente impactante sin sacrificar el rendimiento (WPO). Las librerías de animación tradicionales suelen arruinar los Core Web Vitals en móviles; el reto fue integrarlas de forma fluida sin causar Layout Thrashing ni penalizar el hilo principal de JavaScript.", 
-        en: "The goal was to create a visually striking portfolio without sacrificing performance (WPO). Traditional animation libraries often ruin Core Web Vitals on mobile; the challenge was seamless integration without layout thrashing or penalizing the main JavaScript thread.", 
-        eu: "Helburua errendimendua sacrificed gabe (WPO) portfolio ikusgarri bat sortzea zen. Animazio liburutegi tradizionalek Core Web Vitals arruinatu ohi dituzte mobilean; erronka integrazio arin bat izan zen, Layout Thrashing sortu gabe eta JavaScript hari nagusia karga gabe." 
-      },
-      longDescSolution: { 
-        es: "Diseñé una arquitectura SPA con React 19 y Vite, priorizando una ruta de renderizado crítico sin bloqueos. Implementé un sistema i18n propio mediante Context API (ES/EN/EU) sin dependencias externas. Desarrollé las animaciones con GSAP y Lenis para scroll suave, sustituyendo ScrollTrigger por IntersectionObserver en componentes lazy, eliminando así los cuellos de botella de Style & Layout en el hilo principal.", 
-        en: "I designed a SPA architecture with React 19 and Vite, prioritizing a zero-blocking critical rendering path. I implemented a custom i18n system via Context API (ES/EN/EU) without external dependencies. I built animations using GSAP and Lenis for smooth scrolling, replacing ScrollTrigger with IntersectionObserver in lazy components, eliminating Style & Layout bottlenecks on the main thread.", 
-        eu: "React 19 eta Vite erabiliz SPA arkitektura diseinatu nuen, blokeorik gabeko renderizado-bide kritikoa lehenetsiz. I18n sistema pertsonalizatua egin nuen Context API bidez (ES/EN/EU) kanpo-menpekotasunik gabe. Animazioak GSAP eta Lenis erabiliz garatu nituen scroll leunetarako, ScrollTrigger IntersectionObserver-rekin ordezkatuz, Style & Layout bottleneck-ak elimiantuz." 
-      },
-      imageUrl: "/img/projects/portfolio_captura.webp",
-      images: ["/img/projects/portfolio_captura.webp", "/img/projects/all_proyects_portfolio.webp", "/img/projects/mobile_stack_view_portfolio.webp"],
-    },
-    {
       id: "bideplus",
       title: { es: "Bide+", en: "Bide+", eu: "Bide+" },
       tech: "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, PWA, Vercel Serverless, GitHub Actions",
@@ -247,43 +195,65 @@ export default function Projects() {
       ],
     },
     {
-      id: "card-psa-tracker",
-      title: { es: "Pokémon Card PSA Tracker", en: "Pokémon Card PSA Tracker", eu: "Pokémon Card PSA Tracker" },
-      tech: "Vanilla JS, CSS3 Moderno, Animaciones Keyframes, Pokédex UI Design, Figma",
+      id: "zalbi",
+      title: { es: "Zalbi Aisia", en: "Zalbi Aisia", eu: "Zalbi Aisia" },
+      tech: "PHP 8, WordPress (_s), CPTs, ACF, Vanilla JS, CSS Grid",
       desc: {
-        es: "App de seguimiento y tasación de cartas coleccionables Pokémon graduadas por PSA, con interfaz temática Pokédex, animaciones dinámicas y panel analítico. Demo no completada con datos en vivo debido a que la API de mercado pasó a ser de pago.",
-        en: "Graded Pokémon card tracking and valuation app with authentic Pokédex UI styling, custom keyframe animations, and portfolio analytics. Live market demo paused as the underlying pricing API switched to a paid subscription model.",
-        eu: "PSA-k graduatutako Pokemon txartelen jarraipen eta balorazio aplikazioa, Pokédex interfazearekin, animazioekin eta analitika-panelarekin. Datu bizien demoa ez da osatu merkatuko APIa ordainpeko eredura igaro zelako."
+        es: "Plataforma corporativa desarrollada 100% a medida desde cero, fiel a la visión de negocio y el diseño exactos que buscaba el cliente.",
+        en: "Corporate platform built 100% from scratch, true to the exact business vision and design the client wanted.",
+        eu: "Bezeroak nahi zuen negozio-ikuspegi eta diseinu zehatzari jarraituz, hutsetik %100 pertsonalizatuta garatutako plataforma korporatiboa.",
       },
-      link: "https://github.com/Garridoparrayeray/card_psa_tracker",
-      demoUrl: "https://garridoparrayeray.github.io/card_psa_tracker/",
-      role: { es: "UI/UX Designer & Frontend Developer", en: "UI/UX Designer & Frontend Developer", eu: "UI/UX Diseinatzailea & Frontend Garatzailea" },
-      year: "2025",
+      link: "https://github.com/Garridoparrayeray/zalbi-theme",
+      demoUrl: "https://zalbi.eu/",
+      role: { es: "Full Stack (WP Custom Theme)", en: "Full Stack (WP Custom Theme)", eu: "Full Stack (WP Custom Theme)" },
+      year: "2026",
       longDescChallenge: {
-        es: "El sector del coleccionismo de cartas coleccionables Pokémon y su certificación profesional (PSA, BGS) carece de herramientas con una identidad visual atractiva. El objetivo fue diseñar una experiencia inmersiva basada en la Pokédex original (lente de zafiro superior, Pokéballs giratorias, temas de color Claro y Oscuro, estadísticas de colección y fluctuaciones de precio). Sin embargo, durante la fase de integración con proveedores de datos de mercado (precios históricos y tasaciones), las APIs de terceros eliminaron sus planes gratuitos y pasaron a modelos de suscripción de alto coste, imposibilitando mantener la demo interactiva en tiempo real en producción sin un coste recurrente elevado.",
-        en: "Graded collectible card trading (PSA, BGS) often relies on generic, uninspired portals. The goal was to build a tailored collector hub reflecting the iconic Pokédex aesthetic (sapphire camera lens, animated spinning Pokéball loaders, Light/Dark theme switching, portfolio valuations, and price deltas). However, during external market integration, target card pricing APIs sunsetted their free developer tiers in favor of expensive commercial subscriptions, preventing a full free production rollout with real-time data.",
-        eu: "Graduatutako Pokemon txartelen merkatuak nortasun gutxiko interfaze arruntak izaten ditu. Helburua Pokédex originalean oinarritutako esperientzia murgiltzaile bat sortzea zen (goiko zafiro-lentea, Pokéball birakariak, Gai Argi eta Ilunak, bildumaren balioa eta prezio-aldaketak). Hala ere, merkatuko prezioen datu-hornitzaileek doako sarbidea kendu eta ordainpeko harpidetza garestietara pasa ziren, produkzioko zuzeneko datuen demoa doan mantentzea galaraziz."
+        es: "El requisito principal era desarrollar una plataforma corporativa que el cliente pudiera gestionar de forma autónoma, sin constructores visuales ni plantillas comerciales. Se exigía una optimización extrema de Core Web Vitals con tiempos de carga inferiores a 1.5s. El cliente necesitaba una solución profesional sin dependencias de builders que penalizan el rendimiento.",
+        en: "The main requirement was to develop a corporate platform manageable autonomously by the client, strictly avoiding visual builders. Extreme Core Web Vitals optimization was required with sub-1.5s load times. The client needed a professional solution without dependencies that penalize performance.",
+        eu: "Bezeroak kudeaketa autonomoa behar zuen, eraikitzaile bisualik gabe. 1.5s-tik beherako karga denbora lortzea zen erronka nagusia. Bezeroak errendimendua txikitzen duten eraikitzaileen menpeko ez den konponbide profesionala behar zuen."
       },
       longDescSolution: {
-        es: "A pesar de la barrera de costes de la API externa, se completó de manera íntegra el diseño visual y el prototipo funcional de la aplicación en HTML5, CSS3 modular y Vanilla JS. Incorpora animaciones CSS de alta precisión (giro de Pokéball, skeleton loaders), sistema de cambio de tema en caliente mediante variables CSS, selector de grados PSA (1 a 10), métricas de revalorización y diseño adaptable para móvil y escritorio. El prototipo interactivo se encuentra publicado y accesible en GitHub Pages como muestra de diseño UI/UX y maquetación avanzada, con capturas completas de la experiencia tanto en ordenador como en móvil.",
-        en: "Despite external API paywalls, the full visual design system and functional UI prototype were fully implemented using modern HTML5, modular CSS3, and Vanilla JS. It features high-precision keyframe animations (spinning Pokéballs, skeleton loaders), dynamic runtime theme switching via CSS custom properties, PSA grade selectors (1-10), portfolio valuation breakdowns, and responsive mobile-first ergonomics. The interactive UI prototype is live on GitHub Pages, accompanied by comprehensive desktop and mobile visual captures showcasing the craft.",
-        eu: "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
+        es: "Construí el tema desde cero sobre Underscores (_s), evitando cualquier constructor visual. El catálogo incorpora un filtro en Vanilla JS para evitar el 'layout thrashing' y mejorar la fluidez. Implementé CSS Grid para uniformidad de tarjetas y paletas de colores dinámicas generadas en PHP según la categoría del producto. Todo optimizado para carga diferida e imágenes WebP.",
+        en: "I built the theme from scratch using Underscores (_s), avoiding any visual builder. The catalog features a Vanilla JS filter to avoid layout thrashing and improve fluidity. I implemented CSS Grid for card uniformity and dynamic color palettes generated in PHP based on product category. Everything optimized for lazy loading and WebP images.",
+        eu: "Hutsetik eraikitako gaia Underscores (_s) erabiliz, eraikitzaile bisualik saihestuz. Iragazki sistema Vanilla JS-rekin egin nuen 'layout thrashing'-a saihesteko. CSS Grid erabili nuen txartelen uniformetarako eta kolore-paleta dinamikoak PHP-n sortzeko produktu-kategoriaren arabera."
       },
-      imageUrl: "/img/projects/pokemon_static.webp",
+      imageUrl: "/img/projects/zalbi_captura.webp",
+      images: ["/img/projects/zalbi_captura.webp", "/img/projects/zalbi_mobile_img.webp", "/img/projects/zalbi_footer_img.webp"],
+    },
+    {
+      id: "art-gallery",
+      title: { es: "archive.yeraygarrido.dev", en: "archive.yeraygarrido.dev", eu: "archive.yeraygarrido.dev" },
+      tech: "PHP 8, MySQL, Vanilla JS, Imagick, IPTC, Hostinger",
+      desc: {
+        es: "Portfolio fotográfico a medida con un flujo móvil propio tipo Reels, generación automática de miniaturas y marca de agua con metadatos de autoría.",
+        en: "Custom photography portfolio with its own Reels-style mobile flow, automatic thumbnail generation, and watermarking with authorship metadata.",
+        eu: "Neurrira egindako argazki-portfolioa, Reels estiloko mugikorreko fluxu propioarekin, miniaturen sorrera automatikoarekin eta egiletza-metadatuak dituen ur-marka batekin."
+      },
+      link: "https://github.com/Garridoparrayeray/art-gallery",
+      demoUrl: "https://archive.yeraygarrido.dev",
+      role: { es: "Full Stack (PHP + Vanilla JS)", en: "Full Stack (PHP + Vanilla JS)", eu: "Full Stack (PHP + Vanilla JS)" },
+      year: "2026",
+      longDescChallenge: {
+        es: "El encargo era un portfolio fotográfico personal que se sintiera cuidado en cualquier dispositivo, no una galería genérica. En escritorio quería una biblioteca tipo tira de negativo con recorrido narrativo por categorías; en móvil, un formato inmersivo tipo Reels con swipe vertical, algo que ningún patrón de galería estándar resuelve de fábrica. A eso se sumó un requisito técnico serio: las fotos de resolución completa (hasta 6000px) agotaban la memoria del hosting compartido al generar miniaturas bajo demanda, tumbando la web de forma intermitente en producción.",
+        en: "The brief was a personal photography portfolio that felt considered on any device, not a generic gallery. On desktop I wanted a filmstrip-style library with a narrative scroll through categories; on mobile, an immersive Reels-style format with vertical swipe — something no off-the-shelf gallery pattern solves out of the box. On top of that came a real technical constraint: full-resolution photos (up to 6000px) were exhausting shared-hosting memory when generating thumbnails on demand, intermittently taking the site down in production.",
+        eu: "Enkargua argazki-portfolio pertsonal bat zen, edozein gailutan zaindua sentitzeko modukoa, ez galeria generiko bat. Mahaigainean, negatibo-zerrenda itxurako liburutegi bat nahi nuen, kategorien arteko ibilbide narratiboarekin; mugikorrean, Reels estiloko formatu murgiltzailea, swipe bertikalarekin — galeria-eredu estandar batek ere ez duena hutsetik ebazten. Horri gehitu behar diot benetako muga teknikoa: bereizmen osoko argazkiek (6000px arte) partekatutako ostalaritzaren memoria agortzen zuten eskariaren arabera miniaturak sortzean, produkzioan webgunea aldizka erortzea eraginez."
+      },
+      longDescSolution: {
+        es: "Backend PHP con arquitectura ligera (Core/Models), MySQL como base de datos y un flujo móvil independiente construido a mano (Home con foto aleatoria, selección de categoría, Reels a pantalla completa con swipe, mosaico de miniaturas) sin ningún framework de front. Para el problema de memoria, sustituí la generación de miniaturas en caliente por Imagick con decodificación por muestreo reducido, y sobre todo moví la generación al momento de subir cada foto desde el panel de administración: cada miniatura se crea una sola vez, en un proceso aislado, en vez de competir por memoria con otras peticiones concurrentes de visitantes reales. Añadí también incrustación de metadatos IPTC (autoría y copyright) en cada descarga y despliegue en Hostinger con detección automática de entorno, para que el mismo código sirva en local y en producción sin credenciales expuestas en el repositorio.",
+        en: "PHP backend with a lightweight architecture (Core/Models), MySQL as the database, and an independent hand-built mobile flow (Home with a random photo, category picker, full-screen Reels with swipe, thumbnail mosaic) with no front-end framework. For the memory issue, I replaced on-demand thumbnail generation with Imagick using reduced-sample decoding, and more importantly moved generation to the moment each photo is uploaded from the admin panel: every thumbnail is created once, in an isolated process, instead of competing for memory with concurrent real-visitor requests. I also added IPTC metadata embedding (authorship and copyright) on every download, and deployed to Hostinger with automatic environment detection, so the same code serves both local and production without exposing credentials in the repository.",
+        eu: "PHP backend-a arkitektura arinarekin (Core/Models), MySQL datu-base gisa, eta eskuz eraikitako mugikorreko fluxu independentea (Home ausazko argazkiarekin, kategoria-hautatzailea, Reels pantaila osoan swipe-arekin, miniaturen mosaikoa), front-end frameworkrik gabe. Memoria-arazoarekiko, eskariaren araberako miniatura-sorrera Imagick-ekin ordezkatu nuen, laginketa murriztuko dekodifikazioarekin, eta batez ere sorrera argazki bakoitza administrazio-paneletik igotzen den unera eraman nuen: miniatura bakoitza behin bakarrik sortzen da, prozesu isolatu batean, benetako bisitarien aldiberekotasun-eskaerekin memoria lehiatu beharrean. IPTC metadatuak ere gehitu nituen (egiletza eta copyright) deskarga bakoitzean, eta Hostinger-en zabaldu nuen ingurunea automatikoki detektatzen duen konfigurazioarekin."
+      },
+      imageUrl: "/img/projects/archive_loading.webp",
       images: [
-        "/img/projects/pokemon_pokeball_loading.gif",
-        "/img/projects/psa_card_fullscreen_desktop.webp",
-        "/img/projects/psa_card_fullscreen_mobile.webp",
-        "/img/projects/psa_dark_desktop.webp",
-        "/img/projects/psa_dark_mobile.webp",
-        "/img/projects/psa_admin_menu_desktop.webp",
-        "/img/projects/psa_admin_menu_mobile.webp",
-        "/img/projects/psa_admin_dark_desktop.webp",
-        "/img/projects/psa_admin_light_desktop.webp",
-        "/img/projects/psa_collection_desktop.webp",
-        "/img/projects/psa_collection_mobile.webp",
-        "/img/projects/psa_home_desktop.webp",
-        "/img/projects/psa_stats_desktop.webp"
+        "/img/projects/archive_loading.webp",
+        "/img/projects/archive_mobile1.webp",
+        "/img/projects/archive_mobile2.webp",
+        "/img/projects/archive_mobile3.webp",
+        "/img/projects/archive2.webp",
+        "/img/projects/archive3.webp",
+        "/img/projects/archive4.webp",
+        "/img/projects/archive5.webp",
+        "/img/projects/fto.webp"
       ],
     }
   ];
