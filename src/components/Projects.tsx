@@ -116,6 +116,7 @@ export default function Projects() {
     gallery: { es: "Galería", en: "Gallery", eu: "Galeria" },
     stack: { es: "Stack Tecnológico", en: "Tech Stack", eu: "Teknologia Stack-a" },
     live: { es: "Ver Proyecto en Vivo", en: "View Live Project", eu: "Ikusi Proiektua Zuzenean" },
+    paper: { es: "Ver Paper en Zenodo (DOI)", en: "View Paper on Zenodo (DOI)", eu: "Ikusi Paper-a Zenodon (DOI)" },
     code: { es: "Código Fuente", en: "Source Code", eu: "Iturburu Kodea" },
     back: { es: "Volver", en: "Back", eu: "Itzuli" },
     tabPortfolio: { es: "Proyectos Completos", en: "Complete Projects", eu: "Proiektu Osoak" },
@@ -125,58 +126,6 @@ export default function Projects() {
   };
 
   const projects: FeaturedProject[] = [
-    {
-      id: "zalbi",
-      title: { es: "Zalbi Aisia", en: "Zalbi Aisia", eu: "Zalbi Aisia" },
-      tech: "PHP 8, WordPress (_s), CPTs, ACF, Vanilla JS, CSS Grid",
-      desc: {
-        es: "Plataforma corporativa desarrollada 100% a medida desde cero, fiel a la visión de negocio y el diseño exactos que buscaba el cliente.",
-        en: "Corporate platform built 100% from scratch, true to the exact business vision and design the client wanted.",
-        eu: "Bezeroak nahi zuen negozio-ikuspegi eta diseinu zehatzari jarraituz, hutsetik %100 pertsonalizatuta garatutako plataforma korporatiboa.",
-      },
-      link: "https://github.com/Garridoparrayeray/zalbi-theme",
-      demoUrl: "https://zalbi.eu/",
-      role: { es: "Full Stack (WP Custom Theme)", en: "Full Stack (WP Custom Theme)", eu: "Full Stack (WP Custom Theme)" },
-      year: "2026",
-      longDescChallenge: { 
-        es: "El requisito principal era desarrollar una plataforma corporativa que el cliente pudiera gestionar de forma autónoma, sin constructores visuales ni plantillas comerciales. Se exigía una optimización extrema de Core Web Vitals con tiempos de carga inferiores a 1.5s. El cliente necesitaba una solución profesional sin dependencias de builders que penalizan el rendimiento.", 
-        en: "The main requirement was to develop a corporate platform manageable autonomously by the client, strictly avoiding visual builders. Extreme Core Web Vitals optimization was required with sub-1.5s load times. The client needed a professional solution without dependencies that penalize performance.", 
-        eu: "Bezeroak kudeaketa autonomoa behar zuen, eraikitzaile bisualik gabe. 1.5s-tik beherako karga denbora lortzea zen erronka nagusia. Bezeroak errendimendua txikitzen duten eraikitzaileen menpeko ez den konponbide profesionala behar zuen." 
-      },
-      longDescSolution: { 
-        es: "Construí el tema desde cero sobre Underscores (_s), evitando cualquier constructor visual. El catálogo incorpora un filtro en Vanilla JS para evitar el 'layout thrashing' y mejorar la fluidez. Implementé CSS Grid para uniformidad de tarjetas y paletas de colores dinámicas generadas en PHP según la categoría del producto. Todo optimizado para carga diferida e imágenes WebP.", 
-        en: "I built the theme from scratch using Underscores (_s), avoiding any visual builder. The catalog features a Vanilla JS filter to avoid layout thrashing and improve fluidity. I implemented CSS Grid for card uniformity and dynamic color palettes generated in PHP based on product category. Everything optimized for lazy loading and WebP images.", 
-        eu: "Hutsetik eraikitako gaia Underscores (_s) erabiliz, eraikitzaile bisualik saihestuz. Iragazki sistema Vanilla JS-rekin egin nuen 'layout thrashing'-a saihesteko. CSS Grid erabili nuen txartelen uniformetarako eta kolore-paleta dinamikoak PHP-n sortzeko produktu-kategoriaren arabera." 
-      },
-      imageUrl: "/img/projects/zalbi_captura.webp",
-      images: ["/img/projects/zalbi_captura.webp", "/img/projects/zalbi_mobile_img.webp", "/img/projects/zalbi_footer_img.webp"],
-    },
-    {
-      id: "portfolio-arquitectura",
-      title: { es: "yeraygarrido.dev", en: "yeraygarrido.dev", eu: "yeraygarrido.dev" },
-      tech: "React 19, Vite, Tailwind CSS v4, GSAP, Lenis",
-      desc: {
-        es: "Arquitectura frontend (SPA) de alto rendimiento con animaciones complejas y 90+ Lighthouse",
-        en: "High-performance frontend architecture (SPA) featuring complex animations and 90+ Lighthouse score.",
-        eu: "Errendimendu handiko frontend arkitektura (SPA), animazio konplexuekin eta 90+ Lighthouse-rekin.",
-      },
-      link: "https://github.com/Garridoparrayeray/yeraygarrido.com.git",
-      demoUrl: "https://yeraygarrido.dev",
-      role: { es: "Frontend Engineer / WPO", en: "Frontend Engineer / WPO", eu: "Frontend Ingeniaria / WPO" },
-      year: "2026",
-      longDescChallenge: { 
-        es: "El objetivo era crear un portfolio visualmente impactante sin sacrificar el rendimiento (WPO). Las librerías de animación tradicionales suelen arruinar los Core Web Vitals en móviles; el reto fue integrarlas de forma fluida sin causar Layout Thrashing ni penalizar el hilo principal de JavaScript.", 
-        en: "The goal was to create a visually striking portfolio without sacrificing performance (WPO). Traditional animation libraries often ruin Core Web Vitals on mobile; the challenge was seamless integration without layout thrashing or penalizing the main JavaScript thread.", 
-        eu: "Helburua errendimendua sacrificed gabe (WPO) portfolio ikusgarri bat sortzea zen. Animazio liburutegi tradizionalek Core Web Vitals arruinatu ohi dituzte mobilean; erronka integrazio arin bat izan zen, Layout Thrashing sortu gabe eta JavaScript hari nagusia karga gabe." 
-      },
-      longDescSolution: { 
-        es: "Diseñé una arquitectura SPA con React 19 y Vite, priorizando una ruta de renderizado crítico sin bloqueos. Implementé un sistema i18n propio mediante Context API (ES/EN/EU) sin dependencias externas. Desarrollé las animaciones con GSAP y Lenis para scroll suave, sustituyendo ScrollTrigger por IntersectionObserver en componentes lazy, eliminando así los cuellos de botella de Style & Layout en el hilo principal.", 
-        en: "I designed a SPA architecture with React 19 and Vite, prioritizing a zero-blocking critical rendering path. I implemented a custom i18n system via Context API (ES/EN/EU) without external dependencies. I built animations using GSAP and Lenis for smooth scrolling, replacing ScrollTrigger with IntersectionObserver in lazy components, eliminating Style & Layout bottlenecks on the main thread.", 
-        eu: "React 19 eta Vite erabiliz SPA arkitektura diseinatu nuen, blokeorik gabeko renderizado-bide kritikoa lehenetsiz. I18n sistema pertsonalizatua egin nuen Context API bidez (ES/EN/EU) kanpo-menpekotasunik gabe. Animazioak GSAP eta Lenis erabiliz garatu nituen scroll leunetarako, ScrollTrigger IntersectionObserver-rekin ordezkatuz, Style & Layout bottleneck-ak elimiantuz." 
-      },
-      imageUrl: "/img/projects/portfolio_captura.webp",
-      images: ["/img/projects/portfolio_captura.webp", "/img/projects/all_proyects_portfolio.webp", "/img/projects/mobile_stack_view_portfolio.webp"],
-    },
     {
       id: "bideplus",
       title: { es: "Bide+", en: "Bide+", eu: "Bide+" },
@@ -247,44 +196,37 @@ export default function Projects() {
       ],
     },
     {
-      id: "card-psa-tracker",
-      title: { es: "Pokémon Card PSA Tracker", en: "Pokémon Card PSA Tracker", eu: "Pokémon Card PSA Tracker" },
-      tech: "Vanilla JS, CSS3 Moderno, Animaciones Keyframes, Pokédex UI Design, Figma",
+      id: "bide-eta",
+      title: { es: "Algoritmo ETA (Paper Zenodo)", en: "ETA Algorithm (Zenodo Paper)", eu: "ETA Algoritmoa (Zenodo Paper)" },
+      tech: "Python, Machine Learning, Filtro de Kalman, Redes Neuronales, GTFS, SIRI-VM, Open Science",
       desc: {
-        es: "App de seguimiento y tasación de cartas coleccionables Pokémon graduadas por PSA, con interfaz temática Pokédex, animaciones dinámicas y panel analítico. Demo no completada con datos en vivo debido a que la API de mercado pasó a ser de pago.",
-        en: "Graded Pokémon card tracking and valuation app with authentic Pokédex UI styling, custom keyframe animations, and portfolio analytics. Live market demo paused as the underlying pricing API switched to a paid subscription model.",
-        eu: "PSA-k graduatutako Pokemon txartelen jarraipen eta balorazio aplikazioa, Pokédex interfazearekin, animazioekin eta analitika-panelarekin. Datu bizien demoa ez da osatu merkatuko APIa ordainpeko eredura igaro zelako."
+        es: "Investigación y memoria técnica (200 págs.) sobre el algoritmo de predicción de llegadas de Bide+, validado con 2.21M de predicciones reales y publicado en Zenodo con DOI.",
+        en: "Research paper & technical report (200 pp.) detailing the Bide+ arrival prediction algorithm, benchmarked on 2.21M real predictions and published on Zenodo with DOI.",
+        eu: "Bide+ garraio publikoko iritsiera-aurreikuspenerako algoritmoaren ikerketa eta memoria teknikoa (200 orri), 2.21M benetako aurreikuspenekin balioztatua eta Zenodon DOI bidez argitaratua."
       },
-      link: "https://github.com/Garridoparrayeray/card_psa_tracker",
-      demoUrl: "https://garridoparrayeray.github.io/card_psa_tracker/",
-      role: { es: "UI/UX Designer & Frontend Developer", en: "UI/UX Designer & Frontend Developer", eu: "UI/UX Diseinatzailea & Frontend Garatzailea" },
-      year: "2025",
+      link: "https://github.com/Garridoparrayeray/bide-eta",
+      demoUrl: "https://doi.org/10.5281/zenodo.24041572",
+      role: { es: "Investigador / Algoritmos & ML", en: "Researcher / Algorithms & ML", eu: "Ikertzailea / Algoritmoak & ML" },
+      year: "2026",
       longDescChallenge: {
-        es: "El sector del coleccionismo de cartas coleccionables Pokémon y su certificación profesional (PSA, BGS) carece de herramientas con una identidad visual atractiva. El objetivo fue diseñar una experiencia inmersiva basada en la Pokédex original (lente de zafiro superior, Pokéballs giratorias, temas de color Claro y Oscuro, estadísticas de colección y fluctuaciones de precio). Sin embargo, durante la fase de integración con proveedores de datos de mercado (precios históricos y tasaciones), las APIs de terceros eliminaron sus planes gratuitos y pasaron a modelos de suscripción de alto coste, imposibilitando mantener la demo interactiva en tiempo real en producción sin un coste recurrente elevado.",
-        en: "Graded collectible card trading (PSA, BGS) often relies on generic, uninspired portals. The goal was to build a tailored collector hub reflecting the iconic Pokédex aesthetic (sapphire camera lens, animated spinning Pokéball loaders, Light/Dark theme switching, portfolio valuations, and price deltas). However, during external market integration, target card pricing APIs sunsetted their free developer tiers in favor of expensive commercial subscriptions, preventing a full free production rollout with real-time data.",
-        eu: "Graduatutako Pokemon txartelen merkatuak nortasun gutxiko interfaze arruntak izaten ditu. Helburua Pokédex originalean oinarritutako esperientzia murgiltzaile bat sortzea zen (goiko zafiro-lentea, Pokéball birakariak, Gai Argi eta Ilunak, bildumaren balioa eta prezio-aldaketak). Hala ere, merkatuko prezioen datu-hornitzaileek doako sarbidea kendu eta ordainpeko harpidetza garestietara pasa ziren, produkzioko zuzeneko datuen demoa doan mantentzea galaraziz."
+        es: "Bizkaibus publica la posición GPS de cada vehículo y su próxima parada, pero no su retraso real, y las horas intermedias del horario oficial están interpoladas a velocidad constante: de 169.308 pasos reales por parada analizados, el 85 % de los que ocurren pasada la primera hora de viaje llega más de dos minutos antes de la hora publicada. El reto científico fue diseñar un método de estimación de tiempos de llegada (ETA) robusto, reproducible y de baja latencia capaz de predecir el paso real del autobús sin depender de retrasos oficiales inexistentes ni saturar servidores.",
+        en: "Bizkaibus publishes the vehicle GPS coordinates and next stop, but not its actual delay. Intermediate schedule times are interpolated at constant speed: out of 169,308 actual stop passages, 85% of those occurring after the first hour arrive >2 minutes before published schedule. The research challenge was developing a robust, reproducible, and sub-second arrival time prediction (ETA) algorithm that predicts real bus passages without relying on unavailable delay fields.",
+        eu: "Bizkaibusek GPS kokapena eta hurrengo geralekua argitaratzen ditu, baina ez atzerapen erreala, eta ordutegi ofizialeko orduak abiadura konstantean interpolatuta daude: 169.308 igaroalditan, lehen orduaren ondoren %85 argitaratutakoa baino 2 minutu lehenago iristen da. Erronka zientifikoa iritsiera-ordua (ETA) zehaztasunez kalkulatzeko metodo sendo, erreproduzigarri eta azkar bat diseinatzea izan zen."
       },
       longDescSolution: {
-        es: "A pesar de la barrera de costes de la API externa, se completó de manera íntegra el diseño visual y el prototipo funcional de la aplicación en HTML5, CSS3 modular y Vanilla JS. Incorpora animaciones CSS de alta precisión (giro de Pokéball, skeleton loaders), sistema de cambio de tema en caliente mediante variables CSS, selector de grados PSA (1 a 10), métricas de revalorización y diseño adaptable para móvil y escritorio. El prototipo interactivo se encuentra publicado y accesible en GitHub Pages como muestra de diseño UI/UX y maquetación avanzada, con capturas completas de la experiencia tanto en ordenador como en móvil.",
-        en: "Despite external API paywalls, the full visual design system and functional UI prototype were fully implemented using modern HTML5, modular CSS3, and Vanilla JS. It features high-precision keyframe animations (spinning Pokéballs, skeleton loaders), dynamic runtime theme switching via CSS custom properties, PSA grade selectors (1-10), portfolio valuation breakdowns, and responsive mobile-first ergonomics. The interactive UI prototype is live on GitHub Pages, accompanied by comprehensive desktop and mobile visual captures showcasing the craft.",
-        eu: "Kanpoko APIaren ordainpeko mugak gorabehera, aplikazioaren ikus-diseinu osoa eta prototipo funtzionala amaitu ziren HTML5, CSS3 eta Vanilla JS erabiliz. Doitasun handiko animazioak ditu (Pokéball birakaria, skeleton kargatzaileak), gai-aldaketa dinamikoa CSS aldagaiekin, PSA gradu-hautatzailea (1-10) eta mugikorretarako diseinu arduratsua. Prototipo interaktiboa GitHub Pages-en eskuragarri dago ordenagailu zein mugikorreko pantaila-argazki osoekin."
+        es: "Desarrollé una arquitectura de predicción en tres capas con reglas de abstención explícitas: 1) Proyección geométrica sobre la traza del recorrido; 2) Última parada registrada por el feed; y 3) Horario corregido viaje a viaje con medianas contraídas hacia la mediana global por franja horaria. El sistema se recalibra diariamente y adopta únicamente cambios que reducen el error medido. Evaluado sobre 2,21 millones de predicciones durante 17 días, logra una precisión dentro de ±2 minutos en el 96 % cuando el autobús está a menos de 3 minutos y en el 67 % entre 10 y 20 minutos (frente al 24 % y 25 % del horario oficial). Incorpora un filtro de Kalman sobre el ritmo del autobús y una red neuronal que reducen el error medio un 4 % y entre un 6-7 % adicional. Publicado en acceso abierto en Zenodo (DOI: 10.5281/zenodo.24041572) con código de referencia, evaluador público y 407 vectores de prueba en GitHub.",
+        en: "Engineered a three-layer prediction architecture with explicit abstention rules: 1) Geometric path projection; 2) Last stop registered; and 3) Timetable corrected trip-by-trip with segment medians shrunk towards all-day medians by time band. Recalibrates daily, accepting only error-reducing changes. Tested against 2.21M real predictions over 17 days, achieving ±2 min accuracy in 96% of cases under 3 min and 67% at 10-20 min (vs. 24% and 25% with official timetables). Evaluated Kalman filtering and neural networks reducing segment error by 4% and 6-7%. Published in Open Access on Zenodo (DOI: 10.5281/zenodo.24041572) with complete reference code, public evaluator, and 407 test vectors on GitHub.",
+        eu: "Hiru geruzako aurreikuspen-arkitektura garatu nuen: 1) Ibilbide geometrikoan proiektatutako kokapena; 2) Erregistratutako azken geralekua; eta 3) Bidaiaz bidaia zuzendutako ordutegia tarteka egokitutako medianekin. Egunero birkalibratzen da. 17 egunetan 2,21 milioi aurreikuspenetan ebaluatuta, ±2 minuturen barruan asmatzen du %96an autobusa <3 minutura dagoenean eta %67an 10-20 minutu artean (%24 eta %25 ordutegi ofizialarekin alderatuta). Kalman iragazkiak eta sare neuronalak errore gehigarria %4 eta %6-7 murrizten dute. Zenodon sarbide irekian argitaratua (DOI: 10.5281/zenodo.24041572) erreferentziazko kodearekin eta 407 proba-bektorerekin GitHub-en."
       },
-      imageUrl: "/img/projects/pokemon_static.webp",
+      imageUrl: "/img/projects/paper_eta_cover.webp",
       images: [
-        "/img/projects/pokemon_pokeball_loading.gif",
-        "/img/projects/psa_card_fullscreen_desktop.webp",
-        "/img/projects/psa_card_fullscreen_mobile.webp",
-        "/img/projects/psa_dark_desktop.webp",
-        "/img/projects/psa_dark_mobile.webp",
-        "/img/projects/psa_admin_menu_desktop.webp",
-        "/img/projects/psa_admin_menu_mobile.webp",
-        "/img/projects/psa_admin_dark_desktop.webp",
-        "/img/projects/psa_admin_light_desktop.webp",
-        "/img/projects/psa_collection_desktop.webp",
-        "/img/projects/psa_collection_mobile.webp",
-        "/img/projects/psa_home_desktop.webp",
-        "/img/projects/psa_stats_desktop.webp"
-      ],
+        "/img/projects/paper_eta_cover.webp",
+        "/img/projects/paper_eta_page1_portada.webp",
+        "/img/projects/paper_eta_page2_resumen.webp",
+        "/img/projects/paper_eta_page3_abstract.webp",
+        "/img/projects/paper_eta_page4_laburpena.webp",
+        "/img/projects/paper_eta_page22_arquitectura.webp"
+      ]
     }
   ];
 
@@ -721,7 +663,9 @@ export default function Projects() {
                 </div>
                 <div className="flex flex-col gap-2 md:gap-3 pt-4">
                   {activeProject.demoUrl && (
-                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-2.5 sm:py-3.5 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-xs sm:text-sm uppercase tracking-widest font-bold">{l(uiTexts.live)}</a>
+                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="w-full text-center py-2.5 sm:py-3.5 md:py-4 bg-white text-black hover:bg-white/80 transition-all font-sans text-xs sm:text-sm uppercase tracking-widest font-bold">
+                      {activeProject.id === 'bide-eta' ? l(uiTexts.paper) : l(uiTexts.live)}
+                    </a>
                   )}
                   {activeProject.link && (
                     <a href={activeProject.link} target="_blank" rel="noreferrer" className="w-full flex items-center justify-center gap-2 md:gap-3 py-2.5 sm:py-3.5 md:py-4 border border-white/20 hover:bg-white/10 transition-all font-sans text-xs sm:text-sm uppercase tracking-widest font-bold text-white">
