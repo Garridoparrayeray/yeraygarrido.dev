@@ -14,7 +14,7 @@ Yeray Garrido is a Software Engineer and Full Stack Developer specializing in PH
 - Languages spoken: Spanish (native), Basque (native), English (fluent)
 
 ## Featured Projects
-- Bide+ (BizkaiBus+ / Metro+ / Euskotren+ / Renfe Cercanías+): Real-time public transport PWA using Open Data GTFS + SIRI feeds — [bideplus.vercel.app](https://bideplus.vercel.app)
+- Bide+ (BizkaiBus+ / Metro+ / Euskotren+ / Renfe Cercanías+): Real-time public transport PWA using Open Data GTFS + SIRI feeds — [bideplus.eus](https://bideplus.eus)
 - Gasolinera+: Real-time Spanish fuel price comparator (MITECO) with vehicle telemetry & fuel logger, live onboard trip computer, and price heatmaps — [gasolinera-plus](https://github.com/Garridoparrayeray/gasolinera-plus)
 - Pokémon Card PSA Tracker: Graded Pokémon card tracker & valuation app with Pokédex design aesthetic — [card_psa_tracker](https://github.com/Garridoparrayeray/card_psa_tracker)
 - GastroAccess Euskadi: SPA (React, TypeScript) consuming Open Data Euskadi APIs for accessibility evaluation.
