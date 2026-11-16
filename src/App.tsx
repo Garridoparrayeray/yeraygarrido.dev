@@ -13,6 +13,7 @@ const Intro = lazy(() => import("./components/Intro"));
 const Experience = lazy(() => import("./components/Experience"));
 const Stack = lazy(() => import("./components/Stack"));
 const Projects = lazy(() => import("./components/Projects"));
+const Research = lazy(() => import("./components/Research"));
 const Stats = lazy(() => import("./components/Stats"));
 const ApiSection = lazy(() => import("./components/ApiSection"));
 const Contact = lazy(() => import("./components/Contact"));
@@ -75,6 +76,7 @@ export default function App() {
             <Experience />
             <Stack />
             <Projects />
+            <Research />
             <Stats />
             <ApiSection />
             <Contact />

@@ -10,7 +10,7 @@
     <a href="https://cifpzornotza.eus/"><img src="https://img.shields.io/badge/DEGREE-FP%20DUAL%20DAW%20(CIFP%20ZORNOTZA)-0a0a0a?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=1f2937" alt="Degree" /></a>
     <img src="https://img.shields.io/badge/ROLE-FULL%20STACK%20ENGINEER-0a0a0a?style=for-the-badge&logo=serverless&logoColor=white&labelColor=1f2937" alt="Full Stack Engineer" />
     <img src="https://img.shields.io/badge/LOCATION-BILBAO%2C%20BIZKAIA%20(SPAIN)-0a0a0a?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=1f2937" alt="Location" />
-    <a href="https://doi.org/10.5281/zenodo.24041572"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24041572-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo DOI" /></a>
+    <a href="https://doi.org/10.5281/zenodo.24286027"><img src="https://img.shields.io/badge/RESEARCH-3%20PAPERS%20%C2%B7%20ZENODO-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo Research" /></a>
   </p>
 
   <!-- Quick Action & Social Links -->
@@ -121,24 +121,37 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 | **YGArchive** | `PHP 8` `MySQL` `Vanilla JS` `Imagick` `IPTC` | Archivo fotográfico de alta resolución con experiencia móvil tipo *Reels* por gestos (swipe vertical), cola de miniaturas aislada en subida y firmado IPTC de autoría. | [Demo](https://archive.yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/art-gallery) |
 | **yeraygarrido.dev** | `React 19` `TypeScript` `Vite` `Tailwind v4` `GSAP` | Portfolio técnico personal con arquitectura SPA de renderizado crítico sin bloqueos, 100/100 Lighthouse y sistema i18n nativo Context API (ES/EN/EU). | [Site](https://yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/yeraygarrido.com.git) |
 | **GastroAccess Euskadi** | `React 19` `TypeScript` `Vite` `Open Data Euskadi` | SPA que consume APIs de Open Data Euskadi mediante algoritmos propios para evaluar y puntuar la accesibilidad real en hostelería. | [Code](https://github.com/Garridoparrayeray/GastroAccess-Euskadi) |
-| **bide-eta** | `Python 3` `Zenodo DOI` `GTFS` `SIRI-VM` `Algorithms` | Implementación de referencia, vectores de verificación y evaluador público del método de predicción de llegadas para Bizkaibus+ (Bide+). Registrado bajo DOI en Zenodo (`10.5281/zenodo.24041572`). | [Code](https://github.com/Garridoparrayeray/bide-eta) · [Zenodo](https://doi.org/10.5281/zenodo.24041572) |
+| **bide-eta** | `Python 3` `Zenodo DOI` `GTFS` `SIRI-VM` `Algorithms` | Implementación de referencia, vectores de verificación y evaluador público de los 3 papers de predicción de llegadas para Bizkaibus+ (Bide+). Registrados con DOI en Zenodo / CERN. | [Code](https://github.com/Garridoparrayeray/bide-eta) · [Zenodo](https://doi.org/10.5281/zenodo.24286027) |
 | **Bermeoko Udala** | `JavaFX` `Java` `MariaDB` `Docker Compose` `XML/XSLT` | Sistema integral de gestión de objetos perdidos para el Ayuntamiento de Bermeo (CIFP Zornotza): aplicación de escritorio JavaFX, portal web ciudadano y arquitectura Docker multi-contenedor. | [Code](https://github.com/Garridoparrayeray/Talde14_Erronka_CIFPZornotzaLHII) |
 
 ---
 
-## ❖ Open Data, Datasets & Research (Zenodo)
+## ❖ Open Data, Datasets & Research (Zenodo / CERN)
 
 <div align="center">
 
+[![DOI: 10.5281/zenodo.24286027](https://zenodo.org/badge/DOI/10.5281/zenodo.24286027.svg)](https://doi.org/10.5281/zenodo.24286027) &nbsp;
+[![DOI: 10.5281/zenodo.24286302](https://zenodo.org/badge/DOI/10.5281/zenodo.24286302.svg)](https://doi.org/10.5281/zenodo.24286302) &nbsp;
 [![DOI: 10.5281/zenodo.24041572](https://zenodo.org/badge/DOI/10.5281/zenodo.24041572.svg)](https://doi.org/10.5281/zenodo.24041572)
 
 </div>
 
-Investigación personal y publicación de datos abiertos en plataformas científicas para garantizar la reproducibilidad y el análisis técnico:
+Investigación personal independiente y publicación de datos abiertos en Zenodo (CERN) bajo licencia abierta CC BY 4.0 para garantizar la reproducibilidad científica total:
 
-- **Repositorio de Código & Datos:** [`Garridoparrayeray/bide-eta`](https://github.com/Garridoparrayeray/bide-eta) — Implementación de referencia, vectores de prueba y datasets evaluados.
-- **Zenodo Record [24041572](https://doi.org/10.5281/zenodo.24041572):** Repositorio de datos estructurados para investigación y análisis algorítmico (*Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados*).
-- **Próximas Publicaciones:** En proceso de redacción y publicación de 2 artículos técnicos detallando la metodología de predicción y la comparación empírica.
+- **1. Evaluación Empírica Pareada (555.744 predicciones):**  
+  *Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain* (2026).  
+  Benchmark minuto a minuto frente al operador oficial de Bizkaibus: Bide+ 64 % vs 39 % oficial (ventaja en 57 de 59 paradas).  
+  [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24286027-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24286027) · [Código & Evaluador](https://github.com/Garridoparrayeray/bide-eta)
+
+- **2. Especificación Metodológica en 3 Capas (9,1M predicciones):**  
+  *Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation* (2026).  
+  Formalización del algoritmo en 3 capas con abstención explícita: 92–96 % de acierto (<3 min) evaluado durante 23 días.  
+  [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24286302-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24286302) · [Código & Evaluador](https://github.com/Garridoparrayeray/bide-eta)
+
+- **3. Monografía Técnica y Algoritmia (200 páginas):**  
+  *Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados* (2026).  
+  Memoria técnica exhaustiva de 200 páginas con formulación matemática, análisis de 169.308 pasos reales, filtro de Kalman, red neuronal y 407 vectores de prueba.  
+  [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24041572-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24041572) · [Código & Evaluador](https://github.com/Garridoparrayeray/bide-eta)
 
 ---
 

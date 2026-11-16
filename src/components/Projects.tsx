@@ -196,36 +196,46 @@ export default function Projects() {
       ],
     },
     {
-      id: "bide-eta",
-      title: { es: "Algoritmo ETA (Paper Zenodo)", en: "ETA Algorithm (Zenodo Paper)", eu: "ETA Algoritmoa (Zenodo Paper)" },
-      tech: "Python, Machine Learning, Filtro de Kalman, Redes Neuronales, GTFS, SIRI-VM, Open Science",
-      desc: {
-        es: "Investigación y memoria técnica (200 págs.) sobre el algoritmo de predicción de llegadas de Bide+, validado con 2.21M de predicciones reales y publicado en Zenodo con DOI.",
-        en: "Research paper & technical report (200 pp.) detailing the Bide+ arrival prediction algorithm, benchmarked on 2.21M real predictions and published on Zenodo with DOI.",
-        eu: "Bide+ garraio publikoko iritsiera-aurreikuspenerako algoritmoaren ikerketa eta memoria teknikoa (200 orri), 2.21M benetako aurreikuspenekin balioztatua eta Zenodon DOI bidez argitaratua."
+      id: "art-gallery",
+      title: {
+        es: "YGArchive · Archivo Fotográfico",
+        en: "YGArchive · Photo Archive",
+        eu: "YGArchive · Argazki Artxiboa"
       },
-      link: "https://github.com/Garridoparrayeray/bide-eta",
-      demoUrl: "https://doi.org/10.5281/zenodo.24041572",
-      role: { es: "Investigador / Algoritmos & ML", en: "Researcher / Algorithms & ML", eu: "Ikertzailea / Algoritmoak & ML" },
+      tech: "PHP 8, MySQL, Vanilla JS, Imagick, IPTC, Hostinger",
+      desc: {
+        es: "Portfolio fotográfico a medida con un flujo móvil propio tipo Reels, generación automática de miniaturas y marca de agua con metadatos de autoría.",
+        en: "Custom photography portfolio with its own Reels-style mobile flow, automatic thumbnail generation, and watermarking with authorship metadata.",
+        eu: "Neurrira egindako argazki-portfolioa, Reels estiloko mugikorreko fluxu propioarekin, miniaturen sorrera automatikoarekin eta egiletza-metadatuak dituen ur-marka batekin."
+      },
+      demoUrl: "https://archive.yeraygarrido.dev",
+      role: {
+        es: "Full Stack (PHP + Vanilla JS)",
+        en: "Full Stack (PHP + Vanilla JS)",
+        eu: "Full Stack (PHP + Vanilla JS)"
+      },
       year: "2026",
       longDescChallenge: {
-        es: "Bizkaibus publica la posición GPS de cada vehículo y su próxima parada, pero no su retraso real, y las horas intermedias del horario oficial están interpoladas a velocidad constante: de 169.308 pasos reales por parada analizados, el 85 % de los que ocurren pasada la primera hora de viaje llega más de dos minutos antes de la hora publicada. El reto científico fue diseñar un método de estimación de tiempos de llegada (ETA) robusto, reproducible y de baja latencia capaz de predecir el paso real del autobús sin depender de retrasos oficiales inexistentes ni saturar servidores.",
-        en: "Bizkaibus publishes the vehicle GPS coordinates and next stop, but not its actual delay. Intermediate schedule times are interpolated at constant speed: out of 169,308 actual stop passages, 85% of those occurring after the first hour arrive >2 minutes before published schedule. The research challenge was developing a robust, reproducible, and sub-second arrival time prediction (ETA) algorithm that predicts real bus passages without relying on unavailable delay fields.",
-        eu: "Bizkaibusek GPS kokapena eta hurrengo geralekua argitaratzen ditu, baina ez atzerapen erreala, eta ordutegi ofizialeko orduak abiadura konstantean interpolatuta daude: 169.308 igaroalditan, lehen orduaren ondoren %85 argitaratutakoa baino 2 minutu lehenago iristen da. Erronka zientifikoa iritsiera-ordua (ETA) zehaztasunez kalkulatzeko metodo sendo, erreproduzigarri eta azkar bat diseinatzea izan zen."
+        es: "El encargo era un portfolio fotográfico personal que se sintiera cuidado en cualquier dispositivo, no una galería genérica. En escritorio quería una biblioteca tipo tira de negativo con recorrido narrativo por categorías; en móvil, un formato inmersivo tipo Reels con swipe vertical, algo que ningún patrón de galería estándar resuelve de fábrica. A eso se sumó un requisito técnico serio: las fotos de resolución completa (hasta 6000px) agotaban la memoria del hosting compartido al generar miniaturas bajo demanda, tumbando la web de forma intermitente en producción.",
+        en: "The brief was a personal photography portfolio that felt considered on any device, not a generic gallery. On desktop I wanted a filmstrip-style library with a narrative scroll through categories; on mobile, an immersive Reels-style format with vertical swipe — something no off-the-shelf gallery pattern solves out of the box. On top of that came a real technical constraint: full-resolution photos (up to 6000px) were exhausting shared-hosting memory when generating thumbnails on demand, intermittently taking the site down in production.",
+        eu: "Enkargua argazki-portfolio pertsonal bat zen, edozein gailutan zaindua sentitzeko modukoa, ez galeria generiko bat. Mahaigainean, negatibo-zerrenda itxurako liburutegi bat nahi nuen, kategorien arteko ibilbide narratiboarekin; mugikorrean, Reels estiloko formatu murgiltzailea, swipe bertikalarekin — galeria-eredu estandar batek ere ez duena hutsetik ebazten. Horri gehitu behar diot benetako muga teknikoa: bereizmen osoko argazkiek (6000px arte) partekatutako ostalaritzaren memoria agortzen zuten eskariaren arabera miniaturak sortzean, produkzioan webgunea aldizka erortzea eraginez."
       },
       longDescSolution: {
-        es: "Desarrollé una arquitectura de predicción en tres capas con reglas de abstención explícitas: 1) Proyección geométrica sobre la traza del recorrido; 2) Última parada registrada por el feed; y 3) Horario corregido viaje a viaje con medianas contraídas hacia la mediana global por franja horaria. El sistema se recalibra diariamente y adopta únicamente cambios que reducen el error medido. Evaluado sobre 2,21 millones de predicciones durante 17 días, logra una precisión dentro de ±2 minutos en el 96 % cuando el autobús está a menos de 3 minutos y en el 67 % entre 10 y 20 minutos (frente al 24 % y 25 % del horario oficial). Incorpora un filtro de Kalman sobre el ritmo del autobús y una red neuronal que reducen el error medio un 4 % y entre un 6-7 % adicional. Publicado en acceso abierto en Zenodo (DOI: 10.5281/zenodo.24041572) con código de referencia, evaluador público y 407 vectores de prueba en GitHub.",
-        en: "Engineered a three-layer prediction architecture with explicit abstention rules: 1) Geometric path projection; 2) Last stop registered; and 3) Timetable corrected trip-by-trip with segment medians shrunk towards all-day medians by time band. Recalibrates daily, accepting only error-reducing changes. Tested against 2.21M real predictions over 17 days, achieving ±2 min accuracy in 96% of cases under 3 min and 67% at 10-20 min (vs. 24% and 25% with official timetables). Evaluated Kalman filtering and neural networks reducing segment error by 4% and 6-7%. Published in Open Access on Zenodo (DOI: 10.5281/zenodo.24041572) with complete reference code, public evaluator, and 407 test vectors on GitHub.",
-        eu: "Hiru geruzako aurreikuspen-arkitektura garatu nuen: 1) Ibilbide geometrikoan proiektatutako kokapena; 2) Erregistratutako azken geralekua; eta 3) Bidaiaz bidaia zuzendutako ordutegia tarteka egokitutako medianekin. Egunero birkalibratzen da. 17 egunetan 2,21 milioi aurreikuspenetan ebaluatuta, ±2 minuturen barruan asmatzen du %96an autobusa <3 minutura dagoenean eta %67an 10-20 minutu artean (%24 eta %25 ordutegi ofizialarekin alderatuta). Kalman iragazkiak eta sare neuronalak errore gehigarria %4 eta %6-7 murrizten dute. Zenodon sarbide irekian argitaratua (DOI: 10.5281/zenodo.24041572) erreferentziazko kodearekin eta 407 proba-bektorerekin GitHub-en."
+        es: "Backend PHP con arquitectura ligera (Core/Models), MySQL como base de datos y un flujo móvil independiente construido a mano (Home con foto aleatoria, selección de categoría, Reels a pantalla completa con swipe, mosaico de miniaturas) sin ningún framework de front. Para el problema de memoria, sustituí la generación de miniaturas en caliente por Imagick con decodificación por muestreo reducido, y sobre todo moví la generación al momento de subir cada foto desde el panel de administración: cada miniatura se crea una sola vez, en un proceso aislado, en vez de competir por memoria con otras peticiones concurrentes de visitantes reales. Añadí también incrustación de metadatos IPTC (autoría y copyright) en cada descarga y despliegue en Hostinger con detección automática de entorno.",
+        en: "PHP backend with a lightweight architecture (Core/Models), MySQL as the database, and an independent hand-built mobile flow (Home with a random photo, category picker, full-screen Reels with swipe, thumbnail mosaic) with no front-end framework. For the memory issue, I replaced on-demand thumbnail generation with Imagick using reduced-sample decoding, and more importantly moved generation to the moment each photo is uploaded from the admin panel: every thumbnail is created once, in an isolated process, instead of competing for memory with concurrent real-visitor requests. I also added IPTC metadata embedding (authorship and copyright) on every download, and deployed to Hostinger with automatic environment detection.",
+        eu: "PHP backend-a arkitektura arinarekin (Core/Models), MySQL datu-base gisa, eta eskuz eraikitako mugikorreko fluxu independentea (Home ausazko argazkiarekin, kategoria-hautatzailea, Reels pantaila osoan swipe-arekin, miniaturen mosaikoa), front-end frameworkrik gabe. Memoria-arazoarekiko, eskariaren araberako miniatura-sorrera Imagick-ekin ordezkatu nuen, laginketa murriztuko dekodifikazioarekin, eta batez ere sorrera argazki bakoitza administrazio-paneletik igotzen den unera eraman nuen: miniatura bakoitza behin bakarrik sortzen da, prozesu isolatu batean, benetako bisitarien aldiberekotasun-eskaerekin memoria lehiatu beharrean. IPTC metadatuak ere gehitu nituen (egiletza eta copyright) deskarga bakoitzean, eta Hostinger-en zabaldu nuen ingurunea automatikoki detektatzen duen konfigurazioarekin."
       },
-      imageUrl: "/img/projects/paper_eta_cover.webp",
+      imageUrl: "/img/projects/archive_loading.webp",
       images: [
-        "/img/projects/paper_eta_cover.webp",
-        "/img/projects/paper_eta_page1_portada.webp",
-        "/img/projects/paper_eta_page2_resumen.webp",
-        "/img/projects/paper_eta_page3_abstract.webp",
-        "/img/projects/paper_eta_page4_laburpena.webp",
-        "/img/projects/paper_eta_page22_arquitectura.webp"
+        "/img/projects/archive_loading.webp",
+        "/img/projects/archive_mobile1.webp",
+        "/img/projects/archive_mobile2.webp",
+        "/img/projects/archive_mobile3.webp",
+        "/img/projects/archive2.webp",
+        "/img/projects/archive3.webp",
+        "/img/projects/archive4.webp",
+        "/img/projects/archive5.webp",
+        "/img/projects/fto.webp"
       ]
     }
   ];

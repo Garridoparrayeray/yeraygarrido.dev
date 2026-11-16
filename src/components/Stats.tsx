@@ -47,11 +47,12 @@ export default function Stats() {
 
   return (
     <section ref={sectionRef} className="py-16 md:py-24 px-6 md:px-12 bg-black border-t border-white/10 relative z-10 overflow-hidden">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {[
             { label: t('stats.repos'), value: stats.public_repos, suffix: '+' },
             { label: t('stats.commits'), value: commits, suffix: '+' },
+            { label: t('stats.papers'), value: 3, suffix: '' },
             { label: t('stats.followers'), value: stats.followers, suffix: '' },
           ].map((stat, i) => (
             <div key={i} data-reveal="up" className="flex flex-col items-center text-center group">
