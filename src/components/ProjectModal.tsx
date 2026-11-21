@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IconGlyph } from "./IconGlyph";
 import {
   ALL_PROJECTS,
   SITE_IDENTITY,
@@ -152,9 +153,10 @@ export default function ProjectModal({
               type="button"
               onClick={onCloseCatalog}
               aria-label={loc(labels.back, language)}
-              className="font-mono text-xs sm:text-sm uppercase tracking-widest px-4 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer"
+              className="font-mono text-xs sm:text-sm uppercase tracking-widest px-4 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer inline-flex items-center gap-1.5"
             >
-              ESC ✕
+              <span>ESC</span>
+              <IconGlyph name="close" />
             </button>
           </div>
 
@@ -251,7 +253,10 @@ export default function ProjectModal({
                         <span>
                           ★ {r.stargazers_count} · ⑂ {r.forks_count}
                         </span>
-                        <span className="text-[#D6C7B2]">GitHub ↗</span>
+                        <span className="text-[#D6C7B2] inline-flex items-center gap-1">
+                          <span>GitHub</span>
+                          <IconGlyph name="up-right" />
+                        </span>
                       </div>
                     </a>
                   ))
@@ -283,9 +288,10 @@ export default function ProjectModal({
             <button
               type="button"
               onClick={onCloseProject}
-              className="font-mono text-xs sm:text-sm uppercase tracking-widest px-4 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer shrink-0"
+              className="font-mono text-xs sm:text-sm uppercase tracking-widest px-4 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer shrink-0 inline-flex items-center gap-1.5"
             >
-              {loc(labels.back, language)} ✕
+              <span>{loc(labels.back, language)}</span>
+              <IconGlyph name="close" />
             </button>
           </div>
 
@@ -420,9 +426,10 @@ export default function ProjectModal({
                     <a
                       href={activeProject.pdfUrl}
                       download={activeProject.pdfFilename || true}
-                      className="w-full py-3.5 px-5 min-h-[48px] inline-flex items-center justify-center font-mono text-sm uppercase tracking-widest font-semibold bg-[#F6F4EF] text-[#09090B] hover:bg-[#D6C7B2] transition-colors"
+                      className="w-full py-3.5 px-5 min-h-[48px] inline-flex items-center justify-center gap-2 font-mono text-sm uppercase tracking-widest font-semibold bg-[#F6F4EF] text-[#09090B] hover:bg-[#D6C7B2] transition-colors"
                     >
-                      ↓ {loc(labels.downloadPdf, language)}
+                      <IconGlyph name="down" />
+                      <span>{loc(labels.downloadPdf, language)}</span>
                     </a>
                   )}
                   {activeProject.demoUrl && (
@@ -430,16 +437,18 @@ export default function ProjectModal({
                       href={activeProject.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-full py-3.5 px-5 min-h-[48px] inline-flex items-center justify-center font-mono text-sm uppercase tracking-widest font-semibold transition-colors ${
+                      className={`w-full py-3.5 px-5 min-h-[48px] inline-flex items-center justify-center gap-2 font-mono text-sm uppercase tracking-widest font-semibold transition-colors ${
                         activeProject.pdfUrl
                           ? "border border-white/25 text-[#F6F4EF] hover:bg-white/10"
                           : "bg-[#F6F4EF] text-[#09090B] hover:bg-[#D6C7B2]"
                       }`}
                     >
-                      {activeProject.id === "bide-eta"
-                        ? loc(labels.paper, language)
-                        : loc(labels.live, language)}{" "}
-                      ↗
+                      <span>
+                        {activeProject.id === "bide-eta"
+                          ? loc(labels.paper, language)
+                          : loc(labels.live, language)}
+                      </span>
+                      <IconGlyph name="up-right" />
                     </a>
                   )}
                   {activeProject.link && (
@@ -447,9 +456,10 @@ export default function ProjectModal({
                       href={activeProject.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3.5 px-5 min-h-[48px] inline-flex items-center justify-center font-mono text-sm uppercase tracking-widest font-semibold border border-white/25 text-[#F6F4EF] hover:bg-white/10 transition-colors"
+                      className="w-full py-3.5 px-5 min-h-[48px] inline-flex items-center justify-center gap-2 font-mono text-sm uppercase tracking-widest font-semibold border border-white/25 text-[#F6F4EF] hover:bg-white/10 transition-colors"
                     >
-                      {loc(labels.code, language)} ↗
+                      <span>{loc(labels.code, language)}</span>
+                      <IconGlyph name="up-right" />
                     </a>
                   )}
                 </div>
@@ -469,9 +479,9 @@ export default function ProjectModal({
             type="button"
             onClick={() => setLightboxIdx(null)}
             aria-label={loc(labels.back, language)}
-            className="absolute top-5 right-5 font-mono text-sm text-white border border-white/30 px-4 min-h-[44px] hover:bg-white hover:text-black cursor-pointer"
+            className="absolute top-5 right-5 font-mono text-sm text-white border border-white/30 px-4 min-h-[44px] flex items-center justify-center hover:bg-white hover:text-black cursor-pointer"
           >
-            ✕
+            <IconGlyph name="close" />
           </button>
           <span className="absolute top-6 left-1/2 -translate-x-1/2 font-mono text-sm text-white/75 tabular-nums">
             {lightboxIdx + 1} / {activeProject.images.length}
@@ -482,10 +492,10 @@ export default function ProjectModal({
               e.stopPropagation();
               setLightboxIdx((p) => (p === 0 ? activeProject.images!.length - 1 : p! - 1));
             }}
-            className="absolute left-3 sm:left-6 font-mono text-white border border-white/25 w-11 h-11 hover:bg-white hover:text-black cursor-pointer"
+            className="absolute left-3 sm:left-6 font-mono text-white border border-white/25 w-11 h-11 flex items-center justify-center hover:bg-white hover:text-black cursor-pointer"
             aria-label="Anterior"
           >
-            ←
+            <IconGlyph name="left" />
           </button>
           <img
             src={activeProject.images[lightboxIdx]}
@@ -499,10 +509,10 @@ export default function ProjectModal({
               e.stopPropagation();
               setLightboxIdx((p) => (p === activeProject.images!.length - 1 ? 0 : p! + 1));
             }}
-            className="absolute right-3 sm:right-6 font-mono text-white border border-white/25 w-11 h-11 hover:bg-white hover:text-black cursor-pointer"
+            className="absolute right-3 sm:right-6 font-mono text-white border border-white/25 w-11 h-11 flex items-center justify-center hover:bg-white hover:text-black cursor-pointer"
             aria-label="Siguiente"
           >
-            →
+            <IconGlyph name="right" />
           </button>
         </div>
       )}

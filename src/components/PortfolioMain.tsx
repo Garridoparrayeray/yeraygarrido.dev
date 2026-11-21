@@ -19,6 +19,7 @@ import { GitHubCalendar } from "react-github-calendar";
 import { useLanguage } from "../context/LanguageContext";
 import TearLink from "./TearLink";
 import ProjectModal from "./ProjectModal";
+import { IconGlyph, RichText } from "./IconGlyph";
 import {
   ALL_PROJECTS,
   API_ENDPOINTS,
@@ -44,9 +45,13 @@ const SECTION_IDS = ["top", "work", "research", "about", "experience", "api", "c
 type LegalModalType = "legal" | "privacy" | "cookies" | null;
 type FormStatus = "idle" | "submitting" | "sent" | "mailto" | "error";
 
-/** Clean Label for .aw-btn buttons (calm hover without distracting dual-roll) */
+/** Clean Label for .aw-btn buttons (calm hover + crisp SVG arrows that never turn into iOS emojis) */
 function SlotLabel({ text }: { text: string }) {
-  return <span>{text}</span>;
+  return (
+    <span>
+      <RichText text={text} />
+    </span>
+  );
 }
 
 /** Realistic Minimal Smartphone Hardware Frame showcasing an installed mobile PWA */
@@ -1674,7 +1679,7 @@ export default function PortfolioMain() {
                     </span>
                   </span>
                   <span className="font-mono text-base text-[#F6F4EF]/45 group-hover:text-[#D6C7B2] transition-colors shrink-0">
-                    →
+                    <IconGlyph name="right" />
                   </span>
                 </a>
               ))}
@@ -1711,9 +1716,10 @@ export default function PortfolioMain() {
               href={`/CV_YerayGarrido_${language}.pdf`}
               download={`CV_YerayGarrido_${language.toUpperCase()}.pdf`}
               onClick={() => setMobileMenu(false)}
-              className="w-full bg-[#F6F4EF] text-[#09090B] hover:bg-[#D6C7B2] font-semibold text-base min-h-[50px] flex items-center justify-center transition-colors"
+              className="w-full bg-[#F6F4EF] text-[#09090B] hover:bg-[#D6C7B2] font-semibold text-base min-h-[50px] flex items-center justify-center gap-2 transition-colors"
             >
-              ↓ {t("hero.downloadCv")}
+              <IconGlyph name="down" />
+              <span>{t("hero.downloadCv")}</span>
             </a>
 
             <div className="grid grid-cols-2 gap-2.5 pt-1">
@@ -1724,14 +1730,18 @@ export default function PortfolioMain() {
                 className="flex items-center justify-between px-4 min-h-[50px] border border-[#D6C7B2]/45 bg-[#D6C7B2]/[0.08] text-[#D6C7B2] hover:bg-[#D6C7B2] hover:text-[#09090B] font-grotesk font-semibold text-[15px] transition-colors"
               >
                 <span>Bide+</span>
-                <span className="font-mono text-sm">↗</span>
+                <span className="font-mono text-sm">
+                  <IconGlyph name="up-right" />
+                </span>
               </a>
               <a
                 href={SITE_IDENTITY.papersArchivePath}
                 className="flex items-center justify-between px-4 min-h-[50px] border border-white/18 bg-white/[0.03] text-[#F6F4EF] hover:border-[#D6C7B2] hover:text-[#D6C7B2] font-grotesk font-medium text-[15px] transition-colors"
               >
                 <span>Papers</span>
-                <span className="font-mono text-sm">↗</span>
+                <span className="font-mono text-sm">
+                  <IconGlyph name="up-right" />
+                </span>
               </a>
               <a
                 href={SITE_IDENTITY.githubUrl}
@@ -1740,7 +1750,9 @@ export default function PortfolioMain() {
                 className="flex items-center justify-between px-4 min-h-[50px] border border-white/18 bg-white/[0.03] text-[#F6F4EF] hover:border-white/50 hover:bg-white/[0.08] font-grotesk font-medium text-[15px] transition-colors"
               >
                 <span>GitHub</span>
-                <span className="font-mono text-sm">↗</span>
+                <span className="font-mono text-sm">
+                  <IconGlyph name="up-right" />
+                </span>
               </a>
               <a
                 href={SITE_IDENTITY.linkedinUrl}
@@ -1749,7 +1761,9 @@ export default function PortfolioMain() {
                 className="flex items-center justify-between px-4 min-h-[50px] border border-white/18 bg-white/[0.03] text-[#F6F4EF] hover:border-white/50 hover:bg-white/[0.08] font-grotesk font-medium text-[15px] transition-colors"
               >
                 <span>LinkedIn</span>
-                <span className="font-mono text-sm">↗</span>
+                <span className="font-mono text-sm">
+                  <IconGlyph name="up-right" />
+                </span>
               </a>
             </div>
           </div>
@@ -2056,17 +2070,17 @@ export default function PortfolioMain() {
                           type="button"
                           onClick={() => setBideScreenIdx(leftBideIdx)}
                           aria-label="Pantalla anterior"
-                          className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base transition-colors cursor-pointer"
+                          className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base flex items-center justify-center transition-colors cursor-pointer"
                         >
-                          ←
+                          <IconGlyph name="left" />
                         </button>
                         <button
                           type="button"
                           onClick={() => setBideScreenIdx(rightBideIdx)}
                           aria-label="Siguiente pantalla"
-                          className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base transition-colors cursor-pointer"
+                          className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base flex items-center justify-center transition-colors cursor-pointer"
                         >
-                          →
+                          <IconGlyph name="right" />
                         </button>
                       </div>
                     </div>
@@ -2276,12 +2290,15 @@ export default function PortfolioMain() {
                             </div>
 
                             <div className="pt-5 border-t border-white/12 flex flex-wrap items-center justify-between gap-3 text-base font-medium">
-                              <span className="text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors">
-                                {language === "en"
-                                  ? "Open case study →"
-                                  : language === "eu"
-                                    ? "Ikusi kasua →"
-                                    : "Abrir caso completo →"}
+                              <span className="text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors inline-flex items-center gap-1.5">
+                                <span>
+                                  {language === "en"
+                                    ? "Open case study"
+                                    : language === "eu"
+                                      ? "Ikusi kasua"
+                                      : "Abrir caso completo"}
+                                </span>
+                                <IconGlyph name="right" />
                               </span>
                               {project.demoUrl ? (
                                 <a
@@ -2289,12 +2306,14 @@ export default function PortfolioMain() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={(e) => e.stopPropagation()}
-                                  className="font-mono text-sm text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors"
+                                  className="font-mono text-sm text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors inline-flex items-center gap-1"
                                 >
-                                  {project.demoUrl
-                                    .replace(/^https?:\/\/(www\.)?/, "")
-                                    .replace(/\/$/, "")}{" "}
-                                  ↗
+                                  <span>
+                                    {project.demoUrl
+                                      .replace(/^https?:\/\/(www\.)?/, "")
+                                      .replace(/\/$/, "")}
+                                  </span>
+                                  <IconGlyph name="up-right" />
                                 </a>
                               ) : (
                                 <span className="font-mono text-sm text-[#F6F4EF]/55">
@@ -2379,7 +2398,7 @@ export default function PortfolioMain() {
                   rel="noopener noreferrer"
                   className="inline-block font-mono text-sm text-[#09090B]/75 hover:text-[#7A6648] underline underline-offset-4 decoration-[#09090B]/25 mt-1"
                 >
-                  ORCID {SITE_IDENTITY.orcid} ↗
+                  ORCID {SITE_IDENTITY.orcid} <IconGlyph name="up-right" />
                 </a>
               </div>
               <div className="p-6">
@@ -2543,7 +2562,7 @@ export default function PortfolioMain() {
                                 {loc(layer.title, language)}
                               </div>
                               <div className="font-mono text-xs sm:text-sm text-[#D6C7B2]/90 mt-0.5">
-                                {loc(layer.meta, language)}
+                                <RichText text={loc(layer.meta, language)} />
                               </div>
                             </div>
                           ))}
@@ -2674,9 +2693,10 @@ export default function PortfolioMain() {
                         <a
                           href={paper.readingPdfUrl}
                           download={paper.readingPdfFilename}
-                          className="border border-[#09090B] text-[#09090B] hover:bg-[#09090B] hover:text-[#F6F4EF] font-medium text-base px-6 py-4 min-h-[52px] inline-flex items-center transition-colors"
+                          className="border border-[#09090B] text-[#09090B] hover:bg-[#09090B] hover:text-[#F6F4EF] font-medium text-base px-6 py-4 min-h-[52px] inline-flex items-center gap-1.5 transition-colors"
                         >
-                          ↓ {loc(ui.readingPdf, language)}
+                          <IconGlyph name="down" />
+                          <span>{loc(ui.readingPdf, language)}</span>
                         </a>
                       )}
                       {paper.scholarPageUrl && (
@@ -2684,25 +2704,27 @@ export default function PortfolioMain() {
                           href={paper.scholarPageUrl}
                           className="border border-[#7A6648] text-[#7A6648] hover:bg-[#7A6648] hover:text-[#F6F4EF] font-medium text-base px-5 py-4 min-h-[52px] inline-flex items-center transition-colors"
                         >
-                          {loc(ui.scholarPage, language)}
+                          <RichText text={loc(ui.scholarPage, language)} />
                         </a>
                       )}
                       <a
                         href={paper.doiUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="border border-[#09090B]/30 hover:border-[#09090B] text-[#09090B] text-base px-5 py-4 min-h-[52px] inline-flex items-center transition-colors"
+                        className="border border-[#09090B]/30 hover:border-[#09090B] text-[#09090B] text-base px-5 py-4 min-h-[52px] inline-flex items-center gap-1.5 transition-colors"
                       >
-                        Zenodo (DOI) ↗
+                        <span>Zenodo (DOI)</span>
+                        <IconGlyph name="up-right" />
                       </a>
                       {paper.repoUrl && (
                         <a
                           href={paper.repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="border border-[#09090B]/30 hover:border-[#09090B] text-[#09090B] text-base px-5 py-4 min-h-[52px] inline-flex items-center transition-colors"
+                          className="border border-[#09090B]/30 hover:border-[#09090B] text-[#09090B] text-base px-5 py-4 min-h-[52px] inline-flex items-center gap-1.5 transition-colors"
                         >
-                          {loc(ui.code, language)} ↗
+                          <span>{loc(ui.code, language)}</span>
+                          <IconGlyph name="up-right" />
                         </a>
                       )}
                     </div>
@@ -2920,9 +2942,10 @@ export default function PortfolioMain() {
                   href={SITE_IDENTITY.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-base text-[#D6C7B2] hover:text-white transition-colors"
+                  className="font-mono text-base text-[#D6C7B2] hover:text-white transition-colors inline-flex items-center gap-1"
                 >
-                  @{SITE_IDENTITY.githubUsername} ↗
+                  <span>@{SITE_IDENTITY.githubUsername}</span>
+                  <IconGlyph name="up-right" />
                 </a>
               </div>
 
@@ -3006,9 +3029,16 @@ export default function PortfolioMain() {
                     <button
                       type="button"
                       onClick={copyCommand}
-                      className="font-mono text-sm uppercase tracking-wider text-[#D6C7B2] hover:text-white min-h-[44px] px-3 cursor-pointer"
+                      className="font-mono text-sm uppercase tracking-wider text-[#D6C7B2] hover:text-white min-h-[44px] px-3 cursor-pointer inline-flex items-center gap-1.5"
                     >
-                      {copied ? "Copied ✓" : "Copy curl"}
+                      {copied ? (
+                        <>
+                          <span>Copied</span>
+                          <IconGlyph name="check" />
+                        </>
+                      ) : (
+                        "Copy curl"
+                      )}
                     </button>
                   </div>
                   <div className="px-5 sm:px-6 py-5 border-b border-white/10 font-mono text-sm sm:text-base text-[#F6F4EF] break-all">
@@ -3113,18 +3143,25 @@ export default function PortfolioMain() {
                 className="font-mono text-sm text-[#F6F4EF]/70 hover:text-[#D6C7B2] border-b border-white/20 hover:border-[#D6C7B2] pb-1 min-h-[44px] inline-flex items-center gap-2.5 transition-colors cursor-pointer"
               >
                 <span>{SITE_IDENTITY.email}</span>
-                <span className="text-[#D6C7B2] uppercase text-xs tracking-wider">
-                  {emailCopied
-                    ? language === "en"
-                      ? "Copied ✓"
-                      : language === "eu"
-                        ? "Kopiatuta ✓"
-                        : "Copiado ✓"
-                    : language === "en"
-                      ? "[ Copy ]"
-                      : language === "eu"
-                        ? "[ Kopiatu ]"
-                        : "[ Copiar ]"}
+                <span className="text-[#D6C7B2] uppercase text-xs tracking-wider inline-flex items-center gap-1">
+                  {emailCopied ? (
+                    <>
+                      <span>
+                        {language === "en"
+                          ? "Copied"
+                          : language === "eu"
+                            ? "Kopiatuta"
+                            : "Copiado"}
+                      </span>
+                      <IconGlyph name="check" />
+                    </>
+                  ) : language === "en" ? (
+                    "[ Copy ]"
+                  ) : language === "eu" ? (
+                    "[ Kopiatu ]"
+                  ) : (
+                    "[ Copiar ]"
+                  )}
                 </span>
               </button>
             </div>
@@ -3263,7 +3300,7 @@ export default function PortfolioMain() {
               rel="noopener noreferrer"
               className="inline-block font-mono text-xs text-[#D6C7B2]/85 hover:text-[#D6C7B2] transition-colors"
             >
-              ORCID {SITE_IDENTITY.orcid} ↗
+              ORCID {SITE_IDENTITY.orcid} <IconGlyph name="up-right" />
             </a>
           </div>
           <div className="space-y-2.5 min-w-0">
@@ -3288,7 +3325,7 @@ export default function PortfolioMain() {
               href={SITE_IDENTITY.papersArchivePath}
               className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
-              {loc(ui.researchArchiveCta, language)}
+              <RichText text={loc(ui.researchArchiveCta, language)} />
             </a>
             <a
               href="#experience"
@@ -3345,7 +3382,7 @@ export default function PortfolioMain() {
               rel="noopener noreferrer"
               className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
-              Bide+ (bideplus.eus) ↗
+              Bide+ (bideplus.eus) <IconGlyph name="up-right" />
             </a>
             <a
               href={SITE_IDENTITY.gasolineraUrl}
@@ -3353,7 +3390,7 @@ export default function PortfolioMain() {
               rel="noopener noreferrer"
               className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
-              Gasolinera+ (gasolineraplus.app) ↗
+              Gasolinera+ (gasolineraplus.app) <IconGlyph name="up-right" />
             </a>
             <a
               href={SITE_IDENTITY.githubUrl}
@@ -3361,7 +3398,7 @@ export default function PortfolioMain() {
               rel="noopener noreferrer"
               className="block hover:text-white py-0.5"
             >
-              GitHub ↗
+              GitHub <IconGlyph name="up-right" />
             </a>
             <a
               href={SITE_IDENTITY.linkedinUrl}
@@ -3369,14 +3406,14 @@ export default function PortfolioMain() {
               rel="noopener noreferrer"
               className="block hover:text-white py-0.5"
             >
-              LinkedIn ↗
+              LinkedIn <IconGlyph name="up-right" />
             </a>
             <TearLink
               href={SITE_IDENTITY.photographyUrl}
               ariaLabel={t("hero.photographyProfile")}
               className="block hover:text-[#D6C7B2] py-0.5"
             >
-              {t("hero.photographyProfile")} ↗
+              {t("hero.photographyProfile")} <IconGlyph name="up-right" />
             </TearLink>
           </div>
         </div>
@@ -3433,9 +3470,10 @@ export default function PortfolioMain() {
                 type="button"
                 onClick={() => setLegalModal(null)}
                 aria-label={t("projects.close")}
-                className="font-mono text-xs uppercase tracking-widest px-3.5 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer"
+                className="font-mono text-xs uppercase tracking-widest px-3.5 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer inline-flex items-center gap-1.5"
               >
-                ESC ✕
+                <span>ESC</span>
+                <IconGlyph name="close" />
               </button>
             </div>
             <div className="p-6 overflow-y-auto" data-lenis-prevent="true">

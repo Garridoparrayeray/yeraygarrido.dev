@@ -49,7 +49,16 @@ html, body {
   color: var(--ivory);
   font-family: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.65;
+  font-variant-emoji: text;
   -webkit-font-smoothing: antialiased;
+}
+
+.ico {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.12em;
+  flex-shrink: 0;
 }
 
 a { color: inherit; }

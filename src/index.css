@@ -84,6 +84,7 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-x: clip;
+  font-variant-emoji: text;
   font-size: 14.5px;
 }
 @media (min-width: 1280px) {
