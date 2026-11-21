@@ -1,7 +1,7 @@
 {
   "name": "Yeray Garrido | Ingeniero de Software",
   "short_name": "YerayGarrido",
-  "description": "Portfolio profesional de Yeray Garrido, Full Stack Developer.",
+  "description": "Portfolio profesional, productos digitales (Bide+, Gasolinera+) y publicaciones científicas de Yeray Garrido.",
   "icons": [
     {
       "src": "/img/favicon-16x16.png",
@@ -24,7 +24,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#09090B",
+  "background_color": "#09090B",
   "display": "standalone"
 }
