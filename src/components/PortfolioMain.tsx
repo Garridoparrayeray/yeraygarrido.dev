@@ -1516,9 +1516,9 @@ export default function PortfolioMain() {
       </div>
 
       {/* =====================================================================
-          HEADER — STICKY TOP BAR ON BOTH DESKTOP & MOBILE (NEVER COVERS CONTENT)
+          HEADER — FIXED TOP BAR ON BOTH DESKTOP & MOBILE (ALWAYS VISIBLE, NEVER BREAKS ON BODY LOCK)
          ===================================================================== */}
-      <header className="sticky top-0 z-[80] bg-[#09090B]/95 backdrop-blur-md border-b border-white/14">
+      <header className="fixed top-0 left-0 right-0 z-[80] bg-[#09090B]/95 backdrop-blur-md border-b border-white/14">
         <div className="max-w-[1520px] mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4 xl:gap-8">
           {/* Left: Logo + Name */}
           <a
@@ -1774,7 +1774,7 @@ export default function PortfolioMain() {
       {/* =====================================================================
           00 · ARCHITECTURAL HERO (Clear Above-the-Fold UX, Zero Overlapping Dock)
          ===================================================================== */}
-      <main>
+      <main className="pt-16 sm:pt-20 lg:pt-24">
         <section
           id="top"
           className="relative overflow-hidden px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 lg:pt-12 pb-16 sm:pb-24"
@@ -2898,7 +2898,7 @@ export default function PortfolioMain() {
                   >
                     <span
                       aria-hidden="true"
-                      className="absolute -left-[28px] sm:-left-[44px] top-10 sm:top-11 w-2.5 h-2.5 bg-[#F6F4EF] border-2 border-[#7A6648]"
+                      className="absolute left-[calc(-1.5rem+1px)] sm:left-[calc(-2.5rem+1px)] -translate-x-1/2 top-10 sm:top-11 w-2.5 h-2.5 bg-[#F6F4EF] border-2 border-[#7A6648]"
                     />
                     <div className="sm:col-span-4 text-sm sm:text-base text-[#09090B]/75 space-y-1.5">
                       <div className="font-mono text-[#09090B] font-semibold">{item.date}</div>
