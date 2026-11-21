@@ -94,7 +94,7 @@ export default function CookieBanner() {
         }
       `}</style>
 
-      <div className="fixed inset-0 z-[110] pointer-events-none flex items-end justify-end">
+      <div className="fixed inset-0 z-[70] pointer-events-none flex items-end justify-end">
         <div
           role="dialog"
           aria-label={t.title}

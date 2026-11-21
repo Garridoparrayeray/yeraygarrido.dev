@@ -1641,11 +1641,12 @@ export default function PortfolioMain() {
           role="dialog"
           aria-modal={mobileMenu}
           aria-label={loc(ui.menuTitle, language)}
-          className={`fixed top-0 right-0 bottom-0 w-[86vw] max-w-[400px] bg-[#0C0C0F] border-l border-white/15 pt-20 sm:pt-24 pb-7 px-6 sm:px-8 flex flex-col justify-between overflow-y-auto transition-transform duration-400 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+          className={`fixed top-0 right-0 bottom-0 w-[86%] max-w-[400px] bg-[#0C0C0F] border-l border-white/15 overflow-y-auto overscroll-contain transition-transform duration-400 ease-[cubic-bezier(0.76,0,0.24,1)] ${
             mobileMenu ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="space-y-6">
+          <div className="min-h-full pt-20 sm:pt-24 pb-8 px-6 sm:px-8 flex flex-col justify-between gap-6">
+          <div className="space-y-6 shrink-0">
             <div className="flex items-center justify-between gap-4 pb-3 border-b border-white/12 font-mono text-xs uppercase tracking-[0.16em] text-[#D6C7B2]">
               <span className="whitespace-nowrap">{loc(ui.menuTitle, language)}</span>
               <span ref={drawerClockRef} className="text-[#F6F4EF]/55 whitespace-nowrap tabular-nums">
@@ -1662,17 +1663,17 @@ export default function PortfolioMain() {
                   style={{
                     transitionDelay: mobileMenu ? `${60 + idx * 35}ms` : "0ms",
                   }}
-                  className={`group flex items-center justify-between py-4 min-h-[54px] transition-[opacity,transform,color] duration-300 ${
+                  className={`group flex items-center justify-between gap-3 py-4 min-h-[54px] transition-[opacity,transform,color] duration-300 ${
                     mobileMenu ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
                   }`}
                 >
-                  <span className="flex items-baseline gap-4">
-                    <span className="font-mono text-xs text-[#D6C7B2]">{n.num}</span>
-                    <span className="font-grotesk font-semibold text-2xl tracking-tight text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors">
+                  <span className="flex items-baseline gap-4 min-w-0">
+                    <span className="font-mono text-xs text-[#D6C7B2] shrink-0">{n.num}</span>
+                    <span className="font-grotesk font-semibold text-2xl tracking-tight text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors truncate">
                       {loc(n.label, language)}
                     </span>
                   </span>
-                  <span className="font-mono text-base text-[#F6F4EF]/45 group-hover:text-[#D6C7B2] transition-colors">
+                  <span className="font-mono text-base text-[#F6F4EF]/45 group-hover:text-[#D6C7B2] transition-colors shrink-0">
                     →
                   </span>
                 </a>
@@ -1680,7 +1681,7 @@ export default function PortfolioMain() {
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-white/12 space-y-5">
+          <div className="pt-6 border-t border-white/12 space-y-5 shrink-0">
             <div className="space-y-2">
               <div className="font-mono text-xs uppercase tracking-[0.18em] text-[#F6F4EF]/55">
                 {loc(ui.languageLabel, language)}
@@ -1751,6 +1752,7 @@ export default function PortfolioMain() {
                 <span className="font-mono text-sm">↗</span>
               </a>
             </div>
+          </div>
           </div>
         </aside>
       </div>
@@ -1934,7 +1936,7 @@ export default function PortfolioMain() {
         {/* =====================================================================
             01 · FLAGSHIP PRODUCT STAGE — BIDE+ (3-Phone Installed Mobile Showcase)
            ===================================================================== */}
-        <section id="work" className="bg-[#09090B] border-t border-white/12">
+        <section id="work" className="bg-[#09090B] border-t border-white/12 overflow-x-clip">
           <div id="flagship-bide" className="py-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-16">
             <div className="max-w-[1440px] mx-auto space-y-12 lg:space-y-16">
               <div
@@ -2322,7 +2324,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="research"
-          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16"
+          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 overflow-x-clip"
         >
           <div className="max-w-[1400px] mx-auto">
             <div
@@ -2407,7 +2409,7 @@ export default function PortfolioMain() {
                       ? "Ikerketa Lerroak"
                       : "Líneas de Investigación"}
                 </div>
-                <div className="font-grotesk font-bold text-3xl text-[#09090B] mt-1">
+                <div className="font-grotesk font-bold text-2xl sm:text-3xl text-[#09090B] mt-1 break-words">
                   {language === "en"
                     ? "Reproducible Systems"
                     : language === "eu"
@@ -2716,7 +2718,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="about"
-          className="bg-white text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12"
+          className="bg-white text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
         >
           <div className="max-w-[1400px] mx-auto space-y-20 sm:space-y-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -2811,14 +2813,14 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="experience"
-          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12"
+          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
         >
           <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div data-aw-reveal className="lg:col-span-4 space-y-8">
+            <div data-aw-reveal className="lg:col-span-4 space-y-8 min-w-0">
               <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
                 {loc(ui.timelineEyebrow, language)}
               </span>
-              <h2 className="font-editorial font-bold text-5xl sm:text-6xl tracking-[-0.02em] leading-[1.0]">
+              <h2 className="font-editorial font-bold text-[clamp(2.25rem,9.8vw,3.75rem)] sm:text-6xl tracking-[-0.02em] leading-[1.0] break-words">
                 {t("exp.title")}
               </h2>
 
@@ -2900,7 +2902,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="api"
-          className="bg-[#09090B] text-[#F6F4EF] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-14 border-t border-white/12"
+          className="bg-[#09090B] text-[#F6F4EF] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-14 border-t border-white/12 overflow-x-clip"
         >
           <div className="max-w-[1440px] mx-auto space-y-16 sm:space-y-20">
             {/* 1. Clear Live Metrics & GitHub Activity (understood by every visitor) */}
@@ -2973,7 +2975,7 @@ export default function PortfolioMain() {
                   <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#D6C7B2] block">
                     {loc(ui.devEyebrow, language)}
                   </span>
-                  <h3 className="font-editorial font-semibold text-4xl sm:text-5xl tracking-[-0.02em]">
+                  <h3 className="font-editorial font-semibold text-[clamp(1.9rem,8vw,2.75rem)] sm:text-5xl tracking-[-0.02em] break-words">
                     {t("api.title")}
                   </h3>
                   <p className="text-lg text-[#F6F4EF]/82 leading-[1.7] text-left text-pretty">
@@ -3044,7 +3046,7 @@ export default function PortfolioMain() {
               <span className="block overflow-hidden py-1 -my-1">
                 <span
                   data-aw-contact-line
-                  className="block font-editorial font-semibold uppercase tracking-[-0.035em] text-[clamp(3.6rem,11vw,9.2rem)] text-[#F6F4EF]"
+                  className="block font-editorial font-semibold uppercase tracking-[-0.035em] text-[clamp(2.9rem,11vw,9.2rem)] text-[#F6F4EF]"
                 >
                   {t("contact.title1")}
                 </span>
@@ -3052,7 +3054,7 @@ export default function PortfolioMain() {
               <span className="block overflow-hidden py-3 -my-3 px-2 -mx-2 -mt-[0.06em]">
                 <span
                   data-aw-contact-line
-                  className="block font-editorial italic font-normal uppercase tracking-[-0.03em] text-[clamp(3.6rem,11vw,9.2rem)] leading-[0.9] text-[#D6C7B2]"
+                  className="block font-editorial italic font-normal uppercase tracking-[-0.03em] text-[clamp(2.9rem,11vw,9.2rem)] leading-[0.9] text-[#D6C7B2]"
                 >
                   {t("contact.title2")}
                 </span>
@@ -3248,9 +3250,9 @@ export default function PortfolioMain() {
       </main>
 
       {/* STRUCTURED PRODUCTION FOOTER WITH INTEGRATED LEGAL MODALS */}
-      <footer className="bg-[#09090B] text-[#F6F4EF]/75 py-16 px-5 sm:px-8 lg:px-14 border-t border-white/12">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 pb-12 border-b border-white/12 text-base">
-          <div className="col-span-2 md:col-span-1 space-y-4">
+      <footer className="bg-[#09090B] text-[#F6F4EF]/75 py-16 px-5 sm:px-8 lg:px-14 border-t border-white/12 overflow-x-clip">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 sm:gap-12 pb-12 border-b border-white/12 text-base">
+          <div className="col-span-2 md:col-span-1 space-y-4 min-w-0">
             <img src="/img/logo.webp" alt={t("header.logoAlt")} className="h-10 w-auto" />
             <p className="text-sm sm:text-base text-[#F6F4EF]/65 leading-relaxed">
               {SITE_IDENTITY.brandName} · {t("hero.role")}
@@ -3264,40 +3266,40 @@ export default function PortfolioMain() {
               ORCID {SITE_IDENTITY.orcid} ↗
             </a>
           </div>
-          <div className="space-y-2.5">
-            <div className="text-[#F6F4EF] uppercase tracking-[0.14em] font-semibold text-sm">
+          <div className="space-y-2.5 min-w-0">
+            <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
               Portfolio
             </div>
             <a
               href="#work"
               onClick={(e) => scrollToSection(e, "work")}
-              className="block hover:text-white py-0.5"
+              className="block hover:text-white py-0.5 break-words"
             >
               Bide+ &amp; {t("projects.title")}
             </a>
             <a
               href="#research"
               onClick={(e) => scrollToSection(e, "research")}
-              className="block hover:text-white py-0.5"
+              className="block hover:text-white py-0.5 break-words"
             >
               {loc(ui.researchTitle, language)}
             </a>
             <a
               href={SITE_IDENTITY.papersArchivePath}
-              className="block hover:text-[#D6C7B2] py-0.5"
+              className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
               {loc(ui.researchArchiveCta, language)}
             </a>
             <a
               href="#experience"
               onClick={(e) => scrollToSection(e, "experience")}
-              className="block hover:text-white py-0.5"
+              className="block hover:text-white py-0.5 break-words"
             >
               {t("exp.title")}
             </a>
           </div>
-          <div className="space-y-2.5">
-            <div className="text-[#F6F4EF] uppercase tracking-[0.14em] font-semibold text-sm">
+          <div className="space-y-2.5 min-w-0">
+            <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
               {t("api.title")}
             </div>
             <a
@@ -3333,15 +3335,15 @@ export default function PortfolioMain() {
               llms.txt
             </a>
           </div>
-          <div className="space-y-2.5">
-            <div className="text-[#F6F4EF] uppercase tracking-[0.14em] font-semibold text-sm">
+          <div className="col-span-2 md:col-span-1 space-y-2.5 min-w-0">
+            <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
               {loc(ui.footerLinksTitle, language)}
             </div>
             <a
               href={SITE_IDENTITY.bideUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block hover:text-[#D6C7B2] py-0.5"
+              className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
               Bide+ (bideplus.eus) ↗
             </a>
@@ -3349,7 +3351,7 @@ export default function PortfolioMain() {
               href={SITE_IDENTITY.gasolineraUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block hover:text-[#D6C7B2] py-0.5"
+              className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
               Gasolinera+ (gasolineraplus.app) ↗
             </a>
@@ -3379,12 +3381,12 @@ export default function PortfolioMain() {
           </div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F6F4EF]/55">
+        <div className="max-w-[1400px] mx-auto pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F6F4EF]/55 text-center md:text-left">
           <span>
             {t("contact.footer.madeWith")} {SITE_IDENTITY.brandName}
           </span>
           <span>{t("contact.footer.copyright", { year: new Date().getFullYear().toString() })}</span>
-          <div className="flex items-center gap-5 font-mono text-xs uppercase tracking-wider">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-mono text-xs uppercase tracking-wider">
             <button
               type="button"
               onClick={() => setLegalModal("legal")}
