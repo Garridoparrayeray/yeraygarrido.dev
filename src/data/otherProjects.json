@@ -8,9 +8,9 @@
     },
     "tech": "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, PWA, Vercel Serverless, GitHub Actions",
     "desc": {
-      "es": "Plataforma web instalable (PWA) de transporte público de Euskadi (Bizkaibus+, Metro+, Euskotren+, Tranvía, Renfe) con horarios, llegadas en tiempo real calculadas por GPS y mapa interactivo.",
-      "en": "Installable web app (PWA) unifying Basque Country public transit (Bizkaibus+, Metro+, Euskotren+, Tram, Renfe) with timetables, live GPS-calculated arrivals, and interactive map.",
-      "eu": "Euskadiko garraio publikoa (Bizkaibus+, Metro+, Euskotren+, Tranbia, Renfe) batzen duen web aplikazio instalagarria (PWA), ordutegiekin, GPS bidez kalkulatutako etorrerak eta mapa biziarekin."
+      "es": "Aplicación gratuita e instalable que reúne las 16 redes de transporte público de Euskal Herria (Bizkaibus, Metro, Euskotren, Tranvía, Renfe y más) en un solo lugar. Calcula en tiempo real cuándo llega tu autobús o tren con mayor precisión que la app oficial, pensada para usar cada día desde el móvil sin complicaciones.",
+      "en": "Free, installable app uniting all 16 public transit networks across the Basque Country (Bizkaibus, Metro, Euskotren, Trams, Renfe, and more) in one place. Predicts real-time bus and train arrivals more accurately than the official app, designed for effortless everyday use on mobile.",
+      "eu": "Euskal Herriko 16 garraio publikoko sareak (Bizkaibus, Metroa, Euskotren, Tranbia, Renfe eta gehiago) leku bakarrean biltzen dituen doako aplikazio instalagarria. Zure autobusa edo trena noiz iritsiko den denbora errealean kalkulatzen du app ofizialak baino zehaztasun handiagoarekin."
     },
     "link": "https://github.com/Garridoparrayeray/bizkaibus-renewed",
     "demoUrl": "https://bideplus.eus",
@@ -30,19 +30,18 @@
       "en": "Native PHP backend with clean layered architecture (Controllers/Models/Services) precompiling official GTFS feeds daily into an embedded SQLite database at build time — zero database server latency, optimal for Vercel serverless. Engineered a proprietary ETA algorithm in PHP projecting real-time bus GPS telemetry onto geometric route paths stop-by-stop, significantly optimizing arrival estimation accuracy. Includes live service alerts, offline PWA caching for recent searches, two visual themes, and bilingual support (ES/EU).",
       "eu": "PHP backend natiboa geruzatan antolatua (Controllers/Models/Services), egunero GTFS datu ofizialak build-ean txertatutako SQLite datu-base batera aurrekonpilatzen duena — kanpoko datu-basearen latentziarik gabe, Vercel serverless arkitekturarako ezin hobea. PHP bidezko ETA algoritmo propioa garatu nuen: autobusaren GPS posizioa ibilbide geometrikoaren gainean kokatzen du geltokiz geltoki, iritsiera kalkuluen zehaztasuna nabarmen optimizatuz. Gertakarien abisuak denbora errealean, lineaz kanpoko PWA katxea, bi tema bisual eta elebitasuna (ES/EU) biltzen ditu."
     },
-    "imageUrl": "/img/projects/bideplus_static.webp",
+    "imageUrl": "/img/projects/bideplus_og.webp",
     "images": [
-      "/img/projects/bideplus_static.webp",
-      "/img/projects/bideplus_desktop.webp",
-      "/img/projects/bideplus_mobile.webp",
+      "/img/projects/bideplus_og.webp",
+      "/img/projects/bideplus_home_desktop.webp",
+      "/img/projects/bideplus_home_mobile.webp",
       "/img/projects/bideplus_bizkaibus_mobile.webp",
       "/img/projects/bideplus_bizkaibus_desktop.webp",
       "/img/projects/bideplus_metro_mobile.webp",
+      "/img/projects/bideplus_estado_mobile.webp",
+      "/img/projects/bideplus_mapa_mobile.webp",
       "/img/projects/bideplus_euskotren_mobile.webp",
-      "/img/projects/bideplus_renfe_mobile.webp",
-      "/img/projects/bizkaibus_captura.png",
-      "/img/projects/bizkaibus_mobile_view.png",
-      "/img/projects/bizkaibus_miamor_theme.png"
+      "/img/projects/bideplus_renfe_mobile.webp"
     ]
   },
   {
@@ -54,11 +53,12 @@
     },
     "tech": "PHP 8 (API REST), HTML5, CSS3, Vanilla JS, Geolocation API, MITECO Open Data, Leaflet, Canvas",
     "desc": {
-      "es": "Buscador y comparador en tiempo real de precios de combustible en España (MITECO), con gestor de vehículos y consumo, ordenador de viaje en vivo con velocímetro y mapa interactivo de calor.",
-      "en": "Real-time fuel price finder and comparator across Spain (MITECO), featuring vehicle telemetry & fuel logging, live trip computer with speedometer, and interactive price heatmap.",
-      "eu": "Espainia osoko erregai-prezioak denbora errealean bilatu eta alderatzeko tresna (MITECO), ibilgailuen kudeaketarekin, kontsumo-kontrolekin, denbora errealeko bidaia-ordenagailuarekin eta bero-maparekin."
+      "es": "Encuentra al instante la gasolinera más barata cerca de ti entre más de 11.400 estaciones de España, controla tus repostajes y el consumo real de tu coche, y consulta el mapa de precios en tiempo real. Instalable gratis en iPhone y Android, sin anuncios.",
+      "en": "Instantly find the cheapest fuel station near you across 11,400+ stations in Spain, track your fill-ups and real fuel consumption, and explore live price heatmaps. Free, ad-free, and installable today on iPhone and Android.",
+      "eu": "Aurkitu berehala zure inguruko gasolindegi merkeena Espainiako 11.400+ geltokiren artean, kontrolatu zure autoaren benetako kontsumoa eta begiratu prezioen mapa denbora errealean. Doan eta iragarkirik gabe, iPhone eta Android-en instalagarria."
     },
     "link": "https://github.com/Garridoparrayeray/gasolinera-plus",
+    "demoUrl": "https://gasolineraplus.app",
     "role": {
       "es": "Full Stack (PHP + Vanilla JS)",
       "en": "Full Stack (PHP + Vanilla JS)",

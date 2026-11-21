@@ -2,21 +2,37 @@ User-agent: *
 Allow: /
 Disallow: /img/linkedin_Perfil_photo.pdf
 
-# AI / LLM crawlers — permitidos explícitamente
+# 2026 AI Search & LLM Crawlers (GEO) — explicitly allowed
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: Claude-SearchBot
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
-# Recursos para motores generativos (GEO)
-# llms.txt: resumen fáctico para LLMs — https://llmstxt.org
-# cv.json: CV estructurado en JSON — legible por máquinas
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Structured Machine-Readable & GEO Resources
+# LLMs context: https://yeraygarrido.dev/llms.txt
+# Academic archive (Google Scholar): https://yeraygarrido.dev/papers/
+# Structured CV: https://yeraygarrido.dev/cv.json | https://yeraygarrido.dev/cv.xml
 
 Sitemap: https://yeraygarrido.dev/sitemap.xml

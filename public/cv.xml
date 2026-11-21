@@ -8,6 +8,8 @@
         <phone>+34 622 945 185</phone>
         <email>garridoparrayeraytx@gmail.com</email>
         <website>https://yeraygarrido.dev</website>
+        <orcid>https://orcid.org/0009-0008-0459-0294</orcid>
+        <papers_archive>https://yeraygarrido.dev/papers/</papers_archive>
         <github>https://github.com/Garridoparrayeray</github>
         <linkedin>https://www.linkedin.com/in/yeray-garrido</linkedin>
         <location>Bilbao, Bizkaia, Spain</location>
@@ -60,14 +62,25 @@
     </experience>
     <projects>
         <project>
-            <name>Ecosistema Open Data (BizkaiBus+ / Metro+)</name>
-            <description>PWA de movilidad predictiva en tiempo real. Precompilación automatizada de datos GTFS a SQLite local (arquitectura zero-load en servidor) cruzando flujos SIRI-VM/SIRI-SX en vivo. Interfaz de usuario SPA desarrollada en Vanilla JS, PHP 8 y Leaflet.</description>
+            <name>Bide+ (16 redes de Euskal Herria)</name>
+            <url>https://bideplus.eus</url>
+            <description>PWA de movilidad predictiva en tiempo real para 16 redes de transporte en Euskal Herria. Precompilación automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX en vivo con motor propio de ETA (64% vs 39% precisión oficial).</description>
+        </project>
+        <project>
+            <name>Gasolinera+</name>
+            <url>https://gasolineraplus.app</url>
+            <description>Comparador en tiempo real de precios de combustible en +11.400 estaciones MITECO en España, con gestor de vehículos, ordenador de viaje en vivo y mapa de calor. Instalable en iPhone y Android.</description>
         </project>
         <project>
             <name>GastroAccess Euskadi</name>
             <description>SPA (React, TypeScript, Vite) que consume APIs de Open Data Euskadi mediante algoritmos propios para evaluar la accesibilidad real en hostelería.</description>
         </project>
     </projects>
+    <publications>
+        <publication doi="10.5281/zenodo.24286027" date="2026-11-16" url="https://yeraygarrido.dev/papers/paired-evaluation/">Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain</publication>
+        <publication doi="10.5281/zenodo.24286302" date="2026-11-16" url="https://yeraygarrido.dev/papers/three-layer-method/">Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation</publication>
+        <publication doi="10.5281/zenodo.24041572" date="2026-11-07" url="https://yeraygarrido.dev/papers/memoria-bide-eta/">Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados</publication>
+    </publications>
     <education>
         <item>
             <degree>Técnico Superior en Desarrollo de Aplicaciones Web (FP Dual)</degree>

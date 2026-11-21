@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados — Yeray Garrido Parra</title>
+  <meta name="description" content="Memoria técnica de referencia de 200 páginas sobre predicción de llegadas de autobuses (ETA): formulación matemática, filtro de Kalman, red neuronal residual (-7 % error), 407 vectores de prueba e implementación abierta en Python." />
+  <meta name="author" content="Yeray Garrido Parra" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://yeraygarrido.dev/papers/memoria-bide-eta/" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="stylesheet" href="/papers/scholar.css" />
+
+  <!-- Highwire Press / Google Scholar Metadata -->
+  <meta name="citation_title" content="Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados" />
+  <meta name="citation_author" content="Garrido Parra, Yeray" />
+  <meta name="citation_author_orcid" content="0009-0008-0459-0294" />
+  <meta name="citation_publication_date" content="2026/11/07" />
+  <meta name="citation_online_date" content="2026/11/07" />
+  <meta name="citation_doi" content="10.5281/zenodo.24041572" />
+  <meta name="citation_publisher" content="Zenodo" />
+  <meta name="citation_language" content="es" />
+  <meta name="citation_pdf_url" content="https://yeraygarrido.dev/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf" />
+  <meta name="citation_abstract_html_url" content="https://yeraygarrido.dev/papers/memoria-bide-eta/" />
+  <meta name="citation_keywords" content="predicción de llegadas; ETA; transporte público; GTFS; SIRI-VM; filtro de Kalman; red neuronal; Bide+; Bizkaibus" />
+
+  <!-- Dublin Core Metadata -->
+  <meta name="DC.title" content="Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados" />
+  <meta name="DC.creator" content="Garrido Parra, Yeray" />
+  <meta name="DC.date" content="2026-11-07" />
+  <meta name="DC.identifier" content="https://doi.org/10.5281/zenodo.24041572" />
+  <meta name="DC.language" content="es" />
+  <meta name="DC.publisher" content="Zenodo" />
+  <meta name="DC.rights" content="Creative Commons Attribution 4.0 International (CC BY 4.0)" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yeraygarrido.dev/papers/memoria-bide-eta/" />
+  <meta property="og:title" content="Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados" />
+  <meta property="og:description" content="Memoria técnica de 200 páginas con formulación matemática, filtro de Kalman, red neuronal residual y 407 vectores de prueba." />
+  <meta property="og:image" content="https://yeraygarrido.dev/img/projects/paper_eta_page1_portada.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://yeraygarrido.dev/papers/memoria-bide-eta/#article",
+    "headline": "Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados",
+    "name": "Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados",
+    "author": {
+      "@type": "Person",
+      "name": "Yeray Garrido Parra",
+      "givenName": "Yeray",
+      "familyName": "Garrido Parra",
+      "url": "https://yeraygarrido.dev/",
+      "sameAs": "https://orcid.org/0009-0008-0459-0294"
+    },
+    "datePublished": "2026-11-07",
+    "version": "2.1",
+    "numberOfPages": 200,
+    "inLanguage": "es",
+    "identifier": "https://doi.org/10.5281/zenodo.24041572",
+    "sameAs": "https://doi.org/10.5281/zenodo.24041572",
+    "url": "https://yeraygarrido.dev/papers/memoria-bide-eta/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Zenodo"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "isAccessibleForFree": true,
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://yeraygarrido.dev/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "abstract": "Memoria técnica exhaustiva de 200 páginas que formaliza el motor de predicción de llegadas de autobuses desarrollado para Bide+: proyección geométrica SIRI-VM sobre trazados GTFS, interpolación horaria, filtro de Kalman sobre ritmo de marcha, modelo de red neuronal residual (-7 % de error adicional), 407 vectores de prueba verificados e implementación abierta en Python."
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/img/logo.webp" alt="Yeray Garrido Logo" />
+        <span>Yeray Garrido</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación">
+        <a href="/papers/">← Todas las publicaciones</a>
+        <a href="/">Portfolio</a>
+        <a href="https://doi.org/10.5281/zenodo.24041572" target="_blank" rel="noopener noreferrer">Zenodo DOI ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Memoria Técnica v2.1 · 200 Páginas · Acceso Abierto (CC BY 4.0 &amp; MIT)</p>
+    <h1>Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados</h1>
+    <p class="lead">
+      <strong>Yeray Garrido Parra</strong> · Ingeniero de Software &amp; Investigador Independiente (Bilbao, España) ·
+      <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer">ORCID 0009-0008-0459-0294</a>
+    </p>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <span class="meta-label">DOI</span>
+        <span class="meta-val"><a href="https://doi.org/10.5281/zenodo.24041572" target="_blank" rel="noopener noreferrer">10.5281/zenodo.24041572 ↗</a></span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Publicación</span>
+        <span class="meta-val">2026-11-07 (v2.1 · ES)</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Extensión</span>
+        <span class="meta-val">200 páginas · 407 vectores de prueba</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Modelado</span>
+        <span class="meta-val">Filtro de Kalman + Red Neuronal (-7 %)</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf" download>↓ Descargar Memoria PDF (200 pp.)</a>
+      <a class="btn btn-accent" href="https://doi.org/10.5281/zenodo.24041572" target="_blank" rel="noopener noreferrer">Ver en Zenodo ↗</a>
+      <a class="btn btn-secondary" href="https://github.com/Garridoparrayeray/bide-eta" target="_blank" rel="noopener noreferrer">Código de Referencia (GitHub) ↗</a>
+    </div>
+
+    <section class="panel">
+      <h2>Resumen</h2>
+      <p>
+        Esta memoria técnica de 200 páginas documenta en profundidad el diseño, la formulación matemática, la arquitectura de ingeniería y la evaluación empírica completa del motor de predicción de llegadas de autobuses en tiempo real (ETA) de Bide+.
+      </p>
+      <p>
+        Se cubren desde los fundamentos de proyección geométrica sobre shapes GTFS y gestión de feeds SIRI-VM sin campo de retraso hasta el filtrado de Kalman sobre ritmo de marcha, la corrección residual mediante red neuronal ligera (-7 % de error adicional), el conjunto de 407 vectores de prueba reproducibles y la implementación de referencia abierta en Python.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Memoria Técnica (200 pp.)</span>
+        <span class="tag">Filtro de Kalman</span>
+        <span class="tag">Red Neuronal Residual</span>
+        <span class="tag">407 Tests</span>
+        <span class="tag">GTFS / SIRI-VM</span>
+        <span class="tag">Python Open Source</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="bibtex-header">
+        <h2 style="margin:0;">Citación BibTeX</h2>
+        <button class="copy-btn" type="button" onclick="copyBibtex(this)">Copiar BibTeX</button>
+      </div>
+      <pre class="bibtex" id="bibtex-block">@techreport{garrido_parra_2026_24041572,
+  author       = {Garrido Parra, Yeray},
+  title        = {{Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados}},
+  month        = nov,
+  year         = 2026,
+  institution  = {Zenodo},
+  version      = {2.1},
+  doi          = {10.5281/zenodo.24041572},
+  url          = {https://doi.org/10.5281/zenodo.24041572}
+}</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Yeray Garrido Parra · ORCID 0009-0008-0459-0294</span>
+      <span><a href="/papers/">Todas las publicaciones</a> · <a href="/">yeraygarrido.dev</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function copyBibtex(btn) {
+      var text = document.getElementById("bibtex-block").textContent;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "Copiado ✓";
+          setTimeout(function () { btn.textContent = "Copiar BibTeX"; }, 1800);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

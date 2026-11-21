@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain — Yeray Garrido Parra</title>
+  <meta name="description" content="Paired empirical benchmark of 555,744 real-time bus arrival predictions in Biscay, Spain: the open-data Bide+ method achieves 64% accuracy (±2 min) vs 39% for the official operator app across 57 of 59 stops." />
+  <meta name="author" content="Yeray Garrido Parra" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://yeraygarrido.dev/papers/paired-evaluation/" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="stylesheet" href="/papers/scholar.css" />
+
+  <!-- Highwire Press / Google Scholar Metadata -->
+  <meta name="citation_title" content="Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain" />
+  <meta name="citation_author" content="Garrido Parra, Yeray" />
+  <meta name="citation_author_orcid" content="0009-0008-0459-0294" />
+  <meta name="citation_publication_date" content="2026/11/16" />
+  <meta name="citation_online_date" content="2026/11/16" />
+  <meta name="citation_doi" content="10.5281/zenodo.24286027" />
+  <meta name="citation_publisher" content="Zenodo" />
+  <meta name="citation_language" content="en" />
+  <meta name="citation_pdf_url" content="https://yeraygarrido.dev/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf" />
+  <meta name="citation_abstract_html_url" content="https://yeraygarrido.dev/papers/paired-evaluation/" />
+  <meta name="citation_keywords" content="public transport; bus arrival prediction; ETA; GTFS; SIRI-VM; open data; paired benchmark; Bizkaibus; Bide+; Biscay" />
+
+  <!-- Dublin Core Metadata -->
+  <meta name="DC.title" content="Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain" />
+  <meta name="DC.creator" content="Garrido Parra, Yeray" />
+  <meta name="DC.date" content="2026-11-16" />
+  <meta name="DC.identifier" content="https://doi.org/10.5281/zenodo.24286027" />
+  <meta name="DC.language" content="en" />
+  <meta name="DC.publisher" content="Zenodo" />
+  <meta name="DC.rights" content="Creative Commons Attribution 4.0 International (CC BY 4.0)" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yeraygarrido.dev/papers/paired-evaluation/" />
+  <meta property="og:title" content="Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain" />
+  <meta property="og:description" content="555,744 paired GPS ground-truth evaluations across 59 Bizkaibus stops: Bide+ achieves 64% vs 39% accuracy for the official operator app." />
+  <meta property="og:image" content="https://yeraygarrido.dev/img/projects/bideplus_og.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://yeraygarrido.dev/papers/paired-evaluation/#article",
+    "headline": "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
+    "name": "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
+    "author": {
+      "@type": "Person",
+      "name": "Yeray Garrido Parra",
+      "givenName": "Yeray",
+      "familyName": "Garrido Parra",
+      "url": "https://yeraygarrido.dev/",
+      "sameAs": "https://orcid.org/0009-0008-0459-0294"
+    },
+    "datePublished": "2026-11-16",
+    "version": "1.0",
+    "inLanguage": "en",
+    "identifier": "https://doi.org/10.5281/zenodo.24286027",
+    "sameAs": "https://doi.org/10.5281/zenodo.24286027",
+    "url": "https://yeraygarrido.dev/papers/paired-evaluation/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Zenodo"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "isAccessibleForFree": true,
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://yeraygarrido.dev/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "abstract": "Empirical paired evaluation of 555,744 real-time bus arrival predictions against GPS ground truth across 59 stops of the Bizkaibus interurban network in Biscay, Spain. Using only public open-data feeds (GTFS + SIRI-VM), the Bide+ method reaches 64% accuracy within ±2 minutes versus 39% for the official operator application, outperforming it at 57 of 59 evaluated stops."
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/img/logo.webp" alt="Yeray Garrido Logo" />
+        <span>Yeray Garrido</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation">
+        <a href="/papers/">← All Papers</a>
+        <a href="/">Portfolio</a>
+        <a href="https://doi.org/10.5281/zenodo.24286027" target="_blank" rel="noopener noreferrer">Zenodo DOI ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Preprint v1.0 · Empirical Paired Evaluation · Open Access (CC BY 4.0)</p>
+    <h1>Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain</h1>
+    <p class="lead">
+      <strong>Yeray Garrido Parra</strong> · Independent Researcher &amp; Software Engineer (Bilbao, Spain) ·
+      <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer">ORCID 0009-0008-0459-0294</a>
+    </p>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <span class="meta-label">DOI</span>
+        <span class="meta-val"><a href="https://doi.org/10.5281/zenodo.24286027" target="_blank" rel="noopener noreferrer">10.5281/zenodo.24286027 ↗</a></span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Published</span>
+        <span class="meta-val">2026-11-16 (v1.0 · EN)</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Key Result</span>
+        <span class="meta-val">64% vs 39% (±2 min) · 57/59 stops</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Sample Size</span>
+        <span class="meta-val">555,744 paired predictions</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf" download>↓ Download Preprint PDF (v1.0)</a>
+      <a class="btn btn-secondary" href="/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf" download>↓ Download Reading Version PDF</a>
+      <a class="btn btn-accent" href="https://doi.org/10.5281/zenodo.24286027" target="_blank" rel="noopener noreferrer">View on Zenodo ↗</a>
+      <a class="btn btn-secondary" href="https://github.com/Garridoparrayeray/bide-eta" target="_blank" rel="noopener noreferrer">Reference Code (GitHub) ↗</a>
+    </div>
+
+    <section class="panel">
+      <h2>Abstract</h2>
+      <p>
+        Real-time bus arrival information is a critical component of public transit usability, yet many regional transit operators either rely on proprietary prediction engines of opaque accuracy or publish raw vehicle-position feeds without explicit schedule-deviation fields.
+      </p>
+      <p>
+        This study presents a large-scale paired empirical evaluation comparing the open-data Bide+ arrival prediction method against the official operator application on the Bizkaibus interurban bus network in Biscay, Spain. Evaluating 555,744 strictly paired predictions against actual GPS ground-truth passages across 59 stops, the Bide+ method achieves 64% accuracy within a ±2-minute tolerance window compared to 39% for the official operator application (+25 percentage points), outperforming the official predictor at 57 out of 59 evaluated stops.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Public Transport</span>
+        <span class="tag">ETA Prediction</span>
+        <span class="tag">GTFS / SIRI-VM</span>
+        <span class="tag">Open Data</span>
+        <span class="tag">Paired Benchmark</span>
+        <span class="tag">Bizkaibus / Bide+</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="bibtex-header">
+        <h2 style="margin:0;">BibTeX Citation</h2>
+        <button class="copy-btn" type="button" onclick="copyBibtex(this)">Copy BibTeX</button>
+      </div>
+      <pre class="bibtex" id="bibtex-block">@misc{garrido_parra_2026_24286027,
+  author       = {Garrido Parra, Yeray},
+  title        = {{Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain}},
+  month        = nov,
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.24286027},
+  url          = {https://doi.org/10.5281/zenodo.24286027}
+}</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Yeray Garrido Parra · ORCID 0009-0008-0459-0294</span>
+      <span><a href="/papers/">All Publications</a> · <a href="/">yeraygarrido.dev</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function copyBibtex(btn) {
+      var text = document.getElementById("bibtex-block").textContent;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "Copied ✓";
+          setTimeout(function () { btn.textContent = "Copy BibTeX"; }, 1800);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation — Yeray Garrido Parra</title>
+  <meta name="description" content="Reproducible three-layer bus arrival prediction method with explicit abstention and shrunk learned medians for SIRI-VM/GTFS feeds that omit delays, evaluated over 9.1 million predictions (92–96% accuracy under 3 min)." />
+  <meta name="author" content="Yeray Garrido Parra" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://yeraygarrido.dev/papers/three-layer-method/" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="stylesheet" href="/papers/scholar.css" />
+
+  <!-- Highwire Press / Google Scholar Metadata -->
+  <meta name="citation_title" content="Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation" />
+  <meta name="citation_author" content="Garrido Parra, Yeray" />
+  <meta name="citation_author_orcid" content="0009-0008-0459-0294" />
+  <meta name="citation_publication_date" content="2026/11/16" />
+  <meta name="citation_online_date" content="2026/11/16" />
+  <meta name="citation_doi" content="10.5281/zenodo.24286302" />
+  <meta name="citation_publisher" content="Zenodo" />
+  <meta name="citation_language" content="en" />
+  <meta name="citation_pdf_url" content="https://yeraygarrido.dev/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf" />
+  <meta name="citation_abstract_html_url" content="https://yeraygarrido.dev/papers/three-layer-method/" />
+  <meta name="citation_keywords" content="bus arrival prediction; three-layer architecture; explicit abstention; SIRI-VM; GTFS; shrunk medians; open reference implementation; Bide+" />
+
+  <!-- Dublin Core Metadata -->
+  <meta name="DC.title" content="Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation" />
+  <meta name="DC.creator" content="Garrido Parra, Yeray" />
+  <meta name="DC.date" content="2026-11-16" />
+  <meta name="DC.identifier" content="https://doi.org/10.5281/zenodo.24286302" />
+  <meta name="DC.language" content="en" />
+  <meta name="DC.publisher" content="Zenodo" />
+  <meta name="DC.rights" content="Creative Commons Attribution 4.0 International (CC BY 4.0)" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yeraygarrido.dev/papers/three-layer-method/" />
+  <meta property="og:title" content="Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation" />
+  <meta property="og:description" content="Three-layer ETA prediction architecture evaluated on 9.1M predictions: 92–96% accuracy within ±3 min, twice the published timetable baseline." />
+  <meta property="og:image" content="https://yeraygarrido.dev/img/projects/bideplus_og.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://yeraygarrido.dev/papers/three-layer-method/#article",
+    "headline": "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
+    "name": "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
+    "author": {
+      "@type": "Person",
+      "name": "Yeray Garrido Parra",
+      "givenName": "Yeray",
+      "familyName": "Garrido Parra",
+      "url": "https://yeraygarrido.dev/",
+      "sameAs": "https://orcid.org/0009-0008-0459-0294"
+    },
+    "datePublished": "2026-11-16",
+    "version": "1.1",
+    "inLanguage": "en",
+    "identifier": "https://doi.org/10.5281/zenodo.24286302",
+    "sameAs": "https://doi.org/10.5281/zenodo.24286302",
+    "url": "https://yeraygarrido.dev/papers/three-layer-method/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Zenodo"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "isAccessibleForFree": true,
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://yeraygarrido.dev/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "abstract": "Specification of a reproducible three-layer bus arrival prediction architecture designed for real-time public transport feeds that report GPS vehicle positions but omit explicit delay or trip-assignment fields. Combining geometric GPS projection onto GTFS shapes (Layer 1), last-stop tracking with explicit abstention to avoid fabricated delays (Layer 2), and shrunk learned segment travel-time medians (Layer 3), the method achieves 92–96% accuracy under 3 minutes across 9.1 million evaluated predictions."
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/img/logo.webp" alt="Yeray Garrido Logo" />
+        <span>Yeray Garrido</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation">
+        <a href="/papers/">← All Papers</a>
+        <a href="/">Portfolio</a>
+        <a href="https://doi.org/10.5281/zenodo.24286302" target="_blank" rel="noopener noreferrer">Zenodo DOI ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Preprint v1.1 · Method Specification · Open Access (CC BY 4.0 &amp; MIT)</p>
+    <h1>Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation</h1>
+    <p class="lead">
+      <strong>Yeray Garrido Parra</strong> · Independent Researcher &amp; Software Engineer (Bilbao, Spain) ·
+      <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer">ORCID 0009-0008-0459-0294</a>
+    </p>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <span class="meta-label">DOI</span>
+        <span class="meta-val"><a href="https://doi.org/10.5281/zenodo.24286302" target="_blank" rel="noopener noreferrer">10.5281/zenodo.24286302 ↗</a></span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Published</span>
+        <span class="meta-val">2026-11-16 (v1.1 · EN)</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Accuracy (&lt;3 min)</span>
+        <span class="meta-val">92–96% · 2× Timetable Baseline</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Evaluations</span>
+        <span class="meta-val">9.1 million predictions</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf" download>↓ Download Preprint PDF (v1.1)</a>
+      <a class="btn btn-accent" href="https://doi.org/10.5281/zenodo.24286302" target="_blank" rel="noopener noreferrer">View on Zenodo ↗</a>
+      <a class="btn btn-secondary" href="https://github.com/Garridoparrayeray/bide-eta" target="_blank" rel="noopener noreferrer">Python Reference Implementation ↗</a>
+    </div>
+
+    <section class="panel">
+      <h2>Abstract</h2>
+      <p>
+        Many open transit vehicle-monitoring feeds (SIRI-VM and raw GTFS-RT VehiclePositions) broadcast periodic GPS coordinates while omitting schedule-deviation fields and reliable trip identifiers. Standard arrival predictors either fall back to static timetables or infer noisy, fabricated delays that erode rider trust.
+      </p>
+      <p>
+        This paper specifies a reproducible three-layer arrival prediction architecture accompanied by an open MIT-licensed Python reference implementation: (L1) geometric GPS projection onto GTFS route shapes, (L2) last-stop tracking with explicit abstention when state ambiguity prevents honest inference, and (L3) empirical shrunk medians learned from historical inter-stop travel times. Across 9.1 million evaluated predictions, the method attains 92–96% accuracy within ±3 minutes—doubling the reliability of published timetables without proprietary operator telemetry.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Three-Layer ETA</span>
+        <span class="tag">Explicit Abstention</span>
+        <span class="tag">SIRI-VM</span>
+        <span class="tag">GTFS Shapes</span>
+        <span class="tag">Shrunk Medians</span>
+        <span class="tag">Reproducible Science</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="bibtex-header">
+        <h2 style="margin:0;">BibTeX Citation</h2>
+        <button class="copy-btn" type="button" onclick="copyBibtex(this)">Copy BibTeX</button>
+      </div>
+      <pre class="bibtex" id="bibtex-block">@misc{garrido_parra_2026_24286302,
+  author       = {Garrido Parra, Yeray},
+  title        = {{Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation}},
+  month        = nov,
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {1.1},
+  doi          = {10.5281/zenodo.24286302},
+  url          = {https://doi.org/10.5281/zenodo.24286302}
+}</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Yeray Garrido Parra · ORCID 0009-0008-0459-0294</span>
+      <span><a href="/papers/">All Publications</a> · <a href="/">yeraygarrido.dev</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function copyBibtex(btn) {
+      var text = document.getElementById("bibtex-block").textContent;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "Copied ✓";
+          setTimeout(function () { btn.textContent = "Copy BibTeX"; }, 1800);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

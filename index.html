@@ -5,20 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="preconnect" href="https://yeraygarrido.dev" crossorigin />
+  <!-- Critical Self-Hosted Production Fonts (Newsreader Condensed Display + Schibsted Grotesk + IBM Plex Mono) -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/newsreader-var.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/newsreader-var-italic.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/schibsted-var.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/ibm-plex-mono-400.woff2" crossorigin />
 
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/anton.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/syncopate-700.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/syncopate-400.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-500.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-600.woff2" crossorigin />
-
-  <title>Yeray Garrido | Ingeniero de Software &amp; Desarrollador Full Stack</title>
-  <meta name="title" content="Yeray Garrido | Ingeniero de Software &amp; Desarrollador Full Stack" />
+  <title>Yeray Garrido | Ingeniero de Software, Full Stack &amp; Open Science</title>
+  <meta name="title" content="Yeray Garrido | Ingeniero de Software, Full Stack &amp; Open Science" />
   <meta name="description"
-    content="Yeray Garrido, Ingeniero de Software y Desarrollador Full Stack. Especialista en desarrollo backend con PHP y Java, frontend con React y TypeScript, y aplicaciones web a medida de alto rendimiento." />
-  <meta name="author" content="Yeray Garrido" />
+    content="Yeray Garrido Parra — Ingeniero de Software y Desarrollador Full Stack en Bilbao. Creador de Bide+ (bideplus.eus) y Gasolinera+ (gasolineraplus.app), ingeniero en Horión y autor de publicaciones científicas en Zenodo (ORCID 0009-0008-0459-0294)." />
+  <meta name="author" content="Yeray Garrido Parra" />
 
   <meta name="geo.region" content="ES-BI" />
   <meta name="geo.placename" content="Bilbao, Bizkaia" />
@@ -26,28 +23,48 @@
   <meta name="ICBM" content="43.2630, -2.9350" />
 
   <link rel="canonical" href="https://yeraygarrido.dev/" />
+  <link rel="alternate" hreflang="es" href="https://yeraygarrido.dev/" />
+  <link rel="alternate" hreflang="x-default" href="https://yeraygarrido.dev/" />
 
+  <!-- Machine-Readable & GEO 2026 Discovery Links -->
+  <link rel="alternate" type="text/plain" title="LLMs Context (GEO)" href="https://yeraygarrido.dev/llms.txt" />
+  <link rel="alternate" type="application/json" title="Structured CV (JSON)" href="https://yeraygarrido.dev/cv.json" />
+  <link rel="alternate" type="application/xml" title="Structured CV (XML)" href="https://yeraygarrido.dev/cv.xml" />
+  <link rel="me" href="https://orcid.org/0009-0008-0459-0294" />
+  <link rel="me" href="https://github.com/Garridoparrayeray" />
+  <link rel="me" href="https://www.linkedin.com/in/yeray-garrido" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="profile" />
+  <meta property="profile:first_name" content="Yeray" />
+  <meta property="profile:last_name" content="Garrido Parra" />
+  <meta property="profile:username" content="Garridoparrayeray" />
   <meta property="og:url" content="https://yeraygarrido.dev/" />
-  <meta property="og:title" content="Yeray Garrido | Ingeniero de Software &amp; Desarrollador Full Stack" />
+  <meta property="og:title" content="Yeray Garrido | Ingeniero de Software, Full Stack &amp; Open Science" />
   <meta property="og:description"
-    content="Ingeniero de Software y Desarrollador Full Stack. Arquitecturas backend PHP/Java, React, TypeScript y aplicaciones web de alto rendimiento." />
+    content="Ingeniero de Software y Desarrollador Full Stack en Bilbao. Creador de Bide+ (16 redes) y Gasolinera+ (11.400+ estaciones), e investigador independiente con publicaciones en Zenodo." />
   <meta property="og:image" content="https://yeraygarrido.dev/og-image.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Yeray Garrido Portfolio" />
+  <meta property="og:image:alt" content="Yeray Garrido — Ingeniero de Software &amp; Desarrollador Full Stack" />
+  <meta property="og:site_name" content="Yeray Garrido" />
   <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="eu_ES" />
 
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://yeraygarrido.dev/" />
-  <meta name="twitter:title" content="Yeray Garrido | Ingeniero de Software &amp; Desarrollador Full Stack" />
+  <meta name="twitter:title" content="Yeray Garrido | Ingeniero de Software, Full Stack &amp; Open Science" />
   <meta name="twitter:description"
-    content="Ingeniero de Software y Desarrollador Full Stack. Backend nativo, React y alto rendimiento." />
+    content="Ingeniero de Software en Bilbao. Creador de Bide+ (bideplus.eus) y Gasolinera+ (gasolineraplus.app), backend PHP/Java/Python y publicaciones científicas en Zenodo." />
   <meta name="twitter:image" content="https://yeraygarrido.dev/og-image.webp" />
+  <meta name="twitter:image:alt" content="Yeray Garrido — Ingeniero de Software &amp; Desarrollador Full Stack" />
 
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="theme-color" content="#09090B" />
+  <meta name="color-scheme" content="dark light" />
 
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
   <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png" />
@@ -61,9 +78,7 @@
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://archive.yeraygarrido.dev" />
 
-  <meta property="og:image:alt" content="Yeray Garrido — Ingeniero de Software &amp; Desarrollador Full Stack" />
-  <meta name="twitter:image:alt" content="Yeray Garrido — Ingeniero de Software &amp; Desarrollador Full Stack" />
-
+  <!-- 2026 SEO & GEO Knowledge Graph (Schema.org JSON-LD) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -71,36 +86,62 @@
       {
         "@type": "WebSite",
         "@id": "https://yeraygarrido.dev/#website",
-        "url": "https://yeraygarrido.dev",
+        "url": "https://yeraygarrido.dev/",
         "name": "Yeray Garrido — Ingeniero de Software & Desarrollador Full Stack",
-        "description": "Ingeniero de Software y Desarrollador Full Stack. Especialista en PHP, Java, React, TypeScript y arquitecturas web de alto rendimiento.",
-        "inLanguage": "es-ES",
-        "publisher": {
-          "@id": "https://yeraygarrido.dev/#person"
-        }
+        "description": "Portfolio profesional, productos propios (Bide+, Gasolinera+) y publicaciones científicas de acceso abierto de Yeray Garrido Parra.",
+        "inLanguage": ["es", "en", "eu"],
+        "publisher": { "@id": "https://yeraygarrido.dev/#person" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://yeraygarrido.dev/#profilepage",
+        "url": "https://yeraygarrido.dev/",
+        "name": "Yeray Garrido Parra — Software Engineer & Independent Researcher",
+        "isPartOf": { "@id": "https://yeraygarrido.dev/#website" },
+        "mainEntity": { "@id": "https://yeraygarrido.dev/#person" },
+        "dateModified": "2026-11-21"
       },
       {
         "@type": "Person",
         "@id": "https://yeraygarrido.dev/#person",
-        "name": "Yeray Garrido",
-        "url": "https://yeraygarrido.dev",
+        "name": "Yeray Garrido Parra",
+        "alternateName": "Yeray Garrido",
+        "givenName": "Yeray",
+        "familyName": "Garrido Parra",
+        "url": "https://yeraygarrido.dev/",
         "image": {
           "@type": "ImageObject",
-          "url": "https://yeraygarrido.dev/og-image.webp"
+          "url": "https://yeraygarrido.dev/og-image.webp",
+          "width": 1200,
+          "height": 630
         },
-        "jobTitle": [
-          "Desarrollador Full Stack",
-          "Ingeniero de Software",
-          "Full Stack Developer"
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "ORCID",
+            "value": "0009-0008-0459-0294",
+            "url": "https://orcid.org/0009-0008-0459-0294"
+          }
         ],
+        "jobTitle": [
+          "Software Engineer",
+          "Ingeniero de Software",
+          "Full Stack Developer",
+          "Independent Researcher"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Horión Castillo Ingeniería Informática SL",
+          "alternateName": "Horión Software Engineering"
+        },
         "hasOccupation": {
           "@type": "Occupation",
-          "name": "Desarrollador Full Stack",
-          "occupationalCategory": "15-1254.00",
-          "skills": "PHP 8, Java 21, React 19, TypeScript, MySQL, MariaDB, Docker, Linux, REST APIs, GTFS, Arquitecturas RAG, LLMs"
+          "name": "Software Engineer & Full Stack Developer",
+          "occupationalCategory": "15-1252.00",
+          "skills": "PHP 8, Java 21, Python, C, React 19, TypeScript, SQLite, MySQL, MariaDB, Docker, Linux, REST APIs, GTFS, SIRI-VM, Kalman Filtering, Machine Learning, RAG, LLMs"
         },
-        "description": "Ingeniero de Software y Desarrollador Full Stack ubicado en Bilbao (Bizkaia, España). Especializado en Backend y Frontend nativo, diseño de sistemas escalables, APIs RESTful y aplicaciones web de alto rendimiento.",
-        "email": "garridoparrayeraytx@gmail.com",
+        "description": "Ingeniero de Software, Desarrollador Full Stack e investigador independiente ubicado en Bilbao (Bizkaia, España). Ingeniero en Horión desde junio de 2026, creador de Bide+ (bideplus.eus) y Gasolinera+ (gasolineraplus.app), y autor de publicaciones técnicas en acceso abierto en Zenodo.",
+        "email": "mailto:garridoparrayeraytx@gmail.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Bilbao",
@@ -108,53 +149,41 @@
           "addressCountry": "ES"
         },
         "areaServed": [
-          {
-            "@type": "AdministrativeArea",
-            "name": "Bilbao"
-          },
-          {
-            "@type": "AdministrativeArea",
-            "name": "Bizkaia"
-          },
-          {
-            "@type": "AdministrativeArea",
-            "name": "País Vasco"
-          },
-          {
-            "@type": "Country",
-            "name": "España"
-          }
+          { "@type": "AdministrativeArea", "name": "Bilbao" },
+          { "@type": "AdministrativeArea", "name": "Bizkaia" },
+          { "@type": "AdministrativeArea", "name": "Euskal Herria" },
+          { "@type": "Country", "name": "Spain" }
         ],
         "knowsAbout": [
-          "Desarrollo Full Stack",
+          "Software Engineering",
           "Full Stack Development",
-          "Desarrollo Backend",
-          "Desarrollo Frontend",
+          "Backend Architecture",
           "PHP 8",
           "Java 21",
+          "Python",
           "C",
-          "JavaScript",
-          "TypeScript",
           "React 19",
+          "TypeScript",
+          "SQLite",
           "MySQL",
-          "WordPress",
-          "Node.js",
-          "Docker",
           "Linux",
-          "APIs RESTful",
+          "Docker",
+          "REST APIs",
           "GTFS",
-          "Ciberseguridad",
-          "Inteligencia Artificial",
-          "LLMs",
-          "Arquitecturas RAG"
+          "SIRI-VM",
+          "Transit ETA Prediction",
+          "Open Science",
+          "Cybersecurity",
+          "Applied AI & RAG"
         ],
         "knowsLanguage": ["es", "eu", "en"],
         "sameAs": [
-          "https://archive.yeraygarrido.dev",
-          "https://www.linkedin.com/in/yeray-garrido",
+          "https://orcid.org/0009-0008-0459-0294",
           "https://github.com/Garridoparrayeray",
-          "https://instagram.com/yerayyy.___",
-          "https://t.me/YerayGarrido"
+          "https://www.linkedin.com/in/yeray-garrido",
+          "https://archive.yeraygarrido.dev",
+          "https://bideplus.eus",
+          "https://gasolineraplus.app"
         ],
         "alumniOf": [
           {
@@ -170,34 +199,76 @@
             "@type": "EducationalOrganization",
             "name": "Fundación EDE"
           }
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Servicios de Desarrollo de Software",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Desarrollo Web Full Stack a Medida"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Diseño e Implementación de APIs y Arquitecturas Backend"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Desarrollo Frontend React & TypeScript"
-              }
-            }
-          ]
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://bideplus.eus/#app",
+        "name": "Bide+",
+        "url": "https://bideplus.eus",
+        "applicationCategory": "TravelApplication",
+        "operatingSystem": "Web, iOS (PWA), Android (PWA)",
+        "description": "PWA de movilidad en tiempo real para 16 redes de transporte público de Euskal Herria (Bizkaibus, Metro Bilbao, Euskotren, Renfe Cercanías, Bilbobus, Dbus, Tuvisa y más) con motor predictivo ETA propio validado empíricamente (64% vs 39% app oficial).",
+        "author": { "@id": "https://yeraygarrido.dev/#person" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
         }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://gasolineraplus.app/#app",
+        "name": "Gasolinera+",
+        "url": "https://gasolineraplus.app",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web, iOS (PWA), Android (PWA)",
+        "description": "Comparador en tiempo real de precios de combustible en más de 11.400 estaciones de servicio en España (datos oficiales MITECO), con gestor de vehículos y consumos, ordenador de viaje en vivo y mapa interactivo de calor. Instalable en iPhone y Android.",
+        "author": { "@id": "https://yeraygarrido.dev/#person" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://yeraygarrido.dev/papers/paired-evaluation/#article",
+        "headline": "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
+        "author": { "@id": "https://yeraygarrido.dev/#person" },
+        "datePublished": "2026-11-16",
+        "inLanguage": "en",
+        "identifier": "https://doi.org/10.5281/zenodo.24286027",
+        "sameAs": "https://doi.org/10.5281/zenodo.24286027",
+        "url": "https://yeraygarrido.dev/papers/paired-evaluation/",
+        "publisher": { "@type": "Organization", "name": "Zenodo" },
+        "isAccessibleForFree": true
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://yeraygarrido.dev/papers/three-layer-method/#article",
+        "headline": "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
+        "author": { "@id": "https://yeraygarrido.dev/#person" },
+        "datePublished": "2026-11-16",
+        "inLanguage": "en",
+        "identifier": "https://doi.org/10.5281/zenodo.24286302",
+        "sameAs": "https://doi.org/10.5281/zenodo.24286302",
+        "url": "https://yeraygarrido.dev/papers/three-layer-method/",
+        "publisher": { "@type": "Organization", "name": "Zenodo" },
+        "isAccessibleForFree": true
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://yeraygarrido.dev/papers/memoria-bide-eta/#article",
+        "headline": "Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados",
+        "author": { "@id": "https://yeraygarrido.dev/#person" },
+        "datePublished": "2026-11-07",
+        "inLanguage": "es",
+        "identifier": "https://doi.org/10.5281/zenodo.24041572",
+        "sameAs": "https://doi.org/10.5281/zenodo.24041572",
+        "url": "https://yeraygarrido.dev/papers/memoria-bide-eta/",
+        "publisher": { "@type": "Organization", "name": "Zenodo" },
+        "isAccessibleForFree": true
       }
     ]
   }
@@ -207,7 +278,25 @@
 <body>
   <div id="root"></div>
 
-  <noscript>Para visualizar el portfolio interactivo de Yeray Garrido, por favor habilita JavaScript en tu navegador.</noscript>
+  <noscript>
+    <main style="max-width:860px;margin:0 auto;padding:40px 24px;font-family:system-ui,sans-serif;background:#09090B;color:#F6F4EF;line-height:1.6;">
+      <h1>Yeray Garrido Parra — Ingeniero de Software &amp; Desarrollador Full Stack</h1>
+      <p>Bilbao, Bizkaia (España) · ORCID: <a href="https://orcid.org/0009-0008-0459-0294" style="color:#D6C7B2;">0009-0008-0459-0294</a> · Email: <a href="mailto:garridoparrayeraytx@gmail.com" style="color:#D6C7B2;">garridoparrayeraytx@gmail.com</a></p>
+      <p>Ingeniero de Software en Horión Software Engineering (Jun 2026 – Presente). Especialista en Backend (PHP 8, Java 21, Python, C, SQLite/MySQL), Frontend (React 19, TypeScript) y sistemas de datos abiertos en tiempo real.</p>
+      <h2>Productos en Producción</h2>
+      <ul>
+        <li><strong>Bide+</strong> (<a href="https://bideplus.eus" style="color:#D6C7B2;">bideplus.eus</a>): PWA de movilidad para 16 redes de transporte en Euskal Herria con motor propio de predicción ETA (64% vs 39% precisión frente a la app oficial).</li>
+        <li><strong>Gasolinera+</strong> (<a href="https://gasolineraplus.app" style="color:#D6C7B2;">gasolineraplus.app</a>): Comparador en tiempo real de precios en +11.400 estaciones MITECO en España, instalable en iPhone y Android.</li>
+      </ul>
+      <h2>Publicaciones Científicas (Open Science · Zenodo)</h2>
+      <ul>
+        <li><a href="/papers/paired-evaluation/" style="color:#D6C7B2;">Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain</a> (DOI 10.5281/zenodo.24286027)</li>
+        <li><a href="/papers/three-layer-method/" style="color:#D6C7B2;">Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation</a> (DOI 10.5281/zenodo.24286302)</li>
+        <li><a href="/papers/memoria-bide-eta/" style="color:#D6C7B2;">Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados (200 pp.)</a> (DOI 10.5281/zenodo.24041572)</li>
+      </ul>
+      <p>Archivo académico completo: <a href="/papers/" style="color:#D6C7B2;">yeraygarrido.dev/papers/</a> · API pública: <a href="/cv.json" style="color:#D6C7B2;">cv.json</a> · <a href="/cv.xml" style="color:#D6C7B2;">cv.xml</a> · <a href="/llms.txt" style="color:#D6C7B2;">llms.txt</a></p>
+    </main>
+  </noscript>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 

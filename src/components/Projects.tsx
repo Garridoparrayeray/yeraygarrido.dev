@@ -152,19 +152,18 @@ export default function Projects() {
         en: "Native PHP backend with clean layered architecture (Controllers/Models/Services) precompiling official GTFS feeds daily into an embedded SQLite database at build time — zero database server latency, optimal for Vercel serverless. Engineered a proprietary ETA algorithm in PHP projecting real-time bus GPS telemetry onto geometric route paths stop-by-stop, significantly optimizing arrival estimation accuracy. Includes live service alerts, offline PWA caching for recent searches, two visual themes, and bilingual support (ES/EU).",
         eu: "PHP backend natiboa geruzatan antolatua (Controllers/Models/Services), egunero GTFS datu ofizialak build-ean txertatutako SQLite datu-base batera aurrekonpilatzen duena — kanpoko datu-basearen latentziarik gabe, Vercel serverless arkitekturarako ezin hobea. PHP bidezko ETA algoritmo propioa garatu nuen: autobusaren GPS posizioa ibilbide geometrikoaren gainean kokatzen du geltokiz geltoki, iritsiera kalkuluen zehaztasuna nabarmen optimizatuz. Gertakarien abisuak denbora errealean, lineaz kanpoko PWA katxea, bi tema bisual eta elebitasuna (ES/EU) biltzen ditu.",
       },
-      imageUrl: "/img/projects/bideplus_static.webp",
+      imageUrl: "/img/projects/bideplus_og.webp",
       images: [
-        "/img/projects/bideplus_static.webp",
-        "/img/projects/bideplus_desktop.webp",
-        "/img/projects/bideplus_mobile.webp",
+        "/img/projects/bideplus_og.webp",
+        "/img/projects/bideplus_home_desktop.webp",
+        "/img/projects/bideplus_home_mobile.webp",
         "/img/projects/bideplus_bizkaibus_mobile.webp",
         "/img/projects/bideplus_bizkaibus_desktop.webp",
         "/img/projects/bideplus_metro_mobile.webp",
+        "/img/projects/bideplus_estado_mobile.webp",
+        "/img/projects/bideplus_mapa_mobile.webp",
         "/img/projects/bideplus_euskotren_mobile.webp",
-        "/img/projects/bideplus_renfe_mobile.webp",
-        "/img/projects/bizkaibus_captura.png",
-        "/img/projects/bizkaibus_mobile_view.png",
-        "/img/projects/bizkaibus_miamor_theme.png"
+        "/img/projects/bideplus_renfe_mobile.webp"
       ],
     },
     {
@@ -177,6 +176,7 @@ export default function Projects() {
         eu: "Espainia osoko erregai-prezioak denbora errealean bilatu eta alderatzeko tresna (MITECO), ibilgailuen kudeaketarekin, kontsumo-kontrolekin, denbora errealeko bidaia-ordenagailuarekin eta bero-maparekin.",
       },
       link: "https://github.com/Garridoparrayeray/gasolinera-plus",
+      demoUrl: "https://gasolineraplus.app",
       role: { es: "Full Stack (PHP + Vanilla JS)", en: "Full Stack (PHP + Vanilla JS)", eu: "Full Stack (PHP + Vanilla JS)" },
       year: "2025",
       longDescChallenge: {

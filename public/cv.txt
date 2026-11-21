@@ -7,6 +7,8 @@
 Teléfono: +34 622 945 185
 Email:    garridoparrayeraytx@gmail.com
 Web:      https://yeraygarrido.dev
+ORCID:    https://orcid.org/0009-0008-0459-0294
+Papers:   https://yeraygarrido.dev/papers/
 GitHub:   https://github.com/Garridoparrayeray
 LinkedIn: https://www.linkedin.com/in/yeray-garrido
 Lugar:    Bilbao, Bizkaia, Spain
@@ -68,14 +70,26 @@ entornos Linux.
 
 [ PROYECTOS DESTACADOS ]
 
-> Bide+ (BizkaiBus+ / Metro+ / Euskotren+ / Renfe Cercanías+)
-  PWA de movilidad predictiva en tiempo real en Euskadi. Precompilación automatizada
-  de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX con cálculo propio de ETA.
+> Bide+ (https://bideplus.eus — 16 redes de Euskal Herria)
+  PWA de movilidad predictiva en tiempo real en Euskal Herria. Precompilación
+  automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX con
+  motor propio de ETA (64% vs 39% precisión frente a la app oficial).
 
-> Gasolinera+
-  Buscador en tiempo real de precios de combustible en España con API REST propia en
-  PHP nativo sobre datos oficiales del MITECO, gestor de telemetría de vehículo propio
-  (depósito, repostajes, medias L/100km), ordenador de viaje en vivo y mapas de calor.
+> Gasolinera+ (https://gasolineraplus.app)
+  Buscador en tiempo real de precios de combustible en +11.400 estaciones MITECO
+  en España con API REST propia en PHP nativo, gestor de vehículos/consumo,
+  ordenador de viaje en vivo y mapas de calor. Instalable en iPhone y Android.
+
+[ PUBLICACIONES CIENTÍFICAS (OPEN SCIENCE · ZENODO) ]
+
+> Accuracy of open-data versus operator real-time bus arrival predictions (2026)
+  DOI: 10.5281/zenodo.24286027 | https://yeraygarrido.dev/papers/paired-evaluation/
+
+> Predicting bus arrivals when the feed reports positions but not delays (2026)
+  DOI: 10.5281/zenodo.24286302 | https://yeraygarrido.dev/papers/three-layer-method/
+
+> Predicción de llegadas de autobuses con posiciones en tiempo real (200 pp., 2026)
+  DOI: 10.5281/zenodo.24041572 | https://yeraygarrido.dev/papers/memoria-bide-eta/
 
 > GastroAccess Euskadi
   SPA (React, TypeScript, Vite) que consume APIs de Open Data Euskadi mediante
