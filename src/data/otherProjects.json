@@ -2,18 +2,18 @@
   {
     "id": "bideplus",
     "title": {
-      "es": "Bide+",
-      "en": "Bide+",
-      "eu": "Bide+"
+      "es": "Bideplus (Bide+)",
+      "en": "Bideplus (Bide+)",
+      "eu": "Bideplus (Bide+)"
     },
     "tech": "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, PWA, Vercel Serverless, GitHub Actions",
     "desc": {
-      "es": "Aplicación gratuita e instalable que reúne las 16 redes de transporte público de Euskal Herria (Bizkaibus, Metro, Euskotren, Tranvía, Renfe y más) en un solo lugar. Calcula en tiempo real cuándo llega tu autobús o tren con mayor precisión que la app oficial, pensada para usar cada día desde el móvil sin complicaciones.",
-      "en": "Free, installable app uniting all 16 public transit networks across the Basque Country (Bizkaibus, Metro, Euskotren, Trams, Renfe, and more) in one place. Predicts real-time bus and train arrivals more accurately than the official app, designed for effortless everyday use on mobile.",
-      "eu": "Euskal Herriko 16 garraio publikoko sareak (Bizkaibus, Metroa, Euskotren, Tranbia, Renfe eta gehiago) leku bakarrean biltzen dituen doako aplikazio instalagarria. Zure autobusa edo trena noiz iritsiko den denbora errealean kalkulatzen du app ofizialak baino zehaztasun handiagoarekin."
+      "es": "Bideplus (Bide+): horarios, tiempo real y planificador de rutas «Cómo llegar» para las 16 redes de transporte público de Euskal Herria (Bizkaibus, Metro, Euskotren, Tranvía, Renfe y más). Calcula en tiempo real cuándo llega tu autobús o tren con mayor precisión que la app oficial (64 % frente al 39 %).",
+      "en": "Bideplus (Bide+): schedules, real-time arrivals, and the «Cómo llegar» multimodal route planner uniting all 16 public transit networks across the Basque Country (Bizkaibus, Metro, Euskotren, Trams, Renfe, and more) with 64% vs 39% ETA accuracy over the official app.",
+      "eu": "Bideplus (Bide+): ordutegiak, denbora erreala eta «Cómo llegar» ibilbide-planifikatzailea Euskal Herriko 16 garraio publikoko sareetarako (Bizkaibus, Metroa, Euskotren, Tranbia, Renfe eta gehiago), app ofizialak baino zehaztasun handiagoarekin (%64 vs %39)."
     },
     "link": "https://github.com/Garridoparrayeray/bizkaibus-renewed",
-    "demoUrl": "https://bideplus.eus",
+    "demoUrl": "https://www.bideplus.eus/",
     "role": {
       "es": "Full Stack / Arquitectura de Datos",
       "en": "Full Stack / Data Architecture",

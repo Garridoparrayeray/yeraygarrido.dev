@@ -70,10 +70,11 @@ entornos Linux.
 
 [ PROYECTOS DESTACADOS ]
 
-> Bide+ (https://bideplus.eus — 16 redes de Euskal Herria)
-  PWA de movilidad predictiva en tiempo real en Euskal Herria. Precompilación
-  automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX con
-  motor propio de ETA (64% vs 39% precisión frente a la app oficial).
+> Bideplus (Bide+) — https://www.bideplus.eus/ (16 redes de Euskal Herria)
+  Horarios, tiempo real y planificador de rutas «Cómo llegar» para 16 redes de
+  transporte público en Euskal Herria. Precompilación automatizada de datos GTFS
+  a SQLite local cruzando flujos SIRI-VM/SIRI-SX con motor propio de ETA
+  (64 % frente al 39 % de la app oficial).
 
 > Gasolinera+ (https://gasolineraplus.app)
   Buscador en tiempo real de precios de combustible en +11.400 estaciones MITECO

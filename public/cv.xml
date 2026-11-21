@@ -62,9 +62,9 @@
     </experience>
     <projects>
         <project>
-            <name>Bide+ (16 redes de Euskal Herria)</name>
-            <url>https://bideplus.eus</url>
-            <description>PWA de movilidad predictiva en tiempo real para 16 redes de transporte en Euskal Herria. Precompilación automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX en vivo con motor propio de ETA (64% vs 39% precisión oficial).</description>
+            <name>Bideplus (Bide+) — 16 redes de Euskal Herria</name>
+            <url>https://www.bideplus.eus/</url>
+            <description>Bideplus (Bide+): horarios, tiempo real y planificador de rutas «Cómo llegar» para 16 redes de transporte público de Euskal Herria. Precompilación automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX en vivo con motor propio de ETA (64 % frente al 39 % de la app oficial).</description>
         </project>
         <project>
             <name>Gasolinera+</name>

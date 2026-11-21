@@ -1286,7 +1286,7 @@ export default function PortfolioMain() {
   const shownTimeline = expTab === "work" ? workJobs : eduItems;
 
   const ui = {
-    openBide: { es: "Abrir bideplus.eus ↗", en: "Open bideplus.eus ↗", eu: "Ireki bideplus.eus ↗" },
+    openBide: { es: "Bideplus (Bide+) ↗", en: "Bideplus (Bide+) ↗", eu: "Bideplus (Bide+) ↗" },
     fullCase: { es: "Caso técnico →", en: "Technical case →", eu: "Kasu teknikoa →" },
     readPapers: {
       es: `Leer ${RESEARCH_PAPERS.length} papers ↓`,
@@ -1729,7 +1729,7 @@ export default function PortfolioMain() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between px-4 min-h-[50px] border border-[#D6C7B2]/45 bg-[#D6C7B2]/[0.08] text-[#D6C7B2] hover:bg-[#D6C7B2] hover:text-[#09090B] font-grotesk font-semibold text-[15px] transition-colors"
               >
-                <span>Bide+</span>
+                <span>Bideplus</span>
                 <span className="font-mono text-sm">
                   <IconGlyph name="up-right" />
                 </span>
@@ -3382,7 +3382,7 @@ export default function PortfolioMain() {
               rel="noopener noreferrer"
               className="block hover:text-[#D6C7B2] py-0.5 break-words"
             >
-              Bide+ (bideplus.eus) <IconGlyph name="up-right" />
+              Bideplus (Bide+) <IconGlyph name="up-right" />
             </a>
             <a
               href={SITE_IDENTITY.gasolineraUrl}

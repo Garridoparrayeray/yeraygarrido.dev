@@ -194,7 +194,7 @@ export const SITE_IDENTITY = {
   githubUrl: "https://github.com/Garridoparrayeray",
   linkedinUrl: "https://www.linkedin.com/in/yeray-garrido",
   photographyUrl: "https://archive.yeraygarrido.dev",
-  bideUrl: "https://bideplus.eus",
+  bideUrl: "https://www.bideplus.eus/",
   gasolineraUrl: "https://gasolineraplus.app",
   papersArchivePath: "/papers/",
   githubCalendarStartDate: "2025-10-01",
@@ -227,28 +227,28 @@ export const LATEST_RELEASE: LatestReleaseConfig = {
     en: "LATEST RELEASE",
     eu: "AZKEN ARGITALPENA",
   },
-  metaRight: "bideplus.eus",
+  metaRight: "Bideplus (Bide+)",
   title: {
-    es: "Bide+ · Movilidad en Euskal Herria",
-    en: "Bide+ · Basque Country Mobility",
-    eu: "Bide+ · Euskal Herriko Mugikortasuna",
+    es: "Bideplus (Bide+) · Movilidad en Euskal Herria",
+    en: "Bideplus (Bide+) · Basque Country Mobility",
+    eu: "Bideplus (Bide+) · Euskal Herriko Mugikortasuna",
   },
   subtitle: {
-    es: "16 redes · 64% vs 39% ETA",
-    en: "16 networks · 64% vs 39% ETA",
-    eu: "16 sare · %64 vs %39 ETA",
+    es: "16 redes · Cómo llegar · 64% vs 39% ETA",
+    en: "16 networks · Route planner · 64% vs 39% ETA",
+    eu: "16 sare · Nola iritsi · %64 vs %39 ETA",
   },
   image: "/img/projects/bideplus_home_mobile.webp?v=2026",
-  imageAlt: "Bide+ instalada en móvil",
+  imageAlt: "Bideplus (Bide+) instalada en móvil",
   frameType: "mobile",
   scrollTarget: "flagship-bide",
-  cursorLabel: "VER BIDE+ ↓",
+  cursorLabel: "VER BIDEPLUS ↓",
   ctaLabel: {
-    es: "App ↗",
-    en: "App ↗",
-    eu: "App ↗",
+    es: "Bideplus ↗",
+    en: "Bideplus ↗",
+    eu: "Bideplus ↗",
   },
-  ctaUrl: "https://bideplus.eus",
+  ctaUrl: "https://www.bideplus.eus/",
 };
 
 // ============================================================================
@@ -257,19 +257,19 @@ export const LATEST_RELEASE: LatestReleaseConfig = {
 export const FLAGSHIP_PRODUCT = {
   projectId: "bideplus",
   eyebrow: {
-    es: "01 / PRODUCTO DESTACADO — BIDE+",
-    en: "01 / FEATURED PRODUCT — BIDE+",
-    eu: "01 / PRODUKTU NABARMENDUA — BIDE+",
+    es: "01 / PRODUCTO DESTACADO — BIDEPLUS (BIDE+)",
+    en: "01 / FEATURED PRODUCT — BIDEPLUS (BIDE+)",
+    eu: "01 / PRODUKTU NABARMENDUA — BIDEPLUS (BIDE+)",
   },
-  titleMain: "Bide+",
+  titleMain: "Bideplus (Bide+)",
   titleAccent: {
     es: "Movilidad en Euskal Herria",
     en: "Basque Country Mobility",
     eu: "Euskal Herriko Mugikortasuna",
   },
-  domainLabel: "BIDEPLUS.EUS",
+  domainLabel: "WWW.BIDEPLUS.EUS",
   metaSubtitle: "PWA · ES / EU · 2026",
-  url: "https://bideplus.eus",
+  url: "https://www.bideplus.eus/",
   defaultScreenIndex: 1,
   screens: [
     {
@@ -289,9 +289,9 @@ export const FLAGSHIP_PRODUCT = {
       operator: { es: "App instalada (PWA)", en: "Installed PWA", eu: "Instalatutako PWA" },
       image: "/img/projects/bideplus_home_mobile.webp?v=2026",
       caption: {
-        es: "Bide+ Hub — App instalada en móvil con planificador de rutas multimodal y acceso directo a las 16 redes de Euskal Herria.",
-        en: "Bide+ Hub — Installed mobile app with multimodal route planning and direct access to all 16 Basque transit networks.",
-        eu: "Bide+ Hub — Mugikorrean instalatutako app-a ibilbide-planifikatzaile multimodalarekin eta Euskal Herriko 16 sareetara sarbidearekin.",
+        es: "Bideplus Hub — App instalada en móvil con planificador de rutas «Cómo llegar» y acceso directo a las 16 redes de Euskal Herria.",
+        en: "Bideplus Hub — Installed mobile app with the «Cómo llegar» multimodal route planner and direct access to all 16 Basque transit networks.",
+        eu: "Bideplus Hub — Mugikorrean instalatutako app-a «Cómo llegar» / Nola iritsi ibilbide-planifikatzaile multimodalarekin eta Euskal Herriko 16 sareetara sarbidearekin.",
       },
     },
     {
@@ -651,7 +651,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
   "location": "Bilbao, Bizkaia, Spain",
   "orcid": "0009-0008-0459-0294",
   "stack": ["PHP 8", "Java 21", "Python", "C", "React 19", "SQLite"],
-  "products": ["https://bideplus.eus", "https://gasolineraplus.app"]
+  "products": ["https://www.bideplus.eus/", "https://gasolineraplus.app"]
 }`,
   },
   {
@@ -672,7 +672,7 @@ Core: PHP 8 · Java 21 · C (42) · Python · SQLite/MySQL · Linux · React 19`
     preview: `# Yeray Garrido — Ingeniero de Software & Investigador Independiente
 > Context for AI models (GEO): Portfolio, open-science publications (Zenodo),
 > and live software products by Yeray Garrido (Bilbao, Spain).
-## Products: Bide+ (bideplus.eus) · Gasolinera+ (gasolineraplus.app)`,
+## Products: Bideplus (Bide+) — https://www.bideplus.eus/ · Gasolinera+ (gasolineraplus.app)`,
   },
 ];
 
@@ -680,7 +680,7 @@ Core: PHP 8 · Java 21 · C (42) · Python · SQLite/MySQL · Linux · React 19`
 // 8. CINTA EDITORIAL CINÉTICA (MARQUEE)
 // ============================================================================
 export const MARQUEE_ITEMS: string[] = [
-  "BIDE+ / BIDEPLUS.EUS",
+  "BIDEPLUS (BIDE+) / WWW.BIDEPLUS.EUS",
   "GASOLINERA+ / GASOLINERAPLUS.APP",
   "OPEN SCIENCE / ZENODO DOI",
   "PHP 8 · JAVA · PYTHON · REACT",
