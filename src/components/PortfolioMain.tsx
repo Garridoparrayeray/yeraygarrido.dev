@@ -123,19 +123,13 @@ export default function PortfolioMain() {
   const curtainInnerRef = useRef<HTMLDivElement>(null);
   const curtainCounterRef = useRef<HTMLSpanElement>(null);
   const curtainBarRef = useRef<HTMLDivElement>(null);
-  const cursorTagRef = useRef<HTMLDivElement>(null);
-  const cursorInnerRef = useRef<HTMLDivElement>(null);
-  const cursorLabelRef = useRef<HTMLSpanElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
-  const bilbaoClockRef = useRef<HTMLSpanElement>(null);
   const drawerClockRef = useRef<HTMLSpanElement>(null);
   const bideCenterPhoneRef = useRef<HTMLDivElement>(null);
   const expListRef = useRef<HTMLDivElement>(null);
   const dockLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   const lenisRef = useRef<Lenis | null>(null);
-  const modalOpenRef = useRef(false);
-  const hideCursorRef = useRef<(() => void) | null>(null);
   const hasMountedBideRef = useRef(false);
   const hasMountedExpRef = useRef(false);
   const hasMountedMetaRef = useRef(false);
@@ -286,14 +280,6 @@ export default function PortfolioMain() {
     }
   }, []);
 
-  // Dismiss desktop cursor follower immediately when a modal opens
-  useEffect(() => {
-    modalOpenRef.current = isAnyModalOpen;
-    if (isAnyModalOpen) {
-      hideCursorRef.current?.();
-    }
-  }, [isAnyModalOpen]);
-
   // Crisp non-stacking transition on the center Bide+ phone when switching operator screen
   useEffect(() => {
     if (!hasMountedBideRef.current) {
@@ -344,7 +330,6 @@ export default function PortfolioMain() {
       } catch {
         // fallback already set
       }
-      if (bilbaoClockRef.current) bilbaoClockRef.current.textContent = desktopText;
       if (drawerClockRef.current) drawerClockRef.current.textContent = compactText;
     };
     updateClock();
@@ -368,115 +353,8 @@ export default function PortfolioMain() {
     let rafFn: ((time: number) => void) | null = null;
     let nativeScrollListener: (() => void) | null = null;
     let marqueeTween: gsap.core.Tween | null = null;
-    const cleanupFns: Array<() => void> = [];
 
-    // --- 1. Bold Desktop Floating Cursor Follower Button (Fine-pointer desktop only) ---
-    // Position (x, y) lives on outer cursorTagRef; scale & autoAlpha live on inner cursorInnerRef
-    // so show/hide animations NEVER overwrite or freeze quickTo(x/y)!
-    let pointerX = 0;
-    let pointerY = 0;
-    let hasPointer = false;
-    let isCursorVisible = false;
-    let currentCursorLabel = "";
-    let syncCursorFromElement: (el: Element | null) => void = () => {};
-    let syncCursorAtPointer = () => {};
-
-    const tagEl = cursorTagRef.current;
-    const tagInner = cursorInnerRef.current;
-    const tagLabel = cursorLabelRef.current;
-
-    if (!reduced && finePointer && tagEl && tagInner && tagLabel) {
-      gsap.set(tagEl, { xPercent: -50, yPercent: -50 });
-      gsap.set(tagInner, { scale: 0.78, autoAlpha: 0 });
-
-      const xTo = gsap.quickTo(tagEl, "x", { duration: 0.22, ease: "power3.out" });
-      const yTo = gsap.quickTo(tagEl, "y", { duration: 0.22, ease: "power3.out" });
-
-      const showTag = (label: string) => {
-        if (currentCursorLabel !== label) {
-          currentCursorLabel = label;
-          tagLabel.textContent = label;
-        }
-        if (!isCursorVisible) {
-          isCursorVisible = true;
-          gsap.set(tagEl, { x: pointerX, y: pointerY });
-          gsap.to(tagInner, {
-            scale: 1,
-            autoAlpha: 1,
-            duration: 0.22,
-            ease: "aw-out",
-            overwrite: true,
-          });
-        }
-      };
-
-      const hideTag = () => {
-        if (!isCursorVisible) return;
-        isCursorVisible = false;
-        gsap.to(tagInner, {
-          scale: 0.78,
-          autoAlpha: 0,
-          duration: 0.15,
-          ease: "power2.in",
-          overwrite: true,
-        });
-      };
-
-      hideCursorRef.current = hideTag;
-
-      syncCursorFromElement = (el: Element | null) => {
-        if (!hasPointer || modalOpenRef.current || !el) {
-          hideTag();
-          return;
-        }
-        if (el.closest("[data-cursor-ignore]")) {
-          hideTag();
-          return;
-        }
-        const hovered = el.closest<HTMLElement>("[data-cursor-label]");
-        const label = hovered?.dataset.cursorLabel;
-        if (label) {
-          showTag(label);
-        } else {
-          hideTag();
-        }
-      };
-
-      syncCursorAtPointer = () => {
-        if (!hasPointer || modalOpenRef.current) {
-          hideTag();
-          return;
-        }
-        syncCursorFromElement(document.elementFromPoint(pointerX, pointerY));
-      };
-
-      const onPointerMove = (e: PointerEvent) => {
-        pointerX = e.clientX;
-        pointerY = e.clientY;
-        if (!hasPointer) {
-          hasPointer = true;
-          gsap.set(tagEl, { x: pointerX, y: pointerY });
-        } else {
-          xTo(pointerX);
-          yTo(pointerY);
-        }
-        syncCursorFromElement(e.target instanceof Element ? e.target : null);
-      };
-
-      window.addEventListener("pointermove", onPointerMove, { passive: true });
-      document.documentElement.addEventListener("pointerleave", hideTag);
-      window.addEventListener("blur", hideTag);
-
-      cleanupFns.push(() => {
-        window.removeEventListener("pointermove", onPointerMove);
-        document.documentElement.removeEventListener("pointerleave", hideTag);
-        window.removeEventListener("blur", hideTag);
-        gsap.killTweensOf(tagEl);
-        gsap.killTweensOf(tagInner);
-      });
-    }
-
-    // --- 2. Desktop Smooth Scroll (Lenis) OR Lightweight Native Scroll Progress (Mobile) ---
+    // --- 1. Desktop Smooth Scroll (Lenis) OR Lightweight Native Scroll Progress (Mobile) ---
     let targetMarqueeScale = 1;
     let currentMarqueeScale = 1;
 
@@ -493,9 +371,6 @@ export default function PortfolioMain() {
         if (progressRef.current) {
           const p = Number.isFinite(e.progress) ? Math.max(0, Math.min(1, e.progress)) : 0;
           progressRef.current.style.transform = `scaleX(${p})`;
-        }
-        if (hasPointer) {
-          syncCursorAtPointer();
         }
         if (marqueeTween && !marqueeTween.paused()) {
           targetMarqueeScale = 1 + Math.min(3.2, Math.abs(e.velocity) * 0.14);
@@ -579,7 +454,7 @@ export default function PortfolioMain() {
         return;
       }
 
-      // A. Architectural Shutter Preloader
+      // A. Architectural Shutter Preloader (Desktop lg+ deliberate cadence; Mobile skips white curtain to prevent flash)
       const heroLines = root.querySelectorAll<HTMLElement>("[data-aw-hero-line]");
       const heroFades = root.querySelectorAll<HTMLElement>("[data-aw-hero-fade]");
       const heroHairline = root.querySelector<HTMLElement>("[data-aw-hero-hairline]");
@@ -593,75 +468,78 @@ export default function PortfolioMain() {
       if (heroFeatureCard) {
         gsap.set(heroFeatureCard, { y: 20, autoAlpha: 0 });
       }
-      if (curtainBarRef.current) {
-        gsap.set(curtainBarRef.current, { scaleX: 0, transformOrigin: "left center" });
-      }
 
-      const counterDuration = useSmoothDesktop ? 0.52 : 0.24;
-      const liftStart = useSmoothDesktop ? 0.54 : 0.25;
-      const liftDuration = useSmoothDesktop ? 0.72 : 0.48;
-      const heroStart = useSmoothDesktop ? 0.82 : 0.42;
-
-      const counterObj = { val: 0 };
       const introTl = gsap.timeline({ defaults: { ease: "aw-out" } });
+      const heroStart = isLargeDesktop ? 1.02 : 0.08;
 
-      if (curtainCounterRef.current) {
-        introTl.to(
-          counterObj,
-          {
-            val: 100,
-            duration: counterDuration,
-            ease: "power2.inOut",
-            onUpdate: () => {
-              if (curtainCounterRef.current) {
-                curtainCounterRef.current.textContent = String(Math.round(counterObj.val)).padStart(
-                  2,
-                  "0"
-                );
-              }
-            },
-          },
-          0
-        );
-      }
+      if (isLargeDesktop) {
+        if (curtainBarRef.current) {
+          gsap.set(curtainBarRef.current, { scaleX: 0, transformOrigin: "left center" });
+        }
+        const counterDuration = 0.72;
+        const liftStart = 0.78;
+        const liftDuration = 0.76;
+        const counterObj = { val: 0 };
 
-      if (curtainBarRef.current) {
-        introTl.to(
-          curtainBarRef.current,
-          {
-            scaleX: 1,
-            duration: counterDuration,
-            ease: "power2.inOut",
-          },
-          0
-        );
-      }
-
-      if (curtainInnerRef.current) {
-        introTl.to(
-          curtainInnerRef.current,
-          {
-            y: -14,
-            autoAlpha: 0,
-            duration: 0.22,
-            ease: "power2.in",
-          },
-          liftStart - 0.08
-        );
-      }
-
-      if (curtainRef.current) {
-        introTl
-          .to(
-            curtainRef.current,
+        if (curtainCounterRef.current) {
+          introTl.to(
+            counterObj,
             {
-              yPercent: -100,
-              duration: liftDuration,
-              ease: "aw-curtain",
+              val: 100,
+              duration: counterDuration,
+              ease: "power2.inOut",
+              onUpdate: () => {
+                if (curtainCounterRef.current) {
+                  curtainCounterRef.current.textContent = String(
+                    Math.round(counterObj.val)
+                  ).padStart(2, "0");
+                }
+              },
             },
-            liftStart
-          )
-          .set(curtainRef.current, { autoAlpha: 0 });
+            0
+          );
+        }
+
+        if (curtainBarRef.current) {
+          introTl.to(
+            curtainBarRef.current,
+            {
+              scaleX: 1,
+              duration: counterDuration,
+              ease: "power2.inOut",
+            },
+            0
+          );
+        }
+
+        if (curtainInnerRef.current) {
+          introTl.to(
+            curtainInnerRef.current,
+            {
+              y: -14,
+              autoAlpha: 0,
+              duration: 0.24,
+              ease: "power2.in",
+            },
+            liftStart - 0.1
+          );
+        }
+
+        if (curtainRef.current) {
+          introTl
+            .to(
+              curtainRef.current,
+              {
+                yPercent: -100,
+                duration: liftDuration,
+                ease: "aw-curtain",
+              },
+              liftStart
+            )
+            .set(curtainRef.current, { autoAlpha: 0 });
+        }
+      } else if (curtainRef.current) {
+        gsap.set(curtainRef.current, { autoAlpha: 0 });
       }
 
       introTl.to(
@@ -1186,8 +1064,6 @@ export default function PortfolioMain() {
       isMounted = false;
       resizeObserver?.disconnect();
       if (refreshTimer !== null) window.clearTimeout(refreshTimer);
-      cleanupFns.forEach((fn) => fn());
-      hideCursorRef.current = null;
       if (nativeScrollListener) window.removeEventListener("scroll", nativeScrollListener);
       window.removeEventListener("lenis-lock", handleLenisLock);
       marqueeTween?.kill();
@@ -1600,11 +1476,11 @@ export default function PortfolioMain() {
         }}
       />
 
-      {/* Architectural Opening Curtain with 00→100 Counter */}
+      {/* Architectural Opening Curtain with 00→100 Counter (Desktop lg+ only — zero flash on mobile) */}
       <div
         ref={curtainRef}
         aria-hidden="true"
-        className="fixed inset-0 z-[100] bg-[#F6F4EF] text-[#09090B] flex items-center justify-center pointer-events-none px-6"
+        className="hidden lg:flex fixed inset-0 z-[100] bg-[#F6F4EF] text-[#09090B] items-center justify-center pointer-events-none px-6"
       >
         <div ref={curtainInnerRef} className="w-full max-w-md space-y-5">
           <div className="flex items-end justify-between gap-6">
@@ -1626,26 +1502,6 @@ export default function PortfolioMain() {
           <div className="h-[2px] w-full bg-[#09090B]/15 overflow-hidden">
             <div ref={curtainBarRef} className="h-full w-full bg-[#09090B]" />
           </div>
-        </div>
-      </div>
-
-      {/* Bold Architectural Square Floating Cursor Button (Desktop fine-pointer on Featured Projects) */}
-      <div
-        ref={cursorTagRef}
-        aria-hidden="true"
-        className="hidden lg:block fixed top-0 left-0 z-[85] pointer-events-none"
-      >
-        <div
-          ref={cursorInnerRef}
-          style={{ opacity: 0, visibility: "hidden" }}
-          className="flex items-center justify-center min-w-[128px] h-[52px] px-6 bg-[#F6F4EF] text-[#09090B] border border-[#09090B]/20 shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-        >
-          <span
-            ref={cursorLabelRef}
-            className="font-mono text-xs font-bold uppercase tracking-[0.18em] whitespace-nowrap"
-          >
-            EXPLORAR ↗
-          </span>
         </div>
       </div>
 
@@ -2358,7 +2214,6 @@ export default function PortfolioMain() {
                         role="button"
                         tabIndex={0}
                         data-aw-card-inner
-                        data-cursor-label={loc(ui.openCase, language)}
                         onClick={() => setActiveProject(project)}
                         onKeyDown={(e) => handleCardKeyDown(e, project)}
                         className="relative origin-top bg-[#111114] border border-white/15 overflow-hidden cursor-pointer group shadow-[0_24px_70px_rgba(0,0,0,0.72)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D6C7B2]"
@@ -2431,7 +2286,6 @@ export default function PortfolioMain() {
                                   href={project.demoUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  data-cursor-ignore="true"
                                   onClick={(e) => e.stopPropagation()}
                                   className="font-mono text-sm text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors"
                                 >
@@ -2700,7 +2554,6 @@ export default function PortfolioMain() {
                         href={paper.pdfUrl}
                         download={paper.pdfFilename}
                         data-aw-book-stage
-                        data-cursor-label="PDF ↓"
                         className="block bg-[#E6E1D6] p-8 sm:p-12 relative overflow-hidden group border border-[#09090B]/15"
                       >
                         <span className="absolute top-4 left-6 font-mono text-xs sm:text-sm uppercase tracking-[0.16em] text-[#7A6648] font-semibold">
