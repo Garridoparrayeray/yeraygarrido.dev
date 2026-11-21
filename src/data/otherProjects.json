@@ -99,6 +99,8 @@
     },
     "link": "https://github.com/Garridoparrayeray/bide-eta",
     "demoUrl": "https://doi.org/10.5281/zenodo.24041572",
+    "pdfUrl": "/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
+    "pdfFilename": "Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
     "role": {
       "es": "Investigador / Algoritmos & ML",
       "en": "Researcher / Algorithms & ML",

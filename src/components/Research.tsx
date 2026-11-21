@@ -10,6 +10,10 @@ interface PaperItem {
   doi: string;
   doiUrl: string;
   repoUrl: string;
+  pdfUrl: string;
+  pdfFilename: string;
+  readingPdfUrl?: string;
+  readingPdfFilename?: string;
   metrics: string[];
 }
 
@@ -33,6 +37,16 @@ export default function Research() {
       es: "Resumen:",
       en: "Summary:",
       eu: "Laburpena:"
+    },
+    downloadPdf: {
+      es: "Descargar PDF",
+      en: "Download PDF",
+      eu: "PDF Deskargatu"
+    },
+    readingPdf: {
+      es: "PDF (Lectura)",
+      en: "PDF (Reading)",
+      eu: "PDF (Irakurketa)"
     },
     code: {
       es: "Código (GitHub)",
@@ -64,6 +78,10 @@ export default function Research() {
       doi: "10.5281/zenodo.24286027",
       doiUrl: "https://doi.org/10.5281/zenodo.24286027",
       repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
+      pdfUrl: "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
+      pdfFilename: "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
+      readingPdfUrl: "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
+      readingPdfFilename: "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
       metrics: ["555.744 predicciones", "64 % vs 39 % precisión", "57 / 59 paradas"]
     },
     {
@@ -88,6 +106,8 @@ export default function Research() {
       doi: "10.5281/zenodo.24286302",
       doiUrl: "https://doi.org/10.5281/zenodo.24286302",
       repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
+      pdfUrl: "/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
+      pdfFilename: "Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
       metrics: ["9,1M predicciones", "92–96 % precisión (<3 min)", "2x s/ Horario Oficial"]
     },
     {
@@ -112,6 +132,8 @@ export default function Research() {
       doi: "10.5281/zenodo.24041572",
       doiUrl: "https://doi.org/10.5281/zenodo.24041572",
       repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
+      pdfUrl: "/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
+      pdfFilename: "Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
       metrics: ["200 páginas", "407 tests de prueba", "Kalman + Red Neuronal"]
     }
   ];
@@ -178,13 +200,33 @@ export default function Research() {
                 {/* Botones de Acción Estándar */}
                 <div className="flex flex-wrap items-center gap-2">
                   <a
+                    href={p.pdfUrl}
+                    download={p.pdfFilename}
+                    aria-label={`${l(sectionLabels.downloadPdf)}: ${l(p.title)}`}
+                    className="font-sans text-[11px] uppercase tracking-wider font-bold bg-white text-black hover:bg-white/90 px-3 py-1.5 transition-colors flex items-center gap-1.5"
+                  >
+                    <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>{l(sectionLabels.downloadPdf)}</span>
+                  </a>
+                  {p.readingPdfUrl && (
+                    <a
+                      href={p.readingPdfUrl}
+                      download={p.readingPdfFilename}
+                      aria-label={`${l(sectionLabels.readingPdf)}: ${l(p.title)}`}
+                      className="font-sans text-[11px] uppercase tracking-wider font-semibold border border-white/25 hover:border-white text-white/85 hover:text-white px-3 py-1.5 transition-colors flex items-center gap-1.5"
+                    >
+                      <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      <span>{l(sectionLabels.readingPdf)}</span>
+                    </a>
+                  )}
+                  <a
                     href={p.doiUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-sans text-[11px] uppercase tracking-wider font-bold bg-white text-black hover:bg-white/90 px-3 py-1.5 transition-colors flex items-center gap-1.5"
+                    className="font-sans text-[11px] uppercase tracking-wider font-semibold border border-white/20 hover:border-white text-white/80 hover:text-white px-3 py-1.5 transition-colors flex items-center gap-1.5"
                   >
-                    <span>Paper (DOI)</span>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    <span>Zenodo (DOI)</span>
+                    <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                   </a>
                   <a
                     href={p.repoUrl}
@@ -193,7 +235,7 @@ export default function Research() {
                     className="font-sans text-[11px] uppercase tracking-wider font-semibold border border-white/20 hover:border-white text-white/80 hover:text-white px-3 py-1.5 transition-colors flex items-center gap-1.5"
                   >
                     <span>{l(sectionLabels.code)}</span>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                   </a>
                 </div>
 
