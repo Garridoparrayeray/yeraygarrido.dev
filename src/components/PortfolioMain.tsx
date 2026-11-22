@@ -1,5 +1,7 @@
 import {
   Fragment,
+  Suspense,
+  lazy,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -15,11 +17,14 @@ import "lenis/dist/lenis.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
-import { GitHubCalendar } from "react-github-calendar";
 import { useLanguage } from "../context/LanguageContext";
 import TearLink from "./TearLink";
-import ProjectModal from "./ProjectModal";
 import { IconGlyph, RichText } from "./IconGlyph";
+
+const ProjectModal = lazy(() => import("./ProjectModal"));
+const GitHubCalendar = lazy(() =>
+  import("react-github-calendar").then((m) => ({ default: m.GitHubCalendar }))
+);
 import {
   ALL_PROJECTS,
   API_ENDPOINTS,
@@ -59,12 +64,23 @@ function MobileHardwareFrame({
   src,
   alt,
   size = "hero",
+  priority = false,
 }: {
   src: string;
   alt: string;
   size?: "hero" | "flank" | "compact";
+  priority?: boolean;
 }) {
   const isCompact = size === "compact";
+  const isEager = priority || size === "hero";
+  const responsiveSrcSet = src.includes("_mobile.webp")
+    ? `${src.replace("_mobile.webp", "_mobile-390w.webp")} 390w, ${src} 780w`
+    : undefined;
+  const responsiveSizes = isCompact
+    ? "180px"
+    : size === "flank"
+      ? "190px"
+      : "(max-width: 640px) 235px, 272px";
   return (
     <div
       className={`relative bg-[#17171C] border border-white/20 shadow-[0_28px_80px_rgba(0,0,0,0.85)] select-none ${
@@ -104,8 +120,14 @@ function MobileHardwareFrame({
         <div className="relative aspect-[9/17.6] overflow-hidden bg-[#F8F9FA]">
           <img
             src={src}
+            srcSet={responsiveSrcSet}
+            sizes={responsiveSrcSet ? responsiveSizes : undefined}
+            width={390}
+            height={844}
             alt={alt}
-            loading={size === "hero" ? "eager" : "lazy"}
+            loading={isEager ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : isEager ? "auto" : "low"}
+            decoding={priority ? "sync" : "async"}
             className="w-full h-full object-cover object-top"
           />
         </div>
@@ -169,6 +191,8 @@ export default function PortfolioMain() {
   const [formMessage, setFormMessage] = useState("");
   const [formBotcheck, setFormBotcheck] = useState("");
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
+  const [showGhCalendar, setShowGhCalendar] = useState(false);
+  const ghCalendarWrapRef = useRef<HTMLDivElement>(null);
 
   // Live GitHub KPI stats (instant sensible fallback = zero layout shift)
   const [ghStats, setGhStats] = useState<{
@@ -196,6 +220,27 @@ export default function PortfolioMain() {
   const rightBideIdx = (bideScreenIdx + 1) % totalBideScreens;
   const leftBideScreen = bideScreens[leftBideIdx];
   const rightBideScreen = bideScreens[rightBideIdx];
+
+  // Defer GitHubCalendar chunk & SVG rendering until user scrolls near Section 05
+  useEffect(() => {
+    const el = ghCalendarWrapRef.current;
+    if (!el || showGhCalendar) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShowGhCalendar(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShowGhCalendar(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "450px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [showGhCalendar]);
 
   // Listen for CookieBanner "Política de Cookies" link event
   useEffect(() => {
@@ -459,31 +504,31 @@ export default function PortfolioMain() {
         return;
       }
 
-      // A. Architectural Shutter Preloader (Desktop lg+ deliberate cadence; Mobile skips white curtain to prevent flash)
+      // A. Architectural Shutter Preloader (Desktop lg+ deliberate cadence; Mobile renders Hero immediately for sub-1s LCP)
       const heroLines = root.querySelectorAll<HTMLElement>("[data-aw-hero-line]");
       const heroFades = root.querySelectorAll<HTMLElement>("[data-aw-hero-fade]");
       const heroHairline = root.querySelector<HTMLElement>("[data-aw-hero-hairline]");
       const heroFeatureCard = root.querySelector<HTMLElement>("[data-aw-hero-card]");
 
-      gsap.set(heroLines, { yPercent: 112 });
-      gsap.set(heroFades, { y: 16, autoAlpha: 0 });
-      if (heroHairline) {
-        gsap.set(heroHairline, { scaleX: 0, transformOrigin: "left center" });
-      }
-      if (heroFeatureCard) {
-        gsap.set(heroFeatureCard, { y: 20, autoAlpha: 0 });
-      }
-
-      const introTl = gsap.timeline({ defaults: { ease: "aw-out" } });
-      const heroStart = isLargeDesktop ? 1.02 : 0.08;
-
       if (isLargeDesktop) {
+        gsap.set(heroLines, { yPercent: 112 });
+        gsap.set(heroFades, { y: 16, autoAlpha: 0 });
+        if (heroHairline) {
+          gsap.set(heroHairline, { scaleX: 0, transformOrigin: "left center" });
+        }
+        if (heroFeatureCard) {
+          gsap.set(heroFeatureCard, { y: 20, autoAlpha: 0 });
+        }
+
+        const introTl = gsap.timeline({ defaults: { ease: "aw-out" } });
+        const heroStart = 0.42;
+
         if (curtainBarRef.current) {
           gsap.set(curtainBarRef.current, { scaleX: 0, transformOrigin: "left center" });
         }
-        const counterDuration = 0.72;
-        const liftStart = 0.78;
-        const liftDuration = 0.76;
+        const counterDuration = 0.34;
+        const liftStart = 0.36;
+        const liftDuration = 0.44;
         const counterObj = { val: 0 };
 
         if (curtainCounterRef.current) {
@@ -523,10 +568,10 @@ export default function PortfolioMain() {
             {
               y: -14,
               autoAlpha: 0,
-              duration: 0.24,
+              duration: 0.18,
               ease: "power2.in",
             },
-            liftStart - 0.1
+            liftStart - 0.08
           );
         }
 
@@ -543,57 +588,57 @@ export default function PortfolioMain() {
             )
             .set(curtainRef.current, { autoAlpha: 0 });
         }
-      } else if (curtainRef.current) {
-        gsap.set(curtainRef.current, { autoAlpha: 0 });
-      }
 
-      introTl.to(
-        heroLines,
-        {
-          yPercent: 0,
-          duration: useSmoothDesktop ? 0.9 : 0.65,
-          stagger: 0.07,
-          clearProps: "transform",
-        },
-        heroStart
-      );
-
-      if (heroFeatureCard) {
         introTl.to(
-          heroFeatureCard,
+          heroLines,
+          {
+            yPercent: 0,
+            duration: 0.65,
+            stagger: 0.05,
+            clearProps: "transform",
+          },
+          heroStart
+        );
+
+        if (heroFeatureCard) {
+          introTl.to(
+            heroFeatureCard,
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.55,
+              clearProps: "transform,opacity,visibility",
+            },
+            heroStart + 0.06
+          );
+        }
+
+        if (heroHairline) {
+          introTl.to(
+            heroHairline,
+            {
+              scaleX: 1,
+              duration: 0.55,
+              clearProps: "transform",
+            },
+            heroStart + 0.08
+          );
+        }
+
+        introTl.to(
+          heroFades,
           {
             y: 0,
             autoAlpha: 1,
-            duration: 0.72,
+            duration: 0.5,
+            stagger: 0.04,
             clearProps: "transform,opacity,visibility",
           },
           heroStart + 0.1
         );
+      } else if (curtainRef.current) {
+        gsap.set(curtainRef.current, { autoAlpha: 0 });
       }
-
-      if (heroHairline) {
-        introTl.to(
-          heroHairline,
-          {
-            scaleX: 1,
-            duration: 0.75,
-            clearProps: "transform",
-          },
-          heroStart + 0.12
-        );
-      }
-
-      introTl.to(
-        heroFades,
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.65,
-          stagger: 0.05,
-          clearProps: "transform,opacity,visibility",
-        },
-        heroStart + 0.15
-      );
 
       // B. Kinetic Infinite Editorial Marquee — auto-pauses off-screen (0% idle CPU/GPU)
       const marqueeWrap = root.querySelector<HTMLElement>("[data-aw-marquee-wrap]");
@@ -1037,7 +1082,6 @@ export default function PortfolioMain() {
     }, root);
 
     // --- 4. Auto-Calibrating ResizeObserver (Desktop only) ---
-    let lastHeight = root.scrollHeight;
     let refreshTimer: number | null = null;
     const scheduleRefresh = () => {
       if (refreshTimer !== null) window.clearTimeout(refreshTimer);
@@ -1047,17 +1091,19 @@ export default function PortfolioMain() {
       }, 180);
     };
 
-    const resizeObserver =
-      isLargeDesktop && typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(() => {
-            const nextHeight = root.scrollHeight;
-            if (Math.abs(nextHeight - lastHeight) > 8) {
-              lastHeight = nextHeight;
-              scheduleRefresh();
-            }
-          })
-        : null;
-    resizeObserver?.observe(root);
+    let resizeObserver: ResizeObserver | null = null;
+    if (isLargeDesktop && typeof ResizeObserver !== "undefined") {
+      let lastHeight = 0;
+      resizeObserver = new ResizeObserver((entries) => {
+        const entry = entries[0];
+        const nextHeight = entry?.contentRect?.height ?? 0;
+        if (lastHeight > 0 && Math.abs(nextHeight - lastHeight) > 8) {
+          scheduleRefresh();
+        }
+        lastHeight = nextHeight;
+      });
+      resizeObserver.observe(root);
+    }
 
     document.fonts?.ready.then(() => {
       if (isMounted) {
@@ -1529,6 +1575,8 @@ export default function PortfolioMain() {
           >
             <img
               src="/img/logo.webp"
+              width={146}
+              height={96}
               alt={t("header.logoAlt")}
               className="h-8 sm:h-9 lg:h-11 w-auto shrink-0"
             />
@@ -1642,7 +1690,7 @@ export default function PortfolioMain() {
           }`}
         />
 
-        <aside
+        <div
           role="dialog"
           aria-modal={mobileMenu}
           aria-label={loc(ui.menuTitle, language)}
@@ -1768,7 +1816,7 @@ export default function PortfolioMain() {
             </div>
           </div>
           </div>
-        </aside>
+        </div>
       </div>
 
       {/* =====================================================================
@@ -1847,6 +1895,7 @@ export default function PortfolioMain() {
                               src={LATEST_RELEASE.image}
                               alt={LATEST_RELEASE.imageAlt}
                               size="compact"
+                              priority={true}
                             />
                           </div>
                           <div
@@ -2306,7 +2355,7 @@ export default function PortfolioMain() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={(e) => e.stopPropagation()}
-                                  className="font-mono text-sm text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors inline-flex items-center gap-1"
+                                  className="font-mono text-sm text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors inline-flex items-center gap-1 min-h-[44px] py-2 px-1"
                                 >
                                   <span>
                                     {project.demoUrl
@@ -2969,20 +3018,37 @@ export default function PortfolioMain() {
                 ))}
               </div>
 
-              <div className="bg-[#111114] border border-white/15 p-5 sm:p-8 lg:p-10 aw-gh-calendar">
-                <GitHubCalendar
-                  username={SITE_IDENTITY.githubUsername}
-                  colorScheme="dark"
-                  fontSize={14}
-                  blockSize={15}
-                  blockMargin={4}
-                  blockRadius={0}
-                  style={{ width: "100%", maxWidth: "100%" }}
-                  transformData={(contributions) => {
-                    const start = new Date(SITE_IDENTITY.githubCalendarStartDate).getTime();
-                    return contributions.filter((d) => new Date(d.date).getTime() >= start);
-                  }}
-                />
+              <div
+                ref={ghCalendarWrapRef}
+                className="bg-[#111114] border border-white/15 p-5 sm:p-8 lg:p-10 aw-gh-calendar min-h-[195px]"
+              >
+                {showGhCalendar ? (
+                  <Suspense
+                    fallback={
+                      <div className="h-[151px] w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest text-[#F6F4EF]/45">
+                        GitHub Activity...
+                      </div>
+                    }
+                  >
+                    <GitHubCalendar
+                      username={SITE_IDENTITY.githubUsername}
+                      colorScheme="dark"
+                      fontSize={14}
+                      blockSize={15}
+                      blockMargin={4}
+                      blockRadius={0}
+                      style={{ width: "100%", maxWidth: "100%" }}
+                      transformData={(contributions) => {
+                        const start = new Date(SITE_IDENTITY.githubCalendarStartDate).getTime();
+                        return contributions.filter((d) => new Date(d.date).getTime() >= start);
+                      }}
+                    />
+                  </Suspense>
+                ) : (
+                  <div className="h-[151px] w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest text-[#F6F4EF]/45">
+                    GitHub Activity...
+                  </div>
+                )}
               </div>
             </div>
 
@@ -3290,7 +3356,14 @@ export default function PortfolioMain() {
       <footer className="bg-[#09090B] text-[#F6F4EF]/75 py-16 px-5 sm:px-8 lg:px-14 border-t border-white/12 overflow-x-clip">
         <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 sm:gap-12 pb-12 border-b border-white/12 text-base">
           <div className="col-span-2 md:col-span-1 space-y-4 min-w-0">
-            <img src="/img/logo.webp" alt={t("header.logoAlt")} className="h-10 w-auto" />
+            <img
+              src="/img/logo.webp"
+              width={146}
+              height={96}
+              loading="lazy"
+              alt={t("header.logoAlt")}
+              className="h-10 w-auto"
+            />
             <p className="text-sm sm:text-base text-[#F6F4EF]/65 leading-relaxed">
               {SITE_IDENTITY.brandName} · {t("hero.role")}
             </p>
@@ -3485,14 +3558,18 @@ export default function PortfolioMain() {
         </div>
       )}
 
-      <ProjectModal
-        language={language}
-        activeProject={activeProject}
-        onCloseProject={() => setActiveProject(null)}
-        onSelectProject={(p) => setActiveProject(p)}
-        isCatalogOpen={isCatalogOpen}
-        onCloseCatalog={() => setIsCatalogOpen(false)}
-      />
+      {(activeProject || isCatalogOpen) && (
+        <Suspense fallback={null}>
+          <ProjectModal
+            language={language}
+            activeProject={activeProject}
+            onCloseProject={() => setActiveProject(null)}
+            onSelectProject={(p) => setActiveProject(p)}
+            isCatalogOpen={isCatalogOpen}
+            onCloseCatalog={() => setIsCatalogOpen(false)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

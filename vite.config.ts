@@ -73,8 +73,13 @@ export default defineConfig(() => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              // SOLO separamos el calendario porque se carga con el Suspense diferido sino rompe la pagina
-              if (id.includes('react-github-calendar')) return 'vendor-github';
+              if (
+                id.includes('react-github-calendar') ||
+                id.includes('react-activity-calendar') ||
+                id.includes('date-fns')
+              ) {
+                return 'vendor-github';
+              }
               return 'vendor';
             }
           },
