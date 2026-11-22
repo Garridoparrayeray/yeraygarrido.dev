@@ -1,0 +1,307 @@
+[
+  {
+    "id": "paper-paired",
+    "slug": "paired-evaluation",
+    "year": "2026",
+    "date": "2026-11-16",
+    "version": "v1.0",
+    "langBadge": "EN",
+    "topic": {
+      "es": "Transporte & Open Data · Bideplus (Bide+)",
+      "en": "Transit & Open Data · Bideplus (Bide+)",
+      "eu": "Garraioa & Open Data · Bideplus (Bide+)"
+    },
+    "venue": "Zenodo (CERN) · Preprint",
+    "title": {
+      "es": "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
+      "en": "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
+      "eu": "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain"
+    },
+    "type": {
+      "es": "Evaluación Empírica Pareada",
+      "en": "Empirical Paired Benchmark",
+      "eu": "Ebaluazio Enpiriko Parekatua"
+    },
+    "tldr": {
+      "es": "Comparamos más de medio millón de llegadas reales de Bizkaibus (555.744 mediciones por GPS): nuestro sistema queda a ±2 min del paso real en el 64 % de los casos, frente al 39 % de la app oficial y el 16 % del horario; a partir de tres minutos, acierta más en 57 de las 59 paradas.",
+      "en": "We compared over half a million real Bizkaibus arrivals (555,744 GPS measurements): our open-data method is within ±2 min of the actual passage in 64% of cases, versus 39% for the official app and 16% for the timetable; from three minutes out, it is ahead at 57 of 59 stops.",
+      "eu": "Bizkaibus-eko milioi erdi baino gehiago iritsiera erreal alderatu ditugu (555.744 GPS neurketa): gure metodoa benetako igarotzetik ±2 minutura dago kasuen %64an, app ofizialaren %39aren eta ordutegiaren %16aren aurrean; hiru minututik aurrera, 59tik 57 geralekutan hobea da."
+    },
+    "doi": "10.5281/zenodo.24286027",
+    "doiUrl": "https://doi.org/10.5281/zenodo.24286027",
+    "repoUrl": "https://github.com/Garridoparrayeray/bide-eta",
+    "pdfUrl": "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
+    "pdfFilename": "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
+    "readingPdfUrl": "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
+    "readingPdfFilename": "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
+    "metrics": [
+      { "es": "555.744 predicciones", "en": "555,744 predictions", "eu": "555.744 aurreikuspen" },
+      { "es": "64 % vs 39 % precisión", "en": "64% vs 39% accuracy", "eu": "%64 vs %39 zehaztasuna" },
+      { "es": "57 / 59 paradas (≥3 min)", "en": "57 / 59 stops (≥3 min)", "eu": "57 / 59 geraleku (≥3 min)" }
+    ],
+    "visual": {
+      "kind": "benchmark",
+      "figureLabel": "FIG. 01 / PAIRED BENCHMARK",
+      "primaryLabel": "Bide+ (Open Data)",
+      "primaryPercent": 64,
+      "secondaryLabel": {
+        "es": "App Oficial Bizkaibus",
+        "en": "Official Operator App",
+        "eu": "Operadorearen App Ofiziala"
+      },
+      "secondaryPercent": 39,
+      "statLeftValue": "57 / 59",
+      "statLeftLabel": {
+        "es": "Paradas ganadas (≥3 min)",
+        "en": "Stops won (≥3 min)",
+        "eu": "Geraleku irabazi (≥3 min)"
+      },
+      "statRightValue": "+25 pp",
+      "statRightLabel": "n = 555.744 (±2 min)"
+    },
+    "scholar": {
+      "eyebrow": "Preprint v1.0 · Empirical Paired Evaluation · Open Access (CC BY 4.0)",
+      "badgeArchive": "Preprint (v1.0)",
+      "metaDescription": "Paired evaluation of 555,744 real-time bus arrival predictions in Biscay, Spain: within ±2 minutes of the actual passage in 16% of cases for the timetable, 39% for the operator's real time and 64% for the open-data Bide+ method.",
+      "ogDescription": "555,744 paired predictions on Bizkaibus: within ±2 min in 16% (timetable), 39% (official real time) and 64% (Bide+, open data only).",
+      "archiveSummary": "Paired empirical benchmark of 555,744 real-time arrival predictions against GPS ground truth across 59 stops in Biscay (Bizkaibus). Within ±2 minutes of the actual passage: 16% for the timetable, 39% for the official real time and 64% for the open-data Bide+ method; from three minutes out, Bide+ is more often within ±2 minutes at 57 of 59 stops.",
+      "abstract": "This paper compares an operator’s real-time bus predictions with an independent predictor for the same buses at the same moments, for Bizkaibus, the interurban network of Biscay (Spain), which publishes vehicle positions and timetable as open data and shows its own waiting times in an app. For one week in November 2026, the official waiting times of 60 stops were recorded every minute with the position feed. Each official announcement was matched to the bus it referred to, confirmed by the distance the service reports, and compared with the published timetable and with the Bide+ method, which predicts arrivals from the open data alone and was frozen before the week. All three were checked against the actual passage, reconstructed from the feed and from GPS positions. Across 555,744 paired predictions on six days, the timetable was within two minutes of the actual passage in 16% of cases, the official real time in 39% and Bide+ in 64%. Below three minutes the two real-time sources were equally often within two minutes, although the official one had the smaller mean error below six minutes; from three minutes on, Bide+ was more often within two minutes, by 29 to 35 percentage points at 10–20 minutes (95% interval by stop), at 57 of 59 stops and at every hour. An ablation attributes its advantage to learned segment travel times. The results apply to the 54% of first-bus announcements whose bus was tracked and confirmed, and to one week; data and code are open.",
+      "ogImage": "https://yeraygarrido.dev/img/projects/bideplus_og.webp",
+      "keywords": [
+        "public transport",
+        "bus arrival prediction",
+        "ETA",
+        "GTFS",
+        "SIRI-VM",
+        "open data",
+        "paired benchmark",
+        "Bizkaibus",
+        "Bide+",
+        "Biscay",
+        "Bideplus"
+      ],
+      "tags": [
+        { "label": "Bideplus (Bide+) app", "href": "https://www.bideplus.eus/" },
+        "Public Transport",
+        "ETA Prediction",
+        "GTFS / SIRI-VM",
+        "Open Data",
+        "Paired Benchmark",
+        "Bizkaibus / Bide+"
+      ],
+      "keyStats": [
+        { "label": "Key Result", "value": "64% vs 39% vs 16% (±2 min)" },
+        { "label": "Sample Size", "value": "555,744 paired predictions" }
+      ],
+      "repoButtonLabel": "Reference Code (GitHub)",
+      "bibtexType": "misc",
+      "bibtexKey": "garrido_2026_24286027"
+    }
+  },
+  {
+    "id": "paper-threelayer",
+    "slug": "three-layer-method",
+    "year": "2026",
+    "date": "2026-11-16",
+    "version": "v1.1",
+    "langBadge": "EN",
+    "topic": {
+      "es": "Algoritmia & Predicción · Bideplus (Bide+)",
+      "en": "Algorithms & Prediction · Bideplus (Bide+)",
+      "eu": "Algoritmia & Aurreikuspena · Bideplus (Bide+)"
+    },
+    "venue": "Zenodo (CERN) · Preprint",
+    "title": {
+      "es": "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
+      "en": "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
+      "eu": "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation"
+    },
+    "type": {
+      "es": "Especificación del Método",
+      "en": "Method Specification",
+      "eu": "Metodoaren Zehaztapena"
+    },
+    "tldr": {
+      "es": "Cómo calcular cuándo llega un autobús usando solo su posición GPS cuando los datos públicos no indican el retraso. En 9,1 millones de predicciones, la llegada cae a ±2 min en el 92–96 % de los casos cuando el bus está a menos de tres minutos (67 % a 10–20 min, frente al 23–25 % del horario), con código abierto en Python.",
+      "en": "How to predict bus arrival times using only live GPS positions when public feeds omit delays. In 9.1 million predictions, the arrival shown is within ±2 min in 92–96% of cases when the bus is under three minutes away (67% at 10–20 min, vs 23–25% for the timetable), with open Python code.",
+      "eu": "Autobus bat noiz iritsiko den nola kalkulatu GPS posizioa soilik erabiliz datu publikoek atzerapenik ematen ez dutenean. 9,1 milioi aurreikuspenetan, iritsiera ±2 minututan dago kasuen %92–96an autobusa hiru minutu baino gutxiagora dagoenean (%67 10–20 minututan, ordutegiaren %23–25aren aurrean), Python kode irekiarekin."
+    },
+    "doi": "10.5281/zenodo.24286302",
+    "doiUrl": "https://doi.org/10.5281/zenodo.24286302",
+    "repoUrl": "https://github.com/Garridoparrayeray/bide-eta",
+    "pdfUrl": "/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
+    "pdfFilename": "Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
+    "metrics": [
+      { "es": "9,1M predicciones", "en": "9.1M predictions", "eu": "9,1M aurreikuspen" },
+      { "es": "92–96 % a ±2 min (<3 min)", "en": "92–96% within ±2 min (<3 min)", "eu": "%92–96 ±2 min-tan (<3 min)" },
+      { "es": "67 % vs 23–25 % horario (10–20 min)", "en": "67% vs 23–25% timetable (10–20 min)", "eu": "%67 vs %23–25 ordutegia (10–20 min)" }
+    ],
+    "visual": {
+      "kind": "pipeline",
+      "figureLabel": "FIG. 02 / 3-LAYER ENGINE",
+      "figureMeta": "9,1M EVAL.",
+      "steps": [
+        {
+          "code": "L1",
+          "title": {
+            "es": "Proyección Geométrica GPS",
+            "en": "Geometric GPS Projection",
+            "eu": "GPS Proiekzio Geometrikoa"
+          },
+          "meta": {
+            "es": "SIRI-VM → GTFS Shape",
+            "en": "SIRI-VM → GTFS Shape",
+            "eu": "SIRI-VM → GTFS Shape"
+          }
+        },
+        {
+          "code": "L2",
+          "title": {
+            "es": "Última Parada + Abstención",
+            "en": "Last Stop + Explicit Abstention",
+            "eu": "Azken Geralekua + Abstentzioa"
+          },
+          "meta": {
+            "es": "Cero retrasos inventados",
+            "en": "Zero fabricated delays",
+            "eu": "Atzerapen faltsurik gabe"
+          }
+        },
+        {
+          "code": "L3",
+          "title": {
+            "es": "Medianas Contraídas",
+            "en": "Learned Shrunk Medians",
+            "eu": "Ikasitako Medianak"
+          },
+          "meta": {
+            "es": "±2 min: 92–96% (<3 min)",
+            "en": "±2 min: 92–96% (<3 min)",
+            "eu": "±2 min: %92–96 (<3 min)"
+          }
+        }
+      ]
+    },
+    "scholar": {
+      "eyebrow": "Preprint v1.1 · Method Specification · Open Access (CC BY 4.0 & MIT)",
+      "badgeArchive": "Preprint (v1.1)",
+      "metaDescription": "Three-layer bus arrival prediction method with explicit abstention for feeds that report GPS positions but not delays. In 9.1 million predictions over 23 days, the arrival shown is within ±2 min in 92–96% of cases when the bus is under three minutes away and in 67% at 10–20 minutes, against 23–25% for the published timetable.",
+      "ogDescription": "Three-layer ETA method for feeds without delays. 9.1M predictions: within ±2 min in 92–96% of cases under three minutes out and 67% at 10–20 minutes, vs 23–25% for the published timetable.",
+      "archiveSummary": "Formal specification and open Python reference implementation of a three-layer arrival prediction method with explicit abstention and shrunk learned travel-time medians for SIRI-VM/GTFS feeds that omit schedule deviations. In 9.1 million predictions, within ±2 minutes in 92–96% of cases when the bus is under three minutes away and 67% at 10–20 minutes, against 23–25% for the published timetable.",
+      "abstract": "Many public transport networks publish real-time vehicle positions but not delays, and many timetables give intermediate stop times interpolated at constant speed rather than observed. Bizkaibus, the interurban bus network of Biscay (Spain), has both properties: after the first hour of a trip, 85% of buses pass a stop more than two minutes before the published time. This paper specifies the arrival prediction method of the Bizkaibus+ app in enough detail to reimplement it in any language. The method uses timetable differences instead of absolute times; learns the actual travel time between consecutive stops by time band, as a median shrunk towards the all-day median of the segment; and predicts from three layers with explicit abstention rules: the GPS position projected onto the route, the last stop registered by the feed, and the timetable corrected trip by trip. It recalibrates itself daily, adopting only changes that reduce the error on held-out data. In 9.1 million predictions over 23 days, checked against the actual passage, the arrival shown is within ±2 minutes in 92–96% of cases when the bus is less than three minutes away and in 67% at ten to twenty minutes, against 23–25% for the published timetable. Without any live data, the corrected timetable alone doubles the accuracy of the published one. A reference implementation in Python, test vectors with 407 checks produced by the production engine, a public evaluator that reproduces the production histograms, and the learned tables and evaluation data are openly available.",
+      "ogImage": "https://yeraygarrido.dev/img/projects/bideplus_og.webp",
+      "keywords": [
+        "bus arrival prediction",
+        "three-layer architecture",
+        "explicit abstention",
+        "SIRI-VM",
+        "GTFS",
+        "shrunk medians",
+        "open reference implementation",
+        "Bide+",
+        "Bideplus"
+      ],
+      "tags": [
+        { "label": "Bideplus (Bide+) app", "href": "https://www.bideplus.eus/" },
+        "Three-Layer ETA",
+        "Explicit Abstention",
+        "SIRI-VM",
+        "GTFS Shapes",
+        "Shrunk Medians",
+        "Reproducible Science"
+      ],
+      "keyStats": [
+        { "label": "Within ±2 min", "value": "92–96% (<3 min) · 67% (10–20 min)" },
+        { "label": "Evaluations", "value": "9.1 million predictions" }
+      ],
+      "repoButtonLabel": "Python Reference Implementation",
+      "bibtexType": "misc",
+      "bibtexKey": "garrido_2026_24286302"
+    }
+  },
+  {
+    "id": "paper-monograph",
+    "slug": "memoria-bide-eta",
+    "year": "2026",
+    "date": "2026-11-07",
+    "version": "v2.1",
+    "langBadge": "ES",
+    "topic": {
+      "es": "Ingeniería & ML · Bideplus (Bide+)",
+      "en": "Engineering & ML · Bideplus (Bide+)",
+      "eu": "Ingeniaritza & ML · Bideplus (Bide+)"
+    },
+    "venue": "Zenodo (CERN) · Technical Monograph",
+    "title": {
+      "es": "Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados",
+      "en": "Bus arrival prediction from real-time positions and interpolated timetables",
+      "eu": "Autobusen iritsiera-aurreikuspena denbora errealeko posizioekin eta interpolatutako ordutegiekin"
+    },
+    "type": {
+      "es": "Memoria de Referencia (200 pp.)",
+      "en": "Reference Monograph (200 pp.)",
+      "eu": "Erreferentziazko Memoria (200 orri)"
+    },
+    "tldr": {
+      "es": "Libro técnico completo de 200 páginas donde se explica toda la ingeniería y matemáticas del motor predictivo (incluyendo filtrado de Kalman, red neuronal que reduce el error medio un 6–7 % y 407 pruebas verificables).",
+      "en": "Complete 200-page technical monograph documenting the full engineering and mathematics behind the prediction engine (including Kalman filtering, a neural network cutting mean error by 6–7%, and 407 verified tests).",
+      "eu": "200 orrialdeko memoria tekniko osoa, iragarpen-motorraren ingeniaritza eta matematika guztiak azaltzen dituena (Kalman iragazkia, batez besteko errorea %6–7 murrizten duen sare neuronala eta 407 proba egiaztagarri)."
+    },
+    "doi": "10.5281/zenodo.24041572",
+    "doiUrl": "https://doi.org/10.5281/zenodo.24041572",
+    "repoUrl": "https://github.com/Garridoparrayeray/bide-eta",
+    "pdfUrl": "/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
+    "pdfFilename": "Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
+    "metrics": [
+      { "es": "200 páginas", "en": "200 pages", "eu": "200 orrialde" },
+      { "es": "407 tests de prueba", "en": "407 test vectors", "eu": "407 proba-bektore" },
+      { "es": "Kalman + Red Neuronal", "en": "Kalman + Neural Network", "eu": "Kalman + Sare Neuronala" }
+    ],
+    "visual": {
+      "kind": "manuscript",
+      "figureLabel": "FIG. 03 / 200 PP. MONOGRAPH",
+      "frontPage": "/img/projects/paper_eta_page1_portada.webp",
+      "backPage": "/img/projects/paper_eta_page22_arquitectura.webp"
+    },
+    "scholar": {
+      "eyebrow": "Memoria Técnica v2.1 · 200 Páginas · Acceso Abierto (CC BY 4.0 & MIT)",
+      "badgeArchive": "Technical Monograph (v2.1 · 200 pp.)",
+      "pages": 200,
+      "metaDescription": "Memoria técnica de 200 páginas sobre el método de predicción de llegadas de Bizkaibus+/Bide+: en 2,21 millones de predicciones, la llegada cae dentro de ±2 min en el 96 % a menos de tres minutos y en el 67 % entre diez y veinte minutos, frente al 24–25 % del horario publicado.",
+      "ogDescription": "Memoria técnica de 200 páginas: método en tres capas con abstención, filtro de Kalman y red neuronal (−6–7 % de error medio), 407 vectores de prueba e implementación de referencia.",
+      "archiveSummary": "Memoria técnica exhaustiva de 200 páginas: formulación matemática completa del motor de predicción ETA, filtro de Kalman sobre ritmo de marcha, red neuronal que reduce el error medio de las sumas de tramos un 6–7 %, 407 vectores de prueba y código de referencia abierto en Python.",
+      "abstract": "Bizkaibus, la red de autobuses interurbanos de Bizkaia, publica la posición GPS de cada vehículo y su próxima parada, pero no su retraso. Las horas intermedias de su horario oficial están interpoladas a velocidad constante: de 169 308 pasos reales por parada, el 85 % de los que ocurren pasada la primera hora de viaje llega más de dos minutos antes de la hora publicada. Esta memoria describe, para que pueda replicarse, el método con que la aplicación Bizkaibus+ predice las llegadas. El método trabaja con diferencias de horario en lugar de horas absolutas, aprende el tiempo real de cada tramo por franja horaria con medianas contraídas y organiza la predicción en tres capas con reglas de abstención: la posición proyectada sobre el recorrido, la última parada registrada y el horario corregido viaje a viaje. Se recalibra cada día y solo adopta cambios que reducen el error. En 2,21 millones de predicciones a menos de veinte minutos, de 17 días, contrastadas con el paso real, la llegada mostrada cae dentro de ±2 minutos en el 96 % cuando el autobús está a menos de tres minutos y en el 67 % entre diez y veinte minutos, frente al 24 % y el 25 % del horario publicado. Evaluados por días, un filtro de Kalman sobre el ritmo del propio autobús y una red neuronal reducen el error medio de las sumas de tramos un 4 % y entre un 6 y un 7 %, respectivamente. Se incluyen vectores de prueba y una implementación de referencia que los reproduce.",
+      "ogImage": "https://yeraygarrido.dev/img/projects/paper_eta_page1_portada.webp",
+      "keywords": [
+        "predicción de llegadas",
+        "ETA",
+        "transporte público",
+        "GTFS",
+        "SIRI-VM",
+        "filtro de Kalman",
+        "red neuronal",
+        "Bide+",
+        "Bizkaibus",
+        "Bideplus"
+      ],
+      "tags": [
+        { "label": "Bideplus (Bide+) app", "href": "https://www.bideplus.eus/" },
+        "Memoria Técnica (200 pp.)",
+        "Filtro de Kalman",
+        "Red Neuronal Residual",
+        "407 Tests",
+        "GTFS / SIRI-VM",
+        "Python Open Source"
+      ],
+      "keyStats": [
+        { "label": "Extensión", "value": "200 páginas · 407 vectores de prueba" },
+        { "label": "Modelado", "value": "Kalman (−4 %) · Red neuronal (−6–7 %)" }
+      ],
+      "pdfButtonLabel": "Descargar Memoria PDF (200 pp.)",
+      "archivePdfLabel": "Memoria PDF (200 pp.)",
+      "repoButtonLabel": "Código de Referencia (GitHub)",
+      "bibtexType": "techreport",
+      "bibtexKey": "garrido_2026_24041572"
+    }
+  }
+]

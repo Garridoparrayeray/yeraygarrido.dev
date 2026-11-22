@@ -30,12 +30,14 @@ import {
   API_ENDPOINTS,
   ARCHIVE_PLATES,
   CONTACT_FORM,
+  EDUCATION_HISTORY,
   FLAGSHIP_PRODUCT,
   LATEST_RELEASE,
   MARQUEE_ITEMS,
   RESEARCH_PAPERS,
   SITE_IDENTITY,
   TECH_STACK_ITEMS,
+  WORK_EXPERIENCE,
   loc,
   type ProjectItem,
 } from "../data/portfolioConfig";
@@ -202,20 +204,29 @@ export default function PortfolioMain() {
   });
 
   const isAnyModalOpen = Boolean(activeProject || isCatalogOpen || legalModal);
-  const bideProject =
+  const flagshipProject =
     ALL_PROJECTS.find((p) => p.id === FLAGSHIP_PRODUCT.projectId) || ALL_PROJECTS[0];
+  const latestReleaseProject = LATEST_RELEASE.projectId
+    ? ALL_PROJECTS.find((p) => p.id === LATEST_RELEASE.projectId) || null
+    : null;
   const archivePlates = ARCHIVE_PLATES.map((cfg) => {
     const item = ALL_PROJECTS.find((p) => p.id === cfg.id);
     return item ? { ...cfg, project: item } : null;
   }).filter(Boolean) as Array<(typeof ARCHIVE_PLATES)[number] & { project: ProjectItem }>;
 
-  const bideScreens = FLAGSHIP_PRODUCT.screens;
-  const totalBideScreens = bideScreens.length;
-  const activeBideScreen = bideScreens[bideScreenIdx] || bideScreens[0];
-  const leftBideIdx = (bideScreenIdx - 1 + totalBideScreens) % totalBideScreens;
-  const rightBideIdx = (bideScreenIdx + 1) % totalBideScreens;
-  const leftBideScreen = bideScreens[leftBideIdx];
-  const rightBideScreen = bideScreens[rightBideIdx];
+  const flagshipScreens = FLAGSHIP_PRODUCT.screens;
+  const totalFlagshipScreens = flagshipScreens.length;
+  const safeFlagshipIdx =
+    totalFlagshipScreens > 0 ? Math.min(bideScreenIdx, totalFlagshipScreens - 1) : 0;
+  const activeFlagshipScreen = flagshipScreens[safeFlagshipIdx] || flagshipScreens[0];
+  const leftFlagshipIdx =
+    totalFlagshipScreens > 0
+      ? (safeFlagshipIdx - 1 + totalFlagshipScreens) % totalFlagshipScreens
+      : 0;
+  const rightFlagshipIdx =
+    totalFlagshipScreens > 0 ? (safeFlagshipIdx + 1) % totalFlagshipScreens : 0;
+  const leftFlagshipScreen = flagshipScreens[leftFlagshipIdx];
+  const rightFlagshipScreen = flagshipScreens[rightFlagshipIdx];
 
   // Defer GitHubCalendar chunk & SVG rendering until user scrolls near Section 05
   useEffect(() => {
@@ -1257,59 +1268,21 @@ export default function PortfolioMain() {
     { num: "04", title: t("intro.feat4.title"), desc: t("intro.feat4.desc") },
   ];
 
-  const workJobs = [
-    {
-      title: t("exp.job3.title"),
-      company: t("exp.job3.company"),
-      date: t("exp.job3.date"),
-      desc: t("exp.job3.desc"),
-    },
-    {
-      title: t("exp.job5.title"),
-      company: t("exp.job5.company"),
-      date: t("exp.job5.date"),
-      desc: t("exp.job5.desc"),
-    },
-    {
-      title: t("exp.job1.title"),
-      company: t("exp.job1.company"),
-      date: t("exp.job1.date"),
-      desc: t("exp.job1.desc"),
-    },
-    {
-      title: t("exp.job2.title"),
-      company: t("exp.job2.company"),
-      date: t("exp.job2.date"),
-      desc: t("exp.job2.desc"),
-    },
-    {
-      title: t("exp.job4.title"),
-      company: t("exp.job4.company"),
-      date: t("exp.job4.date"),
-      desc: t("exp.job4.desc"),
-    },
-  ];
+  const workJobs = WORK_EXPERIENCE.map((item) => ({
+    id: item.id,
+    title: loc(item.title, language),
+    company: loc(item.company, language),
+    date: loc(item.date, language),
+    desc: loc(item.desc, language),
+  }));
 
-  const eduItems = [
-    {
-      title: t("exp.edu1.title"),
-      company: t("exp.edu1.company"),
-      date: t("exp.edu1.date"),
-      desc: t("exp.edu1.desc"),
-    },
-    {
-      title: t("exp.edu2.title"),
-      company: t("exp.edu2.company"),
-      date: t("exp.edu2.date"),
-      desc: t("exp.edu2.desc"),
-    },
-    {
-      title: t("exp.edu3.title"),
-      company: t("exp.edu3.company"),
-      date: t("exp.edu3.date"),
-      desc: t("exp.edu3.desc"),
-    },
-  ];
+  const eduItems = EDUCATION_HISTORY.map((item) => ({
+    id: item.id,
+    title: loc(item.title, language),
+    company: loc(item.company, language),
+    date: loc(item.date, language),
+    desc: loc(item.desc, language),
+  }));
 
   const shownTimeline = expTab === "work" ? workJobs : eduItems;
 
@@ -1864,13 +1837,9 @@ export default function PortfolioMain() {
                     <span className="text-[#F6F4EF]/70">{LATEST_RELEASE.metaRight}</span>
                   </div>
 
-                  {LATEST_RELEASE.scrollTarget ? (
-                    <a
-                      href={`#${LATEST_RELEASE.scrollTarget}`}
-                      onClick={(e) => scrollToSection(e, LATEST_RELEASE.scrollTarget!)}
-                      className="relative bg-[#0B0B0D] border border-white/10 overflow-hidden group block"
-                    >
-                      {LATEST_RELEASE.frameType === "mobile" ? (
+                  {(() => {
+                    const releaseMedia =
+                      LATEST_RELEASE.frameType === "mobile" ? (
                         <div className="pt-5 px-6 flex justify-center h-[235px]">
                           <div className="w-[172px] transition-transform duration-500 ease-out group-hover:-translate-y-2">
                             <MobileHardwareFrame
@@ -1893,22 +1862,41 @@ export default function PortfolioMain() {
                             className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                           />
                         </div>
-                      )}
-                    </a>
-                  ) : (
-                    <a
-                      href={LATEST_RELEASE.ctaUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative bg-[#0B0B0D] border border-white/10 overflow-hidden group block aspect-[16/10]"
-                    >
-                      <img
-                        src={LATEST_RELEASE.image}
-                        alt={LATEST_RELEASE.imageAlt}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                      />
-                    </a>
-                  )}
+                      );
+
+                    if (LATEST_RELEASE.scrollTarget) {
+                      return (
+                        <a
+                          href={`#${LATEST_RELEASE.scrollTarget}`}
+                          onClick={(e) => scrollToSection(e, LATEST_RELEASE.scrollTarget!)}
+                          className="relative bg-[#0B0B0D] border border-white/10 overflow-hidden group block"
+                        >
+                          {releaseMedia}
+                        </a>
+                      );
+                    }
+                    if (latestReleaseProject) {
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => setActiveProject(latestReleaseProject)}
+                          className="relative w-full text-left bg-[#0B0B0D] border border-white/10 overflow-hidden group block cursor-pointer"
+                        >
+                          {releaseMedia}
+                        </button>
+                      );
+                    }
+                    return (
+                      <a
+                        href={LATEST_RELEASE.ctaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative bg-[#0B0B0D] border border-white/10 overflow-hidden group block"
+                      >
+                        {releaseMedia}
+                      </a>
+                    );
+                  })()}
 
                   <div className="flex items-center justify-between gap-4 pt-1">
                     <div>
@@ -1979,10 +1967,11 @@ export default function PortfolioMain() {
         </section>
 
         {/* =====================================================================
-            01 · FLAGSHIP PRODUCT STAGE — BIDE+ (3-Phone Installed Mobile Showcase)
+            01 · FLAGSHIP PRODUCT STAGE (Configurado 100% en FLAGSHIP_PRODUCT)
            ===================================================================== */}
         <section id="work" className="bg-[#09090B] border-t border-white/12 overflow-x-clip">
-          <div id="flagship-bide" className="py-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-16">
+          {FLAGSHIP_PRODUCT.enabled && activeFlagshipScreen && (
+          <div id="flagship-product" className="py-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-16">
             <div className="max-w-[1440px] mx-auto space-y-12 lg:space-y-16">
               <div
                 data-aw-reveal
@@ -2025,132 +2014,159 @@ export default function PortfolioMain() {
                       }}
                     />
 
-                    <div className="relative z-10 flex items-center justify-center min-h-[410px] sm:min-h-[490px]">
-                      <button
-                        type="button"
-                        data-aw-phone-left
-                        onClick={() => setBideScreenIdx(leftBideIdx)}
-                        aria-label={`Ver ${leftBideScreen.name}`}
-                        className="hidden sm:block w-[165px] xl:w-[190px] -mr-8 xl:-mr-10 opacity-75 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-10 text-left"
-                      >
-                        <MobileHardwareFrame
-                          src={leftBideScreen.image}
-                          alt={leftBideScreen.name}
-                          size="flank"
-                        />
-                      </button>
-
-                      <div
-                        data-aw-phone-main
-                        className="relative z-20 w-[235px] sm:w-[248px] xl:w-[272px]"
-                      >
+                    {FLAGSHIP_PRODUCT.showcaseMode === "desktop-gallery" ? (
+                      <div className="relative z-10">
                         <div ref={bideCenterPhoneRef}>
                           <a
                             href={FLAGSHIP_PRODUCT.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block"
+                            className="block aspect-[16/10] overflow-hidden border border-white/15 bg-[#09090B] shadow-[0_24px_70px_rgba(0,0,0,0.75)]"
                           >
-                            <MobileHardwareFrame
-                              src={activeBideScreen.image}
-                              alt={`${FLAGSHIP_PRODUCT.titleMain} — ${activeBideScreen.name}`}
-                              size="hero"
+                            <img
+                              src={activeFlagshipScreen.image}
+                              alt={`${FLAGSHIP_PRODUCT.titleMain} — ${activeFlagshipScreen.name}`}
+                              className="w-full h-full object-cover object-top"
                             />
                           </a>
                         </div>
                       </div>
-
-                      <button
-                        type="button"
-                        data-aw-phone-right
-                        onClick={() => setBideScreenIdx(rightBideIdx)}
-                        aria-label={`Ver ${rightBideScreen.name}`}
-                        className="hidden sm:block w-[165px] xl:w-[190px] -ml-8 xl:-ml-10 opacity-75 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-10 text-left"
-                      >
-                        <MobileHardwareFrame
-                          src={rightBideScreen.image}
-                          alt={rightBideScreen.name}
-                          size="flank"
-                        />
-                      </button>
-                    </div>
-
-                    {/* Interactive 5-App Real Screen Index Bar */}
-                    <div className="relative z-20 mt-6 pt-5 border-t border-white/12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-1">
-                        {bideScreens.map((screen, idx) => (
+                    ) : (
+                      <div className="relative z-10 flex items-center justify-center min-h-[410px] sm:min-h-[490px]">
+                        {totalFlagshipScreens > 1 && leftFlagshipScreen && (
                           <button
-                            key={screen.id}
                             type="button"
-                            onClick={() => {
-                              if (idx !== bideScreenIdx) setBideScreenIdx(idx);
-                            }}
-                            className={`font-mono text-xs sm:text-sm px-3 py-2 min-h-[42px] border cursor-pointer transition-colors ${
-                              bideScreenIdx === idx
-                                ? "bg-[#F6F4EF] text-[#09090B] border-[#F6F4EF] font-bold"
-                                : "bg-transparent text-[#F6F4EF]/75 border-white/15 hover:border-white/45 hover:text-white"
-                            }`}
+                            data-aw-phone-left
+                            onClick={() => setBideScreenIdx(leftFlagshipIdx)}
+                            aria-label={`Ver ${leftFlagshipScreen.name}`}
+                            className="hidden sm:block w-[165px] xl:w-[190px] -mr-8 xl:-mr-10 opacity-75 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-10 text-left"
                           >
-                            {screen.name}
+                            <MobileHardwareFrame
+                              src={leftFlagshipScreen.image}
+                              alt={leftFlagshipScreen.name}
+                              size="flank"
+                            />
                           </button>
-                        ))}
-                      </div>
+                        )}
 
-                      <div className="flex items-center gap-1 shrink-0">
-                        <button
-                          type="button"
-                          onClick={() => setBideScreenIdx(leftBideIdx)}
-                          aria-label="Pantalla anterior"
-                          className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base flex items-center justify-center transition-colors cursor-pointer"
+                        <div
+                          data-aw-phone-main
+                          className="relative z-20 w-[235px] sm:w-[248px] xl:w-[272px]"
                         >
-                          <IconGlyph name="left" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setBideScreenIdx(rightBideIdx)}
-                          aria-label="Siguiente pantalla"
-                          className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base flex items-center justify-center transition-colors cursor-pointer"
-                        >
-                          <IconGlyph name="right" />
-                        </button>
+                          <div ref={bideCenterPhoneRef}>
+                            <a
+                              href={FLAGSHIP_PRODUCT.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block"
+                            >
+                              <MobileHardwareFrame
+                                src={activeFlagshipScreen.image}
+                                alt={`${FLAGSHIP_PRODUCT.titleMain} — ${activeFlagshipScreen.name}`}
+                                size="hero"
+                              />
+                            </a>
+                          </div>
+                        </div>
+
+                        {totalFlagshipScreens > 1 && rightFlagshipScreen && (
+                          <button
+                            type="button"
+                            data-aw-phone-right
+                            onClick={() => setBideScreenIdx(rightFlagshipIdx)}
+                            aria-label={`Ver ${rightFlagshipScreen.name}`}
+                            className="hidden sm:block w-[165px] xl:w-[190px] -ml-8 xl:-ml-10 opacity-75 hover:opacity-100 transition-opacity duration-300 cursor-pointer z-10 text-left"
+                          >
+                            <MobileHardwareFrame
+                              src={rightFlagshipScreen.image}
+                              alt={rightFlagshipScreen.name}
+                              size="flank"
+                            />
+                          </button>
+                        )}
                       </div>
-                    </div>
+                    )}
+
+                    {/* Interactive Screen Index Bar (shown automatically when there are multiple screens) */}
+                    {totalFlagshipScreens > 1 && (
+                      <div className="relative z-20 mt-6 pt-5 border-t border-white/12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-1">
+                          {flagshipScreens.map((screen, idx) => (
+                            <button
+                              key={screen.id}
+                              type="button"
+                              onClick={() => {
+                                if (idx !== safeFlagshipIdx) setBideScreenIdx(idx);
+                              }}
+                              className={`font-mono text-xs sm:text-sm px-3 py-2 min-h-[42px] border cursor-pointer transition-colors ${
+                                safeFlagshipIdx === idx
+                                  ? "bg-[#F6F4EF] text-[#09090B] border-[#F6F4EF] font-bold"
+                                  : "bg-transparent text-[#F6F4EF]/75 border-white/15 hover:border-white/45 hover:text-white"
+                              }`}
+                            >
+                              {screen.name}
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center gap-1 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => setBideScreenIdx(leftFlagshipIdx)}
+                            aria-label="Pantalla anterior"
+                            className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base flex items-center justify-center transition-colors cursor-pointer"
+                          >
+                            <IconGlyph name="left" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setBideScreenIdx(rightFlagshipIdx)}
+                            aria-label="Siguiente pantalla"
+                            className="w-10 h-10 border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] font-mono text-base flex items-center justify-center transition-colors cursor-pointer"
+                          >
+                            <IconGlyph name="right" />
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <p className="font-mono text-sm sm:text-base text-[#F6F4EF]/75 leading-relaxed">
-                    {loc(activeBideScreen.caption, language)}
+                    {loc(activeFlagshipScreen.caption, language)}
                   </p>
                 </div>
 
                 {/* Right 5 cols: Description + Telemetry Matrix + CTAs */}
                 <div data-aw-reveal className="lg:col-span-5 space-y-7">
                   <p className="text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/88 leading-[1.72] text-editorial">
-                    {loc(bideProject.desc, language)}
+                    {loc(flagshipProject.desc, language)}
                   </p>
 
-                  <div className="grid grid-cols-2 border-t border-l border-white/15">
-                    {FLAGSHIP_PRODUCT.metrics.map((metric, idx) => (
-                      <div key={idx} className="bg-[#111114] border-r border-b border-white/15 p-5 text-center">
-                        <div
-                          data-aw-count
-                          data-target={metric.target}
-                          data-suffix={metric.suffix}
-                          data-format={metric.format}
-                          className={`font-grotesk font-bold text-3xl sm:text-4xl tabular-nums ${
-                            metric.accent ? "text-[#D6C7B2]" : "text-[#F6F4EF]"
-                          }`}
-                        >
-                          {metric.fallbackText}
+                  {FLAGSHIP_PRODUCT.metrics.length > 0 && (
+                    <div className="grid grid-cols-2 border-t border-l border-white/15">
+                      {FLAGSHIP_PRODUCT.metrics.map((metric, idx) => (
+                        <div key={idx} className="bg-[#111114] border-r border-b border-white/15 p-5 text-center">
+                          <div
+                            data-aw-count
+                            data-target={metric.target}
+                            data-suffix={metric.suffix}
+                            data-format={metric.format}
+                            className={`font-grotesk font-bold text-3xl sm:text-4xl tabular-nums ${
+                              metric.accent ? "text-[#D6C7B2]" : "text-[#F6F4EF]"
+                            }`}
+                          >
+                            {metric.fallbackText}
+                          </div>
+                          <div className="text-sm text-[#F6F4EF]/75 mt-1 leading-snug">
+                            {loc(metric.label, language)}
+                          </div>
                         </div>
-                        <div className="text-sm text-[#F6F4EF]/75 mt-1 leading-snug">
-                          {loc(metric.label, language)}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
 
                   <div className="flex flex-wrap gap-2">
-                    {bideProject.tech
+                    {flagshipProject.tech
                       .split(", ")
                       .slice(0, 6)
                       .map((tag) => (
@@ -2171,29 +2187,47 @@ export default function PortfolioMain() {
                       style={btnDarkOnIvory}
                       className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 py-4 min-h-[52px] inline-flex items-center"
                     >
-                      <SlotLabel text={loc(ui.openBide, language)} />
+                      <SlotLabel text={loc(FLAGSHIP_PRODUCT.ctaLabel, language)} />
                     </a>
                     <button
                       type="button"
-                      onClick={() => setActiveProject(bideProject)}
+                      onClick={() => setActiveProject(flagshipProject)}
                       style={btnOutlineOnDark}
                       className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 py-4 min-h-[52px] inline-flex items-center cursor-pointer"
                     >
                       <SlotLabel text={loc(ui.fullCase, language)} />
                     </button>
-                    <a
-                      href="#research"
-                      onClick={(e) => scrollToSection(e, "research")}
-                      style={btnChampagneOutline}
-                      className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-5 py-4 min-h-[52px] inline-flex items-center"
-                    >
-                      <SlotLabel text={loc(ui.readPapers, language)} />
-                    </a>
+                    {FLAGSHIP_PRODUCT.secondaryCta && (
+                      <a
+                        href={
+                          FLAGSHIP_PRODUCT.secondaryCta.isAnchor
+                            ? `#${FLAGSHIP_PRODUCT.secondaryCta.href}`
+                            : FLAGSHIP_PRODUCT.secondaryCta.href
+                        }
+                        onClick={
+                          FLAGSHIP_PRODUCT.secondaryCta.isAnchor
+                            ? (e) => scrollToSection(e, FLAGSHIP_PRODUCT.secondaryCta!.href)
+                            : undefined
+                        }
+                        target={FLAGSHIP_PRODUCT.secondaryCta.isAnchor ? undefined : "_blank"}
+                        rel={FLAGSHIP_PRODUCT.secondaryCta.isAnchor ? undefined : "noopener noreferrer"}
+                        style={btnChampagneOutline}
+                        className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-5 py-4 min-h-[52px] inline-flex items-center"
+                      >
+                        <SlotLabel
+                          text={loc(FLAGSHIP_PRODUCT.secondaryCta.label, language).replace(
+                            "{papersCount}",
+                            String(RESEARCH_PAPERS.length)
+                          )}
+                        />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          )}
 
           {/* VELOCITY-REACTIVE EDITORIAL MARQUEE RIBBON (auto-pauses off-screen) */}
           <div
@@ -2254,7 +2288,7 @@ export default function PortfolioMain() {
                       aria-hidden="true"
                     />
                     <article
-                      style={{ top: `${24 + idx * 18}px`, zIndex: idx + 1 }}
+                      style={{ top: `${24 + Math.min(idx, 5) * 18}px`, zIndex: idx + 1 }}
                       className="lg:sticky mb-8 sm:mb-10 lg:mb-16 last:mb-0"
                     >
                       <div
@@ -2273,13 +2307,15 @@ export default function PortfolioMain() {
                                 alt={loc(project.title, language)}
                                 loading="lazy"
                                 className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] ${
-                                  imageOverride?.endsWith(".gif") ? "object-center" : "object-top"
+                                  (imageOverride || project.imageUrl || "").endsWith(".gif")
+                                    ? "object-center"
+                                    : "object-top"
                                 }`}
                               />
                             </div>
                             <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
                               <span className="bg-[#09090B]/94 lg:backdrop-blur-md border border-white/20 px-3.5 py-1.5 font-mono text-xs sm:text-sm text-[#F6F4EF]">
-                                0{idx + 1} / 0{archivePlates.length} · {project.year}
+                                {String(idx + 1).padStart(2, "0")} / {String(archivePlates.length).padStart(2, "0")} · {project.year}
                               </span>
                               {badge && (
                                 <span className="bg-[#09090B]/95 lg:backdrop-blur-md border border-[#D6C7B2]/50 px-3.5 py-1.5 font-mono text-xs sm:text-sm uppercase tracking-wider font-semibold text-[#D6C7B2]">
@@ -2890,10 +2926,10 @@ export default function PortfolioMain() {
                   }`}
                 >
                   {language === "en"
-                    ? "Work (5)"
+                    ? `Work (${WORK_EXPERIENCE.length})`
                     : language === "eu"
-                      ? "Lana (5)"
-                      : "Experiencia (5)"}
+                      ? `Lana (${WORK_EXPERIENCE.length})`
+                      : `Experiencia (${WORK_EXPERIENCE.length})`}
                 </button>
                 <button
                   type="button"
@@ -2907,10 +2943,10 @@ export default function PortfolioMain() {
                   }`}
                 >
                   {language === "en"
-                    ? "Education (3)"
+                    ? `Education (${EDUCATION_HISTORY.length})`
                     : language === "eu"
-                      ? "Hezkuntza (3)"
-                      : "Formación (3)"}
+                      ? `Hezkuntza (${EDUCATION_HISTORY.length})`
+                      : `Formación (${EDUCATION_HISTORY.length})`}
                 </button>
               </div>
             </div>

@@ -2,21 +2,23 @@
  * ============================================================================
  * PORTFOLIO MASTER CONFIG — EDITA TODO EL CONTENIDO DESDE AQUÍ
  * ============================================================================
- * Archivo único de configuración para editar el portfolio sin tocar React ni GSAP:
+ * Archivo central para mantener y escalar el portfolio sin tocar React ni GSAP:
  *  1. SITE_IDENTITY      -> Nombre, ORCID, email, enlaces sociales, GitHub
- *  2. CONTACT_FORM       -> Configuración del mini-formulario desplegable (Web3Forms / Formspree / mailto)
- *  3. LATEST_RELEASE     -> Tarjeta destacada del Hero (puedes poner cualquier proyecto, app o paper)
- *  4. FLAGSHIP_PRODUCT   -> Escenario principal multi-móvil (Bide+)
- *  5. ARCHIVE_PLATES     -> Tarjetas del archivo destacado (Gasolinera+, YGArchive, etc.)
- *  6. RESEARCH_PAPERS    -> Publicaciones científicas (Bide+ o cualquier tema futuro)
- *  7. TECH_STACK_ITEMS   -> Iconos del stack tecnológico
- *  8. API_ENDPOINTS      -> Endpoints públicos (cv.xml, cv.json, cv.txt, llms.txt)
+ *  2. CONTACT_FORM       -> Mini-formulario desplegable (Web3Forms / Formspree / mailto)
+ *  3. LATEST_RELEASE     -> Tarjeta "Último Lanzamiento" del Hero (móvil o 16:10)
+ *  4. FLAGSHIP_PRODUCT   -> Producto Destacado principal (Sección 01: modo móvil 3-phones o web/desktop 16:10)
+ *  5. ARCHIVE_PLATES     -> Proyectos Destacados elegidos (Sección 01.B — elige los IDs y orden que quieras)
+ *  6. RESEARCH_PAPERS    -> Cargado automáticamente desde src/data/papers.json (+ `npm run sync` genera /papers/* y sitemap)
+ *  7. WORK_EXPERIENCE & EDUCATION_HISTORY -> Trayectoria laboral y formación (contadores automáticos)
+ *  8. TECH_STACK_ITEMS & API_ENDPOINTS    -> Stack y endpoints públicos
  *
- * Para fichas detalladas de todos los proyectos: src/data/otherProjects.json
- * Para textos generales multi-idioma (bio, experiencia, etc.): src/context/LanguageContext.tsx
+ * Guía paso a paso con plantillas copiar-pegar: CONTENT_GUIDE.md
+ * Catálogo completo de proyectos:               src/data/otherProjects.json
+ * Publicaciones científicas (fuente única):     src/data/papers.json
  */
 
 import otherProjectsRaw from "./otherProjects.json";
+import papersRaw from "./papers.json";
 
 export type Lang = "es" | "en" | "eu";
 
@@ -51,7 +53,7 @@ export interface LatestReleaseConfig {
   enabled: boolean;
   /** Etiqueta superior izquierda (ej. "ÚLTIMO LANZAMIENTO", "NOVEDAD", "DESTACADO") */
   eyebrow: LocalizedText;
-  /** Texto superior derecho (ej. dominio o año) */
+  /** Texto superior derecho (ej. marca, dominio o año) */
   metaRight: string;
   /** Título principal de la tarjeta */
   title: LocalizedText;
@@ -63,19 +65,22 @@ export interface LatestReleaseConfig {
   imageAlt: string;
   /**
    * "mobile" = muestra la imagen dentro del chasis realista de smartphone
-   * "plain"  = muestra la imagen o GIF directamente en formato 16:10
+   * "plain"  = muestra la imagen o GIF directamente en formato 16:10 (ideal para web, SaaS o paper)
    */
   frameType: "mobile" | "plain";
-  /** ID de sección a la que hace scroll al pulsar la imagen (ej. "flagship-bide"), o null para abrir ctaUrl */
+  /**
+   * ID de sección a la que hace scroll al pulsar la imagen (ej. "flagship-product", "research"),
+   * o null para abrir el modal de `projectId` (si se indica) o `ctaUrl`.
+   */
   scrollTarget: string | null;
-  /** Etiqueta del cursor flotante en escritorio */
-  cursorLabel: string;
-  /** Texto y destino del botón */
+  /** Opcional: si scrollTarget es null y pones un id de otherProjects.json, abre su ficha modal */
+  projectId?: string;
+  /** Texto y destino del botón principal */
   ctaLabel: LocalizedText;
   ctaUrl: string;
 }
 
-export interface FlagshipMobileScreen {
+export interface FlagshipScreen {
   id: string;
   name: string;
   operator: LocalizedText;
@@ -92,11 +97,39 @@ export interface FlagshipMetric {
   label: LocalizedText;
 }
 
+export interface FlagshipProductConfig {
+  /** Pon false si prefieres ocultar el bloque destacado y mostrar solo los Proyectos Destacados (01.B) */
+  enabled: boolean;
+  /** Debe coincidir con un "id" de src/data/otherProjects.json (aporta descripción, tech stack y ficha modal) */
+  projectId: string;
+  /**
+   * "mobile-trio"     = escaparate interactivo con 3 móviles (ideal para apps móviles / PWAs)
+   * "desktop-gallery" = lienzo arquitectónico 16:10 con selector de pantallas (ideal para webs, SaaS, ERP, IA)
+   */
+  showcaseMode: "mobile-trio" | "desktop-gallery";
+  eyebrow: LocalizedText;
+  titleMain: string;
+  titleAccent: LocalizedText;
+  domainLabel: string;
+  metaSubtitle: string;
+  url: string;
+  ctaLabel: LocalizedText;
+  /** Botón secundario opcional (ej. bajar a #research o abrir repositorio). Si se omite, no se muestra. */
+  secondaryCta?: {
+    label: LocalizedText;
+    href: string;
+    isAnchor?: boolean;
+  };
+  defaultScreenIndex: number;
+  screens: FlagshipScreen[];
+  metrics: FlagshipMetric[];
+}
+
 export interface ArchivePlateConfig {
   /** Debe coincidir con un "id" de src/data/otherProjects.json */
   id: string;
-  /** Imagen o GIF de portada en la tarjeta apilada */
-  imageOverride: string;
+  /** Opcional: imagen o GIF de portada (si se omite, usa automáticamente imageUrl o images[0] del proyecto) */
+  imageOverride?: string;
   /** Etiqueta superior opcional */
   badge?: LocalizedText;
   /** Franja destacada opcional bajo la descripción */
@@ -133,7 +166,7 @@ export type ResearchVisualPlate =
       backPage: string;
     }
   | {
-      /** Plantilla universal para cualquier futuro paper (de Bide+ o cualquier otro tema) */
+      /** Plantilla universal para cualquier futuro paper (IA, sistemas, seguridad, web, etc.) */
       kind: "card";
       figureLabel: string;
       highlightStat: string;
@@ -142,14 +175,13 @@ export type ResearchVisualPlate =
       image?: string;
     };
 
-export interface PaperRecord {
+export interface PaperSourceRecord {
   id: string;
-  index: string;
+  slug: string;
   year: string;
   date: string;
   version: string;
   langBadge: "EN" | "ES" | "EU";
-  /** Área o temática (editable para futuros papers fuera de transporte/Bide+) */
   topic: LocalizedText;
   venue: string;
   title: LocalizedText;
@@ -157,8 +189,6 @@ export interface PaperRecord {
   tldr: LocalizedText;
   doi: string;
   doiUrl: string;
-  /** Página estática indexable por Google Scholar en /papers/... */
-  scholarPageUrl?: string;
   repoUrl?: string;
   pdfUrl: string;
   pdfFilename: string;
@@ -166,6 +196,21 @@ export interface PaperRecord {
   readingPdfFilename?: string;
   metrics: LocalizedText[];
   visual: ResearchVisualPlate;
+}
+
+export interface PaperRecord extends PaperSourceRecord {
+  /** Generado automáticamente según el orden en src/data/papers.json ("01", "02", ...) */
+  index: string;
+  /** Generado automáticamente como "/papers/<slug>/" */
+  scholarPageUrl: string;
+}
+
+export interface TimelineEntry {
+  id: string;
+  title: LocalizedText;
+  company: LocalizedText;
+  date: LocalizedText;
+  desc: LocalizedText;
 }
 
 export interface ApiEndpoint {
@@ -209,8 +254,7 @@ export const SITE_IDENTITY = {
 // 2. MINI-FORMULARIO DE CONTACTO (OPCIÓN B)
 //    - Si pegas tu clave gratuita de Web3Forms (https://web3forms.com) en
 //      web3formsAccessKey, los mensajes se envían en segundo plano directo a tu Gmail.
-//    - Si la dejas vacía (""), el formulario abre automáticamente el cliente de correo
-//      del visitante con asunto y cuerpo pre-rellenados (nunca falla).
+//    - Si la dejas vacía (""), el formulario abre el cliente de correo con todo pre-rellenado.
 // ============================================================================
 export const CONTACT_FORM = {
   web3formsAccessKey: "",
@@ -218,7 +262,9 @@ export const CONTACT_FORM = {
 } as const;
 
 // ============================================================================
-// 3. TARJETA "ÚLTIMO LANZAMIENTO" DEL HERO (100% PERSONALIZABLE)
+// 3. TARJETA "ÚLTIMO LANZAMIENTO" DEL HERO (CAMBIA DE PRODUCTO EN 10 SEGUNDOS)
+//    - frameType: "mobile" (con marco de smartphone) o "plain" (captura/GIF 16:10)
+//    - scrollTarget: "flagship-product", "research", "work", o null para abrir ctaUrl/projectId
 // ============================================================================
 export const LATEST_RELEASE: LatestReleaseConfig = {
   enabled: true,
@@ -241,8 +287,7 @@ export const LATEST_RELEASE: LatestReleaseConfig = {
   image: "/img/projects/bideplus_home_mobile.webp?v=2026",
   imageAlt: "Bideplus (Bide+) instalada en móvil",
   frameType: "mobile",
-  scrollTarget: "flagship-bide",
-  cursorLabel: "VER BIDEPLUS ↓",
+  scrollTarget: "flagship-product",
   ctaLabel: {
     es: "Bideplus ↗",
     en: "Bideplus ↗",
@@ -252,10 +297,14 @@ export const LATEST_RELEASE: LatestReleaseConfig = {
 };
 
 // ============================================================================
-// 4. PRODUCTO ESTRELLA (SECCIÓN 01 — BIDE+)
+// 4. PRODUCTO DESTACADO PRINCIPAL (SECCIÓN 01)
+//    Cambia `projectId`, `showcaseMode` ("mobile-trio" o "desktop-gallery"),
+//    `screens`, `metrics` y `ctaLabel` para destacar cualquier otro producto.
 // ============================================================================
-export const FLAGSHIP_PRODUCT = {
+export const FLAGSHIP_PRODUCT: FlagshipProductConfig = {
+  enabled: true,
   projectId: "bideplus",
+  showcaseMode: "mobile-trio",
   eyebrow: {
     es: "01 / PRODUCTO DESTACADO — BIDEPLUS (BIDE+)",
     en: "01 / FEATURED PRODUCT — BIDEPLUS (BIDE+)",
@@ -270,6 +319,20 @@ export const FLAGSHIP_PRODUCT = {
   domainLabel: "WWW.BIDEPLUS.EUS",
   metaSubtitle: "PWA · ES / EU · 2026",
   url: "https://www.bideplus.eus/",
+  ctaLabel: {
+    es: "Bideplus (Bide+) ↗",
+    en: "Bideplus (Bide+) ↗",
+    eu: "Bideplus (Bide+) ↗",
+  },
+  secondaryCta: {
+    label: {
+      es: "Leer {papersCount} papers ↓",
+      en: "Read {papersCount} papers ↓",
+      eu: "Irakurri {papersCount} paper ↓",
+    },
+    href: "research",
+    isAnchor: true,
+  },
   defaultScreenIndex: 1,
   screens: [
     {
@@ -327,7 +390,7 @@ export const FLAGSHIP_PRODUCT = {
         eu: "Sarearen mapa — Bizkaibus, Metro, Euskotren eta Renfe-ko linea, geltoki eta aldaketa guztiak mapa bakarrean.",
       },
     },
-  ] as FlagshipMobileScreen[],
+  ],
   metrics: [
     {
       target: 64,
@@ -375,11 +438,13 @@ export const FLAGSHIP_PRODUCT = {
         eu: "Euskal Herriko garraio sareak",
       },
     },
-  ] as FlagshipMetric[],
-} as const;
+  ],
+};
 
 // ============================================================================
-// 5. TARJETAS DESTACADAS DEL ARCHIVO (SECCIÓN 01.B — STICKY DEPTH-STACK)
+// 5. PROYECTOS DESTACADOS (SECCIÓN 01.B — ELIGE LOS QUE QUIERAS Y EN EL ORDEN QUE QUIERAS)
+//    Solo necesitas poner `{ id: "id-del-proyecto" }` (de src/data/otherProjects.json).
+//    `imageOverride`, `badge` y `highlight` son totalmente opcionales.
 // ============================================================================
 export const ARCHIVE_PLATES: ArchivePlateConfig[] = [
   {
@@ -411,202 +476,215 @@ export const ARCHIVE_PLATES: ArchivePlateConfig[] = [
 ];
 
 // ============================================================================
-// 6. PUBLICACIONES CIENTÍFICAS — EXTENSIBLE PARA CUALQUIER TEMA FUTURO
-//    Para añadir un nuevo paper (de Bide+, IA, sistemas, seguridad, etc.),
-//    duplica un bloque aquí con visual.kind: "card" (o "benchmark" / "pipeline" / "manuscript").
-//    El contador de publicaciones se actualiza automáticamente en toda la web.
+// 6. PUBLICACIONES CIENTÍFICAS (CARGADAS AUTOMÁTICAMENTE DESDE src/data/papers.json)
+//    Para añadir un paper nuevo:
+//      1. Añade el objeto a src/data/papers.json y guarda el PDF en public/papers/
+//      2. Ejecuta `npm run sync` (o `npm run build`) -> actualiza web, /papers/*, sitemap e index.html
 // ============================================================================
-export const RESEARCH_PAPERS: PaperRecord[] = [
+export const RESEARCH_PAPERS: PaperRecord[] = (papersRaw as PaperSourceRecord[]).map(
+  (paper, idx) => ({
+    ...paper,
+    index: String(idx + 1).padStart(2, "0"),
+    scholarPageUrl: `/papers/${paper.slug}/`,
+  })
+);
+
+// ============================================================================
+// 7. EXPERIENCIA LABORAL Y FORMACIÓN (SECCIÓN 04 — CONTADORES AUTOMÁTICOS)
+//    Para añadir un nuevo puesto o titulación, pega un bloque arriba del array.
+// ============================================================================
+export const WORK_EXPERIENCE: TimelineEntry[] = [
   {
-    id: "paper-paired",
-    index: "01",
-    year: "2026",
-    date: "2026-11-16",
-    version: "v1.0",
-    langBadge: "EN",
-    topic: {
-      es: "Transporte & Open Data · Bide+",
-      en: "Transit & Open Data · Bide+",
-      eu: "Garraioa & Open Data · Bide+",
-    },
-    venue: "Zenodo (CERN) · Preprint",
+    id: "horion",
     title: {
-      es: "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
-      en: "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
-      eu: "Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain",
+      es: "Ingeniero de Software",
+      en: "Software Engineer",
+      eu: "Software Ingeniaria",
     },
-    type: {
-      es: "Evaluación Empírica Pareada",
-      en: "Empirical Paired Benchmark",
-      eu: "Ebaluazio Enpiriko Parekatua",
+    company: {
+      es: "Horión Software Engineering",
+      en: "Horión Software Engineering",
+      eu: "Horión Software Engineering",
     },
-    tldr: {
-      es: "Comparamos más de medio millón de llegadas reales de Bizkaibus (555.744 mediciones por GPS): nuestro sistema queda a ±2 min del paso real en el 64 % de los casos, frente al 39 % de la app oficial y el 16 % del horario; a partir de tres minutos, acierta más en 57 de las 59 paradas.",
-      en: "We compared over half a million real Bizkaibus arrivals (555,744 GPS measurements): our open-data method is within ±2 min of the actual passage in 64% of cases, versus 39% for the official app and 16% for the timetable; from three minutes out, it is ahead at 57 of 59 stops.",
-      eu: "Bizkaibus-eko milioi erdi baino gehiago iritsiera erreal alderatu ditugu (555.744 GPS neurketa): gure metodoa benetako igarotzetik ±2 minutura dago kasuen %64an, app ofizialaren %39aren eta ordutegiaren %16aren aurrean; hiru minututik aurrera, 59tik 57 geralekutan hobea da.",
+    date: {
+      es: "Jun 2026 - Presente",
+      en: "Jun 2026 - Present",
+      eu: "2026ko eka. - Gaur egun",
     },
-    doi: "10.5281/zenodo.24286027",
-    doiUrl: "https://doi.org/10.5281/zenodo.24286027",
-    scholarPageUrl: "/papers/paired-evaluation/",
-    repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
-    pdfUrl: "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
-    pdfFilename: "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
-    readingPdfUrl: "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
-    readingPdfFilename: "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
-    metrics: [
-      { es: "555.744 predicciones", en: "555,744 predictions", eu: "555.744 aurreikuspen" },
-      { es: "64 % vs 39 % precisión", en: "64% vs 39% accuracy", eu: "%64 vs %39 zehaztasuna" },
-      { es: "57 / 59 paradas (≥3 min)", en: "57 / 59 stops (≥3 min)", eu: "57 / 59 geraleku (≥3 min)" },
-    ],
-    visual: {
-      kind: "benchmark",
-      figureLabel: "FIG. 01 / PAIRED BENCHMARK",
-      primaryLabel: "Bide+ (Open Data)",
-      primaryPercent: 64,
-      secondaryLabel: {
-        es: "App Oficial Bizkaibus",
-        en: "Official Operator App",
-        eu: "Operadorearen App Ofiziala",
-      },
-      secondaryPercent: 39,
-      statLeftValue: "57 / 59",
-      statLeftLabel: { es: "Paradas ganadas (≥3 min)", en: "Stops won (≥3 min)", eu: "Geraleku irabazi (≥3 min)" },
-      statRightValue: "+25 pp",
-      statRightLabel: "n = 555.744 (±2 min)",
+    desc: {
+      es: "Desarrollo de principio a fin de módulos clave para Horión Enterprise, un software de gestión empresarial (ERP) multiempresa en PHP. Creación del módulo completo de buzón de salida (historial de envíos, descarga directa de adjuntos y reenvío con nuevos archivos), enrutamiento propio y evolución de interfaces existentes.",
+      en: "Developing core modules end-to-end for Horión Enterprise, a multi-company management platform (ERP) built in PHP. Built the complete email outbox system (sent history, direct attachment downloads, and resending with new files) along with custom routing and maintenance of existing client interfaces.",
+      eu: "Horión Enterprise enpresa-kudeaketako plataformarako (ERP) modulu nagusien garapena hasieratik amaierara PHP-n. Irteera-postontziaren modulu osoa sortu dut (bidalketen historia, eranskinen deskarga zuzena eta birbidalketa) eta bezero-interfazeak hobetu ditut.",
     },
   },
   {
-    id: "paper-threelayer",
-    index: "02",
-    year: "2026",
-    date: "2026-11-16",
-    version: "v1.1",
-    langBadge: "EN",
-    topic: {
-      es: "Algoritmia & Predicción · Bide+",
-      en: "Algorithms & Prediction · Bide+",
-      eu: "Algoritmia & Aurreikuspena · Bide+",
-    },
-    venue: "Zenodo (CERN) · Preprint",
+    id: "bermeo",
     title: {
-      es: "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
-      en: "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
-      eu: "Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation",
+      es: "Desarrollador Java (Freelance)",
+      en: "Java Developer (Freelance)",
+      eu: "Java Garatzaile (Freelance)",
     },
-    type: {
-      es: "Especificación del Método",
-      en: "Method Specification",
-      eu: "Metodoaren Zehaztapena",
+    company: {
+      es: "Ayuntamiento de Bermeo",
+      en: "Bermeo Town Hall (Ayuntamiento de Bermeo)",
+      eu: "Bermeoko Udala",
     },
-    tldr: {
-      es: "Cómo calcular cuándo llega un autobús usando solo su posición GPS cuando los datos públicos no indican el retraso. En 9,1 millones de predicciones, la llegada cae a ±2 min en el 92–96 % de los casos cuando el bus está a menos de tres minutos (67 % a 10–20 min, frente al 23–25 % del horario), con código abierto en Python.",
-      en: "How to predict bus arrival times using only live GPS positions when public feeds omit delays. In 9.1 million predictions, the arrival shown is within ±2 min in 92–96% of cases when the bus is under three minutes away (67% at 10–20 min, vs 23–25% for the timetable), with open Python code.",
-      eu: "Autobus bat noiz iritsiko den nola kalkulatu GPS posizioa soilik erabiliz datu publikoek atzerapenik ematen ez dutenean. 9,1 milioi aurreikuspenetan, iritsiera ±2 minututan dago kasuen %92–96an autobusa hiru minutu baino gutxiagora dagoenean (%67 10–20 minututan, ordutegiaren %23–25aren aurrean), Python kode irekiarekin.",
+    date: {
+      es: "May 2026 - Jun 2026",
+      en: "May 2026 - Jun 2026",
+      eu: "2026ko mai. - 2026ko eka.",
     },
-    doi: "10.5281/zenodo.24286302",
-    doiUrl: "https://doi.org/10.5281/zenodo.24286302",
-    scholarPageUrl: "/papers/three-layer-method/",
-    repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
-    pdfUrl: "/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
-    pdfFilename: "Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
-    metrics: [
-      { es: "9,1M predicciones", en: "9.1M predictions", eu: "9,1M aurreikuspen" },
-      { es: "92–96 % a ±2 min (<3 min)", en: "92–96% within ±2 min (<3 min)", eu: "%92–96 ±2 min-tan (<3 min)" },
-      { es: "67 % vs 23–25 % horario (10–20 min)", en: "67% vs 23–25% timetable (10–20 min)", eu: "%67 vs %23–25 ordutegia (10–20 min)" },
-    ],
-    visual: {
-      kind: "pipeline",
-      figureLabel: "FIG. 02 / 3-LAYER ENGINE",
-      figureMeta: "9,1M EVAL.",
-      steps: [
-        {
-          code: "L1",
-          title: {
-            es: "Proyección Geométrica GPS",
-            en: "Geometric GPS Projection",
-            eu: "GPS Proiekzio Geometrikoa",
-          },
-          meta: { es: "SIRI-VM → GTFS Shape", en: "SIRI-VM → GTFS Shape", eu: "SIRI-VM → GTFS Shape" },
-        },
-        {
-          code: "L2",
-          title: {
-            es: "Última Parada + Abstención",
-            en: "Last Stop + Explicit Abstention",
-            eu: "Azken Geralekua + Abstentzioa",
-          },
-          meta: {
-            es: "Cero retrasos inventados",
-            en: "Zero fabricated delays",
-            eu: "Atzerapen faltsurik gabe",
-          },
-        },
-        {
-          code: "L3",
-          title: {
-            es: "Medianas Contraídas",
-            en: "Learned Shrunk Medians",
-            eu: "Ikasitako Medianak",
-          },
-          meta: {
-            es: "±2 min: 92–96% (<3 min)",
-            en: "±2 min: 92–96% (<3 min)",
-            eu: "±2 min: %92–96 (<3 min)",
-          },
-        },
-      ],
+    desc: {
+      es: "Sistema completo de gestión de objetos perdidos entregado en un sprint de 15 días: aplicación de escritorio en Java para el personal de atención al público y portal web para que cualquier vecino pueda buscar y reclamar objetos, con doble copia de seguridad para que el servicio nunca se detenga.",
+      en: "Delivered a complete Lost & Found platform in a 15-day sprint: a desktop application (Java Swing/JavaFX) for municipal staff and a public web portal for citizens to search and claim items, backed by automatic local and remote database backups so service never stops.",
+      eu: "Galdutako objektuak kudeatzeko sistema osoa 15 eguneko sprint batean garatua: udal-langileentzako mahaigaineko aplikazioa (Java) eta herritarrek objektuak bilatzeko web ataria, zerbitzua inoiz ez eteteko babeskopia bikoitzarekin.",
     },
   },
   {
-    id: "paper-monograph",
-    index: "03",
-    year: "2026",
-    date: "2026-11-07",
-    version: "v2.1",
-    langBadge: "ES",
-    topic: {
-      es: "Ingeniería & ML · Bide+",
-      en: "Engineering & ML · Bide+",
-      eu: "Ingeniaritza & ML · Bide+",
-    },
-    venue: "Zenodo (CERN) · Technical Monograph",
+    id: "freelance",
     title: {
-      es: "Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados",
-      en: "Bus arrival prediction from real-time positions and interpolated timetables",
-      eu: "Autobusen iritsiera-aurreikuspena denbora errealeko posizioekin eta interpolatutako ordutegiekin",
+      es: "Desarrollador Full Stack Freelance",
+      en: "Freelance Full Stack Developer",
+      eu: "Full Stack Garatzaile Freelance",
     },
-    type: {
-      es: "Memoria de Referencia (200 pp.)",
-      en: "Reference Monograph (200 pp.)",
-      eu: "Erreferentziazko Memoria (200 orri)",
+    company: {
+      es: "Proyectos Independientes",
+      en: "Independent Projects",
+      eu: "Proiektu Independenteak",
     },
-    tldr: {
-      es: "Libro técnico completo de 200 páginas donde se explica toda la ingeniería y matemáticas del motor predictivo (incluyendo filtrado de Kalman, red neuronal que reduce el error medio un 6–7 % y 407 pruebas verificables).",
-      en: "Complete 200-page technical monograph documenting the full engineering and mathematics behind the prediction engine (including Kalman filtering, a neural network cutting mean error by 6–7%, and 407 verified tests).",
-      eu: "200 orrialdeko memoria tekniko osoa, iragarpen-motorraren ingeniaritza eta matematika guztiak azaltzen dituena (Kalman iragazkia, batez besteko errorea %6–7 murrizten duen sare neuronala eta 407 proba egiaztagarri).",
+    date: {
+      es: "Ene 2025 - Jun 2026",
+      en: "Jan 2025 - Jun 2026",
+      eu: "2025eko urt. - 2026ko eka.",
     },
-    doi: "10.5281/zenodo.24041572",
-    doiUrl: "https://doi.org/10.5281/zenodo.24041572",
-    scholarPageUrl: "/papers/memoria-bide-eta/",
-    repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
-    pdfUrl: "/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
-    pdfFilename: "Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
-    metrics: [
-      { es: "200 páginas", en: "200 pages", eu: "200 orrialde" },
-      { es: "407 tests de prueba", en: "407 test vectors", eu: "407 proba-bektore" },
-      { es: "Kalman + Red Neuronal", en: "Kalman + Neural Network", eu: "Kalman + Sare Neuronala" },
-    ],
-    visual: {
-      kind: "manuscript",
-      figureLabel: "FIG. 03 / 200 PP. MONOGRAPH",
-      frontPage: "/img/projects/paper_eta_page1_portada.webp",
-      backPage: "/img/projects/paper_eta_page22_arquitectura.webp",
+    desc: {
+      es: "Diseño y desarrollo de webs a medida y productos propios priorizando velocidad, claridad y facilidad de uso. Entre ellos Zalbi Aisia (gestor de contenidos a medida y filtros instantáneos), yeraygarrido.dev y archive.yeraygarrido.dev.",
+      en: "Designed and shipped custom websites and digital products focused on speed, clarity, and reliability. Highlights include Zalbi Aisia (custom CMS and search filters), yeraygarrido.dev, and archive.yeraygarrido.dev.",
+      eu: "Abiadura, argitasuna eta erabilgarritasuna lehenesten dituzten neurrirako webak eta produktu propioak. Besteak beste: Zalbi Aisia (neurrirako CMS eta berehalako iragazkiak), yeraygarrido.dev eta archive.yeraygarrido.dev.",
+    },
+  },
+  {
+    id: "glocalium",
+    title: {
+      es: "Administrador Web y Desarrollador de Plugins",
+      en: "Web Administrator & Plugin Developer",
+      eu: "Web Administratzaile eta Plugin Garatzaile",
+    },
+    company: {
+      es: "Glocalium Services SL",
+      en: "Glocalium Services SL",
+      eu: "Glocalium Services SL",
+    },
+    date: {
+      es: "Abr 2025 - Jun 2025",
+      en: "Apr 2025 - Jun 2025",
+      eu: "2025eko api. - 2025eko eka.",
+    },
+    desc: {
+      es: "Creación desde cero de dos extensiones en PHP para exportar formularios a CSV y guardar cada solicitud de forma segura en base de datos MySQL con panel de consulta. También migraciones de servidor, copias de seguridad automáticas, auditorías de seguridad y prototipos en Figma.",
+      en: "Created custom WordPress extensions in PHP to export client inquiries to CSV and store them securely in MySQL with a private management panel. Also handled server migrations, automated backups, security checks, and Figma prototypes.",
+      eu: "PHP-n hutsetik sortutako bi hedapen formularioak CSV-ra esportatzeko eta MySQL datu-basean modu seguruan gordetzeko kudeaketa-panelarekin. Zerbitzari migrazioak, babeskopia automatikoak, segurtasun-ikuskaritzak eta Figma prototipoak.",
+    },
+  },
+  {
+    id: "reciclanet",
+    title: {
+      es: "Programador Web",
+      en: "Web Developer",
+      eu: "Web Programatzaile",
+    },
+    company: {
+      es: "Asociación Educativa Reciclanet",
+      en: "Asociación Educativa Reciclanet",
+      eu: "Asociación Educativa Reciclanet",
+    },
+    date: {
+      es: "Mar 2022 - Abr 2022",
+      en: "Mar 2022 - Apr 2022",
+      eu: "2022ko mar. - 2022ko api.",
+    },
+    desc: {
+      es: "Mantenimiento y actualización de la web de la asociación, mejorando la claridad del contenido, su estructura y la visualización en distintos dispositivos.",
+      en: "Maintained and updated the organization website, improving content clarity, structure, and accessibility.",
+      eu: "Elkartearen webgunearen mantentze-lanak eta eguneratzea, edukiaren argitasuna, egitura eta gailu ezberdinetako bistaratzea hobetuz.",
+    },
+  },
+];
+
+export const EDUCATION_HISTORY: TimelineEntry[] = [
+  {
+    id: "daw",
+    title: {
+      es: "Grado Superior en Desarrollo de Aplicaciones Web (DAW)",
+      en: "Higher Degree in Web Application Development (DAW)",
+      eu: "Web Aplikazioen Garapeneko Goi Mailako Zikloa (DAW)",
+    },
+    company: {
+      es: "CIFP Zornotza LHII",
+      en: "CIFP Zornotza LHII",
+      eu: "CIFP Zornotza LHII",
+    },
+    date: {
+      es: "2024 - Presente",
+      en: "2024 - Present",
+      eu: "2024 - Gaur egun",
+    },
+    desc: {
+      es: "Técnico Superior en Desarrollo de Aplicaciones Web en modalidad Dual, combinando formación académica con ingeniería real en empresa.",
+      en: "Higher Technician Degree in Web Application Development (Dual Vocational Training combining classes with real industry engineering).",
+      eu: "Web Aplikazioen Garapeneko Goi Mailako Teknikaria, Lanbide Heziketa Dualean prestakuntza eta enpresako benetako ingeniaritza uztartuz.",
+    },
+  },
+  {
+    id: "42urduliz",
+    title: {
+      es: "Campus de Ingeniería de Software",
+      en: "Software Engineering Track",
+      eu: "Software Ingeniaritzako Campusa",
+    },
+    company: {
+      es: "42 Urduliz (Fundación Telefónica)",
+      en: "42 Urduliz (Fundación Telefónica)",
+      eu: "42 Urduliz (Fundación Telefónica)",
+    },
+    date: {
+      es: "2022 - 2023",
+      en: "2022 - 2023",
+      eu: "2022 - 2023",
+    },
+    desc: {
+      es: "Formación intensiva basada en proyectos y aprendizaje entre pares, centrada en programación en C, algoritmos, gestión de memoria y fundamentos de sistemas.",
+      en: "Intensive peer-to-peer programming campus with no teachers, centered on C, algorithms, memory management, and how operating systems work underneath.",
+      eu: "Proiektuetan eta parekoen arteko ikaskuntzan oinarritutako prestakuntza trinkoa, C programazioan, algoritmoetan, memoria-kudeaketan eta sistemen oinarrietan zentratua.",
+    },
+  },
+  {
+    id: "ede",
+    title: {
+      es: "Certificado de Profesionalidad en Desarrollo Web (Nivel 3)",
+      en: "Level 3 Professional Certificate in Web Development",
+      eu: "Web Garapeneko Profesionaltasun Ziurtagiria (3. Maila)",
+    },
+    company: {
+      es: "Fundación EDE",
+      en: "Fundación EDE",
+      eu: "Fundación EDE",
+    },
+    date: {
+      es: "2021 - 2022",
+      en: "2021 - 2022",
+      eu: "2021 - 2022",
+    },
+    desc: {
+      es: "Formación oficial en desarrollo web completo (frontend, backend, bases de datos y publicación de aplicaciones). Nota media: 9/10.",
+      en: "Official certification covering frontend and backend development, databases, and deploying live web applications. Final grade: 9/10.",
+      eu: "Web garapen osoan prestakuntza ofiziala (frontend, backend, datu-baseak eta aplikazioen argitalpena). Batez besteko nota: 9/10.",
     },
   },
 ];
 
 // ============================================================================
-// 7. STACK TECNOLÓGICO & ENDPOINTS API PÚBLICA
+// 8. STACK TECNOLÓGICO, ENDPOINTS API PÚBLICA & MARQUEE
 // ============================================================================
 export const TECH_STACK_ITEMS = [
   { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" },
@@ -676,9 +754,6 @@ Core: PHP 8 · Java 21 · C (42) · Python · SQLite/MySQL · Linux · React 19`
   },
 ];
 
-// ============================================================================
-// 8. CINTA EDITORIAL CINÉTICA (MARQUEE)
-// ============================================================================
 export const MARQUEE_ITEMS: string[] = [
   "BIDEPLUS (BIDE+) / WWW.BIDEPLUS.EUS",
   "GASOLINERA+ / GASOLINERAPLUS.APP",
