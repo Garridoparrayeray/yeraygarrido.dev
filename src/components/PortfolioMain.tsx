@@ -2873,7 +2873,7 @@ export default function PortfolioMain() {
               <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
                 {loc(ui.timelineEyebrow, language)}
               </span>
-              <h2 className="font-editorial font-bold text-[clamp(2.25rem,9.8vw,3.75rem)] sm:text-6xl tracking-[-0.02em] leading-[1.0] break-words">
+              <h2 className="font-editorial font-bold text-4xl sm:text-5xl lg:text-[clamp(2.2rem,3.1vw,3.35rem)] tracking-[-0.025em] leading-[1.02]">
                 {t("exp.title")}
               </h2>
 
@@ -3046,7 +3046,7 @@ export default function PortfolioMain() {
                   <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#D6C7B2] block">
                     {loc(ui.devEyebrow, language)}
                   </span>
-                  <h3 className="font-editorial font-semibold text-[clamp(1.9rem,8vw,2.75rem)] sm:text-5xl tracking-[-0.02em] break-words">
+                  <h3 className="font-editorial font-semibold text-4xl sm:text-5xl lg:text-[clamp(2.1rem,3vw,3.1rem)] tracking-[-0.02em]">
                     {t("api.title")}
                   </h3>
                   <p className="text-lg text-[#F6F4EF]/82 leading-[1.7] text-left text-pretty">
