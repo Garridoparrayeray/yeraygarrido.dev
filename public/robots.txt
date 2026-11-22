@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /img/linkedin_Perfil_photo.pdf
+Disallow: /linkedin_Perfil_photo.pdf
 
 # 2026 AI Search & LLM Crawlers (GEO) — explicitly allowed
 User-agent: GPTBot
