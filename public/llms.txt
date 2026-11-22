@@ -20,11 +20,12 @@
 
 ## Live Software Products
 - **Bideplus (Bide+)** — https://www.bideplus.eus/
+  Searchable name: Bideplus (search engines drop the "+" in "Bide+"). Also written Bide+, and called Bizkaibus+ in the research papers (same app and same prediction method).
   Installable real-time public transport PWA with schedules, live arrivals, and the «Cómo llegar» multimodal route planner covering 16 transit networks across Euskal Herria (Bizkaibus, Metro Bilbao, Euskotren, Renfe Cercanías, Bilbobus, Dbus, Tuvisa, Alavabus, Lurraldebus, and more). Features an empirically validated real-time ETA engine achieving 64% accuracy (±2 min) versus 39% for the official Bizkaibus app across 555,744 paired GPS ground-truth evaluations. Wikidata: https://www.wikidata.org/wiki/Q142213325 · Instagram: https://www.instagram.com/bideplus.eus/
 - **Gasolinera+** — https://gasolineraplus.app
   Real-time Spanish fuel price comparator covering 11,400+ official MITECO stations, with personal vehicle fuel/consumption logger (L/100km), live onboard trip computer, and interactive price heatmaps. Live and installable today on iPhone (iOS) and Android as a PWA, with Google Play Store release forthcoming.
 
-## Open-Science Research Publications (Zenodo · Google Scholar Indexed)
+## Open-Science Research Publications (Zenodo, open access)
 Archive index: https://yeraygarrido.dev/papers/
 Reference repository: https://github.com/Garridoparrayeray/bide-eta
 
@@ -32,19 +33,19 @@ Reference repository: https://github.com/Garridoparrayeray/bide-eta
    - DOI: https://doi.org/10.5281/zenodo.24286027
    - Scholar landing page: https://yeraygarrido.dev/papers/paired-evaluation/
    - Preprint PDF: https://yeraygarrido.dev/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf
-   - Key findings: 555,744 paired predictions against GPS ground truth; Bide+ reaches 64% vs 39% official app accuracy (±2 min), winning 57 of 59 stops.
+   - Key findings: across 555,744 paired predictions on six days, the published timetable was within ±2 minutes of the actual passage in 16% of cases, the operator's official real time in 39% and Bide+ (open data only) in 64%. Below three minutes the two real-time sources were equally often within ±2 minutes; from three minutes on, Bide+ was more often within ±2 minutes at 57 of 59 stops. Results apply to the 54% of first-bus announcements whose bus was tracked and confirmed, over one week.
 
 2. **Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation** (Preprint v1.1, EN, 2026-11-16)
    - DOI: https://doi.org/10.5281/zenodo.24286302
    - Scholar landing page: https://yeraygarrido.dev/papers/three-layer-method/
    - Preprint PDF: https://yeraygarrido.dev/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf
-   - Key findings: Reproducible 3-layer architecture (geometric projection, last-stop + explicit abstention, shrunk learned medians) evaluated over 9.1 million predictions (92–96% within ±3 min, 2× published timetable accuracy).
+   - Key findings: three-layer method with explicit abstention (GPS position projected onto the route, last stop registered by the feed, timetable corrected trip by trip, with segment travel-time medians shrunk towards the all-day median). In 9.1 million predictions over 23 days, the arrival shown is within ±2 minutes in 92–96% of cases when the bus is under three minutes away and in 67% at 10–20 minutes, against 23–25% for the published timetable. The corrected timetable alone, without live data, doubles the accuracy of the published one.
 
 3. **Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados** (Technical Monograph v2.1, ES, 200 pages, 2026-11-07)
    - DOI: https://doi.org/10.5281/zenodo.24041572
    - Scholar landing page: https://yeraygarrido.dev/papers/memoria-bide-eta/
    - Monograph PDF: https://yeraygarrido.dev/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf
-   - Key findings: 200-page mathematical and engineering reference monograph including Kalman filtering, residual neural network (-7% additional error), and 407 verified test vectors.
+   - Key findings: 200-page technical report specifying the method so it can be replicated. In 2.21 million predictions under twenty minutes over 17 days, the arrival shown is within ±2 minutes in 96% of cases when the bus is under three minutes away and in 67% at 10–20 minutes, against 24% and 25% for the published timetable. Evaluated by day, a Kalman filter on the bus's own pace and a neural network reduce the mean error of segment sums by 4% and 6–7% respectively. Includes test vectors and a reference implementation.
 
 ## Other Selected Software Projects
 - **YGArchive** (https://archive.yeraygarrido.dev): Autodidact photography archive and custom PHP CMS organized by thematic series (active since 2022).

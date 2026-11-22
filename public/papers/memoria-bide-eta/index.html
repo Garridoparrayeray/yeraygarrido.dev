@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados — Yeray Garrido</title>
-  <meta name="description" content="Memoria técnica de referencia de 200 páginas sobre predicción de llegadas de autobuses (ETA): formulación matemática, filtro de Kalman, red neuronal residual (-7 % error), 407 vectores de prueba e implementación abierta en Python." />
+  <meta name="description" content="Memoria técnica de 200 páginas sobre el método de predicción de llegadas de Bizkaibus+/Bide+: en 2,21 millones de predicciones, la llegada cae dentro de ±2 min en el 96 % a menos de tres minutos y en el 67 % entre diez y veinte minutos, frente al 24–25 % del horario publicado." />
   <meta name="author" content="Yeray Garrido" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <link rel="canonical" href="https://yeraygarrido.dev/papers/memoria-bide-eta/" />
@@ -22,7 +22,7 @@
   <meta name="citation_language" content="es" />
   <meta name="citation_pdf_url" content="https://yeraygarrido.dev/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf" />
   <meta name="citation_abstract_html_url" content="https://yeraygarrido.dev/papers/memoria-bide-eta/" />
-  <meta name="citation_keywords" content="predicción de llegadas; ETA; transporte público; GTFS; SIRI-VM; filtro de Kalman; red neuronal; Bide+; Bizkaibus" />
+  <meta name="citation_keywords" content="predicción de llegadas; ETA; transporte público; GTFS; SIRI-VM; filtro de Kalman; red neuronal; Bide+; Bizkaibus; Bideplus" />
 
   <!-- Dublin Core Metadata -->
   <meta name="DC.title" content="Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados" />
@@ -37,7 +37,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://yeraygarrido.dev/papers/memoria-bide-eta/" />
   <meta property="og:title" content="Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados" />
-  <meta property="og:description" content="Memoria técnica de 200 páginas con formulación matemática, filtro de Kalman, red neuronal residual y 407 vectores de prueba." />
+  <meta property="og:description" content="Memoria técnica de 200 páginas: método en tres capas con abstención, filtro de Kalman y red neuronal (−6–7 % de error medio), 407 vectores de prueba e implementación de referencia." />
   <meta property="og:image" content="https://yeraygarrido.dev/img/projects/paper_eta_page1_portada.webp" />
 
   <script type="application/ld+json">
@@ -73,7 +73,7 @@
       "contentUrl": "https://yeraygarrido.dev/papers/Garrido_2026_Prediccion_llegadas_autobuses_memoria_v2.1.pdf",
       "encodingFormat": "application/pdf"
     },
-    "abstract": "Memoria técnica exhaustiva de 200 páginas que formaliza el motor de predicción de llegadas de autobuses desarrollado para Bide+: proyección geométrica SIRI-VM sobre trazados GTFS, interpolación horaria, filtro de Kalman sobre ritmo de marcha, modelo de red neuronal residual (-7 % de error adicional), 407 vectores de prueba verificados e implementación abierta en Python."
+    "abstract": "Bizkaibus, la red de autobuses interurbanos de Bizkaia, publica la posición GPS de cada vehículo y su próxima parada, pero no su retraso. Las horas intermedias de su horario oficial están interpoladas a velocidad constante: de 169 308 pasos reales por parada, el 85 % de los que ocurren pasada la primera hora de viaje llega más de dos minutos antes de la hora publicada. Esta memoria describe, para que pueda replicarse, el método con que la aplicación Bizkaibus+ predice las llegadas. El método trabaja con diferencias de horario en lugar de horas absolutas, aprende el tiempo real de cada tramo por franja horaria con medianas contraídas y organiza la predicción en tres capas con reglas de abstención: la posición proyectada sobre el recorrido, la última parada registrada y el horario corregido viaje a viaje. Se recalibra cada día y solo adopta cambios que reducen el error. En 2,21 millones de predicciones a menos de veinte minutos, de 17 días, contrastadas con el paso real, la llegada mostrada cae dentro de ±2 minutos en el 96 % cuando el autobús está a menos de tres minutos y en el 67 % entre diez y veinte minutos, frente al 24 % y el 25 % del horario publicado. Evaluados por días, un filtro de Kalman sobre el ritmo del propio autobús y una red neuronal reducen el error medio de las sumas de tramos un 4 % y entre un 6 y un 7 %, respectivamente. Se incluyen vectores de prueba y una implementación de referencia que los reproduce."
   }
   </script>
 </head>
@@ -115,7 +115,7 @@
       </div>
       <div class="meta-cell">
         <span class="meta-label">Modelado</span>
-        <span class="meta-val">Filtro de Kalman + Red Neuronal (-7 %)</span>
+        <span class="meta-val">Kalman (−4 %) · Red neuronal (−6–7 %)</span>
       </div>
     </div>
 
@@ -128,12 +128,10 @@
     <section class="panel">
       <h2>Resumen</h2>
       <p>
-        Esta memoria técnica de 200 páginas documenta en profundidad el diseño, la formulación matemática, la arquitectura de ingeniería y la evaluación empírica completa del motor de predicción de llegadas de autobuses en tiempo real (ETA) de Bide+.
-      </p>
-      <p>
-        Se cubren desde los fundamentos de proyección geométrica sobre shapes GTFS y gestión de feeds SIRI-VM sin campo de retraso hasta el filtrado de Kalman sobre ritmo de marcha, la corrección residual mediante red neuronal ligera (-7 % de error adicional), el conjunto de 407 vectores de prueba reproducibles y la implementación de referencia abierta en Python.
+        Bizkaibus, la red de autobuses interurbanos de Bizkaia, publica la posición GPS de cada vehículo y su próxima parada, pero no su retraso. Las horas intermedias de su horario oficial están interpoladas a velocidad constante: de 169 308 pasos reales por parada, el 85 % de los que ocurren pasada la primera hora de viaje llega más de dos minutos antes de la hora publicada. Esta memoria describe, para que pueda replicarse, el método con que la aplicación Bizkaibus+ predice las llegadas. El método trabaja con diferencias de horario en lugar de horas absolutas, aprende el tiempo real de cada tramo por franja horaria con medianas contraídas y organiza la predicción en tres capas con reglas de abstención: la posición proyectada sobre el recorrido, la última parada registrada y el horario corregido viaje a viaje. Se recalibra cada día y solo adopta cambios que reducen el error. En 2,21 millones de predicciones a menos de veinte minutos, de 17 días, contrastadas con el paso real, la llegada mostrada cae dentro de ±2 minutos en el 96 % cuando el autobús está a menos de tres minutos y en el 67 % entre diez y veinte minutos, frente al 24 % y el 25 % del horario publicado. Evaluados por días, un filtro de Kalman sobre el ritmo del propio autobús y una red neuronal reducen el error medio de las sumas de tramos un 4 % y entre un 6 y un 7 %, respectivamente. Se incluyen vectores de prueba y una implementación de referencia que los reproduce.
       </p>
       <div class="tag-row">
+        <a class="tag" href="https://www.bideplus.eus/" target="_blank" rel="noopener">Bideplus (Bide+) app</a>
         <span class="tag">Memoria Técnica (200 pp.)</span>
         <span class="tag">Filtro de Kalman</span>
         <span class="tag">Red Neuronal Residual</span>
