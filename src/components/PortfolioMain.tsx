@@ -2320,8 +2320,8 @@ export default function PortfolioMain() {
                               </div>
                             </div>
 
-                            <div className="pt-5 border-t border-white/12 flex flex-wrap items-center justify-between gap-3 text-base font-medium">
-                              <span className="text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors inline-flex items-center gap-1.5">
+                            <div className="pt-5 border-t border-white/12 flex flex-wrap items-center justify-between gap-3 text-lg sm:text-xl font-semibold">
+                              <span className="text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors inline-flex items-center gap-2">
                                 <span>
                                   {language === "en"
                                     ? "Open case study"
@@ -2337,7 +2337,7 @@ export default function PortfolioMain() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={(e) => e.stopPropagation()}
-                                  className="font-mono text-sm text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors inline-flex items-center gap-1 min-h-[44px] py-2 px-1"
+                                  className="font-mono text-base sm:text-lg font-medium text-[#D6C7B2] hover:text-white underline underline-offset-4 decoration-[#D6C7B2]/50 transition-colors inline-flex items-center gap-1.5 min-h-[44px] py-2 px-1"
                                 >
                                   <span>
                                     {project.demoUrl
@@ -2347,7 +2347,7 @@ export default function PortfolioMain() {
                                   <IconGlyph name="up-right" />
                                 </a>
                               ) : (
-                                <span className="font-mono text-sm text-[#F6F4EF]/55">
+                                <span className="font-mono text-base sm:text-lg text-[#F6F4EF]/55">
                                   {project.year}
                                 </span>
                               )}
