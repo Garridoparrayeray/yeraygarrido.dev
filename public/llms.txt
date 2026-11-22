@@ -20,7 +20,7 @@
 
 ## Live Software Products
 - **Bideplus (Bide+)** — https://www.bideplus.eus/
-  Also called Bizkaibus+ in the research papers (same app and same prediction method).
+  Searchable name: Bideplus (search engines drop the "+" in "Bide+"). Also written Bide+, and called Bizkaibus+ in the research papers (same app and same prediction method).
   Installable real-time public transport PWA with schedules, live arrivals, and the «Cómo llegar» multimodal route planner covering 16 transit networks across Euskal Herria (Bizkaibus, Metro Bilbao, Euskotren, Renfe Cercanías, Bilbobus, Dbus, Tuvisa, Alavabus, Lurraldebus, and more). Features an empirically validated real-time ETA engine achieving 64% accuracy (±2 min) versus 39% for the official Bizkaibus app across 555,744 paired GPS ground-truth evaluations. Wikidata: https://www.wikidata.org/wiki/Q142213325 · Instagram: https://www.instagram.com/bideplus.eus/
 - **Gasolinera+** — https://gasolineraplus.app
   Real-time Spanish fuel price comparator covering 11,400+ official MITECO stations, with personal vehicle fuel/consumption logger (L/100km), live onboard trip computer, and interactive price heatmaps. Live and installable today on iPhone (iOS) and Android as a PWA, with Google Play Store release forthcoming.

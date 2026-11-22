@@ -278,6 +278,15 @@ h1 {
   color: var(--ivory-muted);
 }
 
+a.tag {
+  text-decoration: none;
+}
+
+a.tag:hover {
+  color: var(--ivory);
+  border-color: var(--ivory-muted);
+}
+
 .paper-card {
   background: var(--surface);
   border: 1px solid var(--border);

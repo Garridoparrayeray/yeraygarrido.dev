@@ -22,7 +22,7 @@
   <meta name="citation_language" content="en" />
   <meta name="citation_pdf_url" content="https://yeraygarrido.dev/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf" />
   <meta name="citation_abstract_html_url" content="https://yeraygarrido.dev/papers/three-layer-method/" />
-  <meta name="citation_keywords" content="bus arrival prediction; three-layer architecture; explicit abstention; SIRI-VM; GTFS; shrunk medians; open reference implementation; Bide+" />
+  <meta name="citation_keywords" content="bus arrival prediction; three-layer architecture; explicit abstention; SIRI-VM; GTFS; shrunk medians; open reference implementation; Bide+; Bideplus" />
 
   <!-- Dublin Core Metadata -->
   <meta name="DC.title" content="Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation" />
@@ -130,6 +130,7 @@
         Many public transport networks publish real-time vehicle positions but not delays, and many timetables give intermediate stop times interpolated at constant speed rather than observed. Bizkaibus, the interurban bus network of Biscay (Spain), has both properties: after the first hour of a trip, 85% of buses pass a stop more than two minutes before the published time. This paper specifies the arrival prediction method of the Bizkaibus+ app in enough detail to reimplement it in any language. The method uses timetable differences instead of absolute times; learns the actual travel time between consecutive stops by time band, as a median shrunk towards the all-day median of the segment; and predicts from three layers with explicit abstention rules: the GPS position projected onto the route, the last stop registered by the feed, and the timetable corrected trip by trip. It recalibrates itself daily, adopting only changes that reduce the error on held-out data. In 9.1 million predictions over 23 days, checked against the actual passage, the arrival shown is within ±2 minutes in 92–96% of cases when the bus is less than three minutes away and in 67% at ten to twenty minutes, against 23–25% for the published timetable. Without any live data, the corrected timetable alone doubles the accuracy of the published one. A reference implementation in Python, test vectors with 407 checks produced by the production engine, a public evaluator that reproduces the production histograms, and the learned tables and evaluation data are openly available.
       </p>
       <div class="tag-row">
+        <a class="tag" href="https://www.bideplus.eus/" target="_blank" rel="noopener">Bideplus (Bide+) app</a>
         <span class="tag">Three-Layer ETA</span>
         <span class="tag">Explicit Abstention</span>
         <span class="tag">SIRI-VM</span>
