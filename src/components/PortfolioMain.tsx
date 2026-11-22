@@ -1382,7 +1382,7 @@ export default function PortfolioMain() {
       modalContent: {
         legal: {
           title: "Aviso Legal",
-          body: "Este sitio web es el portfolio profesional de Yeray Garrido Parra. Su finalidad es estrictamente informativa, de exhibición de proyectos de ingeniería de software y difusión de publicaciones técnicas de acceso abierto.\n\nAl ser un sitio web personal que no realiza comercio electrónico directo, el acceso es público y gratuito. Los códigos fuente enlazados pertenecen a sus respectivos repositorios en GitHub bajo sus propias licencias abiertas (MIT / CC BY 4.0).",
+          body: "Este sitio web es el portfolio profesional de Yeray Garrido. Su finalidad es estrictamente informativa, de exhibición de proyectos de ingeniería de software y difusión de publicaciones técnicas de acceso abierto.\n\nAl ser un sitio web personal que no realiza comercio electrónico directo, el acceso es público y gratuito. Los códigos fuente enlazados pertenecen a sus respectivos repositorios en GitHub bajo sus propias licencias abiertas (MIT / CC BY 4.0).",
         },
         privacy: {
           title: "Política de Privacidad",
@@ -1399,7 +1399,7 @@ export default function PortfolioMain() {
       modalContent: {
         legal: {
           title: "Legal Notice",
-          body: "This website is the professional portfolio of Yeray Garrido Parra. Its purpose is strictly informational, showcasing software engineering projects and open-access technical publications.\n\nAs a personal website with no direct e-commerce, access is public and free. Linked source codes belong to their respective GitHub repositories under their stated open licenses (MIT / CC BY 4.0).",
+          body: "This website is the professional portfolio of Yeray Garrido. Its purpose is strictly informational, showcasing software engineering projects and open-access technical publications.\n\nAs a personal website with no direct e-commerce, access is public and free. Linked source codes belong to their respective GitHub repositories under their stated open licenses (MIT / CC BY 4.0).",
         },
         privacy: {
           title: "Privacy Policy",
@@ -1416,7 +1416,7 @@ export default function PortfolioMain() {
       modalContent: {
         legal: {
           title: "Legezko Oharra",
-          body: "Webgune hau Yeray Garrido Parraren portfolio profesionala da. Helburua informazioa ematea, software ingeniaritzako proiektuak erakustea eta sarbide irekiko argitalpen teknikoak zabaltzea da.\n\nMerkataritza elektroniko zuzenik egiten ez duen webgune pertsonala denez, sarbidea publikoa eta doakoa da. Lotutako iturburu-kodeak GitHub-eko biltegienak dira, beren lizentziekin (MIT / CC BY 4.0).",
+          body: "Webgune hau Yeray Garridoren portfolio profesionala da. Helburua informazioa ematea, software ingeniaritzako proiektuak erakustea eta sarbide irekiko argitalpen teknikoak zabaltzea da.\n\nMerkataritza elektroniko zuzenik egiten ez duen webgune pertsonala denez, sarbidea publikoa eta doakoa da. Lotutako iturburu-kodeak GitHub-eko biltegienak dira, beren lizentziekin (MIT / CC BY 4.0).",
         },
         privacy: {
           title: "Pribatutasun Politika",

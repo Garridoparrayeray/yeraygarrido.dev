@@ -634,7 +634,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
     preview: `<?xml version="1.0" encoding="UTF-8"?>
 <resume>
   <header>
-    <name>Yeray Garrido Parra</name>
+    <name>Yeray Garrido</name>
     <title>Software Engineer &amp; Full Stack Developer</title>
   </header>
   <contact location="Bilbao, Bizkaia" website="https://yeraygarrido.dev" />
@@ -646,7 +646,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
     path: "/cv.json",
     command: "curl -L https://yeraygarrido.dev/cv.json",
     preview: `{
-  "name": "Yeray Garrido Parra",
+  "name": "Yeray Garrido",
   "title": "Ingeniero de Software & Desarrollador Full Stack",
   "location": "Bilbao, Bizkaia, Spain",
   "orcid": "0009-0008-0459-0294",
@@ -659,7 +659,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
     label: "TXT",
     path: "/cv.txt",
     command: "curl -L https://yeraygarrido.dev/cv.txt",
-    preview: `YERAY GARRIDO PARRA — SOFTWARE ENGINEER & FULL STACK
+    preview: `YERAY GARRIDO — SOFTWARE ENGINEER & FULL STACK
 Bilbao, Bizkaia | https://yeraygarrido.dev | github.com/Garridoparrayeray
 -------------------------------------------------------------------------
 Core: PHP 8 · Java 21 · C (42) · Python · SQLite/MySQL · Linux · React 19`,
