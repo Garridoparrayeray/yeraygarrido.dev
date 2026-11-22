@@ -72,15 +72,11 @@ function MobileHardwareFrame({
   priority?: boolean;
 }) {
   const isCompact = size === "compact";
-  const isEager = priority || size === "hero";
+  const isEager = priority;
   const responsiveSrcSet = src.includes("_mobile.webp")
     ? `${src.replace("_mobile.webp", "_mobile-390w.webp")} 390w, ${src} 780w`
     : undefined;
-  const responsiveSizes = isCompact
-    ? "180px"
-    : size === "flank"
-      ? "190px"
-      : "(max-width: 640px) 235px, 272px";
+  const responsiveSizes = "165px";
   return (
     <div
       className={`relative bg-[#17171C] border border-white/20 shadow-[0_28px_80px_rgba(0,0,0,0.85)] select-none ${
@@ -943,141 +939,125 @@ export default function PortfolioMain() {
         }
       });
 
-      // Tablet & Mobile (<1024px): ultra-lightweight one-shot reveals (ZERO scroll scrub overhead)
+      // Tablet & Mobile (<1024px): static editorial cards & spreads (ZERO ScrollTrigger instances on mobile = 0ms forced reflow & TBT)
       mm.add("(max-width: 1023px)", () => {
         gsap.utils.toArray<HTMLElement>("[data-aw-book-stage]", root).forEach(
           (bookStage) => {
             const pageFront = bookStage.querySelector<HTMLElement>("[data-aw-page-front]");
             const pageBack = bookStage.querySelector<HTMLElement>("[data-aw-page-back]");
-          if (pageFront && pageBack) {
-            gsap.set(pageFront, { x: -10, rotate: -2.5 });
-            gsap.set(pageBack, { x: 20, rotate: 5.5 });
+            if (pageFront && pageBack) {
+              gsap.set(pageFront, { x: -10, rotate: -2.5 });
+              gsap.set(pageBack, { x: 20, rotate: 5.5 });
+            }
           }
-        });
-        const inners = gsap.utils.toArray<HTMLElement>("[data-aw-card-inner]", root);
-        inners.forEach((inner) => {
+        );
+      });
+
+      if (isLargeDesktop) {
+        // G. Architectural hairline draws (Desktop only)
+        root.querySelectorAll<HTMLElement>("[data-aw-line]").forEach((line) => {
           gsap.fromTo(
-            inner,
-            { y: 18, autoAlpha: 0 },
+            line,
+            { scaleX: 0 },
             {
-              y: 0,
-              autoAlpha: 1,
-              duration: 0.55,
+              scaleX: 1,
+              duration: 0.85,
               ease: "aw-out",
-              clearProps: "transform,opacity,visibility",
+              transformOrigin: "left center",
+              clearProps: "transform",
               scrollTrigger: {
-                trigger: inner,
+                trigger: line,
                 start: "top 92%",
                 once: true,
               },
             }
           );
         });
-      });
 
-      // G. Architectural hairline draws
-      root.querySelectorAll<HTMLElement>("[data-aw-line]").forEach((line) => {
-        gsap.fromTo(
-          line,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            duration: 0.85,
-            ease: "aw-out",
-            transformOrigin: "left center",
-            clearProps: "transform",
-            scrollTrigger: {
-              trigger: line,
-              start: "top 92%",
-              once: true,
-            },
-          }
-        );
-      });
+        // H. Calm one-shot editorial reveals (Desktop only)
+        root.querySelectorAll<HTMLElement>("[data-aw-reveal]").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { y: 20, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.7,
+              ease: "aw-out",
+              clearProps: "transform,opacity,visibility",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 90%",
+                once: true,
+              },
+            }
+          );
+        });
 
-      // H. Calm one-shot editorial reveals
-      root.querySelectorAll<HTMLElement>("[data-aw-reveal]").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 20, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.7,
-            ease: "aw-out",
-            clearProps: "transform,opacity,visibility",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 90%",
-              once: true,
-            },
-          }
-        );
-      });
+        // I. Staggered tech stack grid cells (Desktop only)
+        const stackGrid = root.querySelector<HTMLElement>("[data-aw-stack-grid]");
+        if (stackGrid) {
+          const tiles = stackGrid.querySelectorAll<HTMLElement>("[data-aw-stack-tile]");
+          gsap.fromTo(
+            tiles,
+            { y: 14, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.5,
+              stagger: 0.025,
+              ease: "aw-out",
+              clearProps: "transform,opacity,visibility",
+              scrollTrigger: {
+                trigger: stackGrid,
+                start: "top 90%",
+                once: true,
+              },
+            }
+          );
+        }
 
-      // I. Staggered tech stack grid cells
-      const stackGrid = root.querySelector<HTMLElement>("[data-aw-stack-grid]");
-      if (stackGrid) {
-        const tiles = stackGrid.querySelectorAll<HTMLElement>("[data-aw-stack-tile]");
-        gsap.fromTo(
-          tiles,
-          { y: 14, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.5,
-            stagger: 0.025,
-            ease: "aw-out",
-            clearProps: "transform,opacity,visibility",
-            scrollTrigger: {
-              trigger: stackGrid,
-              start: "top 90%",
-              once: true,
-            },
-          }
-        );
-      }
+        // J. Contact Finale masked display + vertical hairline stem (Desktop only)
+        const contactTitle = root.querySelector<HTMLElement>("[data-aw-contact-title]");
+        if (contactTitle) {
+          const contactLines = contactTitle.querySelectorAll<HTMLElement>("[data-aw-contact-line]");
+          gsap.fromTo(
+            contactLines,
+            { yPercent: 108 },
+            {
+              yPercent: 0,
+              duration: 0.85,
+              stagger: 0.08,
+              ease: "aw-out",
+              clearProps: "transform",
+              scrollTrigger: {
+                trigger: contactTitle,
+                start: "top 86%",
+                once: true,
+              },
+            }
+          );
+        }
 
-      // J. Contact Finale masked display + vertical hairline stem
-      const contactTitle = root.querySelector<HTMLElement>("[data-aw-contact-title]");
-      if (contactTitle) {
-        const contactLines = contactTitle.querySelectorAll<HTMLElement>("[data-aw-contact-line]");
-        gsap.fromTo(
-          contactLines,
-          { yPercent: 108 },
-          {
-            yPercent: 0,
-            duration: 0.85,
-            stagger: 0.08,
-            ease: "aw-out",
-            clearProps: "transform",
-            scrollTrigger: {
-              trigger: contactTitle,
-              start: "top 86%",
-              once: true,
-            },
-          }
-        );
-      }
-
-      const contactStem = root.querySelector<HTMLElement>("[data-aw-contact-stem]");
-      if (contactStem) {
-        gsap.fromTo(
-          contactStem,
-          { scaleY: 0 },
-          {
-            scaleY: 1,
-            duration: 0.85,
-            transformOrigin: "top center",
-            ease: "aw-out",
-            clearProps: "transform",
-            scrollTrigger: {
-              trigger: contactStem,
-              start: "top 88%",
-              once: true,
-            },
-          }
-        );
+        const contactStem = root.querySelector<HTMLElement>("[data-aw-contact-stem]");
+        if (contactStem) {
+          gsap.fromTo(
+            contactStem,
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              duration: 0.85,
+              transformOrigin: "top center",
+              ease: "aw-out",
+              clearProps: "transform",
+              scrollTrigger: {
+                trigger: contactStem,
+                start: "top 88%",
+                once: true,
+              },
+            }
+          );
+        }
       }
     }, root);
 
@@ -1105,11 +1085,13 @@ export default function PortfolioMain() {
       resizeObserver.observe(root);
     }
 
-    document.fonts?.ready.then(() => {
-      if (isMounted) {
-        requestAnimationFrame(() => ScrollTrigger.refresh());
-      }
-    });
+    if (isLargeDesktop) {
+      document.fonts?.ready.then(() => {
+        if (isMounted) {
+          requestAnimationFrame(() => ScrollTrigger.refresh());
+        }
+      });
+    }
 
     return () => {
       isMounted = false;
@@ -2954,9 +2936,9 @@ export default function PortfolioMain() {
                       <div className="font-medium">{item.company}</div>
                     </div>
                     <div className="sm:col-span-8 space-y-3">
-                      <h3 className="font-grotesk font-bold text-2xl sm:text-3xl tracking-tight">
+                      <div className="font-grotesk font-bold text-2xl sm:text-3xl tracking-tight">
                         {item.title}
-                      </h3>
+                      </div>
                       <p className="text-[17px] sm:text-[19px] lg:text-[20px] text-[#09090B]/85 leading-[1.72] text-editorial">
                         {item.desc}
                       </p>
@@ -3025,7 +3007,7 @@ export default function PortfolioMain() {
                 {showGhCalendar ? (
                   <Suspense
                     fallback={
-                      <div className="h-[151px] w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest text-[#F6F4EF]/45">
+                      <div className="h-[151px] w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest text-[#F6F4EF]/75">
                         GitHub Activity...
                       </div>
                     }
@@ -3045,7 +3027,7 @@ export default function PortfolioMain() {
                     />
                   </Suspense>
                 ) : (
-                  <div className="h-[151px] w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest text-[#F6F4EF]/45">
+                  <div className="h-[151px] w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest text-[#F6F4EF]/75">
                     GitHub Activity...
                   </div>
                 )}
