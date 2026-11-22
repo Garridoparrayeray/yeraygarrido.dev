@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain — Yeray Garrido</title>
-  <meta name="description" content="Paired empirical benchmark of 555,744 real-time bus arrival predictions in Biscay, Spain: the open-data Bide+ method achieves 64% accuracy (±2 min) vs 39% for the official operator app across 57 of 59 stops." />
+  <meta name="description" content="Paired evaluation of 555,744 real-time bus arrival predictions in Biscay, Spain: within ±2 minutes of the actual passage in 16% of cases for the timetable, 39% for the operator&#x27;s real time and 64% for the open-data Bide+ method." />
   <meta name="author" content="Yeray Garrido" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <link rel="canonical" href="https://yeraygarrido.dev/papers/paired-evaluation/" />
@@ -37,7 +37,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://yeraygarrido.dev/papers/paired-evaluation/" />
   <meta property="og:title" content="Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain" />
-  <meta property="og:description" content="555,744 paired GPS ground-truth evaluations across 59 Bizkaibus stops: Bide+ achieves 64% vs 39% accuracy for the official operator app." />
+  <meta property="og:description" content="555,744 paired predictions on Bizkaibus: within ±2 min in 16% (timetable), 39% (official real time) and 64% (Bide+, open data only)." />
   <meta property="og:image" content="https://yeraygarrido.dev/img/projects/bideplus_og.webp" />
 
   <script type="application/ld+json">
@@ -72,7 +72,7 @@
       "contentUrl": "https://yeraygarrido.dev/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
       "encodingFormat": "application/pdf"
     },
-    "abstract": "Empirical paired evaluation of 555,744 real-time bus arrival predictions against GPS ground truth across 59 stops of the Bizkaibus interurban network in Biscay, Spain. Using only public open-data feeds (GTFS + SIRI-VM), the Bide+ method reaches 64% accuracy within ±2 minutes versus 39% for the official operator application, outperforming it at 57 of 59 evaluated stops."
+    "abstract": "This paper compares an operator’s real-time bus predictions with an independent predictor for the same buses at the same moments, for Bizkaibus, the interurban network of Biscay (Spain), which publishes vehicle positions and timetable as open data and shows its own waiting times in an app. For one week in November 2026, the official waiting times of 60 stops were recorded every minute with the position feed. Each official announcement was matched to the bus it referred to, confirmed by the distance the service reports, and compared with the published timetable and with the Bide+ method, which predicts arrivals from the open data alone and was frozen before the week. All three were checked against the actual passage, reconstructed from the feed and from GPS positions. Across 555,744 paired predictions on six days, the timetable was within two minutes of the actual passage in 16% of cases, the official real time in 39% and Bide+ in 64%. Below three minutes the two real-time sources were equally often within two minutes, although the official one had the smaller mean error below six minutes; from three minutes on, Bide+ was more often within two minutes, by 29 to 35 percentage points at 10–20 minutes (95% interval by stop), at 57 of 59 stops and at every hour. An ablation attributes its advantage to learned segment travel times. The results apply to the 54% of first-bus announcements whose bus was tracked and confirmed, and to one week; data and code are open."
   }
   </script>
 </head>
@@ -110,7 +110,7 @@
       </div>
       <div class="meta-cell">
         <span class="meta-label">Key Result</span>
-        <span class="meta-val">64% vs 39% (±2 min) · 57/59 stops</span>
+        <span class="meta-val">64% vs 39% vs 16% (±2 min)</span>
       </div>
       <div class="meta-cell">
         <span class="meta-label">Sample Size</span>
@@ -128,10 +128,7 @@
     <section class="panel">
       <h2>Abstract</h2>
       <p>
-        Real-time bus arrival information is a critical component of public transit usability, yet many regional transit operators either rely on proprietary prediction engines of opaque accuracy or publish raw vehicle-position feeds without explicit schedule-deviation fields.
-      </p>
-      <p>
-        This study presents a large-scale paired empirical evaluation comparing the open-data Bide+ arrival prediction method against the official operator application on the Bizkaibus interurban bus network in Biscay, Spain. Evaluating 555,744 strictly paired predictions against actual GPS ground-truth passages across 59 stops, the Bide+ method achieves 64% accuracy within a ±2-minute tolerance window compared to 39% for the official operator application (+25 percentage points), outperforming the official predictor at 57 out of 59 evaluated stops.
+        This paper compares an operator’s real-time bus predictions with an independent predictor for the same buses at the same moments, for Bizkaibus, the interurban network of Biscay (Spain), which publishes vehicle positions and timetable as open data and shows its own waiting times in an app. For one week in November 2026, the official waiting times of 60 stops were recorded every minute with the position feed. Each official announcement was matched to the bus it referred to, confirmed by the distance the service reports, and compared with the published timetable and with the Bide+ method, which predicts arrivals from the open data alone and was frozen before the week. All three were checked against the actual passage, reconstructed from the feed and from GPS positions. Across 555,744 paired predictions on six days, the timetable was within two minutes of the actual passage in 16% of cases, the official real time in 39% and Bide+ in 64%. Below three minutes the two real-time sources were equally often within two minutes, although the official one had the smaller mean error below six minutes; from three minutes on, Bide+ was more often within two minutes, by 29 to 35 percentage points at 10–20 minutes (95% interval by stop), at 57 of 59 stops and at every hour. An ablation attributes its advantage to learned segment travel times. The results apply to the 54% of first-bus announcements whose bus was tracked and confirmed, and to one week; data and code are open.
       </p>
       <div class="tag-row">
         <span class="tag">Public Transport</span>

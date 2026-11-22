@@ -71,9 +71,9 @@ export default function Research() {
         eu: "Ebaluazio Enpiriko Parekatua"
       },
       tldr: {
-        es: "Benchmark de 555.744 predicciones pareadas frente al paso real por GPS: Bide+ alcanza un 64 % de precisión frente al 39 % de la app oficial de Bizkaibus, superándola en 57 de 59 paradas evaluadas.",
-        en: "Benchmark of 555,744 paired predictions against actual GPS ground truth: Bide+ achieves 64% accuracy vs 39% for official operator, leading in 57 of 59 stops.",
-        eu: "555.744 aurreikuspen parekaturen benchmark-a GPS errealaren aurka: Bide+-k %64ko zehaztasuna du app ofizialaren %39aren aurrean, 59tik 57 geralekutan irabaziz."
+        es: "Benchmark de 555.744 predicciones pareadas frente al paso real por GPS: Bide+ queda a ±2 min del paso real en el 64 % de los casos, frente al 39 % de la app oficial y el 16 % del horario; a partir de tres minutos, acierta más en 57 de 59 paradas.",
+        en: "Benchmark of 555,744 paired predictions against actual GPS ground truth: Bide+ is within ±2 min in 64% of cases vs 39% for the official real time and 16% for the timetable; from three minutes out, it is ahead at 57 of 59 stops.",
+        eu: "555.744 aurreikuspen parekaturen benchmark-a GPS errealaren aurka: Bide+ ±2 minututan dago kasuen %64an, app ofizialaren %39aren eta ordutegiaren %16aren aurrean; hiru minututik aurrera, 59tik 57 geralekutan hobea da."
       },
       doi: "10.5281/zenodo.24286027",
       doiUrl: "https://doi.org/10.5281/zenodo.24286027",
@@ -82,7 +82,7 @@ export default function Research() {
       pdfFilename: "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_preprint_v1.0.pdf",
       readingPdfUrl: "/papers/Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
       readingPdfFilename: "Garrido_2026_Open-data_vs_operator_real-time_bus_predictions_reading-version_v1.0.pdf",
-      metrics: ["555.744 predicciones", "64 % vs 39 % precisión", "57 / 59 paradas"]
+      metrics: ["555.744 predicciones", "64 % vs 39 % precisión", "57 / 59 paradas (≥3 min)"]
     },
     {
       id: "paper-threelayer",
@@ -99,16 +99,16 @@ export default function Research() {
         eu: "Metodoaren Zehaztapena"
       },
       tldr: {
-        es: "Arquitectura en 3 capas con abstención explícita y medianas aprendidas para feeds que no publican retrasos: 92–96 % de acierto en <3 min sobre 9,1 millones de predicciones evaluadas.",
-        en: "Three-layer architecture with explicit abstention and learned medians for feeds omitting delays: 92–96% accuracy under 3 min across 9.1 million predictions.",
-        eu: "3 geruzako arkitektura atzerapenik gabeko feed-etarako: %92-96ko zehaztasuna <3 minutuan 9,1 milioi aurreikuspenetan ebaluatuta."
+        es: "Arquitectura en 3 capas con abstención explícita y medianas aprendidas para feeds que no publican retrasos: a ±2 min en el 92–96 % de los casos con el bus a menos de tres minutos, sobre 9,1 millones de predicciones.",
+        en: "Three-layer architecture with explicit abstention and learned medians for feeds omitting delays: within ±2 min in 92–96% of cases when the bus is under three minutes away, across 9.1 million predictions.",
+        eu: "3 geruzako arkitektura atzerapenik gabeko feed-etarako: ±2 minututan kasuen %92–96an autobusa hiru minutu baino gutxiagora dagoenean, 9,1 milioi aurreikuspenetan."
       },
       doi: "10.5281/zenodo.24286302",
       doiUrl: "https://doi.org/10.5281/zenodo.24286302",
       repoUrl: "https://github.com/Garridoparrayeray/bide-eta",
       pdfUrl: "/papers/Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
       pdfFilename: "Garrido_2026_Bus_arrival_prediction_three-layer_method_preprint_v1.1.pdf",
-      metrics: ["9,1M predicciones", "92–96 % precisión (<3 min)", "2x s/ Horario Oficial"]
+      metrics: ["9,1M predicciones", "92–96 % a ±2 min (<3 min)", "67 % vs 23–25 % horario (10–20 min)"]
     },
     {
       id: "paper-monograph",
@@ -125,9 +125,9 @@ export default function Research() {
         eu: "Erreferentziazko Memoria (200 orri)"
       },
       tldr: {
-        es: "Memoria técnica exhaustiva de 200 páginas: formulación matemática, filtro de Kalman sobre ritmo y red neuronal (-7 % error adicional), con 407 vectores de prueba e implementación abierta en Python.",
-        en: "Comprehensive 200-page monograph: mathematical proofs, Kalman filtering, neural network (-7% error), 407 test vectors, and open Python reference implementation.",
-        eu: "200 orrialdeko memoria teknikoa: formulazio matematikoa, Kalman iragazkia, sare neuronala (-%7 errorea), 407 proba-bektore eta Python inplementazio irekia."
+        es: "Memoria técnica exhaustiva de 200 páginas: formulación matemática, filtro de Kalman sobre ritmo y red neuronal (−6–7 % de error medio), con 407 vectores de prueba e implementación abierta en Python.",
+        en: "Comprehensive 200-page monograph: mathematical proofs, Kalman filtering, neural network (−6–7% mean error), 407 test vectors, and open Python reference implementation.",
+        eu: "200 orrialdeko memoria teknikoa: formulazio matematikoa, Kalman iragazkia, sare neuronala (−%6–7 batez besteko errorea), 407 proba-bektore eta Python inplementazio irekia."
       },
       doi: "10.5281/zenodo.24041572",
       doiUrl: "https://doi.org/10.5281/zenodo.24041572",
