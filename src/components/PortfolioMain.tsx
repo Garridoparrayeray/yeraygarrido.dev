@@ -1531,7 +1531,7 @@ export default function PortfolioMain() {
           <a
             href="#top"
             onClick={(e) => scrollToSection(e, "top")}
-            className="flex items-center gap-3 sm:gap-3.5 min-h-[44px] shrink-0"
+            className="flex items-center gap-4 sm:gap-5 min-h-[44px] shrink-0"
             aria-label={t("header.home")}
           >
             <img
@@ -1539,7 +1539,7 @@ export default function PortfolioMain() {
               width={720}
               height={281}
               alt={t("header.logoAlt")}
-              className="h-8 sm:h-9 lg:h-11 w-auto shrink-0"
+              className="h-6 sm:h-7 lg:h-8 w-auto shrink-0"
             />
             <span className="font-grotesk font-semibold text-base sm:text-lg tracking-[0.1em] uppercase text-[#F6F4EF] whitespace-nowrap">
               {SITE_IDENTITY.brandName}
@@ -3466,7 +3466,7 @@ export default function PortfolioMain() {
               height={281}
               loading="lazy"
               alt={t("header.logoAlt")}
-              className="h-10 w-auto"
+              className="h-8 w-auto"
             />
             <p className="text-sm sm:text-base text-[#F6F4EF]/65 leading-relaxed">
               {SITE_IDENTITY.brandName} · {t("hero.role")}
@@ -3584,6 +3584,14 @@ export default function PortfolioMain() {
               className="block hover:text-white py-0.5"
             >
               LinkedIn <IconGlyph name="up-right" />
+            </a>
+            <a
+              href="https://ko-fi.com/ygarrido"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block hover:text-white py-0.5"
+            >
+              Ko-fi <IconGlyph name="up-right" />
             </a>
             <TearLink
               href={SITE_IDENTITY.photographyUrl}
