@@ -189,6 +189,11 @@ function renderPaperLandingHtml(paper) {
         isEs ? "Descargar PDF (Lectura)" : "Download Reading Version PDF"
       }</a>`
     : "";
+  const supplementBtnHtml = paper.supplementPdfUrl
+    ? `\n      <a class="btn btn-secondary" href="${escHtml(paper.supplementPdfUrl)}" download>${SVG_DOWN} ${
+        isEs ? "Material suplementario (PDF)" : "Supplementary Material (PDF)"
+      }</a>`
+    : "";
   const repoBtnHtml = paper.repoUrl
     ? `\n      <a class="btn btn-secondary" href="${escHtml(paper.repoUrl)}" target="_blank" rel="noopener noreferrer">${escHtml(
         s.repoButtonLabel || (isEs ? "Código de Referencia (GitHub)" : "Reference Code (GitHub)")
@@ -303,7 +308,7 @@ ${extraMetaCells}
     </div>
 
     <div class="actions">
-      <a class="btn btn-primary" href="${escHtml(paper.pdfUrl)}" download>${SVG_DOWN} ${escHtml(pdfBtnLabel)}</a>${readingBtnHtml}${doiBtnHtml}${repoBtnHtml}
+      <a class="btn btn-primary" href="${escHtml(paper.pdfUrl)}" download>${SVG_DOWN} ${escHtml(pdfBtnLabel)}</a>${readingBtnHtml}${supplementBtnHtml}${doiBtnHtml}${repoBtnHtml}
     </div>
 
     <section class="panel">
@@ -394,6 +399,9 @@ function renderArchiveIndexHtml(papers) {
       const readingLink = p.readingPdfUrl
         ? `\n        <a class="btn btn-secondary" href="${escHtml(p.readingPdfUrl)}" download>${SVG_DOWN} Reading PDF</a>`
         : "";
+      const supplementLink = p.supplementPdfUrl
+        ? `\n        <a class="btn btn-secondary" href="${escHtml(p.supplementPdfUrl)}" download>${SVG_DOWN} Supplement PDF</a>`
+        : "";
       const doiLink = p.doi
         ? `\n        <a class="btn btn-accent" href="${escHtml(p.doiUrl || `https://doi.org/${p.doi}`)}" target="_blank" rel="noopener noreferrer">Zenodo DOI ${SVG_UP_RIGHT}</a>`
         : "";
@@ -414,7 +422,7 @@ function renderArchiveIndexHtml(papers) {
       </p>
       <div class="actions" style="margin: 20px 0 0;">
         <a class="btn btn-primary" href="/papers/${escHtml(p.slug)}/">${isEs ? "Ficha Completa &amp; Citación" : "Full Paper Page &amp; Citation"} ${SVG_RIGHT}</a>
-        <a class="btn btn-secondary" href="${escHtml(p.pdfUrl)}" download>${SVG_DOWN} ${escHtml(pdfLabel)}</a>${readingLink}${doiLink}
+        <a class="btn btn-secondary" href="${escHtml(p.pdfUrl)}" download>${SVG_DOWN} ${escHtml(pdfLabel)}</a>${readingLink}${supplementLink}${doiLink}
       </div>
     </article>`;
     })

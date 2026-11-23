@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks — Yeray Garrido</title>
+  <meta name="description" content="A multi-criteria journey planner that runs entirely on the passenger&#x27;s device, in the browser, over fifteen merged transit networks in the Basque Country: validated against Connection Scan and OpenTripPlanner, 16 ms median plan query on a recent iPhone." />
+  <meta name="author" content="Yeray Garrido" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://yeraygarrido.dev/papers/journey-planning-on-device/" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="stylesheet" href="/papers/scholar.css" />
+
+  <!-- Highwire Press / Google Scholar Metadata -->
+  <meta name="citation_title" content="Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks" />
+  <meta name="citation_author" content="Garrido, Yeray" />
+  <meta name="citation_author_orcid" content="0009-0008-0459-0294" />
+  <meta name="citation_publication_date" content="2026/11/22" />
+  <meta name="citation_online_date" content="2026/11/22" />
+  <meta name="citation_doi" content="10.5281/zenodo.24442212" />
+  <meta name="citation_publisher" content="Zenodo" />
+  <meta name="citation_language" content="en" />
+  <meta name="citation_pdf_url" content="https://yeraygarrido.dev/papers/Garrido_2026_Multi-criteria_journey_planning_on_device_preprint_v1.0.pdf" />
+  <meta name="citation_abstract_html_url" content="https://yeraygarrido.dev/papers/journey-planning-on-device/" />
+  <meta name="citation_keywords" content="journey planning; client-side computation; public transportation; multimodal transportation networks; RAPTOR; McRAPTOR; WebAssembly; OpenTripPlanner; Bide+; Bideplus; Basque Country" />
+
+  <!-- Dublin Core Metadata -->
+  <meta name="DC.title" content="Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks" />
+  <meta name="DC.creator" content="Garrido, Yeray" />
+  <meta name="DC.date" content="2026-11-22" />
+  <meta name="DC.identifier" content="https://doi.org/10.5281/zenodo.24442212" />
+  <meta name="DC.language" content="en" />
+  <meta name="DC.publisher" content="Zenodo" />
+  <meta name="DC.rights" content="Creative Commons Attribution 4.0 International (CC BY 4.0)" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yeraygarrido.dev/papers/journey-planning-on-device/" />
+  <meta property="og:title" content="Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks" />
+  <meta property="og:description" content="On-device multi-criteria journey planning over 15 merged transit networks (8,242 stops): offline, real-time repair, 16 ms median query on iPhone, 65 ms on a 2021 Android." />
+  <meta property="og:image" content="https://yeraygarrido.dev/img/projects/bideplus_og.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://yeraygarrido.dev/papers/journey-planning-on-device/#article",
+    "headline": "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks",
+    "name": "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks",
+    "author": {
+      "@type": "Person",
+      "name": "Yeray Garrido",
+      "givenName": "Yeray",
+      "familyName": "Garrido",
+      "url": "https://yeraygarrido.dev/",
+      "sameAs": "https://orcid.org/0009-0008-0459-0294"
+    },
+    "datePublished": "2026-11-22",
+    "version": "1.0",
+    "numberOfPages": 12,
+    "inLanguage": "en",
+    "identifier": "https://doi.org/10.5281/zenodo.24442212",
+    "sameAs": "https://doi.org/10.5281/zenodo.24442212",
+    "url": "https://yeraygarrido.dev/papers/journey-planning-on-device/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Zenodo"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "isAccessibleForFree": true,
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://yeraygarrido.dev/papers/Garrido_2026_Multi-criteria_journey_planning_on_device_preprint_v1.0.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "abstract": "Journey planners for public transport usually compute routes on a server. This paper describes and evaluates one that computes them entirely on the passenger’s device, in the browser, over fifteen merged transit networks in and around the Basque Country (8,242 stops, 54,896 trips). Offline it answers from the last timetables downloaded; online it repairs each answer with the real-time state of the trips shown. Its search is a multi-criteria range variant of round-based public transit routing on arrival and walking time, with bags of four labels that never discard the earliest arrival and lower bounds on the remaining time and rides computed once per target; a selection layer turns the result into five labelled options. On the production data, four labels find 88% of the exact restricted Pareto set without changing the first option of 2,000 plan queries, and the bounds make plan queries 2.6 times faster. Earliest arrivals agree with an independent Connection Scan search and with an exhaustive enumeration of small networks. Against OpenTripPlanner on identical data and without pruning of walking options, each planner returns almost every journey of the other that its own walking rules allow, to within 60 s (ours) and 120 s (OpenTripPlanner); with the production walking table, ours returns 96% of those of OpenTripPlanner within 60 s. Delaying or cancelling a third of the trips adds half to the query time. In single runs, the median plan query took 16 ms on a recent iPhone and 65 ms on a 2021 mid-range Android phone."
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/img/logo.webp" alt="Yeray Garrido Logo" />
+        <span>Yeray Garrido</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation">
+        <a href="/papers/"><svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M13.5 8H3M7.25 3.75L3 8L7.25 12.25"/></svg> All Papers</a>
+        <a href="/">Portfolio</a>
+        <a href="https://doi.org/10.5281/zenodo.24442212" target="_blank" rel="noopener noreferrer">Zenodo DOI <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="eyebrow">Preprint v1.0 · Journey Planning · Open Access (CC BY 4.0)</p>
+    <h1>Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks</h1>
+    <p class="lead">
+      <strong>Yeray Garrido</strong> · Independent Researcher &amp; Software Engineer (Bilbao, Spain) ·
+      <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer">ORCID 0009-0008-0459-0294</a>
+    </p>
+
+    <div class="meta-grid">
+      <div class="meta-cell">
+        <span class="meta-label">DOI</span>
+        <span class="meta-val"><a href="https://doi.org/10.5281/zenodo.24442212" target="_blank" rel="noopener noreferrer">10.5281/zenodo.24442212 <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5"/></svg></a></span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Published</span>
+        <span class="meta-val">2026-11-22 (v1.0 · EN)</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Median Plan Query</span>
+        <span class="meta-val">16 ms (iPhone) · 65 ms (Android 2021)</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">Network Size</span>
+        <span class="meta-val">15 networks · 8,242 stops · 54,896 trips</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/papers/Garrido_2026_Multi-criteria_journey_planning_on_device_preprint_v1.0.pdf" download><svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M8 2.5V13M3.75 8.75L8 13L12.25 8.75"/></svg> Download Preprint PDF (v1.0)</a>
+      <a class="btn btn-secondary" href="/papers/Garrido_2026_Multi-criteria_journey_planning_supplement_v1.0.pdf" download><svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M8 2.5V13M3.75 8.75L8 13L12.25 8.75"/></svg> Supplementary Material (PDF)</a>
+      <a class="btn btn-accent" href="https://doi.org/10.5281/zenodo.24442212" target="_blank" rel="noopener noreferrer">View on Zenodo <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5"/></svg></a>
+    </div>
+
+    <section class="panel">
+      <h2>Abstract</h2>
+      <p>
+        Journey planners for public transport usually compute routes on a server. This paper describes and evaluates one that computes them entirely on the passenger’s device, in the browser, over fifteen merged transit networks in and around the Basque Country (8,242 stops, 54,896 trips). Offline it answers from the last timetables downloaded; online it repairs each answer with the real-time state of the trips shown. Its search is a multi-criteria range variant of round-based public transit routing on arrival and walking time, with bags of four labels that never discard the earliest arrival and lower bounds on the remaining time and rides computed once per target; a selection layer turns the result into five labelled options. On the production data, four labels find 88% of the exact restricted Pareto set without changing the first option of 2,000 plan queries, and the bounds make plan queries 2.6 times faster. Earliest arrivals agree with an independent Connection Scan search and with an exhaustive enumeration of small networks. Against OpenTripPlanner on identical data and without pruning of walking options, each planner returns almost every journey of the other that its own walking rules allow, to within 60 s (ours) and 120 s (OpenTripPlanner); with the production walking table, ours returns 96% of those of OpenTripPlanner within 60 s. Delaying or cancelling a third of the trips adds half to the query time. In single runs, the median plan query took 16 ms on a recent iPhone and 65 ms on a 2021 mid-range Android phone.
+      </p>
+      <div class="tag-row">
+        <a class="tag" href="https://www.bideplus.eus/" target="_blank" rel="noopener">Bideplus (Bide+) app</a>
+        <span class="tag">Journey Planning</span>
+        <span class="tag">RAPTOR / McRAPTOR</span>
+        <span class="tag">Client-side Computation</span>
+        <span class="tag">Offline-first</span>
+        <span class="tag">Real-time Repair</span>
+        <span class="tag">Basque Country Transit</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="bibtex-header">
+        <h2 style="margin:0;">BibTeX Citation</h2>
+        <button class="copy-btn" type="button" onclick="copyBibtex(this)">Copy BibTeX</button>
+      </div>
+      <pre class="bibtex" id="bibtex-block">@misc{garrido_2026_24442212,
+  author       = {Garrido, Yeray},
+  title        = {{Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks}},
+  month        = nov,
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.24442212},
+  url          = {https://doi.org/10.5281/zenodo.24442212}
+}</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Yeray Garrido · ORCID 0009-0008-0459-0294</span>
+      <span><a href="/papers/">All Publications</a> · <a href="/">yeraygarrido.dev</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function copyBibtex(btn) {
+      var text = document.getElementById("bibtex-block").textContent;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "Copied ✓";
+          setTimeout(function () { btn.textContent = "Copy BibTeX"; }, 1800);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

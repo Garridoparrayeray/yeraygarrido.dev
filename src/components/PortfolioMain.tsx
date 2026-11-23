@@ -1309,6 +1309,7 @@ export default function PortfolioMain() {
     summary: { es: "Resumen:", en: "Summary:", eu: "Laburpena:" },
     downloadPdf: { es: "Descargar PDF", en: "Download PDF", eu: "PDF Deskargatu" },
     readingPdf: { es: "PDF (Lectura)", en: "PDF (Reading)", eu: "PDF (Irakurketa)" },
+    supplementPdf: { es: "Material suplementario", en: "Supplementary material", eu: "Material osagarria" },
     code: { es: "Código (GitHub)", en: "Code (GitHub)", eu: "Kodea (GitHub)" },
     archiveEyebrow: {
       es: "01.B / MÁS PROYECTOS",
@@ -2764,6 +2765,16 @@ export default function PortfolioMain() {
                         >
                           <IconGlyph name="down" />
                           <span>{loc(ui.readingPdf, language)}</span>
+                        </a>
+                      )}
+                      {paper.supplementPdfUrl && (
+                        <a
+                          href={paper.supplementPdfUrl}
+                          download={paper.supplementPdfFilename}
+                          className="border border-[#09090B] text-[#09090B] hover:bg-[#09090B] hover:text-[#F6F4EF] font-medium text-base px-6 py-4 min-h-[52px] inline-flex items-center gap-1.5 transition-colors"
+                        >
+                          <IconGlyph name="down" />
+                          <span>{loc(ui.supplementPdf, language)}</span>
                         </a>
                       )}
                       {paper.scholarPageUrl && (

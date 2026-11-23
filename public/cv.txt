@@ -83,6 +83,9 @@ entornos Linux.
 
 [ PUBLICACIONES CIENTÍFICAS (OPEN SCIENCE · ZENODO) ]
 
+> Multi-criteria journey planning on the passenger's device (2026)
+  DOI: 10.5281/zenodo.24442212 | https://yeraygarrido.dev/papers/journey-planning-on-device/
+
 > Accuracy of open-data versus operator real-time bus arrival predictions (2026)
   DOI: 10.5281/zenodo.24286027 | https://yeraygarrido.dev/papers/paired-evaluation/
 

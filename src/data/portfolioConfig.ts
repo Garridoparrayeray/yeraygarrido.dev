@@ -194,6 +194,9 @@ export interface PaperSourceRecord {
   pdfFilename: string;
   readingPdfUrl?: string;
   readingPdfFilename?: string;
+  /** Material suplementario (PDF aparte). No va al sitemap y se sirve con noindex. */
+  supplementPdfUrl?: string;
+  supplementPdfFilename?: string;
   metrics: LocalizedText[];
   visual: ResearchVisualPlate;
 }

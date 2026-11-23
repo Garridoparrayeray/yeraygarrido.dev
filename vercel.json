@@ -92,6 +92,15 @@
           "value": "noindex"
         }
       ]
+    },
+    {
+      "source": "/papers/Garrido_2026_Multi-criteria_journey_planning_supplement_v1.0.pdf",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ]
 }

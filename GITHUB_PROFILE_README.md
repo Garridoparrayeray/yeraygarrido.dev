@@ -1,7 +1,7 @@
 <div align="center">
 
   <!-- Header Banner Brutalista estilo yeraygarrido.dev -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1e293b,100:0a0a0a&height=220&section=header&text=YERAY%20GARRIDO%20PARRA&fontSize=42&fontColor=ffffff&fontAlignY=40&desc=SOFTWARE%20ENGINEER%20%7C%20FULL%20STACK%20DEVELOPER%20%7C%20LINUX&descFontSize=15&descColor=94a3b8&descAlignY=62" width="100%" alt="Yeray Garrido Parra Banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1e293b,100:0a0a0a&height=220&section=header&text=YERAY%20GARRIDO&fontSize=42&fontColor=ffffff&fontAlignY=40&desc=SOFTWARE%20ENGINEER%20%7C%20FULL%20STACK%20DEVELOPER%20%7C%20LINUX&descFontSize=15&descColor=94a3b8&descAlignY=62" width="100%" alt="Yeray Garrido Parra Banner" />
 
   <br/><br/>
 
@@ -10,7 +10,7 @@
     <a href="https://cifpzornotza.eus/"><img src="https://img.shields.io/badge/DEGREE-FP%20DUAL%20DAW%20(CIFP%20ZORNOTZA)-0a0a0a?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=1f2937" alt="Degree" /></a>
     <img src="https://img.shields.io/badge/ROLE-FULL%20STACK%20ENGINEER-0a0a0a?style=for-the-badge&logo=serverless&logoColor=white&labelColor=1f2937" alt="Full Stack Engineer" />
     <img src="https://img.shields.io/badge/LOCATION-BILBAO%2C%20BIZKAIA%20(SPAIN)-0a0a0a?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=1f2937" alt="Location" />
-    <a href="https://doi.org/10.5281/zenodo.24286027"><img src="https://img.shields.io/badge/RESEARCH-3%20PAPERS%20%C2%B7%20ZENODO-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo Research" /></a>
+    <a href="https://yeraygarrido.dev/papers/"><img src="https://img.shields.io/badge/RESEARCH-4%20PAPERS%20%C2%B7%20ZENODO-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo Research" /></a>
   </p>
 
   <!-- Quick Action & Social Links -->
@@ -115,11 +115,11 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 
 | Project | Tech Stack | Highlights | Links |
 | :--- | :--- | :--- | :---: |
-| **Bide+** | `PHP 8` `SQLite` `Vanilla JS` `GTFS` `SIRI-VM` `Leaflet` | Plataforma PWA de movilidad predictiva en Euskadi (Bizkaibus+, Metro+, Euskotren+, Renfe). Algoritmo propio de ETA programado en PHP y precompilación GTFS diaria a SQLite local. | [Site](https://bideplus.eus) · [Code](https://github.com/Garridoparrayeray/bizkaibus-renewed) |
-| **Gasolinera+** | `PHP 8` `Vanilla JS` `Geolocation` `MITECO` `Leaflet` `Canvas` | Comparador en tiempo real de más de 11.400 estaciones de servicio en España. Incluye mapa de calor de precios, módulo de garaje/consumo y ordenador de a bordo con velocímetro digital. | [Code](https://github.com/Garridoparrayeray/gasolinera-plus) |
+| **Bide+** | `PHP 8` `SQLite` `Vanilla JS` `GTFS` `SIRI-VM` `Leaflet` | Plataforma PWA de movilidad predictiva en Euskadi (Bizkaibus+, Metro+, Euskotren+, Renfe). Algoritmo propio de ETA programado en PHP y precompilación GTFS diaria a SQLite local. | [Site](https://www.bideplus.eus/) · [Code](https://github.com/Garridoparrayeray/bizkaibus-renewed) |
+| **Gasolinera+** | `PHP 8` `Vanilla JS` `Geolocation` `MITECO` `Leaflet` `Canvas` | Comparador en tiempo real de más de 11.400 estaciones de servicio en España. Incluye mapa de calor de precios, módulo de garaje/consumo y ordenador de a bordo con velocímetro digital. | [Site](https://gasolineraplus.app) · [Code](https://github.com/Garridoparrayeray/gasolinera-plus) |
 | **Zalbi Aisia** | `PHP 8` `WordPress (_s)` `CPTs` `Vanilla JS` `CSS Grid` | Plataforma corporativa y catálogo dinámico con filtrado taxonómico asíncrono sin *layout thrashing*. Creado 100% a medida desde cero sin constructores visuales. | [Site](https://zalbi.eu/) · [Code](https://github.com/Garridoparrayeray/zalbi-theme) |
-| **YGArchive** | `PHP 8` `MySQL` `Vanilla JS` `Imagick` `IPTC` | Archivo fotográfico de alta resolución con experiencia móvil tipo *Reels* por gestos (swipe vertical), cola de miniaturas aislada en subida y firmado IPTC de autoría. | [Demo](https://archive.yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/art-gallery) |
-| **yeraygarrido.dev** | `React 19` `TypeScript` `Vite` `Tailwind v4` `GSAP` | Portfolio técnico personal con arquitectura SPA de renderizado crítico sin bloqueos, 100/100 Lighthouse y sistema i18n nativo Context API (ES/EN/EU). | [Site](https://yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/yeraygarrido.com.git) |
+| **YGArchive** | `PHP 8` `MySQL` `Vanilla JS` `Imagick` `IPTC` | Archivo fotográfico de alta resolución con experiencia móvil tipo *Reels* por gestos (swipe vertical), cola de miniaturas aislada en subida y firmado IPTC de autoría. | [Demo](https://archive.yeraygarrido.dev) |
+| **yeraygarrido.dev** | `React 19` `TypeScript` `Vite` `Tailwind v4` `GSAP` | Portfolio técnico personal con arquitectura SPA de renderizado crítico sin bloqueos, 100/100 Lighthouse y sistema i18n nativo Context API (ES/EN/EU). | [Site](https://yeraygarrido.dev) · [Code](https://github.com/Garridoparrayeray/yeraygarrido.dev) |
 | **GastroAccess Euskadi** | `React 19` `TypeScript` `Vite` `Open Data Euskadi` | SPA que consume APIs de Open Data Euskadi mediante algoritmos propios para evaluar y puntuar la accesibilidad real en hostelería. | [Code](https://github.com/Garridoparrayeray/GastroAccess-Euskadi) |
 | **bide-eta** | `Python 3` `Zenodo DOI` `GTFS` `SIRI-VM` `Algorithms` | Implementación de referencia, vectores de verificación y evaluador público de los 3 papers de predicción de llegadas para Bizkaibus+ (Bide+). Registrados con DOI en Zenodo / CERN. | [Code](https://github.com/Garridoparrayeray/bide-eta) · [Zenodo](https://doi.org/10.5281/zenodo.24286027) |
 | **Bermeoko Udala** | `JavaFX` `Java` `MariaDB` `Docker Compose` `XML/XSLT` | Sistema integral de gestión de objetos perdidos para el Ayuntamiento de Bermeo (CIFP Zornotza): aplicación de escritorio JavaFX, portal web ciudadano y arquitectura Docker multi-contenedor. | [Code](https://github.com/Garridoparrayeray/Talde14_Erronka_CIFPZornotzaLHII) |
@@ -130,6 +130,7 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 
 <div align="center">
 
+[![DOI: 10.5281/zenodo.24442212](https://zenodo.org/badge/DOI/10.5281/zenodo.24442212.svg)](https://doi.org/10.5281/zenodo.24442212) &nbsp;
 [![DOI: 10.5281/zenodo.24286027](https://zenodo.org/badge/DOI/10.5281/zenodo.24286027.svg)](https://doi.org/10.5281/zenodo.24286027) &nbsp;
 [![DOI: 10.5281/zenodo.24286302](https://zenodo.org/badge/DOI/10.5281/zenodo.24286302.svg)](https://doi.org/10.5281/zenodo.24286302) &nbsp;
 [![DOI: 10.5281/zenodo.24041572](https://zenodo.org/badge/DOI/10.5281/zenodo.24041572.svg)](https://doi.org/10.5281/zenodo.24041572)
@@ -138,17 +139,22 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 
 Investigación personal independiente y publicación de datos abiertos en Zenodo (CERN) bajo licencia abierta CC BY 4.0 para garantizar la reproducibilidad científica total:
 
-- **1. Evaluación Empírica Pareada (555.744 predicciones):**  
+- **1. Planificador de Viajes Multicriterio en el Dispositivo (15 redes, 8.242 paradas):**  
+  *Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks* (2026).  
+  Planificador de rutas que calcula en el propio móvil, en el navegador (RAPTOR + WebAssembly), sobre quince redes de transporte de Euskadi y alrededores fusionadas (54.896 viajes). Funciona sin conexión y, con conexión, corrige los resultados con el tiempo real. Validado frente a Connection Scan y OpenTripPlanner; consulta mediana de 16 ms en un iPhone reciente y 65 ms en un Android de gama media de 2021.  
+  [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24442212-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24442212) · [Bide+](https://www.bideplus.eus/)
+
+- **2. Evaluación Empírica Pareada (555.744 predicciones):**  
   *Accuracy of open-data versus operator real-time bus arrival predictions: a paired evaluation of the Bide+ method in Biscay, Spain* (2026).  
   Benchmark minuto a minuto frente al operador oficial de Bizkaibus: Bide+ 64 % vs 39 % oficial (ventaja en 57 de 59 paradas).  
   [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24286027-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24286027) · [Código & Evaluador](https://github.com/Garridoparrayeray/bide-eta)
 
-- **2. Especificación Metodológica en 3 Capas (9,1M predicciones):**  
+- **3. Especificación Metodológica en 3 Capas (9,1M predicciones):**  
   *Predicting bus arrivals when the feed reports positions but not delays: a reproducible three-layer method with an open reference implementation* (2026).  
   Formalización del algoritmo en 3 capas con abstención explícita: 92–96 % de acierto (<3 min) evaluado durante 23 días.  
   [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24286302-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24286302) · [Código & Evaluador](https://github.com/Garridoparrayeray/bide-eta)
 
-- **3. Monografía Técnica y Algoritmia (200 páginas):**  
+- **4. Monografía Técnica y Algoritmia (200 páginas):**  
   *Predicción de llegadas de autobuses con posiciones en tiempo real y horarios interpolados* (2026).  
   Memoria técnica exhaustiva de 200 páginas con formulación matemática, análisis de 169.308 pasos reales, filtro de Kalman, red neuronal y 407 vectores de prueba.  
   [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24041572-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24041572) · [Código & Evaluador](https://github.com/Garridoparrayeray/bide-eta)
@@ -173,12 +179,12 @@ Investigación personal independiente y publicación de datos abiertos en Zenodo
 
   <br/><br/>
 
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Garridoparrayeray&theme=tokyonight&hide_border=true&date_format=j%20M%5B%20Y%5D&cache_seconds=86400" alt="GitHub Streak" />
+  <img src="https://streak-stats.demolab.com/?user=Garridoparrayeray&theme=tokyonight&hide_border=true&date_format=j%20M%5B%20Y%5D&cache_seconds=86400" alt="GitHub Streak" />
 
   <br/><br/>
 
   <p align="center">
-    <code>// Crafted with precision by Yeray Garrido Parra</code>
+    <code>// Crafted with precision by Yeray Garrido</code>
   </p>
 
 </div>

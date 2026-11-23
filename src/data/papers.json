@@ -1,5 +1,115 @@
 [
   {
+    "id": "paper-journey-planning",
+    "slug": "journey-planning-on-device",
+    "year": "2026",
+    "date": "2026-11-22",
+    "version": "v1.0",
+    "langBadge": "EN",
+    "topic": {
+      "es": "Transporte & Algoritmia · Bideplus (Bide+)",
+      "en": "Transit & Algorithms · Bideplus (Bide+)",
+      "eu": "Garraioa & Algoritmia · Bideplus (Bide+)"
+    },
+    "venue": "Zenodo (CERN) · Preprint",
+    "title": {
+      "es": "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks",
+      "en": "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks",
+      "eu": "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks"
+    },
+    "type": {
+      "es": "Algoritmia y Validación",
+      "en": "Algorithms & Validation",
+      "eu": "Algoritmia eta Balidazioa"
+    },
+    "tldr": {
+      "es": "Un planificador de rutas de transporte público que calcula todo en el propio móvil, sin servidor, sobre quince redes de Euskadi y alrededores fusionadas (8.242 paradas). Funciona sin conexión, corrige los resultados con el tiempo real y responde en una mediana de 16 ms en un iPhone reciente y 65 ms en un Android de gama media de 2021.",
+      "en": "A public transport journey planner that computes everything on the passenger's phone, with no server, over fifteen merged networks in and around the Basque Country (8,242 stops). It works offline, repairs answers with real-time data and answers in a median of 16 ms on a recent iPhone and 65 ms on a 2021 mid-range Android phone.",
+      "eu": "Garraio publikoko ibilbide-planifikatzaile bat, dena bidaiariaren mugikorrean kalkulatzen duena, zerbitzaririk gabe, Euskal Herriko eta inguruko hamabost sare bateratuen gainean (8.242 geraleku). Konexiorik gabe dabil, emaitzak denbora errealarekin zuzentzen ditu eta 16 ms-ko medianan erantzuten du iPhone berri batean eta 65 ms-koan 2021eko erdi-mailako Android batean."
+    },
+    "doi": "10.5281/zenodo.24442212",
+    "doiUrl": "https://doi.org/10.5281/zenodo.24442212",
+    "pdfUrl": "/papers/Garrido_2026_Multi-criteria_journey_planning_on_device_preprint_v1.0.pdf",
+    "pdfFilename": "Garrido_2026_Multi-criteria_journey_planning_on_device_preprint_v1.0.pdf",
+    "supplementPdfUrl": "/papers/Garrido_2026_Multi-criteria_journey_planning_supplement_v1.0.pdf",
+    "supplementPdfFilename": "Garrido_2026_Multi-criteria_journey_planning_supplement_v1.0.pdf",
+    "metrics": [
+      {
+        "es": "16 ms iPhone · 65 ms Android 2021",
+        "en": "16 ms iPhone · 65 ms Android 2021",
+        "eu": "16 ms iPhone · 65 ms Android 2021"
+      },
+      {
+        "es": "15 redes · 8.242 paradas",
+        "en": "15 networks · 8,242 stops",
+        "eu": "15 sare · 8.242 geraleku"
+      },
+      {
+        "es": "96 % de OpenTripPlanner (±60 s)",
+        "en": "96% of OpenTripPlanner (±60 s)",
+        "eu": "OpenTripPlanner-en %96 (±60 s)"
+      }
+    ],
+    "visual": {
+      "kind": "card",
+      "figureLabel": "FIG. 01 / ON-DEVICE PLAN QUERY",
+      "highlightStat": "16 ms",
+      "highlightLabel": {
+        "es": "Consulta mediana en el móvil (iPhone reciente)",
+        "en": "Median plan query on the phone (recent iPhone)",
+        "eu": "Kontsulta mediana mugikorrean (iPhone berria)"
+      },
+      "footnote": "65 ms · Android 2021 · 15 networks · 8,242 stops · 54,896 trips"
+    },
+    "scholar": {
+      "eyebrow": "Preprint v1.0 · Journey Planning · Open Access (CC BY 4.0)",
+      "badgeArchive": "Preprint (v1.0)",
+      "pages": 12,
+      "metaDescription": "A multi-criteria journey planner that runs entirely on the passenger's device, in the browser, over fifteen merged transit networks in the Basque Country: validated against Connection Scan and OpenTripPlanner, 16 ms median plan query on a recent iPhone.",
+      "ogDescription": "On-device multi-criteria journey planning over 15 merged transit networks (8,242 stops): offline, real-time repair, 16 ms median query on iPhone, 65 ms on a 2021 Android.",
+      "archiveSummary": "Design and validation of a multi-criteria range RAPTOR planner that runs entirely in the browser on the passenger's phone, over fifteen merged transit networks in and around the Basque Country (8,242 stops, 54,896 trips). Four labels per bag find 88% of the exact restricted Pareto set, lower bounds make plan queries 2.6 times faster, earliest arrivals agree with Connection Scan, and with the production walking table it returns 96% of OpenTripPlanner's journeys within 60 s. Median plan query: 16 ms on a recent iPhone, 65 ms on a 2021 mid-range Android phone.",
+      "abstract": "Journey planners for public transport usually compute routes on a server. This paper describes and evaluates one that computes them entirely on the passenger’s device, in the browser, over fifteen merged transit networks in and around the Basque Country (8,242 stops, 54,896 trips). Offline it answers from the last timetables downloaded; online it repairs each answer with the real-time state of the trips shown. Its search is a multi-criteria range variant of round-based public transit routing on arrival and walking time, with bags of four labels that never discard the earliest arrival and lower bounds on the remaining time and rides computed once per target; a selection layer turns the result into five labelled options. On the production data, four labels find 88% of the exact restricted Pareto set without changing the first option of 2,000 plan queries, and the bounds make plan queries 2.6 times faster. Earliest arrivals agree with an independent Connection Scan search and with an exhaustive enumeration of small networks. Against OpenTripPlanner on identical data and without pruning of walking options, each planner returns almost every journey of the other that its own walking rules allow, to within 60 s (ours) and 120 s (OpenTripPlanner); with the production walking table, ours returns 96% of those of OpenTripPlanner within 60 s. Delaying or cancelling a third of the trips adds half to the query time. In single runs, the median plan query took 16 ms on a recent iPhone and 65 ms on a 2021 mid-range Android phone.",
+      "ogImage": "https://yeraygarrido.dev/img/projects/bideplus_og.webp",
+      "keywords": [
+        "journey planning",
+        "client-side computation",
+        "public transportation",
+        "multimodal transportation networks",
+        "RAPTOR",
+        "McRAPTOR",
+        "WebAssembly",
+        "OpenTripPlanner",
+        "Bide+",
+        "Bideplus",
+        "Basque Country"
+      ],
+      "tags": [
+        {
+          "label": "Bideplus (Bide+) app",
+          "href": "https://www.bideplus.eus/"
+        },
+        "Journey Planning",
+        "RAPTOR / McRAPTOR",
+        "Client-side Computation",
+        "Offline-first",
+        "Real-time Repair",
+        "Basque Country Transit"
+      ],
+      "keyStats": [
+        {
+          "label": "Median Plan Query",
+          "value": "16 ms (iPhone) · 65 ms (Android 2021)"
+        },
+        {
+          "label": "Network Size",
+          "value": "15 networks · 8,242 stops · 54,896 trips"
+        }
+      ],
+      "bibtexType": "misc",
+      "bibtexKey": "garrido_2026_24442212"
+    }
+  },
+  {
     "id": "paper-paired",
     "slug": "paired-evaluation",
     "year": "2026",
