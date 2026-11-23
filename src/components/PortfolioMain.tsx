@@ -1560,7 +1560,7 @@ export default function PortfolioMain() {
                   }}
                   data-active="false"
                   onClick={(e) => scrollToSection(e, n.id)}
-                  className="px-3.5 xl:px-4 py-2.5 text-[15px] xl:text-base font-medium whitespace-nowrap text-[#F6F4EF]/78 hover:text-[#F6F4EF] transition-colors border-b-2 border-transparent data-[active=true]:text-[#D6C7B2] data-[active=true]:border-[#D6C7B2]"
+                  className="aw-nav-link px-3.5 xl:px-4 py-2.5 text-[15px] xl:text-base font-medium whitespace-nowrap text-[#F6F4EF]/78 hover:text-[#F6F4EF] data-[active=true]:text-[#D6C7B2]"
                 >
                   {loc(n.label, language)}
                 </a>

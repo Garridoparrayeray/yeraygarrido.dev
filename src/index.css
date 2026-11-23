@@ -236,3 +236,38 @@ html {
   align-items: center;
   gap: 0.75rem;
 }
+
+/* Menú principal: subrayado champán que crece desde la izquierda al pasar el ratón
+   y queda fijo en la sección activa. Esquinas rectas, foco visible solo con teclado. */
+.aw-nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+.aw-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 0.25rem;
+  height: 2px;
+  background: #D6C7B2;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.aw-nav-link:hover::after,
+.aw-nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+.aw-nav-link:not([data-active="true"]):hover::after {
+  background: rgba(246, 244, 239, 0.55);
+}
+.aw-nav-link:focus { outline: none; }
+.aw-nav-link:focus-visible {
+  outline: 2px solid #D6C7B2;
+  outline-offset: 2px;
+  border-radius: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .aw-nav-link::after { transition: none; }
+}
