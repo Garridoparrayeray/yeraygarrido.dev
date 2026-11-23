@@ -1526,12 +1526,12 @@ export default function PortfolioMain() {
           HEADER — FIXED TOP BAR ON BOTH DESKTOP & MOBILE (ALWAYS VISIBLE, NEVER BREAKS ON BODY LOCK)
          ===================================================================== */}
       <header className="fixed top-0 left-0 right-0 z-[80] bg-[#09090B]/95 backdrop-blur-md border-b border-white/14">
-        <div className="max-w-[1520px] mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4 xl:gap-8">
+        <div className="max-w-[1520px] mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4 xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-8">
           {/* Left: Logo + Name */}
           <a
             href="#top"
             onClick={(e) => scrollToSection(e, "top")}
-            className="flex items-center gap-4 sm:gap-5 min-h-[44px] shrink-0"
+            className="flex items-center min-h-[44px] shrink-0 xl:justify-self-start"
             aria-label={t("header.home")}
           >
             <img
@@ -1539,14 +1539,8 @@ export default function PortfolioMain() {
               width={720}
               height={281}
               alt={t("header.logoAlt")}
-              className="h-6 sm:h-6 lg:h-7 w-auto shrink-0"
+              className="h-6 sm:h-7 lg:h-8 w-auto shrink-0"
             />
-            <span
-              aria-hidden="true"
-              className="invisible font-grotesk font-semibold text-base sm:text-lg tracking-[0.1em] uppercase text-[#F6F4EF] whitespace-nowrap"
-            >
-              {SITE_IDENTITY.brandName}
-            </span>
           </a>
 
           {/* Center: Clear Desktop Main Navigation (always accessible, zero floating bottom dock overlap) */}
@@ -1573,7 +1567,7 @@ export default function PortfolioMain() {
           </nav>
 
           {/* Right: Desktop Square Segmented Language Box + CV | Mobile Animated Hamburger→X */}
-          <div className="flex items-center gap-3.5 xl:gap-4 shrink-0">
+          <div className="flex items-center gap-3.5 xl:gap-4 shrink-0 xl:justify-self-end">
             <div
               role="group"
               aria-label={loc(ui.languageLabel, language)}
