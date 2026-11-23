@@ -256,6 +256,10 @@ function renderPaperLandingHtml(paper) {
   <meta property="og:title" content="${escHtml(title)}" />
   <meta property="og:description" content="${escHtml(ogDesc)}" />
   <meta property="og:image" content="${escHtml(ogImage)}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${escHtml(title)}" />
+  <meta name="twitter:description" content="${escHtml(ogDesc)}" />
+  <meta name="twitter:image" content="${escHtml(ogImage)}" />
 
   <script type="application/ld+json">
 ${jsonLdIndented}
@@ -265,7 +269,7 @@ ${jsonLdIndented}
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
-        <img src="/img/logo.webp" alt="${AUTHOR.name} Logo" />
+        <img src="/img/logo.webp" alt="${AUTHOR.name} Logo" width="146" height="96" />
         <span>${AUTHOR.name}</span>
       </a>
       <nav class="nav-links" aria-label="${isEs ? "Navegación" : "Navigation"}">
@@ -449,6 +453,8 @@ function renderArchiveIndexHtml(papers) {
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Research Publications — ${AUTHOR.name}" />
+  <meta name="twitter:description" content="Open-science publications, Zenodo DOIs, PDFs, and reproducible software systems by ${AUTHOR.name}." />
   <meta name="twitter:image" content="${SITE_URL}/papers/og-papers.png" />
 
   <script type="application/ld+json">
@@ -459,7 +465,7 @@ ${jsonLdIndented}
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
-        <img src="/img/logo.webp" alt="${AUTHOR.name} Logo" />
+        <img src="/img/logo.webp" alt="${AUTHOR.name} Logo" width="146" height="96" />
         <span>${AUTHOR.name}</span>
       </a>
       <nav class="nav-links" aria-label="Navigation">
@@ -534,14 +540,7 @@ function renderSitemapXml(papers, todayIso) {
     <priority>0.8</priority>
   </url>`);
     }
-    if (p.readingPdfUrl) {
-      pdfEntries.push(`  <url>
-    <loc>${SITE_URL}${p.readingPdfUrl}</loc>
-    <lastmod>${p.date}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>`);
-    }
+    // La versión de lectura se sirve con X-Robots-Tag: noindex (vercel.json): no va al sitemap.
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>

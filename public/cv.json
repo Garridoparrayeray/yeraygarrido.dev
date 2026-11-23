@@ -61,12 +61,12 @@
     {
       "name": "Bideplus (Bide+) — 16 redes de Euskal Herria",
       "url": "https://www.bideplus.eus/",
-      "description": "Bideplus (Bide+): horarios, tiempo real y planificador de rutas «Cómo llegar» para 16 redes de transporte público de Euskal Herria. Precompilación automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX en vivo con motor propio de ETA (64 % frente al 39 % de la app oficial)."
+      "description": "Bideplus (Bide+): horarios y tiempo real de 16 redes de transporte público de Euskal Herria, y planificador de rutas «Cómo llegar» sobre 15 de ellas. Precompilación automatizada de datos GTFS a SQLite local cruzando flujos SIRI-VM/SIRI-SX en vivo con motor propio de ETA (64 % frente al 39 % de la app oficial)."
     },
     {
       "name": "Gasolinera+",
       "url": "https://gasolineraplus.app",
-      "description": "Buscador y comparador en tiempo real de precios de combustible en más de 11.400 estaciones de España (MITECO) con API REST propia en PHP nativo, gestor de vehículos/consumo, ordenador de viaje en vivo y mapa interactivo de calor. Instalable en iOS y Android."
+      "description": "Buscador y comparador de precios de combustible con datos oficiales de España, Portugal y Francia con API REST propia en PHP nativo, gestor de vehículos/consumo, ordenador de viaje en vivo y mapa interactivo de calor. App en Google Play e instalable en iPhone."
     },
     {
       "name": "GastroAccess Euskadi",

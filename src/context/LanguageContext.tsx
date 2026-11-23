@@ -319,17 +319,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       es: {
         title: 'Yeray Garrido | Ingeniero de Software y Open Science',
         description:
-          'Yeray Garrido — Ingeniero de Software en Bilbao. Creador de Bideplus (Bide+) y Gasolinera+ (gasolineraplus.app), ingeniero en Horión y autor de publicaciones científicas abiertas en Zenodo.',
+          'Yeray Garrido, ingeniero de software en Bilbao: creador de Bideplus (Bide+) y Gasolinera+, ingeniero en Horión e investigador con publicaciones en acceso abierto.',
       },
       en: {
         title: 'Yeray Garrido | Software Engineer & Open Science',
         description:
-          'Yeray Garrido — Software Engineer in Bilbao. Creator of Bideplus (Bide+) and Gasolinera+ (gasolineraplus.app), engineer at Horión, and author of open-access publications on Zenodo.',
+          'Yeray Garrido, software engineer in Bilbao: creator of Bideplus (Bide+) and Gasolinera+, engineer at Horión and researcher with open-access publications.',
       },
       eu: {
         title: 'Yeray Garrido | Software Ingeniaria eta Open Science',
         description:
-          'Yeray Garrido — Software Ingeniaria Bilbon. Bideplus (Bide+) eta Gasolinera+ (gasolineraplus.app) aplikazioen sortzailea, Horión-eko ingeniaria eta Zenodo-ko ikerketa irekien egilea.',
+          'Yeray Garrido, software ingeniaria Bilbon: Bideplus (Bide+) eta Gasolinera+ aplikazioen sortzailea, Horión-eko ingeniaria eta sarbide irekiko argitalpenen egilea.',
       },
     };
 

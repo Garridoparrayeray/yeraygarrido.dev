@@ -467,9 +467,9 @@ export const ARCHIVE_PLATES: ArchivePlateConfig[] = [
       eu: "GASOLINERAPLUS.APP · iOS & ANDROID",
     },
     highlight: {
-      es: "11.400+ estaciones MITECO · Instalable en iPhone y Android · Play Store próximamente",
-      en: "11,400+ MITECO stations · Installable on iPhone & Android · Play Store coming soon",
-      eu: "11.400+ MITECO gasolindegi · iPhone eta Android-en instalagarria · Laster Play Store-n",
+      es: "España, Portugal y Francia · Datos oficiales · Google Play e iPhone",
+      en: "Spain, Portugal & France · Official data · Google Play & iPhone",
+      eu: "Espainia, Portugal eta Frantzia · Datu ofizialak · Google Play eta iPhone",
     },
   },
   {

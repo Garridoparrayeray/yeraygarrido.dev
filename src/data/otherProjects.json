@@ -8,9 +8,9 @@
     },
     "tech": "PHP 8, SQLite, Vanilla JS, GTFS, SIRI-VM/SIRI-SX, PWA, Vercel Serverless, GitHub Actions",
     "desc": {
-      "es": "Bideplus (Bide+): horarios, tiempo real y planificador de rutas «Cómo llegar» para las 16 redes de transporte público de Euskal Herria (Bizkaibus, Metro, Euskotren, Tranvía, Renfe y más). Calcula en tiempo real cuándo llega tu autobús o tren con mayor precisión que la app oficial (64 % frente al 39 %).",
-      "en": "Bideplus (Bide+): schedules, real-time arrivals, and the «Cómo llegar» multimodal route planner uniting all 16 public transit networks across the Basque Country (Bizkaibus, Metro, Euskotren, Trams, Renfe, and more) with 64% vs 39% ETA accuracy over the official app.",
-      "eu": "Bideplus (Bide+): ordutegiak, denbora erreala eta «Cómo llegar» ibilbide-planifikatzailea Euskal Herriko 16 garraio publikoko sareetarako (Bizkaibus, Metroa, Euskotren, Tranbia, Renfe eta gehiago), app ofizialak baino zehaztasun handiagoarekin (%64 vs %39)."
+      "es": "Bideplus (Bide+): horarios y tiempo real de las 16 redes de transporte público de Euskal Herria (Bizkaibus, Metro, Euskotren, Tranvía, Renfe y más) y planificador de rutas «Cómo llegar» sobre 15 de ellas. Calcula en tiempo real cuándo llega tu autobús o tren con mayor precisión que la app oficial (64 % frente al 39 %).",
+      "en": "Bideplus (Bide+): schedules and real-time arrivals for all 16 public transit networks across the Basque Country (Bizkaibus, Metro, Euskotren, Trams, Renfe, and more), plus the «Cómo llegar» multimodal route planner over 15 of them, with 64% vs 39% ETA accuracy over the official app.",
+      "eu": "Bideplus (Bide+): Euskal Herriko 16 garraio publikoko sareen ordutegiak eta denbora erreala (Bizkaibus, Metroa, Euskotren, Tranbia, Renfe eta gehiago), eta «Cómo llegar» ibilbide-planifikatzailea horietako 15en gainean, app ofizialak baino zehaztasun handiagoarekin (%64 vs %39)."
     },
     "link": "https://github.com/Garridoparrayeray/bizkaibus-renewed",
     "demoUrl": "https://www.bideplus.eus/",
@@ -53,9 +53,9 @@
     },
     "tech": "PHP 8 (API REST), HTML5, CSS3, Vanilla JS, Geolocation API, MITECO Open Data, Leaflet, Canvas",
     "desc": {
-      "es": "Encuentra al instante la gasolinera más barata cerca de ti entre más de 11.400 estaciones de España, controla tus repostajes y el consumo real de tu coche, y consulta el mapa de precios en tiempo real. Instalable gratis en iPhone y Android, sin anuncios.",
-      "en": "Instantly find the cheapest fuel station near you across 11,400+ stations in Spain, track your fill-ups and real fuel consumption, and explore live price heatmaps. Free, ad-free, and installable today on iPhone and Android.",
-      "eu": "Aurkitu berehala zure inguruko gasolindegi merkeena Espainiako 11.400+ geltokiren artean, kontrolatu zure autoaren benetako kontsumoa eta begiratu prezioen mapa denbora errealean. Doan eta iragarkirik gabe, iPhone eta Android-en instalagarria."
+      "es": "Encuentra al instante la gasolinera más barata cerca de ti entre las estaciones de España, Portugal y Francia (datos oficiales de los tres países), controla tus repostajes y el consumo real de tu coche, y consulta el mapa de precios en tiempo real. Gratis y sin anuncios: app en Google Play e instalable en iPhone.",
+      "en": "Instantly find the cheapest fuel station near you across Spain, Portugal and France (official data from all three countries), track your fill-ups and real fuel consumption, and explore live price heatmaps. Free and ad-free: on Google Play and installable on iPhone.",
+      "eu": "Aurkitu berehala zure inguruko gasolindegi merkeena Espainia, Portugal eta Frantziako geltokien artean (hiru herrialdeetako datu ofizialak), kontrolatu zure autoaren benetako kontsumoa eta begiratu prezioen mapa denbora errealean. Doan eta iragarkirik gabe: Google Play-n eta iPhone-n instalagarria."
     },
     "link": "https://github.com/Garridoparrayeray/gasolinera-plus",
     "demoUrl": "https://gasolineraplus.app",
