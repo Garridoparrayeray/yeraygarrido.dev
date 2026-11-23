@@ -1331,6 +1331,26 @@ export default function PortfolioMain() {
       en: "06 / FOR DEVELOPERS",
       eu: "06 / GARATZAILEENTZAT",
     },
+    supportTitle: {
+      es: "¿Te ha servido alguno de mis servicios gratuitos?",
+      en: "Has one of my free services been useful to you?",
+      eu: "Lagungarri izan zaizu nire doako zerbitzuren bat?",
+    },
+    supportText: {
+      es: "Gasolinera+ y Bide+ son gratuitos. Puedes contribuir invitándome a un café.",
+      en: "Gasolinera+ and Bide+ are free. You can contribute by buying me a coffee.",
+      eu: "Gasolinera+ eta Bide+ doakoak dira. Lagun dezakezu kafe batera gonbidatuz.",
+    },
+    supportKofi: {
+      es: "INVITAR A UN CAFÉ ↗",
+      en: "BUY ME A COFFEE ↗",
+      eu: "GONBIDATU KAFE BAT ↗",
+    },
+    contactBtn: {
+      es: "Contáctame",
+      en: "Get in touch",
+      eu: "Jarri harremanetan",
+    },
     contactEyebrow: {
       es: "07 / CONTACTO",
       en: "07 / CONTACT",
@@ -1938,12 +1958,12 @@ export default function PortfolioMain() {
                 <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-justify hyphens-auto">
                   {t("intro.desc1")}
                 </p>
-                <div className="lg:col-span-6 flex flex-wrap justify-center lg:justify-end gap-3">
+                <div className="lg:col-span-5 lg:col-start-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:max-w-[640px] mx-auto lg:max-w-none lg:mx-0 lg:ml-[9px] lg:w-[calc(100%-9px)]">
                   <a
                     href={`/CV_YerayGarrido_${language}.pdf`}
                     download={`CV_YerayGarrido_${language.toUpperCase()}.pdf`}
                     style={btnDarkOnIvory}
-                    className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 sm:px-8 py-4 min-h-[54px] inline-flex items-center"
+                    className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 sm:px-8 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`↓ ${t("hero.downloadCv")}`} />
                   </a>
@@ -1952,17 +1972,25 @@ export default function PortfolioMain() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={btnOutlineOnDark}
-                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center"
+                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${t("hero.githubProfile")} ↗`} />
                   </a>
                   <TearLink
                     href={SITE_IDENTITY.photographyUrl}
                     ariaLabel={t("hero.photographyProfile")}
-                    className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center"
+                    className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${t("hero.photographyProfile")} ↗`} />
                   </TearLink>
+                  <a
+                    href="#contact"
+                    onClick={(e) => scrollToSection(e, "contact")}
+                    style={btnOutlineOnDark}
+                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
+                  >
+                    <SlotLabel text={`${loc(ui.contactBtn, language)} ↓`} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -3216,6 +3244,30 @@ export default function PortfolioMain() {
                     {activeApi.preview}
                   </pre>
                 </div>
+              </div>
+            </div>
+            {/* Apoyo a los servicios gratuitos */}
+            <div
+              data-aw-reveal
+              className="border border-white/15 bg-[#111114] px-6 sm:px-10 py-8 sm:py-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+            >
+              <div className="max-w-2xl space-y-2">
+                <h3 className="font-editorial font-semibold text-2xl sm:text-3xl tracking-[-0.02em]">
+                  {loc(ui.supportTitle, language)}
+                </h3>
+                <p className="text-base sm:text-lg text-[#F6F4EF]/75 leading-[1.6]">
+                  {loc(ui.supportText, language)}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <a
+                  href="https://ko-fi.com/ygarrido"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center min-h-[44px] px-6 bg-[#F6F4EF] text-[#09090B] font-mono text-sm tracking-[0.12em] hover:opacity-85 transition-opacity"
+                >
+                  {loc(ui.supportKofi, language)}
+                </a>
               </div>
             </div>
           </div>
