@@ -1961,7 +1961,7 @@ export default function PortfolioMain() {
                 <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-justify hyphens-auto">
                   {t("intro.desc1")}
                 </p>
-                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full sm:w-auto sm:max-w-[560px] mx-auto lg:mx-0 lg:justify-self-end">
+                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:w-auto sm:max-w-[580px] mx-auto lg:mx-0 lg:justify-self-end">
                   <a
                     href={`/CV_YerayGarrido_${language}.pdf`}
                     download={`CV_YerayGarrido_${language.toUpperCase()}.pdf`}
