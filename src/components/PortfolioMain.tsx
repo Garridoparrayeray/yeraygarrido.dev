@@ -38,6 +38,7 @@ import {
   FEATURED_RESEARCH,
   SITE_IDENTITY,
   TECH_STACK_ITEMS,
+  AI_TOOLS_ITEMS,
   WORK_EXPERIENCE,
   loc,
   type ProjectItem,
@@ -2933,6 +2934,39 @@ export default function PortfolioMain() {
                     />
                     <span className="font-mono text-sm font-medium text-[#09090B]/85">
                       {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <h4
+                data-aw-reveal
+                className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold mt-12 mb-5"
+              >
+                {language === "en"
+                  ? "Applied AI & Automation"
+                  : language === "eu"
+                    ? "IA aplikatua eta automatizazioa"
+                    : "IA aplicada y automatización"}
+              </h4>
+              <div
+                data-aw-stack-grid
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 border-t border-l border-[#09090B]/12"
+              >
+                {AI_TOOLS_ITEMS.map((tool) => (
+                  <div
+                    key={tool.name}
+                    data-aw-stack-tile
+                    className="bg-[#F6F4EF] hover:bg-[#EAE6DC] border-r border-b border-[#09090B]/12 p-6 flex flex-col items-center gap-3.5 transition-colors duration-300"
+                  >
+                    <img
+                      src={tool.icon}
+                      alt={tool.name}
+                      loading="lazy"
+                      className="w-11 h-11 object-contain"
+                    />
+                    <span className="font-mono text-sm font-medium text-[#09090B]/85 text-center">
+                      {tool.label ? loc(tool.label, language) : tool.name}
                     </span>
                   </div>
                 ))}

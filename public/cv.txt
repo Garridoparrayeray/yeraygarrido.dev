@@ -24,7 +24,7 @@ entornos Linux.
 
 [ HABILIDADES TÉCNICAS ]
 - Ingeniería & Backend:        Java 21 (POO, Virtual Threads, JNI), PHP 8.x (Arquitectura nativa), C (Algoritmia, Memoria)
-- IA Aplicada:                 IA Generativa para desarrollo, Arquitecturas RAG, LLMs
+- IA Aplicada:                 IA Generativa para desarrollo, Claude y Gemini, Arquitecturas RAG, LLMs, n8n
 - Despliegue de IA Local:      Ollama, Modelos locales con privacidad total
 - I+D Machine Learning:        Sistemas RAG a medida, Fine-Tuning de modelos
 - Sistemas, Redes & Seguridad: Linux (Bash, Arch), Ciberseguridad, Hacking Ético

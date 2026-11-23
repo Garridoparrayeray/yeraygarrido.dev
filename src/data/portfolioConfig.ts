@@ -737,6 +737,26 @@ export const TECH_STACK_ITEMS = [
   { name: "LaTeX", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg" },
 ];
 
+/**
+ * IA aplicada y automatización: segunda fila de "Herramientas y tecnologías".
+ * Iconos en /public/img/tech/ (Simple Icons, CC0). `label` es opcional: si se omite, se muestra `name`.
+ */
+export const AI_TOOLS_ITEMS: Array<{ name: string; icon: string; label?: LocalizedText }> = [
+  { name: "Claude", icon: "/img/tech/claude.svg" },
+  { name: "Gemini", icon: "/img/tech/gemini.svg" },
+  {
+    name: "Ollama",
+    icon: "/img/tech/ollama.svg",
+    label: { es: "Ollama · IA local", en: "Ollama · Local AI", eu: "Ollama · IA lokala" },
+  },
+  {
+    name: "RAG",
+    icon: "/img/tech/rag.svg",
+    label: { es: "RAG a medida", en: "Custom RAG", eu: "RAG pertsonalizatua" },
+  },
+  { name: "n8n", icon: "/img/tech/n8n.svg" },
+];
+
 export const API_ENDPOINTS: ApiEndpoint[] = [
   {
     id: "xml",
