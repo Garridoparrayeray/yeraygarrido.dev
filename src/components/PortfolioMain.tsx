@@ -2446,7 +2446,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="about"
-          className="bg-white text-[#09090B] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-[#09090B]/12 overflow-x-clip"
+          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-[#09090B]/12 overflow-x-clip"
         >
           <div className="max-w-[1440px] mx-auto space-y-20 sm:space-y-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
