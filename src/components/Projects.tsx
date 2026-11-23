@@ -515,7 +515,7 @@ export default function Projects() {
                         <h3 className="font-wide text-base sm:text-lg text-white uppercase text-center sm:text-left w-full sm:w-auto">{renderTitle(l(p.title))}</h3>
                         <span className="font-sans text-xs text-white/30 shrink-0 w-full sm:w-auto text-center sm:text-right">{p.year}</span>
                       </div>
-                      <p className="font-sans text-xs text-white/50 flex-1 line-clamp-3 leading-relaxed text-justify">{l(p.desc)}</p>
+                      <p className="font-sans text-xs text-white/50 flex-1 line-clamp-3 leading-relaxed text-left">{l(p.desc)}</p>
                       <div className="flex flex-wrap gap-1 sm:gap-2 mt-3 sm:mt-4 justify-center sm:justify-start">
                         {p.tech.split(", ").slice(0, 3).map((tag, j) => (
                           <span key={j} className="font-sans text-[8px] sm:text-[9px] tracking-widest uppercase text-white/60 bg-white/5 border border-white/10 px-1.5 sm:px-2 py-0.5 sm:py-1 truncate max-w-[80px] sm:max-w-none">{tag}</span>
@@ -540,7 +540,7 @@ export default function Projects() {
                         </span>
                       )}
                     </div>
-                    <p className="font-sans text-xs text-white/40 flex-1 mb-4 line-clamp-2 leading-relaxed text-justify">{repo.description || 'Sin descripción disponible'}</p>
+                    <p className="font-sans text-xs text-white/40 flex-1 mb-4 line-clamp-2 leading-relaxed text-left">{repo.description || 'Sin descripción disponible'}</p>
                     <div className="flex items-center justify-between pt-3 border-t border-white/5">
                       <div className="flex items-center gap-4">
                         <span className="flex items-center gap-1.5 font-sans text-xs text-white/40">
@@ -618,12 +618,12 @@ export default function Projects() {
                 
                 <div className="space-y-3 md:space-y-5">
                   <h3 className="font-sans text-sm md:text-xs tracking-widest uppercase text-white/40 font-bold">{l(uiTexts.challenge)}</h3>
-                  <p className="font-sans text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line text-justify">{l(activeProject.longDescChallenge)}</p>
+                  <p className="font-sans text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line text-left">{l(activeProject.longDescChallenge)}</p>
                 </div>
                 
                 <div className="space-y-3 md:space-y-5">
                   <h3 className="font-sans text-sm md:text-xs tracking-widest uppercase text-white/40 font-bold">{l(uiTexts.solution)}</h3>
-                  <p className="font-sans text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line text-justify">{l(activeProject.longDescSolution)}</p>
+                  <p className="font-sans text-base md:text-lg text-white/80 leading-relaxed whitespace-pre-line text-left">{l(activeProject.longDescSolution)}</p>
                 </div>
 
                 {activeProject.images && activeProject.images.length > 0 && (

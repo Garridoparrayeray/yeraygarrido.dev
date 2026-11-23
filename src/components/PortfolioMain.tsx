@@ -1955,7 +1955,7 @@ export default function PortfolioMain() {
                 data-aw-hero-fade
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end text-center lg:text-left"
               >
-                <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-justify hyphens-auto">
+                <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-left">
                   {t("intro.desc1")}
                 </p>
                 <div className="lg:col-span-5 lg:col-start-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:max-w-[640px] mx-auto lg:max-w-none lg:mx-0 lg:ml-[9px] lg:w-[calc(100%-9px)]">

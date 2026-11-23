@@ -90,7 +90,7 @@ export default function Footer() {
               </button>
             </div>
             <div className="p-6 overflow-y-auto modal-scroll" data-lenis-prevent="true">
-              <p className="font-sans text-black/70 text-sm md:text-base leading-relaxed whitespace-pre-line font-medium text-justify">
+              <p className="font-sans text-black/70 text-sm md:text-base leading-relaxed whitespace-pre-line font-medium text-left">
                 {currentContent.modalContent[activeModal].body}
               </p>
             </div>
