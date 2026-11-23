@@ -49,7 +49,7 @@ ScrollTrigger.config({ ignoreMobileResize: true });
 CustomEase.create("aw-curtain", "0.76, 0, 0.24, 1");
 CustomEase.create("aw-out", "0.22, 1, 0.36, 1");
 
-const SECTION_IDS = ["top", "work", "about", "projects", "research", "experience", "api", "contact"] as const;
+const SECTION_IDS = ["top", "work", "projects", "about", "experience", "research", "api", "contact"] as const;
 
 type LegalModalType = "legal" | "privacy" | "cookies" | null;
 type FormStatus = "idle" | "submitting" | "sent" | "mailto" | "error";
@@ -480,9 +480,10 @@ export default function PortfolioMain() {
     window.addEventListener("lenis-lock", handleLenisLock);
 
     // --- 3. GSAP Context + MatchMedia Choreography ---
-    // Bide+ (#work) no tiene entrada propia en el menú: mientras se ve, no se marca ninguna.
+    // Bide+ (#work) y Proyectos destacados (#projects) comparten la entrada «Proyectos» del menú.
+    const dockLinkFor: Record<string, string> = { projects: "work" };
     const setActiveDock = (activeId: string) => {
-      const target = activeId;
+      const target = dockLinkFor[activeId] ?? activeId;
       SECTION_IDS.forEach((id) => {
         const link = dockLinkRefs.current[id];
         if (link) {
@@ -1257,10 +1258,10 @@ export default function PortfolioMain() {
   };
 
   const navItems = [
-    { id: "about", num: "01", label: { es: "Servicios", en: "Services", eu: "Zerbitzuak" } },
-    { id: "projects", num: "02", label: { es: "Proyectos", en: "Projects", eu: "Proiektuak" } },
-    { id: "research", num: "03", label: { es: "Investigación", en: "Research", eu: "Ikerketa" } },
-    { id: "experience", num: "04", label: { es: "Experiencia", en: "Experience", eu: "Esperientzia" } },
+    { id: "work", num: "01", label: { es: "Proyectos", en: "Projects", eu: "Proiektuak" } },
+    { id: "about", num: "02", label: { es: "Servicios", en: "Services", eu: "Zerbitzuak" } },
+    { id: "experience", num: "03", label: { es: "Experiencia", en: "Experience", eu: "Esperientzia" } },
+    { id: "research", num: "04", label: { es: "Investigación", en: "Research", eu: "Ikerketa" } },
     { id: "api", num: "05", label: { es: "GitHub & API", en: "GitHub & API", eu: "GitHub & API" } },
     { id: "contact", num: "06", label: { es: "Contacto", en: "Contact", eu: "Kontaktua" } },
   ];
@@ -1316,14 +1317,14 @@ export default function PortfolioMain() {
     supplementPdf: { es: "Material suplementario", en: "Supplementary material", eu: "Material osagarria" },
     code: { es: "Código (GitHub)", en: "Code (GitHub)", eu: "Kodea (GitHub)" },
     archiveEyebrow: {
-      es: "03 / PROYECTOS DESTACADOS",
-      en: "03 / FEATURED PROJECTS",
-      eu: "03 / PROIEKTU NABARMENDUAK",
+      es: "02 / PROYECTOS DESTACADOS",
+      en: "02 / FEATURED PROJECTS",
+      eu: "02 / PROIEKTU NABARMENDUAK",
     },
     timelineEyebrow: {
-      es: "05 / TRAYECTORIA",
-      en: "05 / TIMELINE",
-      eu: "05 / IBILBIDEA",
+      es: "04 / TRAYECTORIA",
+      en: "04 / TIMELINE",
+      eu: "04 / IBILBIDEA",
     },
     devEyebrow: {
       es: "06 / PARA DESARROLLADORES",
@@ -2258,139 +2259,11 @@ export default function PortfolioMain() {
         </section>
 
         {/* =====================================================================
-            02 · INTRO, TECHNICAL EXPERTISE & STACK (Pure White #FFFFFF)
-           ===================================================================== */}
-        <section
-          id="about"
-          className="bg-white text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
-        >
-          <div className="max-w-[1400px] mx-auto space-y-20 sm:space-y-24">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-              <div data-aw-reveal className="lg:col-span-5 space-y-6">
-                <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
-                  02 / {t("intro.expertise1")} {t("intro.expertise2")}
-                </span>
-                <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[0.98] uppercase">
-                  {t("intro.title1")} <br />
-                  <span className="font-editorial italic font-normal normal-case text-[#7A6648] tracking-[-0.025em]">
-                    {t("intro.title2")}
-                  </span>
-                </h2>
-                <p className="text-lg sm:text-xl text-[#09090B]/85 leading-[1.72] text-left text-pretty">
-                  {t("intro.desc1")}
-                </p>
-                <div className="pt-6 space-y-3 border-t border-[#09090B]/15">
-                  <h3 className="font-editorial font-bold text-3xl sm:text-4xl uppercase tracking-[-0.015em]">
-                    {t("intro.subtitle1")} {t("intro.subtitle2")}
-                  </h3>
-                  <p className="text-lg sm:text-xl text-[#09090B]/85 leading-[1.72] text-left text-pretty">
-                    {t("intro.desc2")}
-                  </p>
-                </div>
-              </div>
-
-              <div className="lg:col-span-7 divide-y divide-[#09090B]/15 border-t border-[#09090B]/15">
-                {introFeatures.map((feat) => (
-                  <div
-                    key={feat.num}
-                    data-aw-reveal
-                    className="py-8 sm:py-9 grid grid-cols-1 sm:grid-cols-12 gap-5 items-start"
-                  >
-                    <div className="sm:col-span-5">
-                      <span className="font-editorial italic font-normal text-4xl text-[#7A6648] block leading-none mb-2">
-                        {feat.num}.
-                      </span>
-                      <h3 className="font-grotesk font-bold text-2xl sm:text-3xl tracking-tight">
-                        {feat.title}
-                      </h3>
-                    </div>
-                    <div className="sm:col-span-7">
-                      <p className="text-lg sm:text-xl text-[#09090B]/85 leading-[1.72] text-left text-pretty">
-                        {feat.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-14 sm:pt-16 relative">
-              <div
-                data-aw-line
-                aria-hidden="true"
-                className="absolute top-0 left-0 right-0 h-px bg-[#09090B]/15"
-              />
-              <h3
-                data-aw-reveal
-                className="font-grotesk font-bold text-3xl sm:text-4xl uppercase tracking-tight mb-10"
-              >
-                {t("stack.title")}
-              </h3>
-              <div
-                data-aw-stack-grid
-                className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 border-t border-l border-[#09090B]/12"
-              >
-                {TECH_STACK_ITEMS.map((tech) => (
-                  <div
-                    key={tech.name}
-                    data-aw-stack-tile
-                    className="bg-[#F6F4EF] hover:bg-[#EAE6DC] border-r border-b border-[#09090B]/12 p-6 flex flex-col items-center gap-3.5 transition-colors duration-300"
-                  >
-                    <img
-                      src={tech.icon}
-                      alt={tech.name}
-                      loading="lazy"
-                      className="w-11 h-11 object-contain"
-                    />
-                    <span className="font-mono text-sm font-medium text-[#09090B]/85">
-                      {tech.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <h4
-                data-aw-reveal
-                className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold mt-12 mb-5"
-              >
-                {language === "en"
-                  ? "Applied AI & Automation"
-                  : language === "eu"
-                    ? "IA aplikatua eta automatizazioa"
-                    : "IA aplicada y automatización"}
-              </h4>
-              <div
-                data-aw-stack-grid
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 border-t border-l border-[#09090B]/12"
-              >
-                {AI_TOOLS_ITEMS.map((tool) => (
-                  <div
-                    key={tool.name}
-                    data-aw-stack-tile
-                    className="bg-[#F6F4EF] hover:bg-[#EAE6DC] border-r border-b border-[#09090B]/12 p-6 flex flex-col items-center gap-3.5 transition-colors duration-300"
-                  >
-                    <img
-                      src={tool.icon}
-                      alt={tool.name}
-                      loading="lazy"
-                      className="w-11 h-11 object-contain"
-                    />
-                    <span className="font-mono text-sm font-medium text-[#09090B]/85 text-center">
-                      {tool.label ? loc(tool.label, language) : tool.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================================
-            03 · PROYECTOS DESTACADOS (ARCHIVE_PLATES)
+            02 · PROYECTOS DESTACADOS (ARCHIVE_PLATES)
            ===================================================================== */}
         <section id="projects" className="bg-[#09090B] border-t border-white/12 overflow-x-clip">
           {/* =====================================================================
-              03 · SELECTED ARCHIVE — SHARP SQUARE STICKY DEPTH-STACK
+              02 · SELECTED ARCHIVE — SHARP SQUARE STICKY DEPTH-STACK
              ===================================================================== */}
           <div className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16">
             <div className="max-w-[1440px] mx-auto">
@@ -2544,7 +2417,224 @@ export default function PortfolioMain() {
         </section>
 
         {/* =====================================================================
-            04 · RESEARCH — TOPIC-AGNOSTIC & EXTENSIBLE (MUSEUM IVORY #F6F4EF)
+            03 · INTRO, TECHNICAL EXPERTISE & STACK (Pure White #FFFFFF)
+           ===================================================================== */}
+        <section
+          id="about"
+          className="bg-white text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
+        >
+          <div className="max-w-[1400px] mx-auto space-y-20 sm:space-y-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+              <div data-aw-reveal className="lg:col-span-5 space-y-6">
+                <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
+                  03 / {t("intro.expertise1")} {t("intro.expertise2")}
+                </span>
+                <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[0.98] uppercase">
+                  {t("intro.title1")} <br />
+                  <span className="font-editorial italic font-normal normal-case text-[#7A6648] tracking-[-0.025em]">
+                    {t("intro.title2")}
+                  </span>
+                </h2>
+                <p className="text-lg sm:text-xl text-[#09090B]/85 leading-[1.72] text-left text-pretty">
+                  {t("intro.desc1")}
+                </p>
+                <div className="pt-6 space-y-3 border-t border-[#09090B]/15">
+                  <h3 className="font-editorial font-bold text-3xl sm:text-4xl uppercase tracking-[-0.015em]">
+                    {t("intro.subtitle1")} {t("intro.subtitle2")}
+                  </h3>
+                  <p className="text-lg sm:text-xl text-[#09090B]/85 leading-[1.72] text-left text-pretty">
+                    {t("intro.desc2")}
+                  </p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 divide-y divide-[#09090B]/15 border-t border-[#09090B]/15">
+                {introFeatures.map((feat) => (
+                  <div
+                    key={feat.num}
+                    data-aw-reveal
+                    className="py-8 sm:py-9 grid grid-cols-1 sm:grid-cols-12 gap-5 items-start"
+                  >
+                    <div className="sm:col-span-5">
+                      <span className="font-editorial italic font-normal text-4xl text-[#7A6648] block leading-none mb-2">
+                        {feat.num}.
+                      </span>
+                      <h3 className="font-grotesk font-bold text-2xl sm:text-3xl tracking-tight">
+                        {feat.title}
+                      </h3>
+                    </div>
+                    <div className="sm:col-span-7">
+                      <p className="text-lg sm:text-xl text-[#09090B]/85 leading-[1.72] text-left text-pretty">
+                        {feat.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-14 sm:pt-16 relative">
+              <div
+                data-aw-line
+                aria-hidden="true"
+                className="absolute top-0 left-0 right-0 h-px bg-[#09090B]/15"
+              />
+              <h3
+                data-aw-reveal
+                className="font-grotesk font-bold text-3xl sm:text-4xl uppercase tracking-tight mb-10"
+              >
+                {t("stack.title")}
+              </h3>
+              <div
+                data-aw-stack-grid
+                className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 border-t border-l border-[#09090B]/12"
+              >
+                {TECH_STACK_ITEMS.map((tech) => (
+                  <div
+                    key={tech.name}
+                    data-aw-stack-tile
+                    className="bg-[#F6F4EF] hover:bg-[#EAE6DC] border-r border-b border-[#09090B]/12 p-6 flex flex-col items-center gap-3.5 transition-colors duration-300"
+                  >
+                    <img
+                      src={tech.icon}
+                      alt={tech.name}
+                      loading="lazy"
+                      className="w-11 h-11 object-contain"
+                    />
+                    <span className="font-mono text-sm font-medium text-[#09090B]/85">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <h4
+                data-aw-reveal
+                className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold mt-12 mb-5"
+              >
+                {language === "en"
+                  ? "Applied AI & Automation"
+                  : language === "eu"
+                    ? "IA aplikatua eta automatizazioa"
+                    : "IA aplicada y automatización"}
+              </h4>
+              <div
+                data-aw-stack-grid
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 border-t border-l border-[#09090B]/12"
+              >
+                {AI_TOOLS_ITEMS.map((tool) => (
+                  <div
+                    key={tool.name}
+                    data-aw-stack-tile
+                    className="bg-[#F6F4EF] hover:bg-[#EAE6DC] border-r border-b border-[#09090B]/12 p-6 flex flex-col items-center gap-3.5 transition-colors duration-300"
+                  >
+                    <img
+                      src={tool.icon}
+                      alt={tool.name}
+                      loading="lazy"
+                      className="w-11 h-11 object-contain"
+                    />
+                    <span className="font-mono text-sm font-medium text-[#09090B]/85 text-center">
+                      {tool.label ? loc(tool.label, language) : tool.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================================
+            04 · EXPERIENCE & EDUCATION (#F6F4EF) — Horión desde Jun 2026
+           ===================================================================== */}
+        <section
+          id="experience"
+          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
+        >
+          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div data-aw-reveal className="lg:col-span-4 space-y-8 min-w-0">
+              <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
+                {loc(ui.timelineEyebrow, language)}
+              </span>
+              <h2 className="font-editorial font-bold text-4xl sm:text-5xl lg:text-[clamp(2.2rem,3.1vw,3.35rem)] tracking-[-0.025em] leading-[1.02]">
+                {t("exp.title")}
+              </h2>
+
+              <div className="inline-flex border border-[#09090B]/20 bg-[#EAE6DC] p-1 text-base">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (expTab !== "work") setExpTab("work");
+                  }}
+                  className={`px-5 sm:px-6 py-2.5 min-h-[46px] cursor-pointer transition-colors ${
+                    expTab === "work"
+                      ? "bg-[#09090B] text-[#F6F4EF] font-semibold"
+                      : "text-[#09090B]/70 hover:text-[#09090B]"
+                  }`}
+                >
+                  {language === "en"
+                    ? `Work (${WORK_EXPERIENCE.length})`
+                    : language === "eu"
+                      ? `Lana (${WORK_EXPERIENCE.length})`
+                      : `Experiencia (${WORK_EXPERIENCE.length})`}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (expTab !== "education") setExpTab("education");
+                  }}
+                  className={`px-5 sm:px-6 py-2.5 min-h-[46px] cursor-pointer transition-colors ${
+                    expTab === "education"
+                      ? "bg-[#09090B] text-[#F6F4EF] font-semibold"
+                      : "text-[#09090B]/70 hover:text-[#09090B]"
+                  }`}
+                >
+                  {language === "en"
+                    ? `Education (${EDUCATION_HISTORY.length})`
+                    : language === "eu"
+                      ? `Hezkuntza (${EDUCATION_HISTORY.length})`
+                      : `Formación (${EDUCATION_HISTORY.length})`}
+                </button>
+              </div>
+            </div>
+
+            <div ref={expListRef} className="lg:col-span-8 relative pl-6 sm:pl-10">
+              <div aria-hidden="true" className="absolute left-0 top-2 bottom-2 w-[2px] bg-[#09090B]/12">
+                <div data-aw-exp-beam className="w-full h-full bg-[#7A6648] origin-top" />
+              </div>
+
+              <div className="divide-y divide-[#09090B]/15 border-t border-[#09090B]/15">
+                {shownTimeline.map((item, idx) => (
+                  <div
+                    key={`${expTab}-${idx}`}
+                    data-aw-exp-row
+                    className="py-8 sm:py-9 grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-8 relative"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-[calc(-1.5rem+1px)] sm:left-[calc(-2.5rem+1px)] -translate-x-1/2 top-10 sm:top-11 w-2.5 h-2.5 bg-[#F6F4EF] border-2 border-[#7A6648]"
+                    />
+                    <div className="sm:col-span-4 text-sm sm:text-base text-[#09090B]/75 space-y-1.5">
+                      <div className="font-mono text-[#09090B] font-semibold">{item.date}</div>
+                      <div className="font-medium">{item.company}</div>
+                    </div>
+                    <div className="sm:col-span-8 space-y-3">
+                      <div className="font-grotesk font-bold text-2xl sm:text-3xl tracking-tight">
+                        {item.title}
+                      </div>
+                      <p className="text-[17px] sm:text-[19px] lg:text-[20px] text-[#09090B]/85 leading-[1.72] text-editorial">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================================
+            05 · RESEARCH — TOPIC-AGNOSTIC & EXTENSIBLE (MUSEUM IVORY #F6F4EF)
            ===================================================================== */}
         <section
           id="research"
@@ -2557,7 +2647,7 @@ export default function PortfolioMain() {
             >
               <div>
                 <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block mb-3">
-                  04 / {loc(ui.researchBadge, language)}
+                  05 / {loc(ui.researchBadge, language)}
                 </span>
                 <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em]">
                   {loc(ui.researchTitle, language)}{" "}
@@ -2979,95 +3069,6 @@ export default function PortfolioMain() {
                 </a>
               </div>
             )}
-          </div>
-        </section>
-
-        {/* =====================================================================
-            05 · EXPERIENCE & EDUCATION (#F6F4EF) — Horión desde Jun 2026
-           ===================================================================== */}
-        <section
-          id="experience"
-          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
-        >
-          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div data-aw-reveal className="lg:col-span-4 space-y-8 min-w-0">
-              <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
-                {loc(ui.timelineEyebrow, language)}
-              </span>
-              <h2 className="font-editorial font-bold text-4xl sm:text-5xl lg:text-[clamp(2.2rem,3.1vw,3.35rem)] tracking-[-0.025em] leading-[1.02]">
-                {t("exp.title")}
-              </h2>
-
-              <div className="inline-flex border border-[#09090B]/20 bg-[#EAE6DC] p-1 text-base">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (expTab !== "work") setExpTab("work");
-                  }}
-                  className={`px-5 sm:px-6 py-2.5 min-h-[46px] cursor-pointer transition-colors ${
-                    expTab === "work"
-                      ? "bg-[#09090B] text-[#F6F4EF] font-semibold"
-                      : "text-[#09090B]/70 hover:text-[#09090B]"
-                  }`}
-                >
-                  {language === "en"
-                    ? `Work (${WORK_EXPERIENCE.length})`
-                    : language === "eu"
-                      ? `Lana (${WORK_EXPERIENCE.length})`
-                      : `Experiencia (${WORK_EXPERIENCE.length})`}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (expTab !== "education") setExpTab("education");
-                  }}
-                  className={`px-5 sm:px-6 py-2.5 min-h-[46px] cursor-pointer transition-colors ${
-                    expTab === "education"
-                      ? "bg-[#09090B] text-[#F6F4EF] font-semibold"
-                      : "text-[#09090B]/70 hover:text-[#09090B]"
-                  }`}
-                >
-                  {language === "en"
-                    ? `Education (${EDUCATION_HISTORY.length})`
-                    : language === "eu"
-                      ? `Hezkuntza (${EDUCATION_HISTORY.length})`
-                      : `Formación (${EDUCATION_HISTORY.length})`}
-                </button>
-              </div>
-            </div>
-
-            <div ref={expListRef} className="lg:col-span-8 relative pl-6 sm:pl-10">
-              <div aria-hidden="true" className="absolute left-0 top-2 bottom-2 w-[2px] bg-[#09090B]/12">
-                <div data-aw-exp-beam className="w-full h-full bg-[#7A6648] origin-top" />
-              </div>
-
-              <div className="divide-y divide-[#09090B]/15 border-t border-[#09090B]/15">
-                {shownTimeline.map((item, idx) => (
-                  <div
-                    key={`${expTab}-${idx}`}
-                    data-aw-exp-row
-                    className="py-8 sm:py-9 grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-8 relative"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-[calc(-1.5rem+1px)] sm:left-[calc(-2.5rem+1px)] -translate-x-1/2 top-10 sm:top-11 w-2.5 h-2.5 bg-[#F6F4EF] border-2 border-[#7A6648]"
-                    />
-                    <div className="sm:col-span-4 text-sm sm:text-base text-[#09090B]/75 space-y-1.5">
-                      <div className="font-mono text-[#09090B] font-semibold">{item.date}</div>
-                      <div className="font-medium">{item.company}</div>
-                    </div>
-                    <div className="sm:col-span-8 space-y-3">
-                      <div className="font-grotesk font-bold text-2xl sm:text-3xl tracking-tight">
-                        {item.title}
-                      </div>
-                      <p className="text-[17px] sm:text-[19px] lg:text-[20px] text-[#09090B]/85 leading-[1.72] text-editorial">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
