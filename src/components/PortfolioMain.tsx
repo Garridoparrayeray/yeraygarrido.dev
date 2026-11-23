@@ -1961,12 +1961,12 @@ export default function PortfolioMain() {
                 <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-justify hyphens-auto">
                   {t("intro.desc1")}
                 </p>
-                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:w-auto sm:max-w-[580px] mx-auto lg:mx-0 lg:justify-self-end">
+                <div className="lg:col-span-5 lg:col-start-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:max-w-[640px] mx-auto lg:max-w-none lg:mx-0 lg:ml-[9px] lg:w-[calc(100%-9px)]">
                   <a
                     href={`/CV_YerayGarrido_${language}.pdf`}
                     download={`CV_YerayGarrido_${language.toUpperCase()}.pdf`}
                     style={btnDarkOnIvory}
-                    className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 sm:px-8 py-4 min-h-[54px] inline-flex items-center justify-center"
+                    className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 sm:px-8 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`↓ ${t("hero.downloadCv")}`} />
                   </a>
@@ -1975,14 +1975,14 @@ export default function PortfolioMain() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={btnOutlineOnDark}
-                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center justify-center"
+                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${t("hero.githubProfile")} ↗`} />
                   </a>
                   <TearLink
                     href={SITE_IDENTITY.photographyUrl}
                     ariaLabel={t("hero.photographyProfile")}
-                    className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center justify-center"
+                    className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${t("hero.photographyProfile")} ↗`} />
                   </TearLink>
@@ -1990,7 +1990,7 @@ export default function PortfolioMain() {
                     href="#contact"
                     onClick={(e) => scrollToSection(e, "contact")}
                     style={btnOutlineOnDark}
-                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center justify-center"
+                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${loc(ui.contactBtn, language)} ↓`} />
                   </a>
