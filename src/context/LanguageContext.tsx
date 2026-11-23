@@ -317,17 +317,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     const seoData = {
       es: {
-        title: 'Yeray Garrido | Ingeniero de Software, Full Stack & Open Science',
+        title: 'Yeray Garrido | Ingeniero de Software y Open Science',
         description:
           'Yeray Garrido — Ingeniero de Software en Bilbao. Creador de Bideplus (Bide+) y Gasolinera+ (gasolineraplus.app), ingeniero en Horión y autor de publicaciones científicas abiertas en Zenodo.',
       },
       en: {
-        title: 'Yeray Garrido | Software Engineer, Full Stack & Open Science',
+        title: 'Yeray Garrido | Software Engineer & Open Science',
         description:
           'Yeray Garrido — Software Engineer in Bilbao. Creator of Bideplus (Bide+) and Gasolinera+ (gasolineraplus.app), engineer at Horión, and author of open-access publications on Zenodo.',
       },
       eu: {
-        title: 'Yeray Garrido | Software Ingeniaria, Full Stack & Open Science',
+        title: 'Yeray Garrido | Software Ingeniaria eta Open Science',
         description:
           'Yeray Garrido — Software Ingeniaria Bilbon. Bideplus (Bide+) eta Gasolinera+ (gasolineraplus.app) aplikazioen sortzailea, Horión-eko ingeniaria eta Zenodo-ko ikerketa irekien egilea.',
       },
