@@ -1536,8 +1536,8 @@ export default function PortfolioMain() {
           >
             <img
               src="/img/logo.webp"
-              width={146}
-              height={96}
+              width={720}
+              height={281}
               alt={t("header.logoAlt")}
               className="h-8 sm:h-9 lg:h-11 w-auto shrink-0"
             />
@@ -3462,8 +3462,8 @@ export default function PortfolioMain() {
           <div className="col-span-2 md:col-span-1 space-y-4 min-w-0">
             <img
               src="/img/logo.webp"
-              width={146}
-              height={96}
+              width={720}
+              height={281}
               loading="lazy"
               alt={t("header.logoAlt")}
               className="h-10 w-auto"

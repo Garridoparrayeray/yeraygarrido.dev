@@ -37,8 +37,8 @@ export default function Header() {
           <img
             src="/img/logo.webp"
             alt={t("header.logoAlt")}
-            width="90"
-            height="60"
+            width="720"
+            height="281"
             className="h-14 md:h-16 lg:h-20 w-auto hover:scale-105 transition-transform object-contain"
           />
         </a>
