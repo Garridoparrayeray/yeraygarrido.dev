@@ -1541,7 +1541,10 @@ export default function PortfolioMain() {
               alt={t("header.logoAlt")}
               className="h-6 sm:h-6 lg:h-7 w-auto shrink-0"
             />
-            <span className="font-grotesk font-semibold text-base sm:text-lg tracking-[0.1em] uppercase text-[#F6F4EF] whitespace-nowrap">
+            <span
+              aria-hidden="true"
+              className="invisible font-grotesk font-semibold text-base sm:text-lg tracking-[0.1em] uppercase text-[#F6F4EF] whitespace-nowrap"
+            >
               {SITE_IDENTITY.brandName}
             </span>
           </a>
