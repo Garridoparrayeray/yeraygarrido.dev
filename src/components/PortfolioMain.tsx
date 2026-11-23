@@ -1331,6 +1331,21 @@ export default function PortfolioMain() {
       en: "06 / FOR DEVELOPERS",
       eu: "06 / GARATZAILEENTZAT",
     },
+    supportTitle: {
+      es: "¿Te ha servido alguno de mis servicios gratuitos?",
+      en: "Has one of my free services been useful to you?",
+      eu: "Lagungarri izan zaizu nire doako zerbitzuren bat?",
+    },
+    supportText: {
+      es: "Gasolinera+ y Bide+ son gratuitos. Puedes contribuir invitándome a un café.",
+      en: "Gasolinera+ and Bide+ are free. You can contribute by buying me a coffee.",
+      eu: "Gasolinera+ eta Bide+ doakoak dira. Lagun dezakezu kafe batera gonbidatuz.",
+    },
+    supportKofi: {
+      es: "INVITAR A UN CAFÉ ↗",
+      en: "BUY ME A COFFEE ↗",
+      eu: "GONBIDATU KAFE BAT ↗",
+    },
     contactEyebrow: {
       es: "07 / CONTACTO",
       en: "07 / CONTACT",
@@ -3219,6 +3234,30 @@ export default function PortfolioMain() {
                     {activeApi.preview}
                   </pre>
                 </div>
+              </div>
+            </div>
+            {/* Apoyo a los servicios gratuitos */}
+            <div
+              data-aw-reveal
+              className="border border-white/15 bg-[#111114] px-6 sm:px-10 py-8 sm:py-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+            >
+              <div className="max-w-2xl space-y-2">
+                <h3 className="font-editorial font-semibold text-2xl sm:text-3xl tracking-[-0.02em]">
+                  {loc(ui.supportTitle, language)}
+                </h3>
+                <p className="text-base sm:text-lg text-[#F6F4EF]/75 leading-[1.6]">
+                  {loc(ui.supportText, language)}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <a
+                  href="https://ko-fi.com/ygarrido"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center min-h-[44px] px-6 bg-[#F6F4EF] text-[#09090B] font-mono text-sm tracking-[0.12em] hover:opacity-85 transition-opacity"
+                >
+                  {loc(ui.supportKofi, language)}
+                </a>
               </div>
             </div>
           </div>
