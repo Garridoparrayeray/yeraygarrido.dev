@@ -102,8 +102,11 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 </p>
 <p align="center">
   <a href="https://doi.org/10.5281/zenodo.24041572"><img src="https://img.shields.io/badge/Zenodo-Open_Data_DOI_Dataset-107EC4?style=flat-square&logo=zenodo&logoColor=white" alt="Zenodo" /></a>
+  <img src="https://img.shields.io/badge/Claude-AI_Assisted_Engineering-D97757?style=flat-square&logo=claude&logoColor=white" alt="Claude" />
+  <img src="https://img.shields.io/badge/Gemini-AI_Assisted_Engineering-8E75B2?style=flat-square&logo=googlegemini&logoColor=white" alt="Gemini" />
   <img src="https://img.shields.io/badge/Ollama-Local_AI_%C2%B7_100%25_Private_LLMs-000000?style=flat-square&logo=ollama&logoColor=white" alt="Ollama" />
   <img src="https://img.shields.io/badge/RAG_&_Fine--Tuning-Custom_Vector_Retrieval-4B5563?style=flat-square" alt="RAG" />
+  <img src="https://img.shields.io/badge/n8n-Workflow_Automation-EA4B71?style=flat-square&logo=n8n&logoColor=white" alt="n8n" />
   <img src="https://img.shields.io/badge/Linux_Arch_%2F_Debian-Full_Development_OS-1793D1?style=flat-square&logo=arch-linux&logoColor=white" alt="Arch Linux" />
 </p>
 
