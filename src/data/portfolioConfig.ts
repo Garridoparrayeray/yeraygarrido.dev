@@ -767,7 +767,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
 <resume>
   <header>
     <name>Yeray Garrido</name>
-    <title>Software Engineer &amp; Full Stack Developer</title>
+    <title>Ingeniero de Software</title>
   </header>
   <contact location="Bilbao, Bizkaia" website="https://yeraygarrido.dev" />
 </resume>`,
@@ -779,7 +779,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
     command: "curl -L https://yeraygarrido.dev/cv.json",
     preview: `{
   "name": "Yeray Garrido",
-  "title": "Ingeniero de Software & Desarrollador Full Stack",
+  "title": "Ingeniero de Software",
   "location": "Bilbao, Bizkaia, Spain",
   "orcid": "0009-0008-0459-0294",
   "stack": ["PHP 8", "Java 21", "Python", "C", "React 19", "SQLite"],
