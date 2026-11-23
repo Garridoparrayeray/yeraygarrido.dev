@@ -371,13 +371,24 @@
     <main style="max-width:860px;margin:0 auto;padding:40px 24px;font-family:system-ui,sans-serif;background:#09090B;color:#F6F4EF;line-height:1.6;">
       <h1>Yeray Garrido — Ingeniero de Software</h1>
       <p>Bilbao, Bizkaia (España) · ORCID: <a href="https://orcid.org/0009-0008-0459-0294" style="color:#D6C7B2;">0009-0008-0459-0294</a> · Email: <a href="mailto:garridoparrayeraytx@gmail.com" style="color:#D6C7B2;">garridoparrayeraytx@gmail.com</a></p>
-      <p>Ingeniero de Software en Horión Software Engineering (Jun 2026 – Presente). Especialista en Backend (PHP 8, Java 21, Python, C, SQLite/MySQL), Frontend (React 19, TypeScript) y sistemas de datos abiertos en tiempo real.</p>
-      <h2>Productos en Producción</h2>
+      <p>Ingeniero de software. Construyo sistemas en tiempo real y productos propios con un coste de servidor mínimo: PHP 8, Java 21, C, SQLite/MySQL y React.</p>
+      <h2>Productos en producción</h2>
       <ul>
-        <li><a href="https://www.bideplus.eus/" style="color:#D6C7B2;"><strong>Bideplus (Bide+)</strong></a>: horarios y tiempo real de 16 redes de transporte en Euskal Herria, planificador de rutas «Cómo llegar» sobre 15 de ellas con motor propio de predicción ETA (64 % frente al 39 % de la app oficial).</li>
-        <li><strong>Gasolinera+</strong> (<a href="https://gasolineraplus.app" style="color:#D6C7B2;">gasolineraplus.app</a>): Comparador de precios de combustible con datos oficiales de España, Portugal y Francia; app en Google Play e instalable en iPhone.</li>
+        <li><a href="https://www.bideplus.eus/" style="color:#D6C7B2;"><strong>Bideplus (Bide+)</strong></a>: horarios y tiempo real de 16 redes de transporte de Euskal Herria. Motor propio de predicción de llegadas: 64 % de aciertos a ±2 min frente al 39 % de la app oficial (555.744 predicciones emparejadas). Planificador de rutas «Cómo llegar» sobre 15 redes que calcula en el propio móvil (C compilado a WebAssembly): consulta mediana de 16 ms en iPhone y 65 ms en un Android de 2021, también sin conexión.</li>
+        <li><a href="https://gasolineraplus.app" style="color:#D6C7B2;"><strong>Gasolinera+</strong></a>: precios oficiales de carburantes de España, Portugal y Francia, actualizados varias veces al día, con rutas entre países e informe mensual. App en Google Play e instalable en iPhone. Código abierto.</li>
       </ul>
-      <h2>Publicaciones Científicas (Open Science · Zenodo)</h2>
+      <h2>Cómo trabajo</h2>
+      <ul>
+        <li>El cálculo, donde más barato sale: si algo puede correr en el dispositivo del usuario, no pago un servidor para hacerlo.</li>
+        <li>Medir antes de dar algo por bueno: cada mejora se compara con una línea base real (latencia, memoria o precisión).</li>
+        <li>Arquitectura sin grasa: código nativo y bases de datos bien indexadas antes que dependencias pesadas.</li>
+      </ul>
+      <h2>Experiencia</h2>
+      <ul>
+        <li><strong>Ingeniero de software en Horión</strong> (jun. 2026 – hoy): módulos completos para Horión Enterprise, un ERP multiempresa en PHP (buzón de salida con historial, adjuntos y reenvío, y enrutamiento propio).</li>
+        <li><strong>Proyecto para el Ayuntamiento de Bermeo</strong> (CIFP Zornotza, 2026): sistema de gestión de objetos perdidos en un sprint de 15 días, con aplicación de escritorio en Java, portal web, MariaDB y Docker.</li>
+      </ul>
+      <h2>Investigación abierta (Zenodo)</h2>
       <ul>
         <!-- AUTO-PAPERS-NOSCRIPT:START -->
         <li><a href="/papers/journey-planning-on-device/" style="color:#D6C7B2;">Multi-criteria journey planning on the passenger&#x27;s device: design and validation for fifteen merged regional transit networks (12 pp.)</a> (DOI 10.5281/zenodo.24442212)</li>

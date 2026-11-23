@@ -12,17 +12,16 @@
     "location": "Bilbao, Bizkaia, Spain",
     "driving_license": "Permiso B"
   },
-  "about": "Ingeniero de software especializado en Backend, con amplias competencias en Frontend, diseño de sistemas y gestión integral de proyectos. Mi base técnica combina el rigor de la gestión de memoria en C (Metodología 42) con arquitecturas avanzadas en Java y PHP 8. Acostumbrado a resolver problemas complejos de lógica de negocio (ERP, flotas de transporte, APIs Open Data), experto trabajando en entornos Linux.",
+  "about": "Ingeniero de software en Bilbao. Construyo sistemas en tiempo real y productos propios que se usan a diario: Bide+ (16 redes de transporte, predicción de llegadas propia y rutas calculadas en el móvil) y Gasolinera+ (precios oficiales de España, Portugal y Francia). Mido cada mejora frente a una línea base real y publico los algoritmos en abierto. En Horión desarrollo módulos de un ERP multiempresa en PHP. Base en C (42 Urduliz), Java y PHP, siempre en Linux.",
   "tech_stack": {
-    "engineering_backend": ["Java 21 (POO, Virtual Threads, JNI)", "PHP 8.x (Arquitectura nativa)", "C (Algoritmia, Memoria)"],
-    "applied_ai": ["IA Generativa aplicada al desarrollo", "Asistentes de IA para desarrollo (Claude, Gemini)", "Arquitecturas RAG", "LLMs", "Automatización con n8n"],
-    "local_ai_deployment": ["Ollama", "Modelos locales con privacidad total"],
-    "ml_research": ["Sistemas RAG a medida", "Fine-Tuning de modelos"],
-    "systems_security": ["Linux (Bash, Arch)", "Ciberseguridad", "Hacking Ético"],
-    "frontend_uiux": ["JavaScript (Vanilla, GSAP)", "Tailwind CSS", "Figma", "React 19", "TypeScript", "Vite", "API REST"],
-    "databases": ["MySQL 8", "MariaDB", "SQLite"],
-    "tools_methodologies": ["Git", "GitHub", "CI/CD", "Jira", "Trello", "Scrum"]
+    "languages": ["C", "Java 21", "PHP 8", "JavaScript / TypeScript", "Python"],
+    "backend_data": ["SQLite", "MySQL 8", "MariaDB", "API REST", "GTFS / SIRI-VM"],
+    "frontend": ["React 19", "Vanilla JS", "Tailwind CSS", "Vite", "WebAssembly"],
+    "systems": ["Linux (Bash, Arch)", "Docker", "Git / GitHub", "CI/CD (GitHub Actions)"],
+    "applied_ai": ["RAG a medida", "LLMs locales con Ollama", "Fine-tuning de modelos", "Automatización con n8n"],
+    "workflow_tools": ["Claude", "Gemini", "Figma", "Jira", "Scrum"]
   },
+
   "experience": [
     {
       "role": "Ingeniero de Software",
@@ -33,12 +32,12 @@
       "description": "Desarrollo de módulos core para Horión Enterprise (ERP propietario) implementando arquitectura PHP multi-tenant escalable. Diseño de enrutamiento MVC propio, gestión de output buffering binario y sistemas avanzados de persistencia de datos. Creación de un módulo integral de buzón de salida con historial de logs, descarga directa desde BBDD y reenvío automático de adjuntos. Refactorización y mantenimiento de interfaces legacy en Vanilla JS utilizando MooTools."
     },
     {
-      "role": "Desarrollador Java (Freelance)",
-      "company": "Ayuntamiento de Bermeo",
+      "role": "Proyecto para el Ayuntamiento de Bermeo",
+      "company": "CIFP Zornotza · Ayuntamiento de Bermeo",
       "date": "May. 2026 - Jun. 2026",
       "location": "Bermeo, Bizkaia",
-      "type": "Freelance",
-      "description": "Ingeniería y programación de un Sistema de Gestión de Objetos Perdidos End-to-End ejecutado en metodología ágil (sprint de 15 días). Desarrollo de aplicación de escritorio en Swing/JavaFX orientada a personal administrativo y portal web interactivo para consulta ciudadana. Arquitectura de alta disponibilidad: Base de datos SQL en servidor con clúster de persistencia local de respaldo y automatización de backups."
+      "type": "Proyecto académico",
+      "description": "Reto real del Ayuntamiento de Bermeo en CIFP Zornotza: sistema completo de gestión de objetos perdidos desarrollado en un sprint de 15 días. Aplicación de escritorio en Swing/JavaFX para el personal municipal, portal web para la consulta ciudadana, base de datos MariaDB con copias de seguridad automáticas y despliegue con Docker."
     },
     {
       "role": "Desarrollador Web Full Stack (Freelance)",

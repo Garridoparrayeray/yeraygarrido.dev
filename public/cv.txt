@@ -15,22 +15,20 @@ Lugar:    Bilbao, Bizkaia, Spain
 Carnet:   Permiso B
 
 [ PERFIL PROFESIONAL ]
-Ingeniero de software especializado en Backend, con amplias competencias en
-Frontend, diseño de sistemas y gestión integral de proyectos. Mi base técnica
-combina el rigor de la gestión de memoria en C (Metodología 42) con arquitecturas
-avanzadas en Java y PHP 8. Acostumbrado a resolver problemas complejos de lógica
-de negocio (ERP, flotas de transporte, APIs Open Data), experto trabajando en
-entornos Linux.
+Ingeniero de software en Bilbao. Construyo sistemas en tiempo real y productos
+propios que se usan a diario: Bide+ (16 redes de transporte, predicción de
+llegadas propia y rutas calculadas en el móvil) y Gasolinera+ (precios oficiales
+de España, Portugal y Francia). Mido cada mejora frente a una línea base real y
+publico los algoritmos en abierto. En Horión desarrollo módulos de un ERP
+multiempresa en PHP. Base en C (42 Urduliz), Java y PHP, siempre en Linux.
 
 [ HABILIDADES TÉCNICAS ]
-- Ingeniería & Backend:        Java 21 (POO, Virtual Threads, JNI), PHP 8.x (Arquitectura nativa), C (Algoritmia, Memoria)
-- IA Aplicada:                 IA Generativa para desarrollo, Claude y Gemini, Arquitecturas RAG, LLMs, n8n
-- Despliegue de IA Local:      Ollama, Modelos locales con privacidad total
-- I+D Machine Learning:        Sistemas RAG a medida, Fine-Tuning de modelos
-- Sistemas, Redes & Seguridad: Linux (Bash, Arch), Ciberseguridad, Hacking Ético
-- Frontend, UI/UX:             JavaScript (Vanilla, GSAP), Tailwind CSS, Figma, React 19, TypeScript, Vite, API REST
-- Bases de Datos:              MySQL 8, MariaDB, SQLite
-- Herramientas:                Git, GitHub, CI/CD, Jira, Trello, Scrum
+- Lenguajes:            C, Java 21, PHP 8, JavaScript / TypeScript, Python
+- Backend y datos:      SQLite, MySQL 8, MariaDB, API REST, GTFS / SIRI-VM
+- Frontend:             React 19, Vanilla JS, Tailwind CSS, Vite, WebAssembly
+- Sistemas:             Linux (Bash, Arch), Docker, Git / GitHub, CI/CD (GitHub Actions)
+- IA aplicada:          RAG a medida, LLMs locales con Ollama, Fine-tuning, n8n
+- Herramientas:         Claude, Gemini, Figma, Jira, Scrum
 
 [ EXPERIENCIA PROFESIONAL ]
 
@@ -44,14 +42,13 @@ entornos Linux.
     descarga directa desde BBDD y reenvío automático de adjuntos.
   - Refactorización y mantenimiento de interfaces legacy en Vanilla JS con MooTools.
 
-> Desarrollador Java (Freelance) @ Ayuntamiento de Bermeo (May. 2026 - Jun. 2026)
-  [Freelance | Bermeo, Bizkaia]
-  Ingeniería y programación de un Sistema de Gestión de Objetos Perdidos
-  End-to-End en metodología ágil (sprint de 15 días).
-  - Aplicación de escritorio en Swing/JavaFX para personal administrativo
-    y portal web interactivo para consulta ciudadana.
-  - Arquitectura de alta disponibilidad: BD SQL en servidor con clúster de
-    persistencia local de respaldo y automatización de backups.
+> Proyecto para el Ayuntamiento de Bermeo @ CIFP Zornotza (May. 2026 - Jun. 2026)
+  [Proyecto académico | Bermeo, Bizkaia]
+  Reto real del Ayuntamiento: sistema completo de gestión de objetos perdidos
+  desarrollado en un sprint de 15 días.
+  - Aplicación de escritorio en Swing/JavaFX para el personal municipal
+    y portal web para la consulta ciudadana.
+  - Base de datos MariaDB con copias de seguridad automáticas y Docker.
 
 > Desarrollador Web Full Stack (Freelance) (Ene. 2025 - Jun. 2026)
   [Iniciativas Independientes | Bilbao, Bizkaia]

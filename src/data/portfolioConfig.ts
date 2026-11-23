@@ -554,14 +554,14 @@ export const WORK_EXPERIENCE: TimelineEntry[] = [
   {
     id: "bermeo",
     title: {
-      es: "Desarrollador Java (Freelance)",
-      en: "Java Developer (Freelance)",
-      eu: "Java Garatzaile (Freelance)",
+      es: "Proyecto para el Ayuntamiento de Bermeo",
+      en: "Project for Bermeo Town Hall",
+      eu: "Bermeoko Udalarentzako proiektua",
     },
     company: {
-      es: "Ayuntamiento de Bermeo",
-      en: "Bermeo Town Hall (Ayuntamiento de Bermeo)",
-      eu: "Bermeoko Udala",
+      es: "CIFP Zornotza · Ayuntamiento de Bermeo",
+      en: "CIFP Zornotza · Bermeo Town Hall",
+      eu: "CIFP Zornotza · Bermeoko Udala",
     },
     date: {
       es: "May 2026 - Jun 2026",
@@ -569,9 +569,9 @@ export const WORK_EXPERIENCE: TimelineEntry[] = [
       eu: "2026ko mai. - 2026ko eka.",
     },
     desc: {
-      es: "Sistema completo de gestión de objetos perdidos entregado en un sprint de 15 días: aplicación de escritorio en Java para el personal de atención al público y portal web para que cualquier vecino pueda buscar y reclamar objetos, con doble copia de seguridad para que el servicio nunca se detenga.",
-      en: "Delivered a complete Lost & Found platform in a 15-day sprint: a desktop application (Java Swing/JavaFX) for municipal staff and a public web portal for citizens to search and claim items, backed by automatic local and remote database backups so service never stops.",
-      eu: "Galdutako objektuak kudeatzeko sistema osoa 15 eguneko sprint batean garatua: udal-langileentzako mahaigaineko aplikazioa (Java) eta herritarrek objektuak bilatzeko web ataria, zerbitzua inoiz ez eteteko babeskopia bikoitzarekin.",
+      es: "Reto real del Ayuntamiento de Bermeo en CIFP Zornotza: sistema completo de gestión de objetos perdidos desarrollado en un sprint de 15 días. Aplicación de escritorio en Java para el personal de atención al público, portal web para que los vecinos busquen y reclamen objetos, base de datos MariaDB con copias de seguridad automáticas y despliegue con Docker.",
+      en: "Real brief from Bermeo Town Hall at CIFP Zornotza: a complete Lost & Found system built in a 15-day sprint. Java desktop application (Swing/JavaFX) for municipal staff, public web portal for citizens to search and claim items, MariaDB with automatic backups, and a Docker deployment.",
+      eu: "Bermeoko Udalaren benetako erronka CIFP Zornotzan: galdutako objektuak kudeatzeko sistema osoa, 15 eguneko sprint batean garatua. Udal-langileentzako mahaigaineko aplikazioa (Java), herritarrek objektuak bilatu eta erreklamatzeko web ataria, MariaDB babeskopia automatikoekin eta Docker bidezko hedapena.",
     },
   },
   {
@@ -791,7 +791,7 @@ export const API_ENDPOINTS: ApiEndpoint[] = [
     label: "TXT",
     path: "/cv.txt",
     command: "curl -L https://yeraygarrido.dev/cv.txt",
-    preview: `YERAY GARRIDO — SOFTWARE ENGINEER & FULL STACK
+    preview: `YERAY GARRIDO — INGENIERO DE SOFTWARE
 Bilbao, Bizkaia | https://yeraygarrido.dev | github.com/Garridoparrayeray
 -------------------------------------------------------------------------
 Core: PHP 8 · Java 21 · C (42) · Python · SQLite/MySQL · Linux · React 19`,
