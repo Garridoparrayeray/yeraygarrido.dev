@@ -480,11 +480,14 @@ export default function PortfolioMain() {
     window.addEventListener("lenis-lock", handleLenisLock);
 
     // --- 3. GSAP Context + MatchMedia Choreography ---
+    // Bide+ (#work) y Proyectos destacados (#projects) comparten la entrada «Proyectos» del menú.
+    const dockLinkFor: Record<string, string> = { projects: "work" };
     const setActiveDock = (activeId: string) => {
+      const target = dockLinkFor[activeId] ?? activeId;
       SECTION_IDS.forEach((id) => {
         const link = dockLinkRefs.current[id];
         if (link) {
-          link.dataset.active = id === activeId ? "true" : "false";
+          link.dataset.active = id === target ? "true" : "false";
         }
       });
     };
@@ -1255,13 +1258,12 @@ export default function PortfolioMain() {
   };
 
   const navItems = [
-    { id: "work", num: "01", label: { es: "Bide+", en: "Bide+", eu: "Bide+" } },
+    { id: "work", num: "01", label: { es: "Proyectos", en: "Projects", eu: "Proiektuak" } },
     { id: "about", num: "02", label: { es: "Servicios", en: "Services", eu: "Zerbitzuak" } },
-    { id: "projects", num: "03", label: { es: "Proyectos", en: "Projects", eu: "Proiektuak" } },
-    { id: "research", num: "04", label: { es: "Investigación", en: "Research", eu: "Ikerketa" } },
-    { id: "experience", num: "05", label: { es: "Experiencia", en: "Experience", eu: "Esperientzia" } },
-    { id: "api", num: "06", label: { es: "GitHub & API", en: "GitHub & API", eu: "GitHub & API" } },
-    { id: "contact", num: "07", label: { es: "Contacto", en: "Contact", eu: "Kontaktua" } },
+    { id: "research", num: "03", label: { es: "Investigación", en: "Research", eu: "Ikerketa" } },
+    { id: "experience", num: "04", label: { es: "Experiencia", en: "Experience", eu: "Esperientzia" } },
+    { id: "api", num: "05", label: { es: "GitHub & API", en: "GitHub & API", eu: "GitHub & API" } },
+    { id: "contact", num: "06", label: { es: "Contacto", en: "Contact", eu: "Kontaktua" } },
   ];
 
   const introFeatures = [
