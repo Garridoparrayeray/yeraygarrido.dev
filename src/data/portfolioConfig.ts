@@ -427,14 +427,14 @@ export const FLAGSHIP_PRODUCT: FlagshipProductConfig = {
       },
     },
     {
-      target: 9.1,
-      suffix: "M",
-      format: "decimal1",
-      fallbackText: "9,1M",
+      target: 16,
+      suffix: " ms",
+      format: "int",
+      fallbackText: "16 ms",
       label: {
-        es: "Evaluaciones ETA reales",
-        en: "Evaluated ETA records",
-        eu: "Ebaluatutako ETA datuak",
+        es: "Ruta calculada en el móvil",
+        en: "Route computed on the phone",
+        eu: "Ibilbidea mugikorrean kalkulatua",
       },
     },
     {
