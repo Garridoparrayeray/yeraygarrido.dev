@@ -100,7 +100,7 @@ export default function CookieBanner() {
           aria-label={t.title}
           className={`cookie-banner pointer-events-auto w-full md:w-[390px] md:m-6 ${
             isExiting ? "exiting" : ""
-          } bg-[#0C0C0F] text-[#F6F4EF] border-t md:border border-white/18 shadow-[0_24px_60px_rgba(0,0,0,0.75)]`}
+          } bg-[#0C0C0F] text-[#F6F4EF] border-t md:border border-white/18`}
         >
           <div className="px-6 py-6 flex flex-col gap-4">
             <div className="flex items-center justify-between gap-3 pb-3 border-b border-white/12">
