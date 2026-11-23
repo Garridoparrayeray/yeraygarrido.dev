@@ -200,11 +200,11 @@ html {
   }
 }
 
-/* Editorial justified body copy with automatic language-aware hyphenation (prevents rivers) */
+/* Editorial body copy: left-aligned, no automatic hyphenation (avoids rivers and split words) */
 .text-editorial {
-  text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  text-align: left;
+  hyphens: manual;
+  -webkit-hyphens: manual;
   text-wrap: pretty;
 }
 

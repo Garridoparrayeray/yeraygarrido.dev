@@ -1331,6 +1331,26 @@ export default function PortfolioMain() {
       en: "06 / FOR DEVELOPERS",
       eu: "06 / GARATZAILEENTZAT",
     },
+    supportTitle: {
+      es: "¿Te ha servido alguno de mis servicios gratuitos?",
+      en: "Has one of my free services been useful to you?",
+      eu: "Lagungarri izan zaizu nire doako zerbitzuren bat?",
+    },
+    supportText: {
+      es: "Gasolinera+ y Bide+ son gratuitos. Puedes contribuir invitándome a un café.",
+      en: "Gasolinera+ and Bide+ are free. You can contribute by buying me a coffee.",
+      eu: "Gasolinera+ eta Bide+ doakoak dira. Lagun dezakezu kafe batera gonbidatuz.",
+    },
+    supportKofi: {
+      es: "INVITAR A UN CAFÉ ↗",
+      en: "BUY ME A COFFEE ↗",
+      eu: "GONBIDATU KAFE BAT ↗",
+    },
+    contactBtn: {
+      es: "Contáctame",
+      en: "Get in touch",
+      eu: "Jarri harremanetan",
+    },
     contactEyebrow: {
       es: "07 / CONTACTO",
       en: "07 / CONTACT",
@@ -1526,12 +1546,12 @@ export default function PortfolioMain() {
           HEADER — FIXED TOP BAR ON BOTH DESKTOP & MOBILE (ALWAYS VISIBLE, NEVER BREAKS ON BODY LOCK)
          ===================================================================== */}
       <header className="fixed top-0 left-0 right-0 z-[80] bg-[#09090B]/95 backdrop-blur-md border-b border-white/14">
-        <div className="max-w-[1520px] mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4 xl:gap-8">
+        <div className="max-w-[1533px] mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4 xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-8">
           {/* Left: Logo + Name */}
           <a
             href="#top"
             onClick={(e) => scrollToSection(e, "top")}
-            className="flex items-center gap-4 sm:gap-5 min-h-[44px] shrink-0"
+            className="flex items-center min-h-[44px] shrink-0 xl:justify-self-start"
             aria-label={t("header.home")}
           >
             <img
@@ -1541,9 +1561,6 @@ export default function PortfolioMain() {
               alt={t("header.logoAlt")}
               className="h-6 sm:h-7 lg:h-8 w-auto shrink-0"
             />
-            <span className="font-grotesk font-semibold text-base sm:text-lg tracking-[0.1em] uppercase text-[#F6F4EF] whitespace-nowrap">
-              {SITE_IDENTITY.brandName}
-            </span>
           </a>
 
           {/* Center: Clear Desktop Main Navigation (always accessible, zero floating bottom dock overlap) */}
@@ -1570,7 +1587,7 @@ export default function PortfolioMain() {
           </nav>
 
           {/* Right: Desktop Square Segmented Language Box + CV | Mobile Animated Hamburger→X */}
-          <div className="flex items-center gap-3.5 xl:gap-4 shrink-0">
+          <div className="flex items-center gap-3.5 xl:gap-4 shrink-0 xl:justify-self-end">
             <div
               role="group"
               aria-label={loc(ui.languageLabel, language)}
@@ -1788,7 +1805,7 @@ export default function PortfolioMain() {
           id="top"
           className="relative overflow-hidden px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 lg:pt-12 pb-16 sm:pb-24"
         >
-          <div className="relative z-10 max-w-[1520px] mx-auto w-full flex flex-col gap-8 lg:gap-10">
+          <div className="relative z-10 max-w-[1440px] mx-auto w-full flex flex-col gap-8 lg:gap-10">
             {/* Meta Top Line — Centered on mobile, split on desktop */}
             <div
               data-aw-hero-fade
@@ -1938,15 +1955,15 @@ export default function PortfolioMain() {
                 data-aw-hero-fade
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end text-center lg:text-left"
               >
-                <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-justify hyphens-auto">
+                <p className="lg:col-span-6 text-[17px] sm:text-[19px] lg:text-[20px] text-[#F6F4EF]/85 leading-[1.72] max-w-[60ch] mx-auto lg:mx-0 text-center lg:text-left">
                   {t("intro.desc1")}
                 </p>
-                <div className="lg:col-span-6 flex flex-wrap justify-center lg:justify-end gap-3">
+                <div className="lg:col-span-5 lg:col-start-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full sm:max-w-[640px] mx-auto lg:max-w-none lg:mx-0 lg:ml-[9px] lg:w-[calc(100%-9px)]">
                   <a
                     href={`/CV_YerayGarrido_${language}.pdf`}
                     download={`CV_YerayGarrido_${language.toUpperCase()}.pdf`}
                     style={btnDarkOnIvory}
-                    className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 sm:px-8 py-4 min-h-[54px] inline-flex items-center"
+                    className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 sm:px-8 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`↓ ${t("hero.downloadCv")}`} />
                   </a>
@@ -1955,17 +1972,25 @@ export default function PortfolioMain() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={btnOutlineOnDark}
-                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center"
+                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${t("hero.githubProfile")} ↗`} />
                   </a>
                   <TearLink
                     href={SITE_IDENTITY.photographyUrl}
                     ariaLabel={t("hero.photographyProfile")}
-                    className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] inline-flex items-center"
+                    className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
                     <SlotLabel text={`${t("hero.photographyProfile")} ↗`} />
                   </TearLink>
+                  <a
+                    href="#contact"
+                    onClick={(e) => scrollToSection(e, "contact")}
+                    style={btnOutlineOnDark}
+                    className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
+                  >
+                    <SlotLabel text={`${loc(ui.contactBtn, language)} ↓`} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -1977,7 +2002,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section id="work" className="bg-[#09090B] border-t border-white/12 overflow-x-clip">
           {FLAGSHIP_PRODUCT.enabled && activeFlagshipScreen && (
-          <div id="flagship-product" className="py-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-16">
+          <div id="flagship-product" className="py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12">
             <div className="max-w-[1440px] mx-auto space-y-12 lg:space-y-16">
               <div
                 data-aw-reveal
@@ -2191,7 +2216,7 @@ export default function PortfolioMain() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={btnDarkOnIvory}
-                      className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 py-4 min-h-[52px] inline-flex items-center"
+                      className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 py-4 min-h-[56px] inline-flex items-center"
                     >
                       <SlotLabel text={loc(FLAGSHIP_PRODUCT.ctaLabel, language)} />
                     </a>
@@ -2199,7 +2224,7 @@ export default function PortfolioMain() {
                       type="button"
                       onClick={() => setActiveProject(flagshipProject)}
                       style={btnOutlineOnDark}
-                      className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 py-4 min-h-[52px] inline-flex items-center cursor-pointer"
+                      className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-7 py-4 min-h-[56px] inline-flex items-center cursor-pointer"
                     >
                       <SlotLabel text={loc(ui.fullCase, language)} />
                     </button>
@@ -2218,7 +2243,7 @@ export default function PortfolioMain() {
                         target={FLAGSHIP_PRODUCT.secondaryCta.isAnchor ? undefined : "_blank"}
                         rel={FLAGSHIP_PRODUCT.secondaryCta.isAnchor ? undefined : "noopener noreferrer"}
                         style={btnChampagneOutline}
-                        className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-5 py-4 min-h-[52px] inline-flex items-center"
+                        className="aw-btn border border-[#D6C7B2]/45 text-[#D6C7B2] font-medium text-base px-7 py-4 min-h-[56px] inline-flex items-center"
                       >
                         <SlotLabel
                           text={loc(FLAGSHIP_PRODUCT.secondaryCta.label, language).replace(
@@ -2265,7 +2290,7 @@ export default function PortfolioMain() {
           {/* =====================================================================
               02 · SELECTED ARCHIVE — SHARP SQUARE STICKY DEPTH-STACK
              ===================================================================== */}
-          <div className="py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16">
+          <div className="py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12">
             <div className="max-w-[1440px] mx-auto">
               <div
                 data-aw-reveal
@@ -2275,7 +2300,7 @@ export default function PortfolioMain() {
                   <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#D6C7B2] block mb-3">
                     {loc(ui.archiveEyebrow, language)}
                   </span>
-                  <h2 className="font-editorial font-bold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.02em] leading-[1.0]">
+                  <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[1.0]">
                     {t("projects.title")}
                   </h2>
                 </div>
@@ -2284,7 +2309,7 @@ export default function PortfolioMain() {
                   type="button"
                   onClick={() => setIsCatalogOpen(true)}
                   style={btnOutlineOnDark}
-                  className="aw-btn self-start md:self-auto border border-white/30 text-[#F6F4EF] text-base font-medium px-7 py-3.5 min-h-[50px] cursor-pointer"
+                  className="aw-btn self-start md:self-auto border border-white/30 text-[#F6F4EF] text-base font-medium px-7 py-4 min-h-[56px] cursor-pointer"
                 >
                   <SlotLabel text={`${t("projects.viewAll")} (${ALL_PROJECTS.length}) +`} />
                 </button>
@@ -2421,15 +2446,15 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="about"
-          className="bg-white text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
+          className="bg-white text-[#09090B] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-[#09090B]/12 overflow-x-clip"
         >
-          <div className="max-w-[1400px] mx-auto space-y-20 sm:space-y-24">
+          <div className="max-w-[1440px] mx-auto space-y-20 sm:space-y-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
               <div data-aw-reveal className="lg:col-span-5 space-y-6">
                 <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
                   03 / {t("intro.expertise1")} {t("intro.expertise2")}
                 </span>
-                <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[0.98] uppercase">
+                <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[1.0] uppercase">
                   {t("intro.title1")} <br />
                   <span className="font-editorial italic font-normal normal-case text-[#7A6648] tracking-[-0.025em]">
                     {t("intro.title2")}
@@ -2549,14 +2574,14 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="experience"
-          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
+          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-[#09090B]/12 overflow-x-clip"
         >
-          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             <div data-aw-reveal className="lg:col-span-4 space-y-8 min-w-0">
               <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block">
                 {loc(ui.timelineEyebrow, language)}
               </span>
-              <h2 className="font-editorial font-bold text-4xl sm:text-5xl lg:text-[clamp(2.2rem,3.1vw,3.35rem)] tracking-[-0.025em] leading-[1.02]">
+              <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-[clamp(3rem,3.6vw,3.75rem)] tracking-[-0.03em] leading-[1.0]">
                 {t("exp.title")}
               </h2>
 
@@ -2638,9 +2663,9 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="research"
-          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-16 border-t border-[#09090B]/12 overflow-x-clip"
+          className="bg-[#F6F4EF] text-[#09090B] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-[#09090B]/12 overflow-x-clip"
         >
-          <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-[1440px] mx-auto">
             <div
               data-aw-reveal
               className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 sm:pb-12 mb-12 relative"
@@ -2649,7 +2674,7 @@ export default function PortfolioMain() {
                 <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#7A6648] font-semibold block mb-3">
                   05 / {loc(ui.researchBadge, language)}
                 </span>
-                <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em]">
+                <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[1.0]">
                   {loc(ui.researchTitle, language)}{" "}
                   <span className="font-editorial italic font-normal text-[#7A6648]">Open Science</span>
                 </h2>
@@ -2660,7 +2685,7 @@ export default function PortfolioMain() {
               <a
                 href={SITE_IDENTITY.papersArchivePath}
                 style={{ "--aw-btn-fill": "#09090B", "--aw-btn-hover-text": "#F6F4EF" } as CSSProperties}
-                className="aw-btn self-start md:self-auto border border-[#09090B]/35 text-[#09090B] text-base font-medium px-7 py-3.5 min-h-[50px] inline-flex items-center"
+                className="aw-btn self-start md:self-auto border border-[#09090B]/35 text-[#09090B] text-base font-medium px-7 py-4 min-h-[56px] inline-flex items-center"
               >
                 <SlotLabel text={loc(ui.researchArchiveCta, language)} />
               </a>
@@ -2985,7 +3010,7 @@ export default function PortfolioMain() {
                         href={paper.pdfUrl}
                         download={paper.pdfFilename}
                         style={btnPrimaryOnLight}
-                        className="aw-btn bg-[#09090B] text-[#F6F4EF] font-semibold text-base px-7 py-4 min-h-[52px] inline-flex items-center"
+                        className="aw-btn bg-[#09090B] text-[#F6F4EF] font-semibold text-base px-7 py-4 min-h-[56px] inline-flex items-center"
                       >
                         <SlotLabel text={`↓ ${loc(ui.downloadPdf, language)}`} />
                       </a>
@@ -3055,7 +3080,7 @@ export default function PortfolioMain() {
                 <a
                   href={SITE_IDENTITY.papersArchivePath}
                   style={{ "--aw-btn-fill": "#09090B", "--aw-btn-hover-text": "#F6F4EF" } as CSSProperties}
-                  className="aw-btn self-start sm:self-auto bg-[#09090B] text-[#F6F4EF] text-base font-semibold px-7 py-4 min-h-[52px] inline-flex items-center"
+                  className="aw-btn self-start sm:self-auto bg-[#09090B] text-[#F6F4EF] text-base font-semibold px-7 py-4 min-h-[56px] inline-flex items-center"
                 >
                   <SlotLabel
                     text={
@@ -3077,7 +3102,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="api"
-          className="bg-[#09090B] text-[#F6F4EF] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-14 border-t border-white/12 overflow-x-clip"
+          className="bg-[#09090B] text-[#F6F4EF] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-white/12 overflow-x-clip"
         >
           <div className="max-w-[1440px] mx-auto space-y-16 sm:space-y-20">
             {/* 1. Clear Live Metrics & GitHub Activity (understood by every visitor) */}
@@ -3087,7 +3112,7 @@ export default function PortfolioMain() {
                   <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#D6C7B2] block mb-3">
                     06 / {t("contact.github")}
                   </span>
-                  <h2 className="font-editorial font-semibold text-5xl sm:text-6xl tracking-[-0.025em]">
+                  <h2 className="font-editorial font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] leading-[1.0]">
                     {t("contact.github")}
                   </h2>
                 </div>
@@ -3221,6 +3246,30 @@ export default function PortfolioMain() {
                 </div>
               </div>
             </div>
+            {/* Apoyo a los servicios gratuitos */}
+            <div
+              data-aw-reveal
+              className="border border-white/15 bg-[#111114] px-6 sm:px-10 py-8 sm:py-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+            >
+              <div className="max-w-2xl space-y-2">
+                <h3 className="font-editorial font-semibold text-2xl sm:text-3xl tracking-[-0.02em]">
+                  {loc(ui.supportTitle, language)}
+                </h3>
+                <p className="text-base sm:text-lg text-[#F6F4EF]/75 leading-[1.6]">
+                  {loc(ui.supportText, language)}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <a
+                  href="https://ko-fi.com/ygarrido"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center min-h-[44px] px-6 bg-[#F6F4EF] text-[#09090B] font-mono text-sm tracking-[0.12em] hover:opacity-85 transition-opacity"
+                >
+                  {loc(ui.supportKofi, language)}
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -3229,7 +3278,7 @@ export default function PortfolioMain() {
            ===================================================================== */}
         <section
           id="contact"
-          className="relative overflow-hidden bg-[#09090B] text-[#F6F4EF] py-24 sm:py-36 px-5 sm:px-8 lg:px-16 border-t border-white/12"
+          className="relative overflow-hidden bg-[#09090B] text-[#F6F4EF] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 lg:px-12 border-t border-white/12"
         >
           <div className="relative z-10 max-w-[1100px] mx-auto text-center space-y-11">
             <div className="flex flex-col items-center gap-6">
@@ -3273,7 +3322,7 @@ export default function PortfolioMain() {
                 <a
                   href={`mailto:${SITE_IDENTITY.email}`}
                   style={btnDarkOnIvory}
-                  className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base sm:text-lg px-8 sm:px-10 py-5 min-h-[60px] inline-flex items-center"
+                  className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base lg:text-[17px] px-8 py-5 min-h-[64px] inline-flex items-center"
                 >
                   <SlotLabel text={`${t("contact.email")} ↗`} />
                 </a>
@@ -3282,7 +3331,7 @@ export default function PortfolioMain() {
                   target="_blank"
                   rel="noopener noreferrer"
                   style={btnOutlineOnDark}
-                  className="aw-btn border border-white/35 text-[#F6F4EF] font-semibold text-base sm:text-lg px-8 sm:px-10 py-5 min-h-[60px] inline-flex items-center"
+                  className="aw-btn border border-white/35 text-[#F6F4EF] font-semibold text-base lg:text-[17px] px-8 py-5 min-h-[64px] inline-flex items-center"
                 >
                   <SlotLabel text={`${t("contact.linkedin")} ↗`} />
                 </a>
@@ -3295,7 +3344,7 @@ export default function PortfolioMain() {
                   aria-expanded={contactFormOpen}
                   aria-controls="quick-contact-form"
                   style={btnChampagneOutline}
-                  className="aw-btn border border-[#D6C7B2]/55 text-[#D6C7B2] font-semibold text-base sm:text-lg px-8 py-5 min-h-[60px] inline-flex items-center cursor-pointer"
+                  className="aw-btn border border-[#D6C7B2]/55 text-[#D6C7B2] font-semibold text-base lg:text-[17px] px-8 py-5 min-h-[64px] inline-flex items-center cursor-pointer"
                 >
                   <SlotLabel
                     text={
@@ -3421,7 +3470,7 @@ export default function PortfolioMain() {
                         tabIndex={contactFormOpen ? 0 : -1}
                         disabled={formStatus === "submitting"}
                         style={btnDarkOnIvory}
-                        className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-8 py-4 min-h-[52px] inline-flex items-center justify-center cursor-pointer disabled:opacity-50"
+                        className="aw-btn bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-7 py-4 min-h-[56px] inline-flex items-center justify-center cursor-pointer disabled:opacity-50"
                       >
                         <SlotLabel
                           text={
@@ -3458,7 +3507,7 @@ export default function PortfolioMain() {
 
       {/* STRUCTURED PRODUCTION FOOTER WITH INTEGRATED LEGAL MODALS */}
       <footer className="bg-[#09090B] text-[#F6F4EF]/75 py-16 px-5 sm:px-8 lg:px-14 border-t border-white/12 overflow-x-clip">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 sm:gap-12 pb-12 border-b border-white/12 text-base">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 sm:gap-12 pb-12 border-b border-white/12 text-base">
           <div className="col-span-2 md:col-span-1 space-y-4 min-w-0">
             <img
               src="/img/logo.webp"
@@ -3603,7 +3652,7 @@ export default function PortfolioMain() {
           </div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F6F4EF]/55 text-center md:text-left">
+        <div className="max-w-[1440px] mx-auto pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F6F4EF]/55 text-center md:text-left">
           <span>
             {t("contact.footer.madeWith")} {SITE_IDENTITY.brandName}
           </span>
