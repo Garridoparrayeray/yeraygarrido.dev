@@ -1256,7 +1256,7 @@ export default function PortfolioMain() {
 
   const navItems = [
     { id: "work", num: "01", label: { es: "Bide+", en: "Bide+", eu: "Bide+" } },
-    { id: "about", num: "02", label: { es: "Cómo trabajo", en: "How I work", eu: "Nola lan egiten dudan" } },
+    { id: "about", num: "02", label: { es: "Servicios", en: "Services", eu: "Zerbitzuak" } },
     { id: "projects", num: "03", label: { es: "Proyectos", en: "Projects", eu: "Proiektuak" } },
     { id: "research", num: "04", label: { es: "Investigación", en: "Research", eu: "Ikerketa" } },
     { id: "experience", num: "05", label: { es: "Experiencia", en: "Experience", eu: "Esperientzia" } },
