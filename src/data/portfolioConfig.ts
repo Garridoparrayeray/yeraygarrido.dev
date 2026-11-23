@@ -9,6 +9,7 @@
  *  4. FLAGSHIP_PRODUCT   -> Producto Destacado principal (Sección 01: modo móvil 3-phones o web/desktop 16:10)
  *  5. ARCHIVE_PLATES     -> Proyectos Destacados elegidos (Sección 01.B — elige los IDs y orden que quieras)
  *  6. RESEARCH_PAPERS    -> Cargado automáticamente desde src/data/papers.json (+ `npm run sync` genera /papers/* y sitemap)
+ *     FEATURED_PAPERS    -> Papers destacados en la portada (Sección 02 — elige los IDs y el orden; el resto, en /papers/)
  *  7. WORK_EXPERIENCE & EDUCATION_HISTORY -> Trayectoria laboral y formación (contadores automáticos)
  *  8. TECH_STACK_ITEMS & API_ENDPOINTS    -> Stack y endpoints públicos
  *
@@ -134,6 +135,13 @@ export interface ArchivePlateConfig {
   badge?: LocalizedText;
   /** Franja destacada opcional bajo la descripción */
   highlight?: LocalizedText;
+}
+
+export interface FeaturedPaperConfig {
+  /** Debe coincidir con un "id" de src/data/papers.json */
+  id: string;
+  /** Etiqueta opcional junto al tipo del paper (por ejemplo "NUEVO" o "DESTACADO") */
+  badge?: LocalizedText;
 }
 
 export type ResearchVisualPlate =
@@ -491,6 +499,29 @@ export const RESEARCH_PAPERS: PaperRecord[] = (papersRaw as PaperSourceRecord[])
     scholarPageUrl: `/papers/${paper.slug}/`,
   })
 );
+
+// ============================================================================
+// 6.B PAPERS DESTACADOS (SECCIÓN 02 — ELIGE LOS QUE QUIERAS Y EN EL ORDEN QUE QUIERAS)
+//    Igual que ARCHIVE_PLATES: solo necesitas poner `{ id: "id-del-paper" }` (de src/data/papers.json).
+//    `badge` es opcional. Todos los papers siguen en /papers/ y en Google Scholar; si dejas la
+//    lista vacía, la portada enseña todos.
+// ============================================================================
+export const FEATURED_PAPERS: FeaturedPaperConfig[] = [
+  {
+    id: "paper-journey-planning",
+    badge: { es: "NUEVO", en: "NEW", eu: "BERRIA" },
+  },
+  { id: "paper-paired" },
+  { id: "paper-threelayer" },
+];
+
+export const FEATURED_RESEARCH: Array<PaperRecord & { badge?: LocalizedText }> = (() => {
+  const picked = FEATURED_PAPERS.map((cfg) => {
+    const paper = RESEARCH_PAPERS.find((p) => p.id === cfg.id);
+    return paper ? { ...paper, badge: cfg.badge } : null;
+  }).filter(Boolean) as Array<PaperRecord & { badge?: LocalizedText }>;
+  return picked.length > 0 ? picked : RESEARCH_PAPERS;
+})();
 
 // ============================================================================
 // 7. EXPERIENCIA LABORAL Y FORMACIÓN (SECCIÓN 04 — CONTADORES AUTOMÁTICOS)

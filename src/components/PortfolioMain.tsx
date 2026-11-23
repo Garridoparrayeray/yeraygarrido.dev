@@ -35,6 +35,7 @@ import {
   LATEST_RELEASE,
   MARQUEE_ITEMS,
   RESEARCH_PAPERS,
+  FEATURED_RESEARCH,
   SITE_IDENTITY,
   TECH_STACK_ITEMS,
   WORK_EXPERIENCE,
@@ -2515,7 +2516,7 @@ export default function PortfolioMain() {
 
             {/* Generic Visual-Plate Paper List */}
             <div className="space-y-16 sm:space-y-24">
-              {RESEARCH_PAPERS.map((paper) => (
+              {FEATURED_RESEARCH.map((paper) => (
                 <article
                   key={paper.id}
                   data-aw-reveal
@@ -2713,6 +2714,11 @@ export default function PortfolioMain() {
                       <span className="bg-[#09090B] text-[#F6F4EF] px-3.5 py-1 font-semibold">
                         {paper.index} / {loc(paper.type, language)}
                       </span>
+                      {paper.badge && (
+                        <span className="border border-[#7A6648] text-[#7A6648] px-3 py-1 font-semibold">
+                          {loc(paper.badge, language)}
+                        </span>
+                      )}
                       <span className="border border-[#09090B]/25 bg-[#EAE6DC] text-[#09090B] px-3 py-1 font-medium">
                         {loc(paper.topic, language)}
                       </span>
@@ -2810,6 +2816,33 @@ export default function PortfolioMain() {
                 </article>
               ))}
             </div>
+
+            {FEATURED_RESEARCH.length < RESEARCH_PAPERS.length && (
+              <div data-aw-reveal className="mt-16 sm:mt-20 pt-10 border-t border-[#09090B]/15 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <p className="text-[17px] sm:text-[19px] text-[#09090B]/80 leading-[1.6] max-w-[60ch]">
+                  {language === "en"
+                    ? `${RESEARCH_PAPERS.length - FEATURED_RESEARCH.length} more in the academic archive, with full citation and PDF.`
+                    : language === "eu"
+                      ? `Beste ${RESEARCH_PAPERS.length - FEATURED_RESEARCH.length} artxibo akademikoan, aipamen osoarekin eta PDFarekin.`
+                      : `${RESEARCH_PAPERS.length - FEATURED_RESEARCH.length} más en el archivo académico, con cita completa y PDF.`}
+                </p>
+                <a
+                  href={SITE_IDENTITY.papersArchivePath}
+                  style={{ "--aw-btn-fill": "#09090B", "--aw-btn-hover-text": "#F6F4EF" } as CSSProperties}
+                  className="aw-btn self-start sm:self-auto bg-[#09090B] text-[#F6F4EF] text-base font-semibold px-7 py-4 min-h-[52px] inline-flex items-center"
+                >
+                  <SlotLabel
+                    text={
+                      language === "en"
+                        ? `See all ${RESEARCH_PAPERS.length} papers`
+                        : language === "eu"
+                          ? `Ikusi ${RESEARCH_PAPERS.length} paperak`
+                          : `Ver los ${RESEARCH_PAPERS.length} papers`
+                    }
+                  />
+                </a>
+              </div>
+            )}
           </div>
         </section>
 

@@ -166,6 +166,25 @@ Si eres un agente trabajando en este proyecto, respeta siempre estas decisiones 
 
 ---
 
+### Receta 1.B — Elegir los Papers Destacados de la portada (Sección 02)
+
+Funciona igual que los Proyectos Destacados. En `src/data/portfolioConfig.ts`, edita `FEATURED_PAPERS` con los `id` de `src/data/papers.json`, en el orden en que quieras verlos:
+
+```ts
+export const FEATURED_PAPERS: FeaturedPaperConfig[] = [
+  { id: "paper-journey-planning", badge: { es: "NUEVO", en: "NEW", eu: "BERRIA" } }, // badge opcional
+  { id: "paper-paired" },
+  { id: "paper-threelayer" },
+];
+```
+
+- La portada enseña solo esos papers. Si hay más en `papers.json`, aparece debajo un botón **«Ver los N papers»** que lleva a `/papers/`.
+- Todos los papers siguen teniendo su ficha en `/papers/<slug>/`, el archivo `/papers/`, el sitemap y Google Scholar: destacar solo cambia la portada.
+- Si dejas la lista vacía (`[]`), la portada enseña todos.
+- No hace falta `npm run sync` para esto (no toca `/papers/*`); basta con `npm run build` y subirlo.
+
+---
+
 ### Receta 2 — Cambiar el "Último Lanzamiento" (tarjeta del Hero)
 
 Edita `LATEST_RELEASE` en `src/data/portfolioConfig.ts`:
