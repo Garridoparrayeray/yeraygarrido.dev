@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Página no encontrada | Yeray Garrido</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#09090B" />
+
+  <!-- Dynamic Base Resolution: Seamless asset resolving on Production, Vite, Local PHP Server, or file:// -->
+  <script>
+    (function () {
+      var p = window.location.pathname || "";
+      var pub = p.indexOf("/public/");
+      var dist = p.indexOf("/dist/");
+      var base = "/";
+      if (pub !== -1) {
+        base = p.substring(0, pub + 8);
+      } else if (dist !== -1) {
+        base = p.substring(0, dist + 6);
+      }
+      document.write('<base href="' + base + '">');
+    })();
+  </script>
+
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+
+  <!-- Preload Critical Local Fonts -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/newsreader-var.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/newsreader-var-italic.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/schibsted-var.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/ibm-plex-mono-400.woff2" crossorigin />
+
+  <!-- Critical Layout Safeguard: Prevents FOUC & SVG ballooning in any runtime -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #09090B;
+      color: #F6F4EF;
+    }
+    svg.ico {
+      width: 14px;
+      height: 14px;
+      fill: none;
+    }
+  </style>
+
+  <!-- Dedicated Pyramidal Stylesheet -->
+  <link rel="stylesheet" href="404.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar: Matching Portfolio Header -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <!-- Left: Logo YG. only (No text beside) -->
+      <a class="brand" href="./" aria-label="Yeray Garrido">
+        <img src="img/logo.webp" alt="Yeray Garrido" width="720" height="281" />
+      </a>
+
+      <!-- Center: Main Navigation Links -->
+      <nav class="nav-center" aria-label="Navegación principal">
+        <a href="./#projects" class="nav-link" id="nav-projects">Proyectos</a>
+        <a href="./#services" class="nav-link" id="nav-services">Servicios</a>
+        <a href="./#experience" class="nav-link" id="nav-experience">Experiencia</a>
+        <a href="papers/" class="nav-link" id="nav-research">Investigación</a>
+        <a href="./#contact" class="nav-link" id="nav-contact">Contacto</a>
+      </nav>
+
+      <!-- Right: Square Segmented Language Switcher + Primary Button -->
+      <div class="header-actions">
+        <div class="lang-switcher" role="group" aria-label="Selector de idioma">
+          <button type="button" class="lang-btn active" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="eu">EU</button>
+        </div>
+
+        <a href="./" class="btn-primary" id="btn-home">
+          <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path fill="none" d="M13.5 8H3M7.25 3.75L3 8L7.25 12.25" />
+          </svg>
+          <span id="btn-home-text">Inicio</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Error Section -->
+  <main class="wrap">
+    <!-- Meta Top Line -->
+    <div class="meta-line">
+      <span id="eyebrow-text">HTTP 404 · RECURSO NO LOCALIZADO</span>
+      <span class="meta-right">© 2026 PORTAFOLIO</span>
+    </div>
+
+    <!-- Editorial Lockup: 404 + No Encontrado -->
+    <h1 class="hero-title">
+      <span class="title-main">404</span>
+      <span class="title-sub" id="error-title">No Encontrado</span>
+    </h1>
+
+    <p class="lead" id="error-desc">
+      El recurso solicitado no existe, ha sido trasladado o su identificador ha cambiado en la última compilación del sistema.
+    </p>
+
+    <!-- Path Inspection Callout -->
+    <div class="path-callout">
+      <span class="path-callout-label" id="path-label">Ruta solicitada</span>
+      <code class="path-callout-val" id="requested-path">/desconocido</code>
+    </div>
+
+    <!-- Suggested Destination Cards -->
+    <div class="meta-label" id="destinations-label">Destinos principales</div>
+
+    <div class="grid-cards">
+      <a href="./" class="card">
+        <div class="card-header">
+          <span>[ 01 ]</span>
+          <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path fill="none" d="M2.5 8H13M8.75 3.75L13 8L8.75 12.25" />
+          </svg>
+        </div>
+        <h2 id="c1-title">Inicio</h2>
+        <p id="c1-desc">Presentación técnica, arquitectura de software y experiencia profesional.</p>
+      </a>
+
+      <a href="./#projects" class="card">
+        <div class="card-header">
+          <span>[ 02 ]</span>
+          <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path fill="none" d="M2.5 8H13M8.75 3.75L13 8L8.75 12.25" />
+          </svg>
+        </div>
+        <h2 id="c2-title">Proyectos</h2>
+        <p id="c2-desc">Bide+ (16 redes en tiempo real), Gasolinera+, Horión ERP y Zalbi Aisia.</p>
+      </a>
+
+      <a href="papers/" class="card">
+        <div class="card-header">
+          <span>[ 03 ]</span>
+          <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path fill="none" d="M2.5 8H13M8.75 3.75L13 8L8.75 12.25" />
+          </svg>
+        </div>
+        <h2 id="c3-title">Publicaciones Científicas</h2>
+        <p id="c3-desc">Preprints, evaluaciones empíricas y monografías con DOI en Zenodo (CERN).</p>
+      </a>
+
+      <a href="./#contact" class="card">
+        <div class="card-header">
+          <span>[ 04 ]</span>
+          <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path fill="none" d="M2.5 8H13M8.75 3.75L13 8L8.75 12.25" />
+          </svg>
+        </div>
+        <h2 id="c4-title">Contacto</h2>
+        <p id="c4-desc">Canal directo para consultas técnicas, proyectos o colaboraciones.</p>
+      </a>
+    </div>
+
+    <!-- Structured Endpoints Panel -->
+    <div class="panel">
+      <div class="panel-inner">
+        <span class="meta-label" style="margin-bottom: 0;" id="endpoints-label-text">Endpoints estructurados</span>
+        <div class="tag-row">
+          <a href="cv.json" class="tag">cv.json</a>
+          <a href="cv.xml" class="tag">cv.xml</a>
+          <a href="llms.txt" class="tag">llms.txt</a>
+          <a href="sitemap.xml" class="tag">sitemap.xml</a>
+          <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noopener noreferrer" class="tag">
+            GitHub
+            <svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <span>© 2026 Yeray Garrido</span>
+        <span> · </span>
+        <span id="footer-role">Ingeniero de Software</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/yeray-garrido" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer">ORCID</a>
+        <a href="mailto:garridoparrayeraytx@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Trilingual & Path Resolver Script -->
+  <script>
+    (function () {
+      var pathElement = document.getElementById("requested-path");
+      if (pathElement) {
+        var currentPath = window.location.pathname || "/404";
+        if (window.location.search) {
+          currentPath += window.location.search;
+        }
+        pathElement.textContent = currentPath;
+      }
+
+      var content = {
+        es: {
+          docTitle: "404 — Página no encontrada | Yeray Garrido",
+          navProjects: "Proyectos",
+          navServices: "Servicios",
+          navExperience: "Experiencia",
+          navResearch: "Investigación",
+          navContact: "Contacto",
+          btnHome: "Inicio",
+          eyebrow: "HTTP 404 · RECURSO NO LOCALIZADO",
+          title: "No Encontrado",
+          desc: "El recurso solicitado no existe, ha sido trasladado o su identificador ha cambiado en la última compilación del sistema.",
+          pathLabel: "Ruta solicitada",
+          destinations: "Destinos principales",
+          c1Title: "Inicio",
+          c1Desc: "Presentación técnica, arquitectura de software y experiencia profesional.",
+          c2Title: "Proyectos",
+          c2Desc: "Bide+ (16 redes en tiempo real), Gasolinera+, Horión ERP y Zalbi Aisia.",
+          c3Title: "Publicaciones Científicas",
+          c3Desc: "Preprints, evaluaciones empíricas y monografías con DOI en Zenodo (CERN).",
+          c4Title: "Contacto",
+          c4Desc: "Canal directo para consultas técnicas, proyectos o colaboraciones.",
+          endpointsLabel: "Endpoints estructurados",
+          footerRole: "Ingeniero de Software"
+        },
+        en: {
+          docTitle: "404 — Page Not Found | Yeray Garrido",
+          navProjects: "Projects",
+          navServices: "Services",
+          navExperience: "Experience",
+          navResearch: "Research",
+          navContact: "Contact",
+          btnHome: "Home",
+          eyebrow: "HTTP 404 · RESOURCE NOT FOUND",
+          title: "Not Found",
+          desc: "The requested resource does not exist, has been moved, or its identifier was changed in the latest system build.",
+          pathLabel: "Requested path",
+          destinations: "Main destinations",
+          c1Title: "Home",
+          c1Desc: "Technical overview, software architecture, and professional experience.",
+          c2Title: "Projects",
+          c2Desc: "Bide+ (16 real-time transit networks), Gasolinera+, Horión ERP, and Zalbi Aisia.",
+          c3Title: "Scientific Publications",
+          c3Desc: "Open-access preprints, paired evaluations, and monographs on Zenodo (CERN).",
+          c4Title: "Contact",
+          c4Desc: "Direct channel for technical questions, opportunities, or collaborations.",
+          endpointsLabel: "Structured endpoints",
+          footerRole: "Software Engineer"
+        },
+        eu: {
+          docTitle: "404 — Ez da orrialdea aurkitu | Yeray Garrido",
+          navProjects: "Proiektuak",
+          navServices: "Zerbitzuak",
+          navExperience: "Esperientzia",
+          navResearch: "Ikerketa",
+          navContact: "Kontaktua",
+          btnHome: "Hasiera",
+          eyebrow: "HTTP 404 · BALIABIDEA EZ DA AURKITU",
+          title: "Ez da Aurkitu",
+          desc: "Eskatutako baliabidea ez da existitzen, lekuz aldatu da edo bere bidea aldatu da azken konpilazioan.",
+          pathLabel: "Eskatutako bidea",
+          destinations: "Helmuga nagusiak",
+          c1Title: "Hasiera",
+          c1Desc: "Aurkezpen teknikoa, software-arkitektura eta lan-esperientzia.",
+          c2Title: "Proiektuak",
+          c2Desc: "Bide+ (16 sare denbora errealean), Gasolinera+, Horión ERP eta Zalbi Aisia.",
+          c3Title: "Argitalpen Zientifikoak",
+          c3Desc: "Sarbide irekiko aurreinprimaketak, ebaluazio enpirikoak eta monografiak Zenodon (CERN).",
+          c4Title: "Kontaktua",
+          c4Desc: "Zuzeneko bidea zalantza teknikoetarako, proposamenetarako edo lankidetzarako.",
+          endpointsLabel: "Endpoint egituratuak",
+          footerRole: "Software Ingeniaria"
+        }
+      };
+
+      function setLang(lang) {
+        if (!content[lang]) lang = "es";
+        document.documentElement.lang = lang;
+        var t = content[lang];
+
+        document.title = t.docTitle;
+        document.getElementById("nav-projects").textContent = t.navProjects;
+        document.getElementById("nav-services").textContent = t.navServices;
+        document.getElementById("nav-experience").textContent = t.navExperience;
+        document.getElementById("nav-research").textContent = t.navResearch;
+        document.getElementById("nav-contact").textContent = t.navContact;
+        document.getElementById("btn-home-text").textContent = t.btnHome;
+        document.getElementById("eyebrow-text").textContent = t.eyebrow;
+        document.getElementById("error-title").textContent = t.title;
+        document.getElementById("error-desc").textContent = t.desc;
+        document.getElementById("path-label").textContent = t.pathLabel;
+        document.getElementById("destinations-label").textContent = t.destinations;
+        document.getElementById("c1-title").textContent = t.c1Title;
+        document.getElementById("c1-desc").textContent = t.c1Desc;
+        document.getElementById("c2-title").textContent = t.c2Title;
+        document.getElementById("c2-desc").textContent = t.c2Desc;
+        document.getElementById("c3-title").textContent = t.c3Title;
+        document.getElementById("c3-desc").textContent = t.c3Desc;
+        document.getElementById("c4-title").textContent = t.c4Title;
+        document.getElementById("c4-desc").textContent = t.c4Desc;
+        document.getElementById("endpoints-label-text").textContent = t.endpointsLabel;
+        document.getElementById("footer-role").textContent = t.footerRole;
+
+        var buttons = document.querySelectorAll(".lang-btn");
+        buttons.forEach(function (btn) {
+          if (btn.getAttribute("data-lang") === lang) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+
+        try {
+          localStorage.setItem("yeray_lang", lang);
+        } catch (e) {}
+      }
+
+      var savedLang = null;
+      try {
+        savedLang = localStorage.getItem("yeray_lang");
+      } catch (e) {}
+
+      if (!savedLang && navigator.language) {
+        var navL = navigator.language.toLowerCase();
+        if (navL.startsWith("eu")) savedLang = "eu";
+        else if (navL.startsWith("en")) savedLang = "en";
+        else savedLang = "es";
+      }
+
+      setLang(savedLang || "es");
+
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setLang(btn.getAttribute("data-lang"));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
