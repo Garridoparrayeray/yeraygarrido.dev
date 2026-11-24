@@ -57,30 +57,6 @@ export default function Research() {
 
   const papers: PaperItem[] = [
     {
-      id: "paper-multicriteria",
-      year: "2026",
-      venue: "Zenodo (CERN) · Preprint",
-      title: {
-        es: "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks",
-        en: "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks",
-        eu: "Multi-criteria journey planning on the passenger's device: design and validation for fifteen merged regional transit networks"
-      },
-      type: {
-        es: "Planificador de Rutas en Dispositivo",
-        en: "On-Device Multi-Criteria Routing",
-        eu: "Gailuko Bidaia-Antolatzailea"
-      },
-      tldr: {
-        es: "Planificador multicriterio en cliente (RAPTOR + WebAssembly) sobre 15 redes regionales fusionadas (54.896 viajes, 8.242 paradas): cálculo sin conexión corregido en tiempo real con 16 ms de latencia mediana.",
-        en: "Client-side multi-criteria journey planner (RAPTOR + WebAssembly) across 15 merged transit networks (54,896 trips, 8,242 stops): offline computation with real-time updates and 16 ms median latency.",
-        eu: "Bezeroan exekutatzen den ibilbide-antolatzailea (RAPTOR + WebAssembly) 15 sare bateratutan (54.896 bidaia, 8.242 geraleku): konexiorik gabeko kalkulua denbora errealarekin eta 16 ms-ko batez besteko latentzia."
-      },
-      doi: "10.5281/zenodo.24442212",
-      doiUrl: "https://doi.org/10.5281/zenodo.24442212",
-      repoUrl: "https://www.bideplus.eus/",
-      metrics: ["15 redes fusionadas", "54.896 viajes", "16 ms latencia mediana"]
-    },
-    {
       id: "paper-paired",
       year: "2026",
       venue: "Zenodo (CERN) · Preprint",
