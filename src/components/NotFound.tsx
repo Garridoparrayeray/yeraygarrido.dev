@@ -95,7 +95,7 @@ export default function NotFound() {
               alt="Yeray Garrido"
               width="720"
               height="281"
-              className="h-6 sm:h-7 lg:h-8 w-auto shrink-0 object-contain"
+              className="h-6 sm:h-7 lg:h-8 w-auto shrink-0 object-contain aspect-[720/281]"
             />
           </a>
 
@@ -241,7 +241,7 @@ export default function NotFound() {
             href="/#work"
             className="inline-flex items-center gap-2 bg-[#111114] border border-white/20 text-[#F6F4EF] hover:border-[#D6C7B2] hover:text-[#D6C7B2] font-medium text-base px-6 min-h-[48px] transition-colors"
           >
-            <span>Ver Proyectos</span>
+            <span>{language === "eu" ? "Ikusi Proiektuak" : language === "en" ? "View Projects" : "Ver Proyectos"}</span>
             <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75">
               <path d="M8 3V13M3.75 8.75L8 13L12.25 8.75" />
             </svg>
@@ -250,7 +250,7 @@ export default function NotFound() {
             href="/papers/"
             className="inline-flex items-center gap-2 bg-[#111114] border border-white/20 text-[#F6F4EF] hover:border-[#D6C7B2] hover:text-[#D6C7B2] font-medium text-base px-6 min-h-[48px] transition-colors"
           >
-            <span>Papers & Zenodo</span>
+            <span>Papers &amp; Zenodo</span>
             <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75">
               <path d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
             </svg>
@@ -259,7 +259,7 @@ export default function NotFound() {
             href="/#contact"
             className="inline-flex items-center gap-2 bg-[#111114] border border-white/20 text-[#F6F4EF] hover:border-[#D6C7B2] hover:text-[#D6C7B2] font-medium text-base px-6 min-h-[48px] transition-colors"
           >
-            <span>Contacto</span>
+            <span>{language === "eu" ? "Kontaktatu" : language === "en" ? "Contact" : "Contacto"}</span>
             <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75">
               <path d="M8 3V13M3.75 8.75L8 13L12.25 8.75" />
             </svg>
@@ -406,7 +406,7 @@ export default function NotFound() {
               height={281}
               loading="lazy"
               alt="Yeray Garrido"
-              className="h-8 w-auto"
+              className="h-8 w-auto object-contain aspect-[720/281]"
             />
             <p className="text-sm sm:text-base text-[#F6F4EF]/65 leading-relaxed">
               Yeray Garrido · Ingeniero de Software &amp; Creador de Productos Digitales
@@ -430,10 +430,10 @@ export default function NotFound() {
               Portfolio
             </div>
             <a href="/#work" className="block hover:text-white py-0.5 break-words">
-              Bide+ &amp; Proyectos
+              {language === "eu" ? "Bide+ eta Proiektuak" : language === "en" ? "Bide+ & Projects" : "Bide+ & Proyectos"}
             </a>
             <a href="/#research" className="block hover:text-white py-0.5 break-words">
-              Investigación
+              {language === "eu" ? "Ikerketa" : language === "en" ? "Research" : "Investigación"}
             </a>
             <a href="/papers/" className="inline-flex items-center gap-1.5 text-[#F6F4EF]/75 hover:text-[#D6C7B2] py-0.5 break-words">
               <span>Papers &amp; Zenodo (CERN)</span>
@@ -442,7 +442,7 @@ export default function NotFound() {
               </svg>
             </a>
             <a href="/#experience" className="block hover:text-white py-0.5 break-words">
-              Experiencia laboral
+              {language === "eu" ? "Lan-esperientzia" : language === "en" ? "Work Experience" : "Experiencia laboral"}
             </a>
           </div>
 
@@ -471,7 +471,7 @@ export default function NotFound() {
           {/* Col 4: Links & Social */}
           <div className="col-span-2 md:col-span-1 space-y-2.5 min-w-0">
             <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
-              Enlaces &amp; Redes
+              {language === "eu" ? "Loturak eta Sareak" : language === "en" ? "Links & Social" : "Enlaces & Redes"}
             </div>
             <a
               href="https://www.bideplus.eus/"
@@ -544,8 +544,8 @@ export default function NotFound() {
 
         {/* Sub-footer Bottom Line with Legal Modals */}
         <div className="max-w-[1440px] mx-auto pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F6F4EF]/55 text-center md:text-left">
-          <span>Desarrollado con código nativo · Yeray Garrido</span>
-          <span>© {new Date().getFullYear()} Yeray Garrido · Todos los derechos reservados</span>
+          <span>{language === "eu" ? "Kode natiboarekin garatua · Yeray Garrido" : language === "en" ? "Built with native code · Yeray Garrido" : "Desarrollado con código nativo · Yeray Garrido"}</span>
+          <span>{language === "eu" ? `© ${new Date().getFullYear()} Yeray Garrido · Eskubide guztiak erreserbatuta` : language === "en" ? `© ${new Date().getFullYear()} Yeray Garrido · All rights reserved` : `© ${new Date().getFullYear()} Yeray Garrido · Todos los derechos reservados`}</span>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-mono text-xs uppercase tracking-wider">
             <button
               type="button"

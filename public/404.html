@@ -150,22 +150,22 @@
         <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
           <path fill="none" d="M13.5 8H3M7.25 3.75L3 8L7.25 12.25" />
         </svg>
-        <span>Volver al Inicio</span>
+        <span id="hero-btn-home">Volver al Inicio</span>
       </a>
       <a href="./#work" class="btn-secondary">
-        <span>Ver Proyectos</span>
+        <span id="hero-btn-projects">Ver Proyectos</span>
         <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75">
           <path fill="none" d="M8 3V13M3.75 8.75L8 13L12.25 8.75" />
         </svg>
       </a>
       <a href="papers/" class="btn-secondary">
-        <span>Papers & Zenodo</span>
+        <span>Papers &amp; Zenodo</span>
         <svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75">
           <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
         </svg>
       </a>
       <a href="./#contact" class="btn-secondary">
-        <span>Contactar</span>
+        <span id="hero-btn-contact">Contactar</span>
         <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75">
           <path fill="none" d="M8 3V13M3.75 8.75L8 13L12.25 8.75" />
         </svg>
@@ -243,15 +243,15 @@
         <!-- Col 2: Portfolio -->
         <div class="footer-col">
           <div class="footer-col-title">Portfolio</div>
-          <a href="./#work" class="footer-link">Bide+ &amp; Proyectos</a>
-          <a href="./#research" class="footer-link">Investigación</a>
+          <a href="./#work" class="footer-link" id="f-link-work">Bide+ &amp; Proyectos</a>
+          <a href="./#research" class="footer-link" id="f-link-research">Investigación</a>
           <a href="papers/" class="footer-link footer-link-highlight">
             <span>Papers &amp; Zenodo (CERN)</span>
             <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
               <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
             </svg>
           </a>
-          <a href="./#experience" class="footer-link">Experiencia laboral</a>
+          <a href="./#experience" class="footer-link" id="f-link-exp">Experiencia laboral</a>
         </div>
 
         <!-- Col 3: APIs & Endpoints -->
@@ -266,7 +266,7 @@
 
         <!-- Col 4: Links & Social -->
         <div class="footer-col">
-          <div class="footer-col-title">Enlaces &amp; Redes</div>
+          <div class="footer-col-title" id="f-col-links-title">Enlaces &amp; Redes</div>
           <a href="https://www.bideplus.eus/" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-highlight">
             <span>Bideplus (Bide+)</span>
             <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
@@ -308,8 +308,8 @@
 
       <!-- Sub-footer bottom line -->
       <div class="footer-bottom">
-        <span>Desarrollado con código nativo · Yeray Garrido</span>
-        <span>© 2026 Yeray Garrido · Todos los derechos reservados</span>
+        <span id="f-made-with">Desarrollado con código nativo · Yeray Garrido</span>
+        <span id="f-copyright">© 2026 Yeray Garrido · Todos los derechos reservados</span>
         <div class="footer-legal-links">
           <button type="button" class="footer-legal-btn" data-modal="legal" id="link-legal">Aviso Legal</button>
           <button type="button" class="footer-legal-btn" data-modal="privacy" id="link-privacy">Privacidad</button>
@@ -406,6 +406,9 @@
           title: "No Encontrado",
           desc: "El recurso solicitado no existe, ha sido trasladado o su identificador ha cambiado en la última compilación del sistema.",
           pathLabel: "Ruta solicitada",
+          heroBtnHome: "Volver al Inicio",
+          heroBtnProjects: "Ver Proyectos",
+          heroBtnContact: "Contactar",
           destinations: "Destinos principales",
           c1Title: "Inicio",
           c1Desc: "Presentación técnica, arquitectura de software y experiencia profesional.",
@@ -415,6 +418,12 @@
           c3Desc: "Preprints, evaluaciones empíricas y monografías con DOI en Zenodo (CERN).",
           c4Title: "Contacto",
           c4Desc: "Canal directo para consultas técnicas, proyectos o colaboraciones.",
+          fLinkWork: "Bide+ & Proyectos",
+          fLinkResearch: "Investigación",
+          fLinkExp: "Experiencia laboral",
+          fColLinks: "Enlaces & Redes",
+          fMadeWith: "Desarrollado con código nativo · Yeray Garrido",
+          fCopyright: "© 2026 Yeray Garrido · Todos los derechos reservados",
           linkLegal: "Aviso Legal",
           linkPrivacy: "Privacidad",
           linkCookies: "Cookies"
@@ -431,6 +440,9 @@
           title: "Not Found",
           desc: "The requested resource does not exist, has been moved, or its identifier was changed in the latest system build.",
           pathLabel: "Requested path",
+          heroBtnHome: "Back to Home",
+          heroBtnProjects: "View Projects",
+          heroBtnContact: "Contact",
           destinations: "Main destinations",
           c1Title: "Home",
           c1Desc: "Technical overview, software architecture, and professional experience.",
@@ -440,6 +452,12 @@
           c3Desc: "Open-access preprints, paired evaluations, and monographs on Zenodo (CERN).",
           c4Title: "Contact",
           c4Desc: "Direct channel for technical questions, opportunities, or collaborations.",
+          fLinkWork: "Bide+ & Projects",
+          fLinkResearch: "Research",
+          fLinkExp: "Work Experience",
+          fColLinks: "Links & Social",
+          fMadeWith: "Built with native code · Yeray Garrido",
+          fCopyright: "© 2026 Yeray Garrido · All rights reserved",
           linkLegal: "Legal Notice",
           linkPrivacy: "Privacy",
           linkCookies: "Cookies"
@@ -456,6 +474,9 @@
           title: "Ez da Aurkitu",
           desc: "Eskatutako baliabidea ez da existitzen, lekuz aldatu da edo bere bidea aldatu da azken konpilazioan.",
           pathLabel: "Eskatutako bidea",
+          heroBtnHome: "Hasierara Itzuli",
+          heroBtnProjects: "Ikusi Proiektuak",
+          heroBtnContact: "Kontaktatu",
           destinations: "Helmuga nagusiak",
           c1Title: "Hasiera",
           c1Desc: "Aurkezpen teknikoa, software-arkitektura eta lan-esperientzia.",
@@ -465,6 +486,12 @@
           c3Desc: "Sarbide irekiko aurreinprimaketak, ebaluazio enpirikoak eta monografiak Zenodon (CERN).",
           c4Title: "Kontaktua",
           c4Desc: "Zuzeneko bidea zalantza teknikoetarako, proposamenetarako edo lankidetzarako.",
+          fLinkWork: "Bide+ eta Proiektuak",
+          fLinkResearch: "Ikerketa",
+          fLinkExp: "Lan-esperientzia",
+          fColLinks: "Loturak eta Sareak",
+          fMadeWith: "Kode natiboarekin garatua · Yeray Garrido",
+          fCopyright: "© 2026 Yeray Garrido · Eskubide guztiak erreserbatuta",
           linkLegal: "Legezko Oharra",
           linkPrivacy: "Pribatutasuna",
           linkCookies: "Cookieak"
@@ -490,6 +517,12 @@
         document.getElementById("error-title").textContent = t.title;
         document.getElementById("error-desc").textContent = t.desc;
         document.getElementById("path-label").textContent = t.pathLabel;
+        var heroHome = document.getElementById("hero-btn-home");
+        if (heroHome) heroHome.textContent = t.heroBtnHome;
+        var heroProj = document.getElementById("hero-btn-projects");
+        if (heroProj) heroProj.textContent = t.heroBtnProjects;
+        var heroCont = document.getElementById("hero-btn-contact");
+        if (heroCont) heroCont.textContent = t.heroBtnContact;
         document.getElementById("destinations-label").textContent = t.destinations;
         document.getElementById("c1-title").textContent = t.c1Title;
         document.getElementById("c1-desc").textContent = t.c1Desc;
@@ -499,6 +532,18 @@
         document.getElementById("c3-desc").textContent = t.c3Desc;
         document.getElementById("c4-title").textContent = t.c4Title;
         document.getElementById("c4-desc").textContent = t.c4Desc;
+        var fWork = document.getElementById("f-link-work");
+        if (fWork) fWork.textContent = t.fLinkWork;
+        var fRes = document.getElementById("f-link-research");
+        if (fRes) fRes.textContent = t.fLinkResearch;
+        var fExp = document.getElementById("f-link-exp");
+        if (fExp) fExp.textContent = t.fLinkExp;
+        var fCol = document.getElementById("f-col-links-title");
+        if (fCol) fCol.textContent = t.fColLinks;
+        var fMade = document.getElementById("f-made-with");
+        if (fMade) fMade.textContent = t.fMadeWith;
+        var fCopy = document.getElementById("f-copyright");
+        if (fCopy) fCopy.textContent = t.fCopyright;
         document.getElementById("link-legal").textContent = t.linkLegal;
         document.getElementById("link-privacy").textContent = t.linkPrivacy;
         document.getElementById("link-cookies").textContent = t.linkCookies;

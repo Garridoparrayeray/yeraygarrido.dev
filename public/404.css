@@ -276,6 +276,8 @@ button {
 .brand img {
   height: 24px;
   width: auto;
+  aspect-ratio: 720 / 281;
+  object-fit: contain;
   display: block;
   flex-shrink: 0;
 }
@@ -709,6 +711,7 @@ button {
 .footer-col {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
   min-width: 0;
 }
@@ -726,6 +729,10 @@ button {
 .footer-brand-logo {
   height: 32px;
   width: auto;
+  max-width: 100%;
+  aspect-ratio: 720 / 281;
+  object-fit: contain;
+  align-self: flex-start;
   display: block;
   margin-bottom: 4px;
 }
