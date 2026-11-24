@@ -63,14 +63,14 @@
 
       <!-- Center: Main Navigation Links -->
       <nav class="nav-center" aria-label="Navegación principal">
-        <a href="./#projects" class="nav-link" id="nav-projects">Proyectos</a>
+        <a href="./#work" class="nav-link" id="nav-projects">Proyectos</a>
         <a href="./#services" class="nav-link" id="nav-services">Servicios</a>
         <a href="./#experience" class="nav-link" id="nav-experience">Experiencia</a>
         <a href="papers/" class="nav-link" id="nav-research">Investigación</a>
         <a href="./#contact" class="nav-link" id="nav-contact">Contacto</a>
       </nav>
 
-      <!-- Right: Square Segmented Language Switcher + Primary Button -->
+      <!-- Right: Square Segmented Language Switcher + Primary Button + Mobile Button -->
       <div class="header-actions">
         <div class="lang-switcher" role="group" aria-label="Selector de idioma">
           <button type="button" class="lang-btn active" data-lang="es">ES</button>
@@ -84,9 +84,41 @@
           </svg>
           <span id="btn-home-text">Inicio</span>
         </a>
+
+        <button type="button" class="mobile-menu-btn" id="mobile-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M3 6H17M3 14H17" stroke-linecap="round" />
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel">
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.12); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--champagne);">
+          <span>Menú</span>
+          <span style="color: rgba(246,244,239,0.55);">Bilbao, Bizkaia</span>
+        </div>
+        <nav class="drawer-nav">
+          <a href="./" id="m-nav-home">Inicio</a>
+          <a href="./#work" id="m-nav-projects">Proyectos</a>
+          <a href="./#services" id="m-nav-services">Servicios</a>
+          <a href="./#experience" id="m-nav-experience">Experiencia</a>
+          <a href="papers/" id="m-nav-research">Investigación</a>
+          <a href="./#contact" id="m-nav-contact">Contacto</a>
+        </nav>
+      </div>
+      <div>
+        <a href="./" class="btn-primary" style="width: 100%; min-height: 48px; margin-top: 16px;">
+          ← Volver al Inicio
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Error Section -->
   <main class="wrap">
@@ -112,6 +144,34 @@
       <code class="path-callout-val" id="requested-path">/desconocido</code>
     </div>
 
+    <!-- Hero Action Buttons -->
+    <div class="hero-actions">
+      <a href="./" class="btn-primary">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+          <path fill="none" d="M13.5 8H3M7.25 3.75L3 8L7.25 12.25" />
+        </svg>
+        <span>Volver al Inicio</span>
+      </a>
+      <a href="./#work" class="btn-secondary">
+        <span>Ver Proyectos</span>
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75">
+          <path fill="none" d="M8 3V13M3.75 8.75L8 13L12.25 8.75" />
+        </svg>
+      </a>
+      <a href="papers/" class="btn-secondary">
+        <span>Papers & Zenodo</span>
+        <svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75">
+          <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+        </svg>
+      </a>
+      <a href="./#contact" class="btn-secondary">
+        <span>Contactar</span>
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75">
+          <path fill="none" d="M8 3V13M3.75 8.75L8 13L12.25 8.75" />
+        </svg>
+      </a>
+    </div>
+
     <!-- Suggested Destination Cards -->
     <div class="meta-label" id="destinations-label">Destinos principales</div>
 
@@ -127,7 +187,7 @@
         <p id="c1-desc">Presentación técnica, arquitectura de software y experiencia profesional.</p>
       </a>
 
-      <a href="./#projects" class="card">
+      <a href="./#work" class="card">
         <div class="card-header">
           <span>[ 02 ]</span>
           <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
@@ -160,45 +220,123 @@
         <p id="c4-desc">Canal directo para consultas técnicas, proyectos o colaboraciones.</p>
       </a>
     </div>
+  </main>
 
-    <!-- Structured Endpoints Panel -->
-    <div class="panel">
-      <div class="panel-inner">
-        <span class="meta-label" style="margin-bottom: 0;" id="endpoints-label-text">Endpoints estructurados</span>
-        <div class="tag-row">
-          <a href="cv.json" class="tag">cv.json</a>
-          <a href="cv.xml" class="tag">cv.xml</a>
-          <a href="llms.txt" class="tag">llms.txt</a>
-          <a href="sitemap.xml" class="tag">sitemap.xml</a>
-          <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noopener noreferrer" class="tag">
-            GitHub
-            <svg class="ico" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+  <!-- Full Production Footer: Exact replica of PortfolioMain.tsx lines 3508-3684 -->
+  <footer class="prod-footer">
+    <div class="prod-footer-inner">
+      <div class="footer-grid">
+        <!-- Col 1: Identity & ORCID -->
+        <div class="footer-col footer-col-brand">
+          <img src="img/logo.webp" alt="Yeray Garrido" width="720" height="281" class="footer-brand-logo" />
+          <p class="footer-brand-text">
+            Yeray Garrido · Ingeniero de Software & Creador de Productos Digitales
+          </p>
+          <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer" class="footer-orcid">
+            <span>ORCID 0009-0008-0459-0294</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Col 2: Portfolio -->
+        <div class="footer-col">
+          <div class="footer-col-title">Portfolio</div>
+          <a href="./#work" class="footer-link">Bide+ &amp; Proyectos</a>
+          <a href="./#research" class="footer-link">Investigación</a>
+          <a href="papers/" class="footer-link footer-link-highlight">
+            <span>Papers &amp; Zenodo (CERN)</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+          <a href="./#experience" class="footer-link">Experiencia laboral</a>
+        </div>
+
+        <!-- Col 3: APIs & Endpoints -->
+        <div class="footer-col">
+          <div class="footer-col-title">APIs &amp; Datos</div>
+          <a href="cv.xml" target="_blank" rel="noopener noreferrer" class="footer-link">cv.xml</a>
+          <a href="cv.json" target="_blank" rel="noopener noreferrer" class="footer-link">cv.json</a>
+          <a href="cv.txt" target="_blank" rel="noopener noreferrer" class="footer-link">cv.txt</a>
+          <a href="llms.txt" target="_blank" rel="noopener noreferrer" class="footer-link">llms.txt</a>
+          <a href="sitemap.xml" target="_blank" rel="noopener noreferrer" class="footer-link">sitemap.xml</a>
+        </div>
+
+        <!-- Col 4: Links & Social -->
+        <div class="footer-col">
+          <div class="footer-col-title">Enlaces &amp; Redes</div>
+          <a href="https://www.bideplus.eus/" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-highlight">
+            <span>Bideplus (Bide+)</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+          <a href="https://gasolineraplus.app/" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-highlight">
+            <span>Gasolinera+ (App)</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+          <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <span>GitHub</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/yeray-garrido" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <span>LinkedIn</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+          <a href="https://ko-fi.com/ygarrido" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <span>Ko-fi</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
+              <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
+            </svg>
+          </a>
+          <a href="https://archive.yeraygarrido.dev" target="_blank" rel="noopener noreferrer" class="footer-link footer-link-highlight">
+            <span>Archivo fotográfico</span>
+            <svg class="ico" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.65">
               <path fill="none" d="M4.25 11.75L11.5 4.5M5.5 4.5H11.5V10.5" />
             </svg>
           </a>
         </div>
       </div>
-    </div>
-  </main>
 
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <span>© 2026 Yeray Garrido</span>
-        <span> · </span>
-        <span id="footer-role">Ingeniero de Software</span>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-        <a href="https://github.com/Garridoparrayeray" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/yeray-garrido" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://orcid.org/0009-0008-0459-0294" target="_blank" rel="noopener noreferrer">ORCID</a>
-        <a href="mailto:garridoparrayeraytx@gmail.com">Email</a>
+      <!-- Sub-footer bottom line -->
+      <div class="footer-bottom">
+        <span>Desarrollado con código nativo · Yeray Garrido</span>
+        <span>© 2026 Yeray Garrido · Todos los derechos reservados</span>
+        <div class="footer-legal-links">
+          <button type="button" class="footer-legal-btn" data-modal="legal" id="link-legal">Aviso Legal</button>
+          <button type="button" class="footer-legal-btn" data-modal="privacy" id="link-privacy">Privacidad</button>
+          <button type="button" class="footer-legal-btn" data-modal="cookies" id="link-cookies">Cookies</button>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Trilingual & Path Resolver Script -->
+  <!-- Legal Modal Dialog -->
+  <div class="modal-overlay" id="legal-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Aviso Legal</h2>
+        <button type="button" class="modal-close-btn" id="modal-close" aria-label="Cerrar ventana">
+          <span>ESC</span>
+          <svg class="ico" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3L13 13M13 3L3 13" stroke-linecap="square" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Script: Translations, Path, Drawer, and Modals -->
   <script>
     (function () {
       var pathElement = document.getElementById("requested-path");
@@ -209,6 +347,51 @@
         }
         pathElement.textContent = currentPath;
       }
+
+      var legalContent = {
+        es: {
+          legal: {
+            title: "Aviso Legal",
+            body: "Este sitio web es el portfolio profesional de Yeray Garrido. Su finalidad es estrictamente informativa, de exhibición de proyectos de ingeniería de software y difusión de publicaciones técnicas de acceso abierto.\n\nAl ser un sitio web personal que no realiza comercio electrónico directo, el acceso es público y gratuito. Los códigos fuente enlazados pertenecen a sus respectivos repositorios en GitHub bajo sus propias licencias abiertas (MIT / CC BY 4.0)."
+          },
+          privacy: {
+            title: "Política de Privacidad",
+            body: "Me tomo tu privacidad en serio. Esta web no incluye registro de cuentas ni bases de datos de usuarios.\n\nSi decides contactarme a través del correo electrónico, el formulario rápido de contacto o redes sociales, tus datos serán utilizados única y exclusivamente para responder a tu consulta, y no serán compartidos con terceros ni incluidos en listas de marketing.\n\nPara el análisis de rendimiento técnico, el alojamiento de esta web (Vercel) recopila métricas básicas y anónimas de velocidad de carga sin identificar al usuario."
+          },
+          cookies: {
+            title: "Política de Cookies",
+            body: "Esta web utiliza las siguientes cookies:\n\n1. Cookies Técnicas (Estrictamente necesarias): Utilizadas para guardar tu preferencia de idioma (ES/EN/EU) y tu decisión sobre este aviso de cookies. No requieren consentimiento.\n\n2. Cookies Analíticas (Microsoft Clarity): Solo si das tu consentimiento expreso en el banner inicial, se activarán cookies analíticas anónimas para entender el uso de la interfaz y mejorar la experiencia.\n\nPuedes revocar tu consentimiento en cualquier momento borrando las cookies de tu navegador."
+          }
+        },
+        en: {
+          legal: {
+            title: "Legal Notice",
+            body: "This website is the professional portfolio of Yeray Garrido. Its purpose is strictly informational, showcasing software engineering projects and open-access technical publications.\n\nAs a personal website with no direct e-commerce, access is public and free. Linked source codes belong to their respective GitHub repositories under their stated open licenses (MIT / CC BY 4.0)."
+          },
+          privacy: {
+            title: "Privacy Policy",
+            body: "I take your privacy seriously. This website does not include user accounts or user databases.\n\nIf you decide to contact me via email, the quick contact form, or social networks, your information will be used solely to respond to your inquiry and will never be shared with third parties or added to marketing lists.\n\nFor technical performance analysis, the hosting provider (Vercel) collects basic, anonymous load speed metrics without identifying the visitor."
+          },
+          cookies: {
+            title: "Cookie Policy",
+            body: "This website uses the following cookies:\n\n1. Technical Cookies (Strictly necessary): Used to remember your language preference (ES/EN/EU) and your decision regarding this cookie notice. They do not require consent.\n\n2. Analytical Cookies (Microsoft Clarity): Only if you give express consent in the initial banner, anonymous analytical cookies are enabled to help improve the interface.\n\nYou can revoke your consent at any time by clearing your browser cookies."
+          }
+        },
+        eu: {
+          legal: {
+            title: "Legezko Oharra",
+            body: "Webgune hau Yeray Garridoren portfolio profesionala da. Helburua informazioa ematea, software ingeniaritzako proiektuak erakustea eta sarbide irekiko argitalpen teknikoak zabaltzea da.\n\nMerkataritza elektroniko zuzenik egiten ez duen webgune pertsonala denez, sarbidea publikoa eta doakoa da. Lotutako iturburu-kodeak GitHub-eko biltegienak dira, beren lizentziekin (MIT / CC BY 4.0)."
+          },
+          privacy: {
+            title: "Pribatutasun Politika",
+            body: "Zure pribatutasuna serio hartzen dut. Webgune honek ez du erregistro konturik edo erabiltzaileen datu-baserik.\n\nNirekin posta elektronikoz, kontaktu-formulario azkarraren bidez edo sare sozialen bidez harremanetan jartzea erabakitzen baduzu, zure datuak zure kontsultari erantzuteko soilik erabiliko dira, eta ez dira hirugarrenekin partekatuko.\n\nErrendimendu teknikoaren analisirako, webgune honen ostalariak (Vercel) karga-abiaduraren oinarrizko metrika anonimoak biltzen ditu."
+          },
+          cookies: {
+            title: "Cookie Politika",
+            body: "Webgune honek cookie hauek erabiltzen ditu:\n\n1. Cookie Teknikoak (Beharrezkoak): Zure hizkuntza hobespena (ES/EN/EU) eta cookie-en abisu honi buruzko erabakia gordetzeko. Ez dute baimenik behar.\n\n2. Cookie Analitikoak (Microsoft Clarity): Hasierako banner-ean baimen esplizitua ematen baduzu soilik aktibatuko dira, interfazea hobetzen laguntzeko modu anonimoan.\n\nZure baimena edozein unetan ezezta dezakezu nabigatzaileko cookie-ak ezabatuz."
+          }
+        }
+      };
 
       var content = {
         es: {
@@ -232,8 +415,9 @@
           c3Desc: "Preprints, evaluaciones empíricas y monografías con DOI en Zenodo (CERN).",
           c4Title: "Contacto",
           c4Desc: "Canal directo para consultas técnicas, proyectos o colaboraciones.",
-          endpointsLabel: "Endpoints estructurados",
-          footerRole: "Ingeniero de Software"
+          linkLegal: "Aviso Legal",
+          linkPrivacy: "Privacidad",
+          linkCookies: "Cookies"
         },
         en: {
           docTitle: "404 — Page Not Found | Yeray Garrido",
@@ -256,8 +440,9 @@
           c3Desc: "Open-access preprints, paired evaluations, and monographs on Zenodo (CERN).",
           c4Title: "Contact",
           c4Desc: "Direct channel for technical questions, opportunities, or collaborations.",
-          endpointsLabel: "Structured endpoints",
-          footerRole: "Software Engineer"
+          linkLegal: "Legal Notice",
+          linkPrivacy: "Privacy",
+          linkCookies: "Cookies"
         },
         eu: {
           docTitle: "404 — Ez da orrialdea aurkitu | Yeray Garrido",
@@ -280,13 +465,17 @@
           c3Desc: "Sarbide irekiko aurreinprimaketak, ebaluazio enpirikoak eta monografiak Zenodon (CERN).",
           c4Title: "Kontaktua",
           c4Desc: "Zuzeneko bidea zalantza teknikoetarako, proposamenetarako edo lankidetzarako.",
-          endpointsLabel: "Endpoint egituratuak",
-          footerRole: "Software Ingeniaria"
+          linkLegal: "Legezko Oharra",
+          linkPrivacy: "Pribatutasuna",
+          linkCookies: "Cookieak"
         }
       };
 
+      var activeLang = "es";
+
       function setLang(lang) {
         if (!content[lang]) lang = "es";
+        activeLang = lang;
         document.documentElement.lang = lang;
         var t = content[lang];
 
@@ -310,8 +499,9 @@
         document.getElementById("c3-desc").textContent = t.c3Desc;
         document.getElementById("c4-title").textContent = t.c4Title;
         document.getElementById("c4-desc").textContent = t.c4Desc;
-        document.getElementById("endpoints-label-text").textContent = t.endpointsLabel;
-        document.getElementById("footer-role").textContent = t.footerRole;
+        document.getElementById("link-legal").textContent = t.linkLegal;
+        document.getElementById("link-privacy").textContent = t.linkPrivacy;
+        document.getElementById("link-cookies").textContent = t.linkCookies;
 
         var buttons = document.querySelectorAll(".lang-btn");
         buttons.forEach(function (btn) {
@@ -346,6 +536,65 @@
           setLang(btn.getAttribute("data-lang"));
         });
       });
+
+      // Modal Dialog Logic
+      var modalOverlay = document.getElementById("legal-modal-overlay");
+      var modalTitle = document.getElementById("modal-title");
+      var modalBody = document.getElementById("modal-body");
+      var modalClose = document.getElementById("modal-close");
+      var modalBackdrop = document.getElementById("modal-backdrop");
+
+      function openModal(type) {
+        var leg = legalContent[activeLang] || legalContent.es;
+        var data = leg[type];
+        if (!data) return;
+        modalTitle.textContent = data.title;
+        modalBody.textContent = data.body;
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".footer-legal-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var type = btn.getAttribute("data-modal");
+          openModal(type);
+        });
+      });
+
+      modalClose.addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("click", closeModal);
+
+      window.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
+          closeModal();
+        }
+      });
+
+      // Mobile Drawer Logic
+      var mobileBtn = document.getElementById("mobile-toggle");
+      var drawer = document.getElementById("mobile-drawer");
+      var drawerBackdrop = document.getElementById("drawer-backdrop");
+
+      function toggleDrawer() {
+        var open = drawer.classList.contains("active");
+        if (open) {
+          drawer.classList.remove("active");
+          mobileBtn.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        } else {
+          drawer.classList.add("active");
+          mobileBtn.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+        }
+      }
+
+      mobileBtn.addEventListener("click", toggleDrawer);
+      drawerBackdrop.addEventListener("click", toggleDrawer);
     })();
   </script>
 </body>

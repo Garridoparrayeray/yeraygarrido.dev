@@ -1,32 +1,28 @@
 <div align="center">
 
-  <!-- Header Banner Brutalista estilo yeraygarrido.dev -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1e293b,100:0a0a0a&height=220&section=header&text=YERAY%20GARRIDO&fontSize=42&fontColor=ffffff&fontAlignY=40&desc=SOFTWARE%20ENGINEER%20%7C%20FULL%20STACK%20DEVELOPER%20%7C%20LINUX&descFontSize=15&descColor=94a3b8&descAlignY=62" width="100%" alt="Yeray Garrido Parra Banner" />
+  <!-- Header Banner Oficial Horizontal -->
+  <a href="https://yeraygarrido.dev">
+    <img src="assets/yg-header-horizontal.png" width="850" alt="Yeray Garrido - Ingeniero de Software" />
+  </a>
 
   <br/><br/>
 
-  <!-- Metadata estilo "Data" -->
-  <p align="center">
-    <a href="https://cifpzornotza.eus/"><img src="https://img.shields.io/badge/DEGREE-FP%20DUAL%20DAW%20(CIFP%20ZORNOTZA)-0a0a0a?style=for-the-badge&logo=codeforces&logoColor=white&labelColor=1f2937" alt="Degree" /></a>
-    <img src="https://img.shields.io/badge/ROLE-FULL%20STACK%20ENGINEER-0a0a0a?style=for-the-badge&logo=serverless&logoColor=white&labelColor=1f2937" alt="Full Stack Engineer" />
-    <img src="https://img.shields.io/badge/LOCATION-BILBAO%2C%20BIZKAIA%20(SPAIN)-0a0a0a?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=1f2937" alt="Location" />
-    <a href="https://yeraygarrido.dev/papers/"><img src="https://img.shields.io/badge/RESEARCH-4%20PAPERS%20%C2%B7%20ZENODO-107EC4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo Research" /></a>
-  </p>
-
   <!-- Quick Action & Social Links -->
   <p align="center">
-    <a href="https://yeraygarrido.dev"><img src="https://img.shields.io/badge/PORTFOLIO-yeraygarrido.dev-ffffff?style=for-the-badge&logo=firefox&logoColor=black&labelColor=ffffff" alt="Portfolio" /></a>
-    <a href="https://www.linkedin.com/in/yeray-garrido"><img src="https://img.shields.io/badge/LINKEDIN-/in/yeray--garrido-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-    <a href="mailto:garridoparrayeraytx@gmail.com"><img src="https://img.shields.io/badge/EMAIL-garridoparrayeraytx@gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
-    <a href="https://yeraygarrido.dev/cv.xml"><img src="https://img.shields.io/badge/MACHINE%20READABLE%20CV-XML%20API-10b981?style=for-the-badge&logo=xml&logoColor=white" alt="XML CV" /></a>
-    <a href="https://doi.org/10.5281/zenodo.24041572"><img src="https://img.shields.io/badge/RESEARCH%20DATA-ZENODO-0284c7?style=for-the-badge&logo=zenodo&logoColor=white" alt="Zenodo Record" /></a>
+    <a href="https://yeraygarrido.dev"><img src="assets/badges/badge-portfolio.svg" alt="Portfolio" /></a>
+    <a href="https://www.linkedin.com/in/yeray-garrido"><img src="assets/badges/badge-linkedin.svg" alt="LinkedIn" /></a>
+    <a href="mailto:garridoparrayeraytx@gmail.com"><img src="assets/badges/badge-email.svg" alt="Email" /></a>
+    <a href="https://yeraygarrido.dev/papers/"><img src="assets/badges/badge-research.svg" alt="Zenodo Research" /></a>
   </p>
 
-  <!-- Status Badges -->
+  <!-- Technical Identity & Status -->
   <p align="center">
-    <img src="https://img.shields.io/badge/STATUS-OPEN%20TO%20COLLABORATE-22c55e?style=flat-square&logo=git&logoColor=white" alt="Open to Collaborate" />
-    <img src="https://img.shields.io/badge/SYSTEMS-100%25%20LINUX-facc15?style=flat-square&logo=linux&logoColor=black" alt="Linux 100%" />
-    <img src="https://img.shields.io/badge/PHILOSOPHY-NATIVE%20ARCHITECTURES%20%C2%B7%20NO%20LOW--CODE-ef4444?style=flat-square" alt="No Low Code" />
+    <a href="https://cifpzornotza.eus/"><img src="assets/badges/badge-degree.svg" alt="Degree" /></a>
+    <img src="assets/badges/badge-role.svg" alt="Software Engineer" />
+    <img src="assets/badges/badge-location.svg" alt="Location" />
+    <img src="assets/badges/badge-linux.svg" alt="Linux 100%" />
+    <img src="assets/badges/badge-philosophy.svg" alt="Native Architectures" />
+    <img src="assets/badges/badge-status.svg" alt="Open to Collaborate" />
   </p>
 
 </div>
@@ -40,12 +36,14 @@
 
 ### Sobre mí
 
-Soy un Ingeniero de Software enfocado en la arquitectura Backend y la optimización. Huyo de las soluciones *Low-Code* y las plantillas prefabricadas; mi prioridad es construir sistemas escalables, rápidos y seguros desarrollando arquitecturas nativas y a medida. Actualmente compagino mi trabajo corporativo con el Grado Superior en Desarrollo de Aplicaciones Web (Zornotza FP, Modalidad Dual) y proyectos personales como algoritmia y apps.
+Desarrollador de software enfocado principalmente en backend y desarrollo web con código nativo (PHP, SQL, JavaScript/TypeScript, Java y C). Me gusta entender cómo funcionan los sistemas por debajo, diseñar bases de datos eficientes y escribir código limpio y mantenible sin capas innecesarias ni constructores visuales.
 
--  **Experiencia Real:** Ingeniero de Software desarrollando módulos core para sistemas ERP corporativos (arquitecturas PHP multi-tenant, enrutamiento MVC propio, persistencia avanzada de datos). 
--  **Mentalidad de Ingeniería:** Forjado en la metodología de 42 Urduliz (C, algoritmos, gestión de memoria). Acostumbrado a operar y desarrollar 100% en entornos Linux.
--  **Enfoque Full Stack:** Desde motores de cálculo y conexiones Java (JNI, Virtual Threads, Swing/JavaFX) hasta arquitecturas SPA de alto rendimiento (React 19, Vite, Tailwind, GSAP).
--  **Ecosistema Open Data:** Creador de plataformas cívicas en Euskadi consumiendo feeds en tiempo real (GTFS, SIRI-VM) cruzados con bases de datos locales (SQLite/MySQL).
+Actualmente trabajo como desarrollador de software creando módulos para un ERP corporativo (arquitectura PHP, MVC, persistencia en bases de datos relacionales), mientras curso el Grado Superior en Desarrollo de Aplicaciones Web (FP Dual, CIFP Zornotza).
+
+En mi tiempo libre desarrollo proyectos propios basados en datos abiertos:
+- **Bide+** ([bideplus.eus](https://www.bideplus.eus/)): PWA de transporte público en Euskal Herria que integra 16 redes en tiempo real y planificador de rutas en el dispositivo (RAPTOR + WebAssembly).
+- **Gasolinera+** ([gasolineraplus.app](https://gasolineraplus.app/)): Comparador de precios de carburante en tiempo real con datos oficiales de España, Portugal y Francia.
+- **Investigación abierta:** Publicación de análisis de datos, benchmarks y algoritmos en [Zenodo (CERN)](https://doi.org/10.5281/zenodo.24442212) bajo licencias abiertas CC BY 4.0.
 
 </details>
 
@@ -54,12 +52,14 @@ Soy un Ingeniero de Software enfocado en la arquitectura Backend y la optimizaci
 
 ### About Me
 
-I am a Software Engineer focused on Backend architecture and extreme performance optimization (WPO). I avoid *Low-Code* solutions and pre-built templates; my priority is to build scalable, fast, and secure systems from scratch using native architectures. I currently balance my corporate work as a developer with a Higher Degree in Web Application Development (Dual VET at Zornotza FP) alongside personal projects such as algorithms and software applications.
+Software developer focused on backend and web development using native code (PHP, SQL, JavaScript/TypeScript, Java, and C). I prioritize clean architecture, efficient data models, and maintainable software without unnecessary layers or visual page builders.
 
--  **Real Experience:** Software Engineer developing core modules for corporate ERP systems (multi-tenant PHP architectures, custom MVC routing, advanced data persistence).
--  **Engineering Mindset:** Forged in the 42 Urduliz methodology (C, algorithms, memory management). Accustomed to operating and developing 100% in Linux environments.
--  **Full Stack Approach:** From calculation engines and Java connections (JNI, Virtual Threads, Swing/JavaFX) to high-performance SPA architectures (React 19, Vite, Tailwind, GSAP).
--  **Open Data Ecosystem:** Creator of civic platforms in the Basque Country consuming real-time feeds (GTFS, SIRI-VM) merged with local databases (SQLite/MySQL).
+Currently working as a software developer building core modules for a corporate ERP system (PHP, custom MVC, relational database persistence), while completing a Higher VET degree in Web Application Development (Dual VET at CIFP Zornotza).
+
+In my spare time, I build open-data platforms and publish research:
+- **Bide+** ([bideplus.eus](https://www.bideplus.eus/)): Public transit PWA for the Basque Country covering 16 networks with real-time tracking and on-device routing (RAPTOR + WebAssembly).
+- **Gasolinera+** ([gasolineraplus.app](https://gasolineraplus.app/)): Real-time fuel price comparator powered by official government feeds from Spain, Portugal, and France.
+- **Open research:** Preprints, transit benchmarks, and algorithmic reference implementations on [Zenodo (CERN)](https://doi.org/10.5281/zenodo.24442212) under CC BY 4.0 open licenses.
 
 </details>
 
@@ -79,9 +79,9 @@ I am a Software Engineer focused on Backend architecture and extreme performance
   <img src="https://skillicons.dev/icons?i=mysql,sqlite,linux,nginx&theme=dark" alt="Backend & DB" />
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/PHP_8.x-Algoritmo_ETA_Bide%2B_%C2%B7_Multi--tenant_MVC-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8" />
-  <img src="https://img.shields.io/badge/Java_21-Virtual_Threads_%C2%B7_JNI_%C2%B7_Swing-ED8B00?style=flat-square&logo=openjdk&logoColor=white" alt="Java 21" />
-  <img src="https://img.shields.io/badge/C-Algoritmia_%C2%B7_Gesti%C3%B3n_Memoria-00599C?style=flat-square&logo=c&logoColor=white" alt="C" />
+  <img src="https://img.shields.io/badge/PHP_8.x-Algoritmo_ETA_BidePlus_--_MVC-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8" />
+  <img src="https://img.shields.io/badge/Java_21-Virtual_Threads_--_JNI_--_Swing-ED8B00?style=flat-square&logo=openjdk&logoColor=white" alt="Java 21" />
+  <img src="https://img.shields.io/badge/C-Algoritmia_--_Gestion_Memoria-00599C?style=flat-square&logo=c&logoColor=white" alt="C" />
   <img src="https://img.shields.io/badge/SQLite-Build--time_Precompiled_DB-07405E?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" />
 </p>
 
@@ -90,9 +90,9 @@ I am a Software Engineer focused on Backend architecture and extreme performance
   <img src="https://skillicons.dev/icons?i=html,css,tailwind,vite,wordpress,figma&theme=dark" alt="Frontend & CMS" />
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Vanilla_JS-ES6%2B_%C2%B7_Zero_Framework_DOM-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="Vanilla JS" />
-  <img src="https://img.shields.io/badge/SEO_%26_GEO-Avanzado_%C2%B7_Webpositer_Certified-4285F4?style=flat-square&logo=google&logoColor=white" alt="SEO & GEO" />
-  <img src="https://img.shields.io/badge/Leaflet-Geospatial_Clustering_%26_Heatmaps-199900?style=flat-square&logo=leaflet&logoColor=white" alt="Leaflet" />
+  <img src="https://img.shields.io/badge/Vanilla_JS-ES6_--_Zero_Framework_DOM-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="Vanilla JS" />
+  <img src="https://img.shields.io/badge/SEO_and_GEO-Avanzado_--_Webpositer-4285F4?style=flat-square&logo=google&logoColor=white" alt="SEO & GEO" />
+  <img src="https://img.shields.io/badge/Leaflet-Geospatial_Clustering_--_Heatmaps-199900?style=flat-square&logo=leaflet&logoColor=white" alt="Leaflet" />
   <img src="https://img.shields.io/badge/GSAP-High_Performance_Timelines-88CE02?style=flat-square&logo=greensock&logoColor=white" alt="GSAP" />
 </p>
 
@@ -104,10 +104,10 @@ I am a Software Engineer focused on Backend architecture and extreme performance
   <a href="https://doi.org/10.5281/zenodo.24041572"><img src="https://img.shields.io/badge/Zenodo-Open_Data_DOI_Dataset-107EC4?style=flat-square&logo=zenodo&logoColor=white" alt="Zenodo" /></a>
   <img src="https://img.shields.io/badge/Claude-AI_Assisted_Engineering-D97757?style=flat-square&logo=claude&logoColor=white" alt="Claude" />
   <img src="https://img.shields.io/badge/Gemini-AI_Assisted_Engineering-8E75B2?style=flat-square&logo=googlegemini&logoColor=white" alt="Gemini" />
-  <img src="https://img.shields.io/badge/Ollama-Local_AI_%C2%B7_100%25_Private_LLMs-000000?style=flat-square&logo=ollama&logoColor=white" alt="Ollama" />
-  <img src="https://img.shields.io/badge/RAG_&_Fine--Tuning-Custom_Vector_Retrieval-4B5563?style=flat-square" alt="RAG" />
+  <img src="https://img.shields.io/badge/Ollama-Local_AI_--_Private_LLMs-000000?style=flat-square&logo=ollama&logoColor=white" alt="Ollama" />
+  <img src="https://img.shields.io/badge/RAG_and_Fine--Tuning-Custom_Vector_Retrieval-4B5563?style=flat-square" alt="RAG" />
   <img src="https://img.shields.io/badge/n8n-Workflow_Automation-EA4B71?style=flat-square&logo=n8n&logoColor=white" alt="n8n" />
-  <img src="https://img.shields.io/badge/Linux_Arch_%2F_Debian-Full_Development_OS-1793D1?style=flat-square&logo=arch-linux&logoColor=white" alt="Arch Linux" />
+  <img src="https://img.shields.io/badge/Linux_Arch_--_Debian-Full_Development_OS-1793D1?style=flat-square&logo=arch-linux&logoColor=white" alt="Arch Linux" />
 </p>
 
 </div>
@@ -133,10 +133,10 @@ I am a Software Engineer focused on Backend architecture and extreme performance
 
 <div align="center">
 
-[![DOI: 10.5281/zenodo.24442212](https://zenodo.org/badge/DOI/10.5281/zenodo.24442212.svg)](https://doi.org/10.5281/zenodo.24442212) &nbsp;
-[![DOI: 10.5281/zenodo.24286027](https://zenodo.org/badge/DOI/10.5281/zenodo.24286027.svg)](https://doi.org/10.5281/zenodo.24286027) &nbsp;
-[![DOI: 10.5281/zenodo.24286302](https://zenodo.org/badge/DOI/10.5281/zenodo.24286302.svg)](https://doi.org/10.5281/zenodo.24286302) &nbsp;
-[![DOI: 10.5281/zenodo.24041572](https://zenodo.org/badge/DOI/10.5281/zenodo.24041572.svg)](https://doi.org/10.5281/zenodo.24041572)
+[![DOI: 10.5281/zenodo.24442212](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24442212-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24442212) &nbsp;
+[![DOI: 10.5281/zenodo.24286027](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24286027-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24286027) &nbsp;
+[![DOI: 10.5281/zenodo.24286302](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24286302-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24286302) &nbsp;
+[![DOI: 10.5281/zenodo.24041572](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24041572-107EC4?style=flat-square&logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.24041572)
 
 </div>
 
