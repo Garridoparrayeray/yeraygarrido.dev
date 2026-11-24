@@ -52,14 +52,14 @@ export default function NotFound() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Listen for CookieBanner "Política de Cookies" link event
+  // Escuchador del enlace "Política de Cookies" en CookieBanner
   useEffect(() => {
     const handleOpenCookies = () => setLegalModal("cookies");
     window.addEventListener("open-cookies-modal", handleOpenCookies);
     return () => window.removeEventListener("open-cookies-modal", handleOpenCookies);
   }, []);
 
-  // Lock body scroll & Escape handling for mobile drawer and legal modal
+  // Bloqueo de scroll cuando el drawer móvil o el modal legal están abiertos
   useEffect(() => {
     const locked = mobileMenu || Boolean(legalModal);
     if (locked) {
@@ -84,7 +84,7 @@ export default function NotFound() {
     };
   }, [mobileMenu, legalModal]);
 
-  // Live Bilbao CET clock in mobile drawer via DOM ref (zero React re-renders)
+  // Reloj en vivo de Bilbao para el menú móvil (sin re-renders de React)
   useEffect(() => {
     const updateClock = () => {
       let compactText: string = SITE_IDENTITY.cityLabel;
@@ -105,7 +105,7 @@ export default function NotFound() {
     return () => window.clearInterval(id);
   }, []);
 
-  // Lenis desktop smooth scroll + GSAP Hero & Scroll Choreography (matches PortfolioMain.tsx)
+  // Coreografía de entrada GSAP + Lenis en escritorio (idéntica a PortfolioMain.tsx)
   useLayoutEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -164,106 +164,86 @@ export default function NotFound() {
     window.addEventListener("lenis-lock", handleLenisLock);
 
     const ctx = gsap.context(() => {
-      if (reduced) return;
+      if (reduced || !isLargeDesktop) return;
 
       const heroLines = root.querySelectorAll<HTMLElement>("[data-aw-hero-line]");
       const heroFades = root.querySelectorAll<HTMLElement>("[data-aw-hero-fade]");
       const heroHairline = root.querySelector<HTMLElement>("[data-aw-hero-hairline]");
       const heroCard = root.querySelector<HTMLElement>("[data-aw-hero-card]");
-      const destLine = root.querySelector<HTMLElement>("[data-aw-line]");
-      const destCards = root.querySelectorAll<HTMLElement>("[data-aw-dest-card]");
 
-      if (isLargeDesktop) {
-        gsap.set(heroLines, { yPercent: 112 });
-        gsap.set(heroFades, { y: 16, autoAlpha: 0 });
-        if (heroHairline) {
-          gsap.set(heroHairline, { scaleX: 0, transformOrigin: "left center" });
-        }
-        if (heroCard) {
-          gsap.set(heroCard, { y: 20, autoAlpha: 0 });
-        }
-        if (destLine) {
-          gsap.set(destLine, { scaleX: 0, transformOrigin: "left center" });
-        }
-        if (destCards.length > 0) {
-          gsap.set(destCards, { y: 18, autoAlpha: 0 });
-        }
+      gsap.set(heroLines, { yPercent: 112 });
+      gsap.set(heroFades, { y: 16, autoAlpha: 0 });
+      if (heroHairline) {
+        gsap.set(heroHairline, { scaleX: 0, transformOrigin: "left center" });
+      }
+      if (heroCard) {
+        gsap.set(heroCard, { y: 20, autoAlpha: 0 });
+      }
 
-        const tl = gsap.timeline({ defaults: { ease: "aw-out" } });
+      const tl = gsap.timeline({ defaults: { ease: "aw-out" } });
 
+      tl.to(
+        heroLines,
+        {
+          yPercent: 0,
+          duration: 0.65,
+          stagger: 0.05,
+          clearProps: "transform",
+        },
+        0.04
+      );
+
+      if (heroCard) {
         tl.to(
-          heroLines,
-          {
-            yPercent: 0,
-            duration: 0.7,
-            stagger: 0.06,
-            clearProps: "transform",
-          },
-          0.05
-        );
-
-        if (heroCard) {
-          tl.to(
-            heroCard,
-            {
-              y: 0,
-              autoAlpha: 1,
-              duration: 0.6,
-              clearProps: "transform,opacity,visibility",
-            },
-            0.12
-          );
-        }
-
-        if (heroHairline) {
-          tl.to(
-            heroHairline,
-            {
-              scaleX: 1,
-              duration: 0.55,
-              clearProps: "transform",
-            },
-            0.16
-          );
-        }
-
-        tl.to(
-          heroFades,
+          heroCard,
           {
             y: 0,
             autoAlpha: 1,
             duration: 0.55,
+            clearProps: "transform,opacity,visibility",
+          },
+          0.1
+        );
+      }
+
+      if (heroHairline) {
+        tl.to(
+          heroHairline,
+          {
+            scaleX: 1,
+            duration: 0.55,
+            clearProps: "transform",
+          },
+          0.14
+        );
+      }
+
+      tl.to(
+        heroFades,
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.5,
+          stagger: 0.04,
+          clearProps: "transform,opacity,visibility",
+        },
+        0.16
+      );
+
+      const reveals = root.querySelectorAll<HTMLElement>("[data-aw-reveal]");
+      if (reveals.length > 0) {
+        gsap.set(reveals, { y: 18, autoAlpha: 0 });
+        tl.to(
+          reveals,
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.6,
             stagger: 0.05,
             clearProps: "transform,opacity,visibility",
           },
-          0.18
+          0.24
         );
-
-        if (destLine) {
-          tl.to(
-            destLine,
-            {
-              scaleX: 1,
-              duration: 0.65,
-              clearProps: "transform",
-            },
-            0.26
-          );
-        }
-
-        if (destCards.length > 0) {
-          tl.to(
-            destCards,
-            {
-              y: 0,
-              autoAlpha: 1,
-              duration: 0.55,
-              stagger: 0.055,
-              clearProps: "transform,opacity,visibility",
-            },
-            0.3
-          );
-        }
       }
     }, root);
 
@@ -295,31 +275,14 @@ export default function NotFound() {
       eu: "Artxibo akademikoa · Scholar ↗",
     },
     footerLinksTitle: { es: "Enlaces", en: "Links", eu: "Estekak" },
-    diagnosticEyebrow: {
-      es: "DIAGNÓSTICO HTTP",
-      en: "HTTP DIAGNOSTIC",
-      eu: "HTTP DIAGNOSTIKOA",
-    },
-    statusMeta: "STATUS 404 · NOT FOUND",
-    endpointsLabel: {
-      es: "ENDPOINTS ESTRUCTURADOS",
-      en: "STRUCTURED ENDPOINTS",
-      eu: "ENDPOINT EGITURATUAK",
-    },
-    diagnosticSubtitle: {
-      es: "Enlace movido o ruta inexistente",
-      en: "Moved link or non-existent route",
-      eu: "Esteka mugitua edo bide baliogabea",
-    },
-    viewProjects: {
-      es: "Ver proyectos →",
-      en: "View projects →",
-      eu: "Ikusi proiektuak →",
-    },
-    papersCta: {
-      es: "Papers & Zenodo ↗",
-      en: "Papers & Zenodo ↗",
-      eu: "Papers & Zenodo ↗",
+    contactBtn: { es: "Contáctame", en: "Get in touch", eu: "Jarri harremanetan" },
+    cardMetaRight: { es: "ERROR 404", en: "ERROR 404", eu: "404 ERROREA" },
+    sectionHeadingMain: { es: "Explorar el", en: "Explore the", eu: "Arakatu" },
+    sectionHeadingAccent: { es: "portfolio", en: "portfolio", eu: "portfolioa" },
+    sectionMetaRight: {
+      es: "ACCESO DIRECTO",
+      en: "DIRECT ACCESS",
+      eu: "SARBIDE ZUZENA",
     },
   };
 
@@ -401,7 +364,7 @@ export default function NotFound() {
       ref={rootRef}
       className="min-h-screen bg-[#09090B] text-[#F6F4EF] font-sans antialiased flex flex-col selection:bg-[#D6C7B2] selection:text-[#09090B]"
     >
-      {/* Subtle Film Grain — Desktop ONLY (identical to PortfolioMain.tsx) */}
+      {/* Subtle Film Grain — Desktop ONLY (idéntico a PortfolioMain.tsx) */}
       <div
         aria-hidden="true"
         className="hidden lg:block fixed inset-0 z-[70] pointer-events-none opacity-[0.024]"
@@ -417,14 +380,13 @@ export default function NotFound() {
       </div>
 
       {/* =====================================================================
-          HEADER — FIXED TOP BAR IDENTICAL TO PORTFOLIOMAIN.TSX
+          HEADER — IDÉNTICO A PORTFOLIOMAIN.TSX
          ===================================================================== */}
       <header className="fixed top-0 left-0 right-0 z-[80] bg-[#09090B]/95 backdrop-blur-md border-b border-white/14">
         <div className="max-w-[1533px] mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-4 xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-8">
-          {/* Left: Logo */}
           <a
             href="/"
-            className="flex items-center min-h-[44px] shrink-0 xl:justify-self-start transition-opacity hover:opacity-80"
+            className="flex items-center min-h-[44px] shrink-0 xl:justify-self-start"
             aria-label={t("header.home")}
           >
             <img
@@ -436,7 +398,6 @@ export default function NotFound() {
             />
           </a>
 
-          {/* Center: Desktop Navigation with .aw-nav-link Champagne Underline */}
           <nav
             aria-label="Navegación principal"
             className="hidden lg:flex items-center gap-1 xl:gap-2"
@@ -455,7 +416,6 @@ export default function NotFound() {
               ))}
           </nav>
 
-          {/* Right: Desktop Language Switcher + Download CV | Mobile Morphing Hamburger ↔ X */}
           <div className="flex items-center gap-3.5 xl:gap-4 shrink-0 xl:justify-self-end">
             <div
               role="group"
@@ -490,7 +450,6 @@ export default function NotFound() {
               <SlotLabel text={`↓ ${t("hero.downloadCv")}`} />
             </a>
 
-            {/* Mobile Animated Square Hamburger ↔ Morphing X Button */}
             <button
               type="button"
               onClick={() => setMobileMenu((v) => !v)}
@@ -667,7 +626,7 @@ export default function NotFound() {
       </div>
 
       {/* =====================================================================
-          MAIN 404 ARCHITECTURAL HERO (Mirrors PortfolioMain.tsx Hero 1:1)
+          00 · ARCHITECTURAL HERO 404 (Idéntico al Hero de PortfolioMain.tsx)
          ===================================================================== */}
       <main className="flex-1 pt-16 sm:pt-20 lg:pt-24">
         <section className="relative overflow-hidden px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 lg:pt-12 pb-16 sm:pb-24">
@@ -683,14 +642,14 @@ export default function NotFound() {
               </span>
             </div>
 
-            {/* Editorial Lockup + Orbital Champagne Beam Diagnostic Card */}
+            {/* Editorial Lockup + Orbital Champagne Card (.aw-launch-frame) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
               <div className="lg:col-span-7 text-center lg:text-left">
                 <h1 className="select-none">
                   <span className="block overflow-hidden py-1 -my-1">
                     <span
                       data-aw-hero-line
-                      className="block font-editorial font-semibold uppercase tracking-[-0.035em] leading-[0.86] text-[clamp(4.4rem,14vw,9.6rem)] text-[#F6F4EF]"
+                      className="block font-editorial font-semibold uppercase tracking-[-0.035em] leading-[0.86] text-[clamp(4.2rem,14vw,9.6rem)] text-[#F6F4EF]"
                     >
                       404
                     </span>
@@ -698,7 +657,7 @@ export default function NotFound() {
                   <span className="block overflow-hidden py-3 -my-3 px-2 -mx-2 -mt-[0.06em] lg:pl-[0.06em]">
                     <span
                       data-aw-hero-line
-                      className="block font-editorial italic font-normal tracking-[-0.035em] leading-[0.92] text-[clamp(2.8rem,8.5vw,6.4rem)] text-[#D6C7B2]"
+                      className="block font-editorial italic font-normal tracking-[-0.035em] leading-[0.9] text-[clamp(2.8rem,8.5vw,6.4rem)] text-[#D6C7B2]"
                     >
                       {t("404.title")}
                     </span>
@@ -706,77 +665,67 @@ export default function NotFound() {
                 </h1>
               </div>
 
-              {/* Orbital Champagne Frame Card (.aw-launch-frame from src/index.css) */}
               <aside
                 data-aw-hero-card
                 className="lg:col-span-5 aw-launch-frame bg-[#111114] p-6 flex flex-col gap-5"
               >
-                <div className="flex items-center justify-between gap-2 pb-3.5 border-b border-white/14 font-mono text-xs sm:text-sm uppercase tracking-[0.14em]">
+                <div className="flex items-center justify-between gap-2 pb-3.5 border-b border-white/14 font-mono text-sm uppercase tracking-[0.14em]">
                   <span className="text-[#D6C7B2] font-semibold">
-                    {loc(ui.diagnosticEyebrow, language)}
+                    {t("404.pathLabel")}
                   </span>
-                  <span className="text-[#F6F4EF]/70">{ui.statusMeta}</span>
+                  <span className="text-[#F6F4EF]/70">
+                    {loc(ui.cardMetaRight, language)}
+                  </span>
                 </div>
 
-                {/* Requested Path Inspector */}
-                <div className="bg-[#0B0B0D] border border-white/10 p-4 space-y-2">
-                  <div className="font-mono text-xs uppercase tracking-[0.14em] text-[#D6C7B2]">
-                    {t("404.pathLabel")}
-                  </div>
-                  <code className="block font-mono text-sm text-[#F6F4EF] break-all leading-relaxed">
+                <div className="bg-[#0B0B0D] border border-white/10 p-5 space-y-4">
+                  <code className="block font-mono text-sm sm:text-base text-[#F6F4EF] break-all leading-relaxed">
                     {requestedPath}
                   </code>
-                </div>
 
-                {/* Structured Public Endpoints Strip */}
-                <div className="space-y-2.5">
-                  <div className="font-mono text-xs uppercase tracking-[0.14em] text-[#F6F4EF]/55">
-                    {loc(ui.endpointsLabel, language)}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {API_ENDPOINTS.map((ep) => (
-                      <a
-                        key={ep.id}
-                        href={ep.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-mono text-xs px-2.5 py-1.5 bg-[#0B0B0D] border border-white/14 text-[#F6F4EF]/80 hover:border-[#D6C7B2] hover:text-[#D6C7B2] transition-colors"
-                      >
-                        {ep.label}
-                      </a>
-                    ))}
-                    <a
-                      href="/sitemap.xml"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs px-2.5 py-1.5 bg-[#0B0B0D] border border-white/14 text-[#F6F4EF]/80 hover:border-[#D6C7B2] hover:text-[#D6C7B2] transition-colors"
-                    >
-                      sitemap.xml
-                    </a>
+                  <div className="pt-3 border-t border-white/10 space-y-2.5">
+                    <div className="font-mono text-xs uppercase tracking-[0.14em] text-[#F6F4EF]/55">
+                      {t("api.title")}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {API_ENDPOINTS.map((ep) => (
+                        <a
+                          key={ep.id}
+                          href={ep.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-xs px-2.5 py-1.5 bg-[#111114] border border-white/14 text-[#F6F4EF]/80 hover:border-[#D6C7B2] hover:text-[#D6C7B2] transition-colors"
+                        >
+                          {ep.path.replace(/^\//, "")}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between gap-4 pt-2 border-t border-white/10">
+                <div className="flex items-center justify-between gap-4 pt-1">
                   <div className="min-w-0">
-                    <div className="font-grotesk font-semibold text-base sm:text-lg leading-tight text-[#F6F4EF] truncate">
+                    <div className="font-grotesk font-semibold text-lg sm:text-xl leading-tight text-[#F6F4EF] truncate">
                       {SITE_IDENTITY.brandName}
                     </div>
                     <div className="font-mono text-xs sm:text-sm text-[#D6C7B2] mt-1 truncate">
-                      {loc(ui.diagnosticSubtitle, language)}
+                      {t("hero.role")}
                     </div>
                   </div>
                   <a
-                    href="/"
+                    href={SITE_IDENTITY.bideUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={btnDarkOnIvory}
-                    className="aw-btn shrink-0 bg-[#F6F4EF] text-[#09090B] font-semibold text-sm sm:text-base px-4 sm:px-5 min-h-[46px] inline-flex items-center"
+                    className="aw-btn shrink-0 bg-[#F6F4EF] text-[#09090B] font-semibold text-base px-5 min-h-[48px] inline-flex items-center"
                   >
-                    <SlotLabel text={`← ${t("404.c1Title")}`} />
+                    <SlotLabel text="Bideplus ↗" />
                   </a>
                 </div>
               </aside>
             </div>
 
-            {/* Editorial Bottom Row: Description + 2x2 .aw-btn Action Grid */}
+            {/* Editorial Bottom Row: Descripción + Cuadrícula 2×2 de botones (.aw-btn) */}
             <div className="relative pt-8">
               <div
                 data-aw-hero-hairline
@@ -803,7 +752,7 @@ export default function NotFound() {
                     style={btnOutlineOnDark}
                     className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
-                    <SlotLabel text={loc(ui.viewProjects, language)} />
+                    <SlotLabel text={`${t("projects.title")} →`} />
                   </a>
                   <TearLink
                     href={SITE_IDENTITY.photographyUrl}
@@ -813,63 +762,81 @@ export default function NotFound() {
                     <SlotLabel text={`${t("hero.photographyProfile")} ↗`} />
                   </TearLink>
                   <a
-                    href={SITE_IDENTITY.papersArchivePath}
+                    href="/#contact"
                     style={btnOutlineOnDark}
                     className="aw-btn border border-white/30 text-[#F6F4EF] font-medium text-base px-6 sm:px-7 py-4 min-h-[54px] lg:min-h-[64px] lg:text-[17px] inline-flex items-center justify-center"
                   >
-                    <SlotLabel text={loc(ui.papersCta, language)} />
+                    <SlotLabel text={`${loc(ui.contactBtn, language)} →`} />
                   </a>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Destination Cards Section */}
-            <div className="pt-6 lg:pt-8 space-y-5">
-              <div className="flex items-center gap-4 font-mono text-xs sm:text-sm uppercase tracking-[0.16em] text-[#D6C7B2]">
-                <span className="shrink-0">{t("404.destinations")}</span>
-                <span
-                  data-aw-line
-                  aria-hidden="true"
-                  className="flex-1 h-px bg-white/14"
-                />
+        {/* =====================================================================
+            01 · DESTINOS PRINCIPALES (Misma estructura y márgenes que las secciones de PortfolioMain.tsx)
+           ===================================================================== */}
+        <section className="bg-[#09090B] border-t border-white/12 py-20 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-12 overflow-x-clip">
+          <div className="max-w-[1440px] mx-auto space-y-12">
+            <div
+              data-aw-reveal
+              className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-white/12"
+            >
+              <div>
+                <span className="font-mono text-sm uppercase tracking-[0.2em] text-[#D6C7B2] block mb-3">
+                  01 / {t("404.destinations")}
+                </span>
+                <h2 className="font-editorial font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-[-0.03em] leading-[1.0]">
+                  {loc(ui.sectionHeadingMain, language)}{" "}
+                  <span className="font-editorial italic font-normal text-[#D6C7B2]">
+                    {loc(ui.sectionHeadingAccent, language)}
+                  </span>
+                </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {destinationCards.map((card) => (
-                  <a
-                    key={card.num}
-                    href={card.href}
-                    data-aw-dest-card
-                    className="group bg-[#111114] hover:bg-[#17171C] border border-white/14 hover:border-[#D6C7B2] p-6 flex flex-col justify-between min-h-[184px] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px] hover:shadow-[0_16px_36px_-12px_rgba(0,0,0,0.75)]"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between font-mono text-xs text-[#D6C7B2] pb-3.5 border-b border-white/10 mb-4">
-                        <span>[ {card.num} ]</span>
-                        <span className="text-[#F6F4EF]/45 group-hover:text-[#D6C7B2] group-hover:translate-x-1 transition-all duration-200">
-                          <IconGlyph name="right" />
-                        </span>
-                      </div>
-                      <h2 className="font-grotesk text-lg sm:text-xl font-semibold text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors mb-2">
-                        {card.title}
-                      </h2>
-                      <p className="text-sm text-[#F6F4EF]/70 leading-relaxed m-0">
-                        {card.desc}
-                      </p>
+              <div className="font-mono text-sm uppercase tracking-[0.16em] text-[#F6F4EF]/65 lg:text-right">
+                <div>yeraygarrido.dev</div>
+                <div className="text-[#D6C7B2] mt-1">{loc(ui.sectionMetaRight, language)}</div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {destinationCards.map((card) => (
+                <a
+                  key={card.num}
+                  href={card.href}
+                  data-aw-reveal
+                  className="group bg-[#111114] hover:bg-[#17171C] border border-white/14 hover:border-[#D6C7B2] p-6 sm:p-7 flex flex-col justify-between min-h-[196px] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[3px]"
+                >
+                  <div>
+                    <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+                      <span className="font-editorial italic font-normal text-3xl text-[#D6C7B2] leading-none">
+                        {card.num}.
+                      </span>
+                      <span className="text-[#F6F4EF]/45 group-hover:text-[#D6C7B2] group-hover:translate-x-1 transition-all duration-200">
+                        <IconGlyph name="right" />
+                      </span>
                     </div>
-                  </a>
-                ))}
-              </div>
+                    <h3 className="font-grotesk text-xl font-bold tracking-tight text-[#F6F4EF] group-hover:text-[#D6C7B2] transition-colors mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-editorial text-sm sm:text-base text-[#F6F4EF]/72 leading-relaxed m-0">
+                      {card.desc}
+                    </p>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </section>
       </main>
 
       {/* =====================================================================
-          STRUCTURED PRODUCTION FOOTER — 1:1 REPLICA OF PORTFOLIOMAIN.TSX
+          STRUCTURED PRODUCTION FOOTER — 1:1 IDÉNTICO A PORTFOLIOMAIN.TSX
          ===================================================================== */}
       <footer className="bg-[#09090B] text-[#F6F4EF]/75 py-16 px-5 sm:px-8 lg:px-14 border-t border-white/12 overflow-x-clip">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 sm:gap-12 pb-12 border-b border-white/12 text-base">
-          {/* Col 1: Identity & ORCID */}
           <div className="col-span-2 md:col-span-1 space-y-4 min-w-0">
             <img
               src="/img/logo.webp"
@@ -892,7 +859,6 @@ export default function NotFound() {
             </a>
           </div>
 
-          {/* Col 2: Portfolio Links */}
           <div className="space-y-2.5 min-w-0">
             <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
               Portfolio
@@ -914,7 +880,6 @@ export default function NotFound() {
             </a>
           </div>
 
-          {/* Col 3: APIs & Endpoints */}
           <div className="space-y-2.5 min-w-0">
             <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
               {t("api.title")}
@@ -953,7 +918,6 @@ export default function NotFound() {
             </a>
           </div>
 
-          {/* Col 4: Links & Social */}
           <div className="col-span-2 md:col-span-1 space-y-2.5 min-w-0">
             <div className="text-[#F6F4EF] uppercase tracking-[0.08em] sm:tracking-[0.14em] font-semibold text-xs sm:text-sm break-words">
               {loc(ui.footerLinksTitle, language)}
@@ -1008,7 +972,6 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* Sub-footer Bottom Line with Legal Modals */}
         <div className="max-w-[1440px] mx-auto pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#F6F4EF]/55 text-center md:text-left">
           <span>
             {t("contact.footer.madeWith")} {SITE_IDENTITY.brandName}
@@ -1043,7 +1006,7 @@ export default function NotFound() {
       </footer>
 
       {/* =====================================================================
-          LEGAL / PRIVACY / COOKIES MODAL (Identical to PortfolioMain.tsx)
+          LEGAL / PRIVACY / COOKIES MODAL
          ===================================================================== */}
       {legalModal && (
         <div
@@ -1067,7 +1030,7 @@ export default function NotFound() {
                 aria-label={t("projects.close")}
                 className="font-mono text-xs uppercase tracking-widest px-3.5 min-h-[44px] border border-white/20 hover:bg-[#F6F4EF] hover:text-[#09090B] transition-colors cursor-pointer inline-flex items-center gap-1.5"
               >
-                <span>ESC</span>
+                <span>{t("projects.close")}</span>
                 <IconGlyph name="close" />
               </button>
             </div>

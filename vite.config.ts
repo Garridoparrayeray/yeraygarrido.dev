@@ -112,17 +112,17 @@ function generate404HtmlPlugin(): Plugin {
 
   <noscript>
     <main style="max-width:860px;margin:0 auto;padding:48px 24px;font-family:system-ui,sans-serif;background:#09090B;color:#F6F4EF;line-height:1.6;">
-      <p style="font-family:monospace;font-size:13px;letter-spacing:0.14em;color:#D6C7B2;text-transform:uppercase;">HTTP 404 · RECURSO NO LOCALIZADO</p>
+      <p style="font-family:monospace;font-size:13px;letter-spacing:0.14em;color:#D6C7B2;text-transform:uppercase;">ERROR 404 · PÁGINA NO ENCONTRADA</p>
       <h1 style="font-size:48px;margin:12px 0;">404 — Página no encontrada</h1>
-      <p style="color:rgba(246,244,239,0.82);">El recurso solicitado no existe, ha sido trasladado o su identificador ha cambiado en la última compilación de yeraygarrido.dev.</p>
+      <p style="color:rgba(246,244,239,0.82);">La página que buscas no existe, ha sido trasladada o su dirección ha cambiado en la última actualización del portfolio.</p>
       <ul style="margin-top:24px;line-height:2;">
-        <li><a href="/" style="color:#D6C7B2;">Volver al Inicio</a></li>
-        <li><a href="/#work" style="color:#D6C7B2;">Bide+ &amp; Proyectos</a></li>
-        <li><a href="/papers/" style="color:#D6C7B2;">Publicaciones Científicas (Zenodo / Scholar)</a></li>
+        <li><a href="/" style="color:#D6C7B2;">Volver al inicio</a></li>
+        <li><a href="/#work" style="color:#D6C7B2;">Bide+ &amp; Proyectos Destacados</a></li>
+        <li><a href="/papers/" style="color:#D6C7B2;">Investigación · Archivo académico</a></li>
         <li><a href="/#contact" style="color:#D6C7B2;">Contacto</a></li>
       </ul>
       <p style="margin-top:24px;font-size:14px;color:rgba(246,244,239,0.6);">
-        APIs públicas: <a href="/cv.json" style="color:#D6C7B2;">cv.json</a> · <a href="/cv.xml" style="color:#D6C7B2;">cv.xml</a> · <a href="/cv.txt" style="color:#D6C7B2;">cv.txt</a> · <a href="/llms.txt" style="color:#D6C7B2;">llms.txt</a>
+        API para Desarrolladores: <a href="/cv.xml" style="color:#D6C7B2;">cv.xml</a> · <a href="/cv.json" style="color:#D6C7B2;">cv.json</a> · <a href="/cv.txt" style="color:#D6C7B2;">cv.txt</a> · <a href="/llms.txt" style="color:#D6C7B2;">llms.txt</a>
       </p>
     </main>
   </noscript>
