@@ -12,6 +12,9 @@ const SpeedInsights = lazy(() =>
 const CookieBanner = lazy(() => import("./components/Cookie-Banner"));
 
 function isNotFoundRoute(): boolean {
+  if (typeof document !== "undefined" && document.documentElement.dataset.page === "404") {
+    return true;
+  }
   if (typeof window === "undefined") return false;
   const path = window.location.pathname;
   return path !== "/" && path !== "/index.html" && path !== "";

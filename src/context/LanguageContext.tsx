@@ -351,11 +351,44 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('es');
+  const [language, setLanguageState] = useState<Language>(() => {
+    try {
+      const saved = localStorage.getItem('portfolio_lang');
+      if (saved === 'es' || saved === 'en' || saved === 'eu') return saved;
+    } catch {
+      // ignore storage access errors
+    }
+    return 'es';
+  });
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    try {
+      localStorage.setItem('portfolio_lang', lang);
+    } catch {
+      // ignore storage quota / private mode restrictions
+    }
+  };
 
   useEffect(() => {
     // Actualiza el atributo lang del HTML — esencial para hyphens: auto, lectores de pantalla y SEO
     document.documentElement.lang = language;
+
+    const is404Page =
+      document.documentElement.dataset.page === '404' ||
+      (window.location.pathname !== '/' &&
+        window.location.pathname !== '/index.html' &&
+        window.location.pathname !== '');
+
+    if (is404Page) {
+      const titles404: Record<Language, string> = {
+        es: '404 — Página no encontrada | Yeray Garrido',
+        en: '404 — Page Not Found | Yeray Garrido',
+        eu: '404 — Ez da orrialdea aurkitu | Yeray Garrido',
+      };
+      document.title = titles404[language];
+      return;
+    }
 
     const seoData = {
       es: {
