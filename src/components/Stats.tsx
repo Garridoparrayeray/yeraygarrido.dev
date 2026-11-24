@@ -52,7 +52,7 @@ export default function Stats() {
           {[
             { label: t('stats.repos'), value: stats.public_repos, suffix: '+' },
             { label: t('stats.commits'), value: commits, suffix: '+' },
-            { label: t('stats.papers'), value: 3, suffix: '' },
+            { label: t('stats.papers'), value: 4, suffix: '' },
             { label: t('stats.followers'), value: stats.followers, suffix: '' },
           ].map((stat, i) => (
             <div key={i} data-reveal="up" className="flex flex-col items-center text-center group">
